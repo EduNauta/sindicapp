@@ -1,28 +1,196 @@
-# sindicapp
-App para un sindicato
+<div align="center">
+  <img src="assets/images/logo.jpg" alt="SindicApp Logo" width="200"/>
+  
+  # SindicApp
+  
+  **Una plataforma digital para la organización y coordinación de la clase trabajadora**
+  
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  [![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+  [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
+  
+</div>
 
-DESCRIPCION
+---
 
-SindicApp és la hipòtesi d’una app mòbil la funció de la qual seria fer de xarxa social o directori o plataforma de coordinació, perquè la classe treballadora disposi d’una infraestructura organitzativa per lluitar per millorar les seves condicions laborals. Es podria conceptualitzar com una cruïlla entre Infojobs, Facebook i Wikileaks.
+## 📋 Descripción
 
-Aquesta idea d’app està basada en una funcionalitat central: la capacitat de crear un perfil automàtic per a cada empresa o negoci. que existeix al territori. En aquest perfil, tots els usuaris tindrien accés a una sèrie de funcionalitats que permetrien tasques de coordinació: un fòrum, un sistema de notificacions, una agenda d’objectius, etc.
+SindicApp es una aplicación móvil progresiva (PWA) diseñada para servir como red social, directorio y plataforma de coordinación para la clase trabajadora. Combina elementos de InfoJobs, Facebook y WikiLeaks para proporcionar una infraestructura organizativa que ayude a mejorar las condiciones laborales.
 
-L’app disposaria de l’API de Google Maps per mostrar un mapa. Sobre aquest mapa s’identificaria totes les empreses, corporacions i associacions privades que hi apareixen. Si alguna empresa no aparegués, se la podria afegir manualment. Cada empresa disposaria automàticament d’una landing page.
+### ✨ Características Principales
 
-Cada pàgina tindria un conjunt de funcions, com ara:
+- **📍 Mapas Interactivos**: Integración con Google Maps para localizar empresas y organizaciones
+- **🏢 Perfiles Empresariales**: Página automática para cada empresa con múltiples funcionalidades
+- **💬 Foros Públicos y Privados**: Espacios de discusión moderados por sector y empresa
+- **📊 Denuncias Anónimas**: Sistema seguro para reportar condiciones laborales
+- **🤝 Coordinación Sindical**: Herramientas para organización y planificación de acciones
+- **📱 Interfaz Moderna**: Diseño responsivo optimizado para móviles
 
-Un fòrum públic on tothom podria obrir i participar en fils relacionats amb qüestions pertinents a aquesta empresa.
-Una secció reservada per als sindicats ja existents, a l’estil CCOO o UGT. Perquè puguin visibilitzar-se, oferir el contacte de l’alliberat sindical si n’hi hagués, publicar textos i alertes, etc.
-Un sistema que permeti als sindicats presents en una empresa a fer d’amfitrions en un fòrum privat dels treballadors de l’empresa, cosa que podria filtrar espies i representants empresarials, i salvaguardar els treballadors de pressions i problemes amb els seus caps.
-Un sistema de denúncies anònimes, en què qualsevol persona podria denunciar públicament l’existència de condicions laborals dolentes, com per exemple:
-Hores extra, pagades o no pagades.
-Sous en negre o massa baixos.
-Personalitats abusives i cruels, caps amb mala reputació…
-Una secció on tothom pugui participar anònimament per crear un organigrama de l’empresa i els sous de cada lloc de treball, amb opcions de coordinar una demanda col·lectiva d’apujar sous.
-Una secció on poder analitzar el llibre comptable de l’empresa, l’EBITDA, la proporció entre ingressos i despeses, etc. Informació que es pot presentar de forma informal i especulativa, i també la que surt al registre mercantil.
-Una secció que mostri el conveni laboral/sectorial de l’empresa, juntament amb un xat adossat i un preguntes més freqüents, on es puguin discutir qüestions relacionades amb l’aplicació del conveni.
-Una secció que suporti la mostra del contracte laboral de l’usuari i permeti demanar opinió a altres persones sobre com està escrit i com millorar-ho.
-Una secció dissenyada per a la coordinació de vagues, amb una interfície que faciliti saber fins a quin punt hi ha suport per part dels treballadors a una presa d’acció, mitjançant votacions, llistes de confirmació, un xat, etc.
-Addicionalment, a banda de les pàgines per a cada empresa, hi hauria un fòrum general de l’aplicació, on es podrien parlar de temes més generalistes, amb un subfòrum per cada sector d’activitat econòmica, i subfòrums de temes alternatius, com ara d’actualitat, política, cultura, etc.
+## 🛠️ Stack Tecnológico
 
-També hi hauria una pàgina amb la llista dels sindicats (CCOO; UGT, sindicats petits sectorials, etc.), amb un fòrum per a cadascun, a més d’un sistema de votació respecte al seu nivell de prestigi. A més a més, hi hauria una secció amb una llista de contactes, suggeriments, peticions, etc.
+### Frontend
+- **Framework**: Next.js 14 (App Router)
+- **Lenguaje**: TypeScript
+- **UI/Styling**: Tailwind CSS
+- **Estado**: Zustand
+- **Datos**: React Query
+
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Lenguaje**: TypeScript  
+- **Base de Datos**: PostgreSQL
+- **ORM**: Prisma
+- **Autenticación**: JWT + Refresh Tokens
+
+### Servicios
+- **Mapas**: Google Maps API
+- **Cache**: Redis
+- **Notificaciones**: Push Notifications
+- **Infraestructura**: Docker
+
+## 🚀 Instalación
+
+### Prerrequisitos
+
+- Node.js (v18 o superior)
+- PostgreSQL (v14 o superior)
+- Redis
+- Git
+
+### Configuración Local
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/usuario/sindicapp.git
+cd sindicapp
+
+# Instalar dependencias del frontend
+cd frontend
+npm install
+
+# Instalar dependencias del backend
+cd ../backend
+npm install
+
+# Configurar variables de entorno
+cp .env.example .env
+# Editar .env con tus configuraciones
+
+# Ejecutar migraciones
+npm run db:migrate
+
+# Semillas de la base de datos
+npm run db:seed
+```
+
+### Desarrollo
+
+```bash
+# Terminal 1 - Backend
+cd backend
+npm run dev
+
+# Terminal 2 - Frontend  
+cd frontend
+npm run dev
+```
+
+La aplicación estará disponible en `http://localhost:3000`
+
+## 📁 Estructura del Proyecto
+
+```
+sindicapp/
+├── 📄 docs/                    # Documentación
+├── 🎨 frontend/               # Aplicación cliente (Next.js)
+├── ⚙️  backend/               # API servidor (Express)
+├── 🗄️  database/              # Migraciones y esquemas
+├── 🔧 shared/                 # Código compartido
+├── 🚀 deployment/             # Scripts de despliegue
+└── 📦 assets/                 # Recursos estáticos
+```
+
+## 🤝 Contribución
+
+Este proyecto está en desarrollo activo. Para contribuir:
+
+1. Fork el proyecto
+2. Crea una rama para tu funcionalidad (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+### 📋 Convenciones de Código
+
+- **TypeScript** obligatorio en todo el proyecto
+- **ESLint + Prettier** para formateo consistente
+- **Conventional Commits** para mensajes de commit
+- **Tests unitarios** para funcionalidades críticas
+
+## 📚 Documentación
+
+- [📖 Manifesto y Visión del Proyecto](MANIFESTO.md)
+- [🏗️ Arquitectura del Sistema](docs/architecture.md)
+- [🔐 Consideraciones de Seguridad](docs/security.md)
+- [📋 API Documentation](docs/api-spec.md)
+- [👥 Historias de Usuario](docs/user-stories.md)
+
+## 🔒 Seguridad y Privacidad
+
+- **🔐 Autenticación robusta** con tokens seguros
+- **🥷 Anonimato protegido** para denuncias
+- **🛡️ Cumplimiento GDPR** y normativas locales
+- **🔍 Moderación activa** contra abuso y spam
+- **🤖 Detección de bots** y cuentas falsas
+
+## 🗺️ Roadmap
+
+### Fase 1: MVP (En desarrollo)
+- [ ] Autenticación y registro
+- [ ] Integración Google Maps
+- [ ] Perfiles básicos de empresa
+- [ ] Foro público simple
+
+### Fase 2: Funcionalidades Core
+- [ ] Sistema de denuncias anónimas
+- [ ] Foros privados por empresa
+- [ ] Sistema de notificaciones
+- [ ] Panel administrativo
+
+### Fase 3: Avanzadas
+- [ ] Coordinación de acciones
+- [ ] Análisis empresarial
+- [ ] Aplicación móvil nativa
+- [ ] Integraciones sindicales
+
+## ⚖️ Consideraciones Legales
+
+Este proyecto respeta:
+- **GDPR** y normativas de protección de datos
+- **Libertad de expresión** dentro del marco legal
+- **Derecho de asociación** y organización sindical
+- **Transparencia empresarial** según registros públicos
+
+> ⚠️ **Aviso**: El uso responsable y legal de la plataforma es responsabilidad de cada usuario.
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
+
+## 📞 Contacto
+
+- **Proyecto**: [SindicApp](https://github.com/usuario/sindicapp)
+- **Documentación**: [Wiki del Proyecto](https://github.com/usuario/sindicapp/wiki)
+- **Issues**: [GitHub Issues](https://github.com/usuario/sindicapp/issues)
+
+---
+
+<div align="center">
+  
+  **¡Construyamos juntos una herramienta para la organización trabajadora! 🤝**
+  
+  [⭐ Star este proyecto](https://github.com/usuario/sindicapp) | [🐛 Reportar Bug](https://github.com/usuario/sindicapp/issues) | [💡 Solicitar Funcionalidad](https://github.com/usuario/sindicapp/issues)
+  
+</div> 
