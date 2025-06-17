@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SindicApp - Plataforma para la Organización Trabajadora</title>
+    <meta name="description" content="Una plataforma digital para la organización y coordinación de la clase trabajadora">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/images/logo.jpg" type="image/jpeg">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <img src="assets/images/logo.jpg" alt="SindicApp Logo" class="logo">
+                <h1 class="title">SindicApp</h1>
+            </div>
+            <p class="subtitle">Una plataforma digital para la organización y coordinación de la clase trabajadora</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="status-card">
+                <h2>🚧 En Desarrollo</h2>
+                <p>Esta aplicación está actualmente en desarrollo. Próximamente estará disponible con todas las funcionalidades planificadas.</p>
+                
+                <div class="features-preview">
+                    <h3>Características Próximas:</h3>
+                    <ul>
+                        <li>📍 Mapas interactivos empresariales</li>
+                        <li>🏢 Perfiles de empresas</li>
+                        <li>💬 Foros de trabajadores</li>
+                        <li>📊 Sistema de denuncias anónimas</li>
+                        <li>🤝 Herramientas de coordinación sindical</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <!-- Credits -->
+        <div class="credits-card">
+            <p>Created by <strong>Edu Nauta</strong> + <strong>Cursor</strong></p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#" onclick="showModal('privacy')">Política de Privacidad</a></li>
+                        <li><a href="#" onclick="showModal('terms')">Términos de Uso</a></li>
+                        <li><a href="#" onclick="showModal('cookies')">Política de Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Licencia</h4>
+                    <p>Código abierto bajo <a href="https://opensource.org/licenses/MIT" target="_blank">Licencia MIT</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>Proyecto en <a href="https://github.com/usuario/sindicapp" target="_blank">GitHub</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SindicApp. Proyecto de código abierto para la organización trabajadora.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
