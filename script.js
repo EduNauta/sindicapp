@@ -148,21 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, index * 200);
     });
     
-    // Efecto de typing para el título
-    const title = document.querySelector('.title');
-    const originalText = title.textContent;
-    title.textContent = '';
-    
-    setTimeout(() => {
-        let i = 0;
-        const typeEffect = setInterval(() => {
-            title.textContent += originalText.charAt(i);
-            i++;
-            if (i >= originalText.length) {
-                clearInterval(typeEffect);
-            }
-        }, 100);
-    }, 800);
+    // Título estático - sin animación de typing
 });
 
 // Función para generar partículas de fondo (opcional, efecto visual)

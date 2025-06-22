@@ -1,0 +1,327 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model with authentication and profile data
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  
+  // Profile information
+  firstName String?
+  lastName  String?
+  avatar    String?
+  bio       String?
+  phone     String?
+  
+  // Authentication status
+  emailVerified Boolean @default(false)
+  isActive      Boolean @default(true)
+  
+  // Privacy settings
+  profilePublic Boolean @default(false)
+  emailPublic   Boolean @default(false)
+  phonePublic   Boolean @default(false)
+  
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  lastLogin DateTime?
+  
+  // Relations
+  roleId    String
+  companyId String?
+  role      Role      @relation(fields: [roleId], references: [id])
+  company   Company?  @relation(fields: [companyId], references: [id])
+  sessions  Session[]
+  posts     Post[]
+  comments  Comment[]
+  likes     Like[]
+  reports   Report[]
+  
+  @@index([email])
+  @@index([username])
+  @@index([companyId])
+  @@map("users")
+}
+
+// Role model for authorization
+model Role {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+  
+  // Permission flags
+  canCreatePosts    Boolean @default(false)
+  canModeratePosts  Boolean @default(false)
+  canManageUsers    Boolean @default(false)
+  canViewReports    Boolean @default(false)
+  canManageCompany  Boolean @default(false)
+  canAdminSystem    Boolean @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  users User[]
+  
+  @@map("roles")
+}
+
+// Session model for JWT refresh tokens
+model Session {
+  id           String   @id @default(cuid())
+  refreshToken String   @unique
+  userAgent    String?
+  ipAddress    String?
+  isValid      Boolean  @default(true)
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  
+  // Relations
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("sessions")
+}
+
+// Company model
+model Company {
+  id          String  @id @default(cuid())
+  name        String  @unique
+  slug        String  @unique
+  description String?
+  website     String?
+  logo        String?
+  
+  // Business information
+  industryId   String?
+  employeeCount String? // "1-10", "11-50", "51-200", "201-500", "500+"
+  foundedYear  Int?
+  isPublic     Boolean @default(false)
+  
+  // Location
+  address     String?
+  city        String?
+  state       String?
+  country     String?
+  postalCode  String?
+  latitude    Float?
+  longitude   Float?
+  
+  // Verification
+  isVerified Boolean @default(false)
+  verifiedAt DateTime?
+  verifiedBy String?
+  
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  industry Industry? @relation(fields: [industryId], references: [id])
+  users    User[]
+  forums   Forum[]
+  reports  Report[]
+  
+  @@index([slug])
+  @@index([city])
+  @@index([industryId])
+  @@map("companies")
+}
+
+// Industry model
+model Industry {
+  id          String @id @default(cuid())
+  name        String @unique
+  slug        String @unique
+  description String?
+  parentId    String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  parent     Industry?  @relation("IndustryHierarchy", fields: [parentId], references: [id])
+  children   Industry[] @relation("IndustryHierarchy")
+  companies  Company[]
+  
+  @@map("industries")
+}
+
+// Forum model
+model Forum {
+  id          String  @id @default(cuid())
+  title       String
+  slug        String  @unique
+  description String?
+  
+  // Forum settings
+  isPublic    Boolean @default(true)
+  isActive    Boolean @default(true)
+  requiresApproval Boolean @default(false)
+  
+  // Company association
+  companyId   String?
+  
+  // Metadata
+  postCount   Int      @default(0)
+  memberCount Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  company Company? @relation(fields: [companyId], references: [id])
+  posts   Post[]
+  
+  @@index([slug])
+  @@index([companyId])
+  @@map("forums")
+}
+
+// Post model
+model Post {
+  id      String @id @default(cuid())
+  title   String
+  content String
+  slug    String @unique
+  
+  // Post settings
+  isPublished Boolean @default(true)
+  isPinned    Boolean @default(false)
+  isLocked    Boolean @default(false)
+  
+  // Moderation
+  isHidden    Boolean @default(false)
+  hideReason  String?
+  hiddenAt    DateTime?
+  hiddenBy    String?
+  
+  // Metadata
+  viewCount    Int      @default(0)
+  commentCount Int      @default(0)
+  likeCount    Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // Relations
+  authorId String
+  forumId  String
+  author   User      @relation(fields: [authorId], references: [id])
+  forum    Forum     @relation(fields: [forumId], references: [id])
+  comments Comment[]
+  likes    Like[]
+  
+  @@index([slug])
+  @@index([authorId])
+  @@index([forumId])
+  @@index([createdAt])
+  @@map("posts")
+}
+
+// Comment model
+model Comment {
+  id      String @id @default(cuid())
+  content String
+  
+  // Hierarchy
+  parentId String?
+  depth    Int     @default(0)
+  path     String? // For efficient hierarchical queries
+  
+  // Moderation
+  isHidden   Boolean @default(false)
+  hideReason String?
+  hiddenAt   DateTime?
+  hiddenBy   String?
+  
+  // Metadata
+  likeCount Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  authorId String
+  postId   String
+  author   User      @relation(fields: [authorId], references: [id])
+  post     Post      @relation(fields: [postId], references: [id])
+  parent   Comment?  @relation("CommentHierarchy", fields: [parentId], references: [id])
+  children Comment[] @relation("CommentHierarchy")
+  likes    Like[]
+  
+  @@index([authorId])
+  @@index([postId])
+  @@index([parentId])
+  @@index([createdAt])
+  @@map("comments")
+}
+
+// Like model (for posts and comments)
+model Like {
+  id String @id @default(cuid())
+  
+  // What is being liked
+  postId    String?
+  commentId String?
+  
+  // Metadata
+  createdAt DateTime @default(now())
+  
+  // Relations
+  userId  String
+  user    User     @relation(fields: [userId], references: [id])
+  post    Post?    @relation(fields: [postId], references: [id])
+  comment Comment? @relation(fields: [commentId], references: [id])
+  
+  @@unique([userId, postId])
+  @@unique([userId, commentId])
+  @@map("likes")
+}
+
+// Report model for anonymous reporting
+model Report {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  category    String // "harassment", "discrimination", "safety", "wage_theft", etc.
+  severity    String @default("medium") // "low", "medium", "high", "critical"
+  
+  // Anonymous or identified
+  isAnonymous Boolean @default(true)
+  reporterId  String?
+  
+  // Location/company info
+  companyId   String?
+  location    String?
+  department  String?
+  
+  // Status
+  status      String  @default("pending") // "pending", "investigating", "resolved", "closed"
+  resolution  String?
+  resolvedAt  DateTime?
+  resolvedBy  String?
+  
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  reporter User?    @relation(fields: [reporterId], references: [id])
+  company  Company? @relation(fields: [companyId], references: [id])
+  
+  @@index([category])
+  @@index([status])
+  @@index([companyId])
+  @@index([createdAt])
+  @@map("reports")
+} 

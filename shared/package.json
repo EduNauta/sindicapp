@@ -1,0 +1,28 @@
+{
+  "name": "@sindicapp/shared",
+  "version": "0.1.0",
+  "description": "SindicApp Shared Types and Utilities",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "rimraf dist",
+    "dev": "tsc --watch",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "types",
+    "shared",
+    "typescript",
+    "sindicapp"
+  ],
+  "author": "Edu Nauta",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
