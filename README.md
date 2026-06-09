@@ -6,8 +6,6 @@
 
 Aplicación web de un solo archivo: mapa geográfico, perfiles de empresa, foros y herramientas sindicales en el navegador — sin servidor propio.
 
-🌐 **[Ver en vivo](https://edunauta.github.io/sindicapp/)**
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/es/docs/Web/HTML)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/es/docs/Web/JavaScript)
@@ -91,28 +89,36 @@ Cada empresa incluye secciones de demostración:
 | Persistencia | `localStorage` (estado de demo) |
 | Fuentes editables | `src/sindicapp/` en el monorepo LUX21 AI Web |
 
-> **Nota:** Esta versión **no** usa React, Next.js, Node en producción ni base de datos. Es una aplicación estática que se abre directamente en el navegador (o se publica en GitHub Pages).
+> **Nota:** Esta versión **no** usa React, Next.js, Node en producción ni base de datos. Es una aplicación estática que se abre en el navegador.
 
 ---
 
 ## Inicio rápido
 
-### Usar la demo publicada
+La app es el archivo **`SindicApp.html`** en la raíz de este repositorio. Necesitas conexión a internet para Leaflet y los tiles de OpenStreetMap (CDN).
 
-Abre **[edunauta.github.io/sindicapp](https://edunauta.github.io/sindicapp/)** en cualquier navegador moderno.
+### Abrir en local
 
-Necesitas conexión a internet para cargar Leaflet y los tiles de OpenStreetMap desde CDN.
-
-### Usar el archivo local
-
-1. Descarga o clona el repositorio
+1. Clona o descarga el repositorio
 2. Abre `SindicApp.html` en el navegador (doble clic o arrastrar al navegador)
-3. Opcional: sirve con un servidor local si tu navegador restringe peticiones locales:
+3. Si algo falla al abrirlo como `file://`, usa un servidor local:
 
 ```bash
 python -m http.server 8080
 # Visita http://localhost:8080/SindicApp.html
 ```
+
+### Abrir desde GitHub (no es la vista de código)
+
+Si en el repositorio haces clic en `SindicApp.html`, GitHub muestra el **código fuente**, no la aplicación ejecutándose. Para ver la web renderizada tienes dos opciones habituales:
+
+**GitHub Pages (recomendado)** — en *Settings → Pages*, activa Pages desde la rama `main` (carpeta `/root`). La app quedará en:
+
+`https://<tu-usuario>.github.io/<nombre-repo>/SindicApp.html`
+
+Opcional: renombra `SindicApp.html` a `index.html` para que la URL raíz del sitio abra la app directamente.
+
+**Descarga** — botón *Code → Download ZIP*, descomprime y abre `SindicApp.html` en el navegador.
 
 ---
 
@@ -157,7 +163,7 @@ node scripts/fork-sindicapp.mjs
 
 ```
 sindicapp/
-├── SindicApp.html          # Aplicación completa (archivo único para GitHub Pages)
+├── SindicApp.html          # Aplicación completa (archivo único)
 └── README.md               # Este documento
 ```
 
@@ -208,7 +214,6 @@ Este proyecto está bajo la licencia **MIT**. Ver el archivo `LICENSE` para más
 
 ## Enlaces
 
-- **Demo en vivo:** [edunauta.github.io/sindicapp](https://edunauta.github.io/sindicapp/)
 - **Repositorio:** [github.com/edunauta/sindicapp](https://github.com/edunauta/sindicapp)
 - **Issues:** [github.com/edunauta/sindicapp/issues](https://github.com/edunauta/sindicapp/issues)
 - **Proyecto padre:** LUX21 AI Web (Cartagrama, Pandora, módulos cartográficos)
