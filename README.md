@@ -38,7 +38,7 @@ Al abrir la web, el **mapa OpenStreetMap** (Leaflet) carga de forma automática 
 ### Mapa y territorio
 
 - **OpenStreetMap** por defecto al cargar la página (Leaflet + tiles OSM)
-- **Fronteras administrativas** (Cartagrama): CCAA, provincias, comarcas, municipios, NUTS, Irlanda, países, etc.
+- **Fronteras administrativas**: CCAA, provincias, comarcas, municipios, NUTS, Irlanda, países, etc.
 - **Pins de empresa** geolocalizados; clic en territorio o pin para abrir perfiles
 - Locales **España (Catalunya)** e **Irlanda** con datos de demostración
 
@@ -84,90 +84,63 @@ Cada empresa incluye secciones de demostración:
 | Aplicación | Un solo archivo HTML (`SindicApp.html`) |
 | Lenguaje | JavaScript (ES6+, sin framework) |
 | Mapa base | [Leaflet](https://leafletjs.com/) + [OpenStreetMap](https://www.openstreetmap.org/) |
-| Fronteras | Módulo Cartagrama (GeoJSON, integrado en el bundle) |
+| Fronteras | Capas GeoJSON embebidas en el HTML |
 | Estilos | CSS3 embebido |
 | Persistencia | `localStorage` (estado de demo) |
-| Fuentes editables | `src/sindicapp/` en el monorepo LUX21 AI Web |
 
 > **Nota:** Esta versión **no** usa React, Next.js, Node en producción ni base de datos. Es una aplicación estática que se abre en el navegador.
 
 ---
 
-## Inicio rápido
+## Cómo abrir la web
 
-La app es el archivo **`SindicApp.html`** en la raíz de este repositorio. Necesitas conexión a internet para Leaflet y los tiles de OpenStreetMap (CDN).
+SindicApp **no se ejecuta dentro de GitHub**. Si haces clic en `SindicApp.html` en el repositorio, verás el código fuente, no la aplicación. Hay que **descargar el archivo y abrirlo en tu navegador**.
 
-### Abrir en local
+Necesitas **conexión a internet** (Leaflet y el mapa OpenStreetMap se cargan desde la red).
 
-1. Clona o descarga el repositorio
-2. Abre `SindicApp.html` en el navegador (doble clic o arrastrar al navegador)
-3. Si algo falla al abrirlo como `file://`, usa un servidor local:
+### Opción 1 — Descargar solo el HTML (más rápido)
+
+1. En este repositorio, abre **`SindicApp.html`**
+2. Pulsa el botón **Raw** (arriba a la derecha del código)
+3. En la página que se abre: *Archivo → Guardar como…* (o clic derecho → *Guardar como…*)
+4. Guarda el archivo en tu ordenador (por ejemplo, en el Escritorio)
+5. **Doble clic** en `SindicApp.html`, o arrástralo a Chrome, Firefox o Edge
+
+### Opción 2 — Descargar todo el repositorio
+
+1. En la página principal del repo, pulsa el botón verde **Code**
+2. Elige **Download ZIP**
+3. Descomprime la carpeta
+4. Entra en la carpeta y abre **`SindicApp.html`** con doble clic
+
+### Opción 3 — Clonar con Git
+
+```bash
+git clone https://github.com/edunauta/sindicapp.git
+cd sindicapp
+```
+
+Abre `SindicApp.html` en el navegador (doble clic).
+
+### Si el mapa no carga
+
+Algunos navegadores limitan recursos cuando abres un `file://`. En ese caso, desde la carpeta del proyecto:
 
 ```bash
 python -m http.server 8080
-# Visita http://localhost:8080/SindicApp.html
 ```
 
-### Abrir desde GitHub (no es la vista de código)
-
-Si en el repositorio haces clic en `SindicApp.html`, GitHub muestra el **código fuente**, no la aplicación ejecutándose. Para ver la web renderizada tienes dos opciones habituales:
-
-**GitHub Pages (recomendado)** — en *Settings → Pages*, activa Pages desde la rama `main` (carpeta `/root`). La app quedará en:
-
-`https://<tu-usuario>.github.io/<nombre-repo>/SindicApp.html`
-
-Opcional: renombra `SindicApp.html` a `index.html` para que la URL raíz del sitio abra la app directamente.
-
-**Descarga** — botón *Code → Download ZIP*, descomprime y abre `SindicApp.html` en el navegador.
+Luego visita en el navegador: `http://localhost:8080/SindicApp.html`
 
 ---
 
-## Desarrollo (monorepo LUX21)
-
-Si trabajas desde el repositorio LUX21 AI Web (o equivalente local):
-
-### Editar fuentes
-
-Los módulos editables están en:
-
-```
-src/sindicapp/
-├── sindicapp-sindicato.js      # Datos demo, perfiles de empresa, HTML de workspaces
-├── sindicapp-locale-es-content.js
-├── sindicapp-locale-en-content.js
-└── sindicapp-locale-geo-data.js
-
-src/shared/
-└── cartagrama-territories-bundle.js   # Fronteras administrativas
-```
-
-### Regenerar el HTML empaquetado
-
-Tras modificar fuentes bajo `src/sindicapp/`:
-
-```bash
-node scripts/bundle-sindicapp.mjs
-```
-
-Esto inline los scripts en `SindicApp.html` y actualiza el logo del encabezado.
-
-### Regenerar la plantilla desde Pandora (avanzado)
-
-```bash
-node scripts/fork-sindicapp.mjs
-```
-
----
-
-## Estructura del repositorio SindicApp
+## Estructura del repositorio
 
 ```
 sindicapp/
 ├── SindicApp.html          # Aplicación completa (archivo único)
 └── README.md               # Este documento
 ```
-
-En el monorepo LUX21, `SindicApp.html` vive en la raíz del proyecto junto a `scripts/` y `src/sindicapp/`.
 
 ---
 
@@ -184,17 +157,17 @@ Cambia idioma con los botones **ES** / **EN** en la cabecera. La preferencia se 
 
 ## Estado del proyecto
 
-SindicApp es un **prototipo embrionario** dentro del ecosistema LUX21 / Pandora. Muchas funciones son interfaces de demostración con datos ficticios:
+SindicApp es un **prototipo embrionario**. Muchas funciones son interfaces de demostración con datos ficticios:
 
 - [x] Mapa OpenStreetMap con carga automática
-- [x] Fronteras administrativas (Cartagrama)
+- [x] Fronteras administrativas
 - [x] Perfiles de empresa geolocalizados
 - [x] Foros, sectores, sindicatos y vivienda (UI + demo)
 - [x] Denuncias anónimas y moderación (simulada)
 - [x] Bilingüe ES / EN
 - [ ] Backend, autenticación real y base de datos
 - [ ] Notificaciones push y PWA
-- [ ] Integración con APIs de mapas de pago (Mapbox / Google)
+- [ ] Proveedores de mapa adicionales
 
 ---
 
@@ -216,7 +189,6 @@ Este proyecto está bajo la licencia **MIT**. Ver el archivo `LICENSE` para más
 
 - **Repositorio:** [github.com/edunauta/sindicapp](https://github.com/edunauta/sindicapp)
 - **Issues:** [github.com/edunauta/sindicapp/issues](https://github.com/edunauta/sindicapp/issues)
-- **Proyecto padre:** LUX21 AI Web (Cartagrama, Pandora, módulos cartográficos)
 
 ---
 
