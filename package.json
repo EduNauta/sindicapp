@@ -1,0 +1,20 @@
+{
+  "name": "sindicapp",
+  "version": "0.1.0",
+  "description": "Infraestructura neutral para la coordinación laboral — mapa geográfico, perfiles de empresa, foros y herramientas sindicales en el navegador.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edunauta/sindicapp.git"
+  }
+}

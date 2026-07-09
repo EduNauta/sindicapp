@@ -4,11 +4,12 @@
 
 **Infraestructura neutral para la coordinación laboral**
 
-Aplicación web de un solo archivo: mapa geográfico, perfiles de empresa, foros y herramientas sindicales en el navegador — sin servidor propio.
+Aplicación web estática: mapa geográfico, perfiles de empresa, foros y herramientas sindicales en el navegador — sin servidor propio.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/es/docs/Web/HTML)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/es/docs/Web/JavaScript)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=flat&logo=leaflet&logoColor=white)](https://leafletjs.com/)
 [![OpenStreetMap](https://img.shields.io/badge/OpenStreetMap-7EBC6F?style=flat&logo=openstreetmap&logoColor=white)](https://www.openstreetmap.org/)
 
@@ -81,46 +82,42 @@ Cada empresa incluye secciones de demostración:
 
 | Capa | Tecnología |
 |------|------------|
-| Aplicación | Un solo archivo HTML (`SindicApp.html`) |
+| Aplicación | HTML + CSS + JS estáticos (`index.html`, `css/`, `js/`) |
+| Tooling | [Vite](https://vitejs.dev/) — servidor de desarrollo y build (no forma parte del runtime) |
 | Lenguaje | JavaScript (ES6+, sin framework) |
 | Mapa base | [Leaflet](https://leafletjs.com/) + [OpenStreetMap](https://www.openstreetmap.org/) |
-| Fronteras | Capas GeoJSON embebidas en el HTML |
-| Estilos | CSS3 embebido |
+| Fronteras | Capas GeoJSON embebidas en `js/cartagrama-territories-bundle.js` |
+| Estilos | CSS3 (`css/main.css`) |
 | Persistencia | `localStorage` (estado de demo) |
 
-> **Nota:** Esta versión **no** usa React, Next.js, Node en producción ni base de datos. Es una aplicación estática que se abre en el navegador.
+> **Nota:** Esta versión **no** usa React, Next.js ni base de datos, y no hay Node en producción. Vite se usa solo como herramienta de desarrollo y build; el resultado sigue siendo una aplicación estática. Los scripts son *classic scripts* (sin módulos ES) a propósito, para mantener el comportamiento original intacto.
 
 ---
 
 ## Cómo abrir la web
 
-SindicApp **no se ejecuta dentro de GitHub**. Si haces clic en `SindicApp.html` en el repositorio, verás el código fuente, no la aplicación. Hay que **descargar el archivo y abrirlo en tu navegador**.
-
 Necesitas **conexión a internet** (Leaflet y el mapa OpenStreetMap se cargan desde la red).
 
-### Opción 1 — Descargar solo el HTML (más rápido)
+### Opción 1 — Web publicada (GitHub Pages)
 
-1. En este repositorio, abre **`SindicApp.html`**
-2. Pulsa el botón **Raw** (arriba a la derecha del código)
-3. En la página que se abre: *Archivo → Guardar como…* (o clic derecho → *Guardar como…*)
-4. Guarda el archivo en tu ordenador (por ejemplo, en el Escritorio)
-5. **Doble clic** en `SindicApp.html`, o arrástralo a Chrome, Firefox o Edge
+Abre directamente: **<https://edunauta.github.io/sindicapp/>**
 
-### Opción 2 — Descargar todo el repositorio
+### Opción 2 — Sin instalar nada
 
-1. En la página principal del repo, pulsa el botón verde **Code**
-2. Elige **Download ZIP**
-3. Descomprime la carpeta
-4. Entra en la carpeta y abre **`SindicApp.html`** con doble clic
+1. En la página principal del repo, pulsa el botón verde **Code** → **Download ZIP** (o clona con git)
+2. Descomprime la carpeta
+3. **Doble clic** en `index.html`, o arrástralo a Chrome, Firefox o Edge
 
-### Opción 3 — Clonar con Git
+### Opción 3 — Desarrollo con Node
 
 ```bash
 git clone https://github.com/edunauta/sindicapp.git
 cd sindicapp
+npm install
+npm run dev       # servidor de desarrollo con recarga (http://localhost:5173)
+npm run build     # genera la versión de producción en dist/
+npm run preview   # sirve dist/ en local
 ```
-
-Abre `SindicApp.html` en el navegador (doble clic).
 
 ### Si el mapa no carga
 
@@ -130,7 +127,7 @@ Algunos navegadores limitan recursos cuando abres un `file://`. En ese caso, des
 python -m http.server 8080
 ```
 
-Luego visita en el navegador: `http://localhost:8080/SindicApp.html`
+Luego visita en el navegador: `http://localhost:8080/`
 
 ---
 
@@ -138,8 +135,23 @@ Luego visita en el navegador: `http://localhost:8080/SindicApp.html`
 
 ```
 sindicapp/
-├── SindicApp.html          # Aplicación completa (archivo único)
-└── README.md               # Este documento
+├── index.html                              # Página principal (markup)
+├── css/
+│   └── main.css                            # Estilos de la aplicación
+├── js/
+│   ├── locale-bootstrap.js                 # Arranque temprano de idioma (localStorage)
+│   ├── cartagrama-territories-bundle.js    # Fronteras / territorios (GeoJSON embebido)
+│   ├── sindicapp-locale-geo-data.js        # Árbol territorial ES + IE
+│   ├── sindicapp-locale-en-content.js      # Locale pack Irlanda (EN)
+│   ├── sindicapp-locale-es-content.js      # Locale pack España (ES)
+│   ├── sindicapp-sindicato.js              # Módulo Sindicato
+│   └── sindicapp-main.js                   # Aplicación principal (runSindicApp)
+├── package.json                            # Scripts npm + dependencia de Vite
+├── vite.config.js                          # Configuración de Vite
+├── .github/workflows/deploy.yml            # CI: build + deploy a GitHub Pages
+├── legacy/SindicApp.html                   # Versión monolítica original (solo referencia)
+├── LICENSE                                 # MIT
+└── README.md                               # Este documento
 ```
 
 ---
