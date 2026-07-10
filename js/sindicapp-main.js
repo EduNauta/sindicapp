@@ -585,6 +585,7 @@
                 }
                 if (isSindicatoMapVisible()) syncSindicatoMapMarkers();
                 applySindicatoViewSync();
+                reflectSindicatoHash();
             }
 
             function renderSindicatoSectoresTree() {
@@ -767,6 +768,30 @@
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                     if (activeSindicatoSub !== 'map') setSindicatoSub('map');
                     setSindicatoMapTerritory(route.territoryId);
+                    return;
+                }
+                /* C7 — deep link al perfil de empresa */
+                if (route.view === 'workplace') {
+                    const wp = window.SINDICAPP_SINDICATO?.findWorkplace(activeLocale, route.workplaceId);
+                    if (!wp) return;
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    setSindicatoWorkplace(route.workplaceId, route.sectionId);
+                }
+            }
+
+            /* C7 — reflejar la vista actual en la URL (replaceState: no dispara hashchange) */
+            function reflectSindicatoHash() {
+                if (activeModule !== SINDICATO_MODULE) return;
+                let next = '';
+                if (activeSindicatoSub === 'workplaces' && activeSindicatoWorkplace) {
+                    next = '#sindicato-empresa:' + activeSindicatoWorkplace + ':' + activeSindicatoSection;
+                } else if (activeSindicatoSub === 'map' && activeSindicatoMapTerritory) {
+                    next = '#sindicato-territorio:' + activeSindicatoMapTerritory;
+                }
+                if (next && location.hash !== next) {
+                    history.replaceState(null, '', location.pathname + location.search + next);
+                } else if (!next && /^#sindicato-(empresa|territorio):/.test(location.hash)) {
+                    history.replaceState(null, '', location.pathname + location.search);
                 }
             }
 
@@ -1108,6 +1133,7 @@
                 });
                 rebuildSindicatoWorkplaceSelect();
                 applySindicatoViewSync();
+                reflectSindicatoHash();
             }
 
             function setSindicatoSection(sectionId) {
@@ -1118,6 +1144,7 @@
                     btn.classList.toggle('active', id === activeSindicatoSection);
                 });
                 applySindicatoViewSync();
+                reflectSindicatoHash();
             }
 
             function handleSindicatoWorkspaceClick(e) {
@@ -1184,7 +1211,9 @@
                     const vote = voteBtn?.value;
                     if (wpId && vote) {
                         window.SINDICAPP_SINDICATO.castStrikeVote(wpId, vote);
-                        syncSindicatoWorkspace();
+                        /* fix QA A2: usar el dispatcher, no el renderer de Colectivo (rompía la vista en módulo Usuario) */
+                        syncTextWorkspace();
+                        notify(sindicatoNotice('strikeVoteSaved'));
                     }
                     return;
                 }
@@ -1203,6 +1232,7 @@
                     if (wpId && date && title) {
                         window.SINDICAPP_SINDICATO.addAgendaEvent(wpId, { type, date, title });
                         syncTextWorkspace();
+                        notify(sindicatoNotice('agendaEventAdded'));
                     }
                     return;
                 }
@@ -1226,6 +1256,10 @@
                     if (unionId) {
                         window.SINDICAPP_SINDICATO.requestUnionEndorsement(unionId);
                         syncTextWorkspace();
+                        notify(sindicatoNotice('endorsementRequested'));
+                    } else {
+                        /* fix QA A6: antes el botón callaba si no había sindicato elegido */
+                        notify(sindicatoNotice('endorsementMissingUnion'), 'warn');
                     }
                     return;
                 }
@@ -1240,6 +1274,7 @@
                     if (buildingId) {
                         window.SINDICAPP_SINDICATO.addTenantPledge(buildingId);
                         syncTextWorkspace();
+                        notify(sindicatoNotice('pledgeSaved'));
                     }
                     return;
                 }
@@ -1344,6 +1379,21 @@
                     return;
                 }
 
+                /* B4 (R1) — buscador de convenio aplicable (directorio demo) */
+                const convenioFinder = (e.type === 'submit' && e.target.matches?.('[data-sindicato-convenio-finder]'))
+                    ? e.target
+                    : e.target.closest?.('[data-sindicato-convenio-finder]');
+                if (convenioFinder && (e.type === 'submit' || e.target.type === 'submit') && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    const sector = convenioFinder.querySelector('[name="sector"]')?.value;
+                    const out = convenioFinder.querySelector('[data-sindicato-finder-out]');
+                    if (out && sector) {
+                        out.innerHTML = window.SINDICAPP_SINDICATO.getConvenioFinderResultHtml(activeLocale, sector);
+                        out.hidden = false;
+                    }
+                    return;
+                }
+
                 const convenioAsk = (e.type === 'submit' && e.target.matches?.('[data-sindicato-convenio-ask]'))
                     ? e.target
                     : e.target.closest?.('[data-sindicato-convenio-ask]');
@@ -1351,6 +1401,24 @@
                     e.preventDefault();
                     const out = convenioAsk.querySelector('[data-sindicato-convenio-out]');
                     if (out) out.hidden = false;
+                    return;
+                }
+
+                /* C2 — aportar el propio sueldo (demo, localStorage) */
+                const wageForm = (e.type === 'submit' && e.target.matches?.('[data-sindicato-wage-form]'))
+                    ? e.target
+                    : e.target.closest?.('[data-sindicato-wage-form]');
+                if (wageForm && (e.type === 'submit' || e.target.type === 'submit') && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    const wpId = wageForm.getAttribute('data-sindicato-workplace-id');
+                    const role = wageForm.querySelector('[name="role"]')?.value;
+                    const amount = Number(wageForm.querySelector('[name="amount"]')?.value);
+                    const period = wageForm.querySelector('[name="period"]')?.value;
+                    if (wpId && amount > 0) {
+                        window.SINDICAPP_SINDICATO.addWageContribution(wpId, { role, amount, period });
+                        syncTextWorkspace();
+                        notify(sindicatoNotice('wageSubmitted'));
+                    }
                     return;
                 }
 
@@ -1365,7 +1433,9 @@
                     if (wpId && type) {
                         window.SINDICAPP_SINDICATO.submitReport(activeLocale, wpId, type, detail);
                         reportForm.reset();
-                        syncSindicatoWorkspace();
+                        /* fix QA A1: usar el dispatcher, no el renderer de Colectivo (rompía la vista en módulo Usuario) */
+                        syncTextWorkspace();
+                        notify(sindicatoNotice('reportQueued'));
                     }
                     return;
                 }
@@ -1602,6 +1672,33 @@
                         }
                     }
                 });
+            }
+
+            /* C4 — feedback de acciones: toast sobrio, autodescartable, aria-live */
+            let notifyHost = null;
+            function notify(message, tone) {
+                if (!message) return;
+                if (!notifyHost) {
+                    notifyHost = document.createElement('div');
+                    notifyHost.className = 'sindicapp-toast-host';
+                    notifyHost.setAttribute('aria-live', 'polite');
+                    document.body.appendChild(notifyHost);
+                }
+                const toast = document.createElement('div');
+                toast.className = 'sindicapp-toast' + (tone ? ' sindicapp-toast--' + tone : '');
+                toast.setAttribute('role', 'status');
+                toast.textContent = message;
+                notifyHost.appendChild(toast);
+                requestAnimationFrame(() => toast.classList.add('is-visible'));
+                setTimeout(() => {
+                    toast.classList.remove('is-visible');
+                    setTimeout(() => toast.remove(), 400);
+                }, 3500);
+            }
+
+            function sindicatoNotice(key) {
+                const pack = window.SINDICAPP_SINDICATO?.COPY?.[activeLocale === 'es' ? 'es' : 'ie'];
+                return pack?.notices?.[key] || '';
             }
 
             function syncTextWorkspace() {
@@ -2043,6 +2140,11 @@
                     if (!form.matches?.('[data-sindicato-add-company]') || !window.SINDICAPP_SINDICATO) return;
                     e.preventDefault();
                     const fd = new FormData(form);
+                    /* fix QA A5: validación propia (novalidate) — la nativa fallaba sobre controles ocultos */
+                    if (!String(fd.get('name') || '').trim() || !String(fd.get('address') || '').trim()) {
+                        notify(sindicatoNotice('companyFormInvalid'), 'warn');
+                        return;
+                    }
                     const company = window.SINDICAPP_SINDICATO.addCompany(activeLocale, {
                         name: fd.get('name'),
                         sector: fd.get('sector'),
@@ -2058,6 +2160,7 @@
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                     setSindicatoSub('workplaces');
                     setSindicatoWorkplace(company.id, 'location');
+                    notify(sindicatoNotice('companyAdded'));
                 });
             }
 

@@ -17,6 +17,11 @@ function copyClassicAssets() {
       cpSync(resolve(__dirname, 'js'), resolve(__dirname, 'dist', 'js'), {
         recursive: true,
       });
+      /* B3 — el logo vive en assets/ y se referencia también desde JS clásico,
+         así que hay que copiarlo igual que js/ */
+      cpSync(resolve(__dirname, 'assets'), resolve(__dirname, 'dist', 'assets'), {
+        recursive: true,
+      });
     },
   };
 }
