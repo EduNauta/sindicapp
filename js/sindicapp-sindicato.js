@@ -120,7 +120,10 @@
             privateForumTitle: 'Private worker room',
             privateForum: 'Union-hosted private room — filters management and topos. Verification required to join.',
             privateForumRules: 'Hosted by on-site union delegate. No real names required. Management accounts blocked.',
-            prestige: 'Community prestige',
+            presenceTitle: 'Presence',
+            presenceDelegates: 'Workplace delegates',
+            presenceAgreements: 'Agreements signed',
+            presenceSectors: 'Main sectors',
             members: 'Members on platform',
             companiesOnSite: 'Companies with presence',
             selectUnion: 'Select union…',
@@ -168,7 +171,7 @@
             fieldLng: 'Longitude',
             panelMuted: 'Neutral workplace coordination — open the background workspace for the full view.',
             workplacesIntro: 'Search companies on the map or pick one to open its profile.',
-            unionsIntro: 'Neutral directory — SIPTU, Unite, sector unions, and more. Prestige scores reflect community trust on the platform.',
+            unionsIntro: 'Neutral directory — SIPTU, Unite, sector unions, and more. Presence data (delegates, companies, agreements) comes from verifiable records, not community scoring.',
             reportsIntro: 'Anonymous public reports. Community + AI review before publication.',
             wagesIntro: 'Crowd-sourced anonymous org chart and pay bands.',
             wageConvenioRange: 'Range from collective agreement:',
@@ -185,6 +188,91 @@
             wageRoleBase: 'Base operative',
             wageRoleMid: 'Mid role',
             wageRoleLead: 'Team lead',
+            officialChannelsTitle: 'Official channels',
+            officialChannelsIntro: 'A public report here informs your co-workers; an official complaint obliges the authorities to act. This platform signposts the channels with real legal force.',
+            officialChannels: [
+                { name: 'Workplace Relations Commission (WRC)', url: 'https://www.workplacerelations.ie', desc: 'Formal complaints and inspections on pay, working time and employment rights — its decisions are legally enforceable.' },
+                { name: 'Protected Disclosures Act channel (internal)', url: '', desc: 'Internal reporting channel required by the Protected Disclosures Act; gives whistleblowers statutory protection against penalisation.' },
+                { name: 'Data Protection Commission', url: 'https://www.dataprotection.ie', desc: 'Supervisory authority for personal-data issues at work (CCTV, monitoring, HR files) — its rulings are binding.' }
+            ],
+            registryTitle: 'Registry data',
+            registryLegalForm: 'Legal form',
+            registryFounded: 'Incorporated',
+            registryAdmins: 'Directors',
+            registryLastAccounts: 'Latest filed accounts',
+            registryRevenue: 'Revenue',
+            registryResult: 'Net result',
+            registryEbitda: 'EBITDA (approx.)',
+            registrySource: 'Source: CRO / Companies Registration Office — demo data',
+            registryTagline: "Know your company's accounts before you negotiate.",
+            calcTitle: 'Agreement calculator',
+            calcIntro: 'Check your pay against the demo salary table of the applicable agreement.',
+            calcCategory: 'Professional category (ERO/JLC demo table)',
+            calcSelectCategory: 'Select category…',
+            calcHours: 'Weekly hours',
+            calcSalary: 'Gross salary (€)',
+            calcPeriod: 'Salary period',
+            calcPeriodMonthly: 'Monthly (×12 — assumes 12 equal payments)',
+            calcPeriodAnnual: 'Annual',
+            calcSubmit: 'Compare with agreement minimum',
+            calcAbove: 'At or above the agreement minimum.',
+            calcBelow: 'Below the agreement minimum — you can claim the difference.',
+            calcMinLabel: 'Agreement minimum (prorated to your hours)',
+            calcDiffLabel: 'Difference',
+            calcDisclaimer: 'Orientative result based on a demo salary table — not legal advice. Check the full agreement text or ask a union representative.',
+            /* R4 — Agenda: la capa temporal */
+            agendaTitle: 'Action agenda',
+            agendaUpcomingTitle: 'Upcoming dates',
+            agendaViviendaTitle: 'Territory housing agenda',
+            agendaEmpty: 'No upcoming events (demo).',
+            agendaTypes: { assembly: 'Assembly', vote: 'Vote', deadline: 'Deadline', strike: 'Strike', negotiation: 'Negotiation' },
+            agendaAddTitle: 'Add event (demo)',
+            agendaFieldType: 'Type',
+            agendaFieldDate: 'Date',
+            agendaFieldTitle: 'Title',
+            agendaAddSubmit: 'Add to agenda',
+            agendaAddHint: 'Demo: saved in this browser only.',
+            /* R5 — Verificación como arquitectura */
+            verificationTitle: 'Verification',
+            verificationCurrent: 'Current level',
+            trustLevels: { anon: 'Anonymous', person: 'Verified person', worker: 'Verified worker' },
+            trustLevelDesc: {
+                anon: 'Default level — no identity data. Enough to read and to file anonymous reports.',
+                person: 'A real person is confirmed behind the account — still pseudonymous on the platform.',
+                worker: 'A union vouches that this person works where they say they work.'
+            },
+            verificationDoctrine: 'Unions act as identity guarantors: any union can endorse a worker, and none owns the platform. The endorsement protects this space against company astroturfing without exposing anyone’s name.',
+            verifyRequestBtn: 'Request union endorsement',
+            verifySelectUnion: 'Select guarantor union',
+            verifyPending: 'Pending endorsement from',
+            verifyConfirmBtn: 'The union confirms (demo)',
+            verifyDone: 'Verified worker — endorsed by',
+            /* R7 — Perfiles automáticos de edificio */
+            buildingsTitle: 'Buildings',
+            buildingsIntro: 'Every building gets an automatic profile — condition reports, rent transparency, tenancy rights, and collective action.',
+            buildingUnits: 'homes',
+            buildingOwnerLabel: 'Owner',
+            buildingLargeHolder: 'Large landlord',
+            buildingYearLabel: 'Built',
+            buildingBack: 'Back to buildings',
+            buildingStateTitle: 'Condition',
+            buildingStateIntro: 'Anonymous building-condition reports from residents.',
+            buildingStateModNote: 'Reports pass community moderation before publication, like company reports.',
+            buildingStateEmpty: 'No published reports for this building yet (demo).',
+            buildingRentsTitle: 'Rents',
+            buildingRentM2: 'Zone price per m²',
+            buildingRentTypical: 'Typical rent in the zone',
+            buildingRentIndexNote: 'Reference: RTB Rent Index for the area — check it before signing or renewing.',
+            buildingContractTitle: 'Tenancy & rights',
+            buildingContractFaq: [
+                { q: 'Is the tenancy registered?', a: 'Landlords must register every tenancy with the Residential Tenancies Board (RTB). An unregistered tenancy still protects the tenant.' },
+                { q: 'How much can rent rise?', a: 'In Rent Pressure Zones increases are capped (2% per year or inflation, whichever is lower). Check whether the building is in an RPZ.' },
+                { q: 'What notice must I get?', a: 'Notice periods scale with tenancy duration — from 90 days after 6 months up to 224 days after 8 years. A notice without valid grounds can be challenged at the RTB.' }
+            ],
+            buildingActionTitle: 'Action',
+            buildingEvictionLinkNote: 'Linked to the territory eviction alerts — same channel, same moderation.',
+            tenantPledgeBtn: 'I would join collective tenant action',
+            tenantPledgeCount: 'confirmations (demo)',
             moduleLoadError: 'Syndicate module failed to load.'
         },
         es: {
@@ -294,7 +382,10 @@
             privateForumTitle: 'Sala privada de trabajadores',
             privateForum: 'Sala privada con sindicato anfitrión — filtra dirección y topas. Verificación necesaria para entrar.',
             privateForumRules: 'Moderada por delegada sindical. Sin nombre real obligatorio. Cuentas de dirección bloqueadas.',
-            prestige: 'Prestigio comunitario',
+            presenceTitle: 'Implantación',
+            presenceDelegates: 'Delegados/as en empresa',
+            presenceAgreements: 'Convenios firmados',
+            presenceSectors: 'Sectores principales',
             members: 'Miembros en la plataforma',
             companiesOnSite: 'Empresas con presencia',
             selectUnion: 'Seleccionar sindicato…',
@@ -342,7 +433,7 @@
             fieldLng: 'Longitud',
             panelMuted: 'Coordinación laboral neutral — abre el espacio de fondo para la vista completa.',
             workplacesIntro: 'Busca empresas en el mapa o elige una para abrir su perfil.',
-            unionsIntro: 'Directorio neutral — CCOO, UGT, sindicatos sectoriales y más. El prestigio refleja la confianza de la comunidad.',
+            unionsIntro: 'Directorio neutral — CCOO, UGT, sindicatos sectoriales y más. Los datos de implantación (delegados, empresas, convenios) proceden de registros verificables, no de puntuaciones.',
             reportsIntro: 'Denuncias públicas anónimas. Revisión comunitaria + IA antes de publicar.',
             wagesIntro: 'Organigrama anónimo y bandas salariales aportadas por la comunidad.',
             wageConvenioRange: 'Rango según convenio:',
@@ -359,6 +450,91 @@
             wageRoleBase: 'Operario/a base',
             wageRoleMid: 'Puesto intermedio',
             wageRoleLead: 'Mando intermedio',
+            officialChannelsTitle: 'Cauces oficiales',
+            officialChannelsIntro: 'Una denuncia pública aquí informa a la plantilla; una denuncia oficial obliga a la Administración a actuar. Esta plataforma señaliza los cauces con fuerza legal real.',
+            officialChannels: [
+                { name: 'Inspección de Trabajo y Seguridad Social (ITSS)', url: 'https://www.mites.gob.es/itss/web/', desc: 'Denuncia formal con capacidad de inspección y sanción — jornada, salarios, seguridad y salud. Obliga a la Administración a actuar.' },
+                { name: 'Canal interno de denuncias de la empresa', url: '', desc: 'Obligatorio por la Ley 2/2023 en empresas de 50 o más personas; protege legalmente a quien informa frente a represalias.' },
+                { name: 'Agencia Española de Protección de Datos (AEPD)', url: 'https://www.aepd.es', desc: 'Autoridad de control para vulneraciones de datos personales en el trabajo (videovigilancia, geolocalización, ficheros de RRHH) — sus resoluciones son vinculantes.' }
+            ],
+            registryTitle: 'Datos registrales',
+            registryLegalForm: 'Forma jurídica',
+            registryFounded: 'Constitución',
+            registryAdmins: 'Administradores',
+            registryLastAccounts: 'Último depósito de cuentas',
+            registryRevenue: 'Ingresos',
+            registryResult: 'Resultado',
+            registryEbitda: 'EBITDA (aprox.)',
+            registrySource: 'Fuente: BORME / Registro Mercantil — datos de demostración',
+            registryTagline: 'Conoce las cuentas de tu empresa antes de negociar.',
+            calcTitle: 'Calculadora de convenio',
+            calcIntro: 'Comprueba tu salario frente a la tabla salarial demo del convenio aplicable.',
+            calcCategory: 'Categoría profesional (tabla demo del convenio)',
+            calcSelectCategory: 'Selecciona categoría…',
+            calcHours: 'Jornada semanal (horas)',
+            calcSalary: 'Salario bruto (€)',
+            calcPeriod: 'Periodo del salario',
+            calcPeriodMonthly: 'Mensual (×12 — se asumen 12 pagas)',
+            calcPeriodAnnual: 'Anual',
+            calcSubmit: 'Comparar con el mínimo de convenio',
+            calcAbove: 'Por encima del mínimo de convenio.',
+            calcBelow: 'Por debajo del mínimo de convenio — puedes reclamar la diferencia.',
+            calcMinLabel: 'Mínimo de convenio (prorrateado a tu jornada)',
+            calcDiffLabel: 'Diferencia',
+            calcDisclaimer: 'Resultado orientativo basado en una tabla salarial de demostración — no es asesoramiento legal. Consulta el texto íntegro del convenio o a tu delegado/a.',
+            /* R4 — Agenda: la capa temporal */
+            agendaTitle: 'Agenda de acción',
+            agendaUpcomingTitle: 'Próximas fechas',
+            agendaViviendaTitle: 'Agenda de vivienda del territorio',
+            agendaEmpty: 'Sin eventos próximos (demo).',
+            agendaTypes: { assembly: 'Asamblea', vote: 'Votación', deadline: 'Plazo', strike: 'Huelga', negotiation: 'Negociación' },
+            agendaAddTitle: 'Añadir evento (demo)',
+            agendaFieldType: 'Tipo',
+            agendaFieldDate: 'Fecha',
+            agendaFieldTitle: 'Título',
+            agendaAddSubmit: 'Añadir a la agenda',
+            agendaAddHint: 'Demo: se guarda solo en este navegador.',
+            /* R5 — Verificación como arquitectura */
+            verificationTitle: 'Verificación',
+            verificationCurrent: 'Nivel actual',
+            trustLevels: { anon: 'Anónimo', person: 'Persona verificada', worker: 'Trabajador verificado' },
+            trustLevelDesc: {
+                anon: 'Nivel por defecto — sin datos de identidad. Suficiente para leer y para denunciar de forma anónima.',
+                person: 'Se confirma que hay una persona real tras la cuenta — sigue siendo seudónima en la plataforma.',
+                worker: 'Un sindicato avala que esta persona trabaja donde dice trabajar.'
+            },
+            verificationDoctrine: 'Los sindicatos actúan como garantes de identidad: cualquier sindicato puede avalar a un trabajador y ninguno es dueño de la plataforma. El aval protege este espacio del astroturfing empresarial sin exponer el nombre de nadie.',
+            verifyRequestBtn: 'Solicitar aval sindical',
+            verifySelectUnion: 'Selecciona sindicato garante',
+            verifyPending: 'Pendiente de aval de',
+            verifyConfirmBtn: 'El sindicato confirma (demo)',
+            verifyDone: 'Trabajador verificado — avalado por',
+            /* R7 — Perfiles automáticos de edificio */
+            buildingsTitle: 'Edificios',
+            buildingsIntro: 'Cada edificio recibe un perfil automático — estado, transparencia de rentas, derechos de contrato y acción colectiva.',
+            buildingUnits: 'viviendas',
+            buildingOwnerLabel: 'Propietario',
+            buildingLargeHolder: 'Gran tenedor',
+            buildingYearLabel: 'Construcción',
+            buildingBack: 'Volver a edificios',
+            buildingStateTitle: 'Estado',
+            buildingStateIntro: 'Denuncias anónimas del estado del edificio, aportadas por la vecindad.',
+            buildingStateModNote: 'Las denuncias pasan moderación comunitaria antes de publicarse, como las denuncias de empresa.',
+            buildingStateEmpty: 'Aún no hay denuncias publicadas de este edificio (demo).',
+            buildingRentsTitle: 'Rentas',
+            buildingRentM2: 'Precio de zona por m²',
+            buildingRentTypical: 'Alquiler típico de la zona',
+            buildingRentIndexNote: 'Referencia: índice de referencia de precios de alquiler para la zona — consúltalo antes de firmar o renovar.',
+            buildingContractTitle: 'Contrato y derechos',
+            buildingContractFaq: [
+                { q: '¿Cuánto dura mi contrato?', a: 'Con la LAU, prórroga obligatoria hasta 5 años (7 si el arrendador es persona jurídica), aunque el contrato firme un plazo menor.' },
+                { q: '¿Qué fianza pueden pedirme?', a: 'Una mensualidad de fianza legal, más garantías adicionales limitadas. Debe depositarse en el organismo autonómico (INCASÒL en Catalunya).' },
+                { q: '¿Cuánto puede subir el alquiler?', a: 'Durante el contrato, solo la actualización pactada dentro del límite legal. En zonas tensionadas, el índice de referencia limita el precio de los nuevos contratos.' }
+            ],
+            buildingActionTitle: 'Acción',
+            buildingEvictionLinkNote: 'Vinculado a las alertas de desahucio del territorio — mismo canal, misma moderación.',
+            tenantPledgeBtn: 'Me sumaría a una acción colectiva de inquilinos',
+            tenantPledgeCount: 'confirmaciones (demo)',
             moduleLoadError: 'No se pudo cargar el módulo Sindicato.'
         }
     };
@@ -404,19 +580,19 @@
 
     const UNIONS = {
         ie: [
-            { id: 'siptu', name: 'SIPTU', sector: 'General', prestige: 78, members: 18400, liberado: 'Niamh O\'Connell' },
-            { id: 'unite', name: 'Unite the Union', sector: 'General', prestige: 74, members: 9200, liberado: 'James Murphy' },
-            { id: 'inmo', name: 'INMO', sector: 'Nursing', prestige: 82, members: 4100, liberado: '—' },
-            { id: 'mandate', name: 'Mandate', sector: 'Retail & bar', prestige: 71, members: 2800, liberado: 'Sarah Lynch' },
-            { id: 'fsu', name: 'FSU', sector: 'Finance & tech', prestige: 69, members: 1500, liberado: '—' }
+            { id: 'siptu', name: 'SIPTU', sector: 'General', delegates: 240, agreements: 36, mainSectors: 'General, logistics, healthcare', members: 18400, liberado: 'Niamh O\'Connell' },
+            { id: 'unite', name: 'Unite the Union', sector: 'General', delegates: 130, agreements: 21, mainSectors: 'General, hospitality', members: 9200, liberado: 'James Murphy' },
+            { id: 'inmo', name: 'INMO', sector: 'Nursing', delegates: 85, agreements: 12, mainSectors: 'Nursing & midwifery', members: 4100, liberado: '—' },
+            { id: 'mandate', name: 'Mandate', sector: 'Retail & bar', delegates: 60, agreements: 14, mainSectors: 'Retail & bar', members: 2800, liberado: 'Sarah Lynch' },
+            { id: 'fsu', name: 'FSU', sector: 'Finance & tech', delegates: 25, agreements: 6, mainSectors: 'Finance & tech', members: 1500, liberado: '—' }
         ],
         es: [
-            { id: 'ccoo', name: 'CCOO', sector: 'General', prestige: 76, members: 42000, liberado: 'Marina Soler' },
-            { id: 'ugt', name: 'UGT', sector: 'General', prestige: 72, members: 31000, liberado: 'Pere Vidal' },
-            { id: 'cgt', name: 'CGT', sector: 'General', prestige: 68, members: 8500, liberado: 'Laia Ferrer' },
-            { id: 'csc', name: 'Intersindical CSC', sector: 'Catalunya', prestige: 65, members: 4200, liberado: '—' },
-            { id: 'usoc', name: 'USOC', sector: 'Servicios', prestige: 63, members: 2100, liberado: 'Jordi Mas' },
-            { id: 'sat', name: 'SAT (sectorial)', sector: 'Sanidad', prestige: 70, members: 1800, liberado: '—' }
+            { id: 'ccoo', name: 'CCOO', sector: 'General', delegates: 420, agreements: 58, mainSectors: 'General, industria, servicios', members: 42000, liberado: 'Marina Soler' },
+            { id: 'ugt', name: 'UGT', sector: 'General', delegates: 360, agreements: 51, mainSectors: 'General, transporte, comercio', members: 31000, liberado: 'Pere Vidal' },
+            { id: 'cgt', name: 'CGT', sector: 'General', delegates: 95, agreements: 9, mainSectors: 'General, logística, tecnología', members: 8500, liberado: 'Laia Ferrer' },
+            { id: 'csc', name: 'Intersindical CSC', sector: 'Catalunya', delegates: 70, agreements: 8, mainSectors: 'Intersectorial (Catalunya)', members: 4200, liberado: '—' },
+            { id: 'usoc', name: 'USOC', sector: 'Servicios', delegates: 32, agreements: 5, mainSectors: 'Servicios', members: 2100, liberado: 'Jordi Mas' },
+            { id: 'sat', name: 'SAT (sectorial)', sector: 'Sanidad', delegates: 28, agreements: 4, mainSectors: 'Sanidad privada', members: 1800, liberado: '—' }
         ]
     };
 
@@ -453,6 +629,42 @@
     const WAGE_CHART = {
         'docklands-logistics': [{ role: 'Warehouse operative', wage: '€15.40/hr', votes: 28 }, { role: 'Forklift driver', wage: '€17.20/hr', votes: 19 }, { role: 'Shift supervisor', wage: '€19.80/hr', votes: 8 }],
         'boqueria-hostaleria': [{ role: 'Camarero/a', wage: '1.280 €', votes: 22 }, { role: 'Cocinero/a', wage: '1.450 €', votes: 14 }, { role: 'Encargado/a', wage: '1.620 €', votes: 6 }]
+    };
+
+    /* R3 — Datos registrales (BORME / Registro Mercantil · CRO). Demo data keyed by workplace id. */
+    const REGISTRO_BY_WORKPLACE = {
+        'docklands-logistics': { legalForm: 'Private company limited by shares (LTD)', founded: 2004, admins: 'K. Brennan, M. Doyle', lastAccounts: '2025', revenue: '€21.4m', result: '€1.3m', ebitda: '€2.6m' },
+        'temple-bar-hospitality': { legalForm: 'Private company limited by shares (LTD)', founded: 2011, admins: 'F. Kavanagh', lastAccounts: '2025', revenue: '€9.8m', result: '€0.6m', ebitda: '€1.4m' },
+        'st-james-medical': { legalForm: 'Designated Activity Company (DAC)', founded: 1998, admins: 'E. Whelan, P. Nolan', lastAccounts: '2025', revenue: '€24.6m', result: '€1.1m', ebitda: '€2.9m' },
+        'silicon-docks-tech': { legalForm: 'Private company limited by shares (LTD)', founded: 2015, admins: 'A. Byrne, S. Patel', lastAccounts: '2025', revenue: '€12.7m', result: '€1.8m', ebitda: '€2.4m' },
+        'grafton-retail': { legalForm: 'Co-operative society', founded: 1987, admins: 'Management committee (7 members)', lastAccounts: '2025', revenue: '€5.2m', result: '€0.2m', ebitda: '€0.5m' },
+        'cork-harbour-logistics': { legalForm: 'Private company limited by shares (LTD)', founded: 2001, admins: 'D. O\'Leary', lastAccounts: '2025', revenue: '€17.9m', result: '€0.9m', ebitda: '€2.1m' },
+        'patrick-street-pub': { legalForm: 'Private company limited by shares (LTD)', founded: 2009, admins: 'C. Barrett, N. Hayes', lastAccounts: '2025', revenue: '€5.6m', result: '€0.3m', ebitda: '€0.8m' },
+        'cork-clinic': { legalForm: 'Designated Activity Company (DAC)', founded: 2006, admins: 'M. Fitzgerald', lastAccounts: '2025', revenue: '€10.3m', result: '€0.5m', ebitda: '€1.3m' },
+        'galway-medtech': { legalForm: 'Private company limited by shares (LTD)', founded: 2013, admins: 'R. Conneely, L. Chen', lastAccounts: '2025', revenue: '€14.2m', result: '€1.5m', ebitda: '€2.2m' },
+        'salthill-hotel': { legalForm: 'Private company limited by shares (LTD)', founded: 2010, admins: 'T. Flaherty', lastAccounts: '2025', revenue: '€4.7m', result: '€0.2m', ebitda: '€0.7m' },
+        'limerick-distribution': { legalForm: 'Private company limited by shares (LTD)', founded: 2003, admins: 'J. Ryan, B. Collins', lastAccounts: '2025', revenue: '€14.8m', result: '€0.7m', ebitda: '€1.7m' },
+        'castletroy-retail': { legalForm: 'Private company limited by shares (LTD)', founded: 1996, admins: 'G. Moloney', lastAccounts: '2025', revenue: '€8.9m', result: '€0.4m', ebitda: '€0.9m' },
+        'waterford-hospital': { legalForm: 'Designated Activity Company (DAC)', founded: 2000, admins: 'S. Power, H. Walsh', lastAccounts: '2025', revenue: '€19.5m', result: '€0.8m', ebitda: '€2.3m' },
+        'tramore-local-shop': { legalForm: 'Private company limited by shares (LTD)', founded: 1992, admins: 'P. Murphy', lastAccounts: '2024', revenue: '€1.6m', result: '€0.1m', ebitda: '€0.2m' },
+        'enniscorthy-it': { legalForm: 'Private company limited by shares (LTD)', founded: 2016, admins: 'O. Redmond', lastAccounts: '2025', revenue: '€3.4m', result: '€0.3m', ebitda: '€0.5m' },
+        'boqueria-hostaleria': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2008, admins: 'N. Camps, R. Ferré', lastAccounts: '2025', revenue: '6,8 M€', result: '0,4 M€', ebitda: '0,9 M€' },
+        'zona-franca-logistica': { legalForm: 'Sociedad Anónima (S.A.)', founded: 1999, admins: 'Consejo de administración (5 miembros)', lastAccounts: '2025', revenue: '28,3 M€', result: '1,4 M€', ebitda: '3,2 M€' },
+        'clinica-sant-pere': { legalForm: 'Sociedad Anónima (S.A.)', founded: 1995, admins: 'M. Roca, J. Español', lastAccounts: '2025', revenue: '14,9 M€', result: '0,7 M€', ebitda: '1,8 M€' },
+        'techpark-solutions': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2014, admins: 'A. Puig, D. Kaur', lastAccounts: '2025', revenue: '9,6 M€', result: '1,1 M€', ebitda: '1,6 M€' },
+        'supermercat-diari': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2005, admins: 'F. Vila', lastAccounts: '2025', revenue: '7,2 M€', result: '0,2 M€', ebitda: '0,5 M€' },
+        'hostal-girona-centre': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2012, admins: 'C. Bosch', lastAccounts: '2025', revenue: '2,9 M€', result: '0,1 M€', ebitda: '0,4 M€' },
+        'logistica-costa-brava': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2007, admins: 'E. Serrat, P. Font', lastAccounts: '2025', revenue: '9,4 M€', result: '0,5 M€', ebitda: '1,1 M€' },
+        'centre-ripoll': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2010, admins: 'L. Casals', lastAccounts: '2025', revenue: '5,3 M€', result: '0,3 M€', ebitda: '0,7 M€' },
+        'super-lleida': { legalForm: 'Sociedad Anónima (S.A.)', founded: 1993, admins: 'G. Torres, M. Pané', lastAccounts: '2025', revenue: '13,6 M€', result: '0,5 M€', ebitda: '1,2 M€' },
+        'transport-ponent': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2002, admins: 'X. Solé', lastAccounts: '2025', revenue: '16,1 M€', result: '0,8 M€', ebitda: '1,9 M€' },
+        'hotel-seu-urgell': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2015, admins: 'I. Ribó', lastAccounts: '2024', revenue: '2,3 M€', result: '0,1 M€', ebitda: '0,3 M€' },
+        'hospital-tarragona': { legalForm: 'Sociedad Anónima (S.A.)', founded: 1997, admins: 'A. Queralt, S. Mestre', lastAccounts: '2025', revenue: '18,7 M€', result: '0,9 M€', ebitda: '2,4 M€' },
+        'port-ebre-logistics': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2006, admins: 'J. Curto', lastAccounts: '2025', revenue: '10,2 M€', result: '0,5 M€', ebitda: '1,2 M€' },
+        'priorat-vinyes': { legalForm: 'Sociedad Cooperativa', founded: 1984, admins: 'Consejo rector (6 miembros)', lastAccounts: '2024', revenue: '1,8 M€', result: '0,1 M€', ebitda: '0,2 M€' },
+        'manresa-metal': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2011, admins: 'R. Comas, T. Oliva', lastAccounts: '2025', revenue: '5,1 M€', result: '0,4 M€', ebitda: '0,7 M€' },
+        'vic-consulting': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2013, admins: 'M. Erra', lastAccounts: '2025', revenue: '4,6 M€', result: '0,4 M€', ebitda: '0,6 M€' },
+        'igualada-textil': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2001, admins: 'N. Claramunt', lastAccounts: '2024', revenue: '2,4 M€', result: '0,1 M€', ebitda: '0,3 M€' }
     };
 
     const CONVENIO_CLAUSES = {
@@ -494,6 +706,556 @@
         return lib[subId] || lib.default || [];
     }
 
+    /* R1 — Tabla salarial demo por locale para la calculadora de convenio (mínimo anual a jornada completa de 40 h). */
+    const CONVENIO_SALARY_TABLES = {
+        es: {
+            label: 'Convenio de hostelería — tabla demo (salario mínimo anual, jornada completa)',
+            categories: [
+                { id: 'es-nivel-1', name: 'Nivel I — Jefe/a de cocina o de sala', annualMin: 24800 },
+                { id: 'es-nivel-2', name: 'Nivel II — Cocinero/a, recepcionista', annualMin: 21900 },
+                { id: 'es-nivel-3', name: 'Nivel III — Camarero/a, dependiente/a', annualMin: 19400 },
+                { id: 'es-nivel-4', name: 'Nivel IV — Ayudante de cocina o sala', annualMin: 17800 },
+                { id: 'es-nivel-5', name: 'Nivel V — Auxiliar, limpieza', annualMin: 16900 }
+            ]
+        },
+        ie: {
+            label: 'Retail ERO/JLC — demo table (annual minimum, full-time)',
+            categories: [
+                { id: 'ie-sales-entry', name: 'Sales assistant (entry)', annualMin: 25400 },
+                { id: 'ie-sales-exp', name: 'Sales assistant (2+ years)', annualMin: 27300 },
+                { id: 'ie-senior', name: 'Senior sales assistant / keyholder', annualMin: 29100 },
+                { id: 'ie-supervisor', name: 'Supervisor', annualMin: 31800 },
+                { id: 'ie-manager', name: 'Department manager', annualMin: 35600 }
+            ]
+        }
+    };
+
+    function getConvenioSalaryTable(locale) {
+        return CONVENIO_SALARY_TABLES[localeKey(locale)] || CONVENIO_SALARY_TABLES.ie;
+    }
+
+    function formatEuroAmount(locale, value) {
+        return Number(value || 0).toLocaleString(locale === 'es' ? 'es-ES' : 'en-IE', { maximumFractionDigits: 0 });
+    }
+
+    /* ============================================================
+       R4 — Agenda: la capa temporal (docs/REFORMAS-PROPUESTAS.md).
+       Eventos demo por empresa y por territorio; los eventos añadidos
+       por el usuario se guardan en localStorage (agendaEvents).
+       ============================================================ */
+    const AGENDA_BY_WORKPLACE = {
+        /* ie */
+        'docklands-logistics': [
+            { date: '2026-07-17', type: 'assembly', title: 'Shift-floor assembly — night rates' },
+            { date: '2026-08-05', type: 'negotiation', title: 'Logistics SNA talks — session 2' },
+            { date: '2026-09-18', type: 'deadline', title: 'Deadline — roster consultation submissions' }
+        ],
+        'temple-bar-hospitality': [
+            { date: '2026-07-22', type: 'assembly', title: 'Staff assembly — tip pooling' },
+            { date: '2026-08-12', type: 'vote', title: 'Ballot on protective notice response' },
+            { date: '2026-10-02', type: 'strike', title: 'Strike day (if ballot passes threshold)' }
+        ],
+        'st-james-medical': [
+            { date: '2026-07-29', type: 'assembly', title: 'Ward assembly — safe staffing ratios' },
+            { date: '2026-09-10', type: 'negotiation', title: 'Meeting with management — roster changes' }
+        ],
+        'silicon-docks-tech': [
+            { date: '2026-08-06', type: 'vote', title: 'Vote — right-to-disconnect clause' },
+            { date: '2026-08-25', type: 'deadline', title: 'Remote-work agreement sign-off deadline' }
+        ],
+        'grafton-retail': [
+            { date: '2026-07-20', type: 'assembly', title: 'Members assembly — Sunday premium' },
+            { date: '2026-10-08', type: 'negotiation', title: 'Annual pay review — first session' }
+        ],
+        'cork-harbour-logistics': [
+            { date: '2026-08-19', type: 'assembly', title: 'Depot assembly — summer cover plan' },
+            { date: '2026-09-24', type: 'vote', title: 'Vote on mobilisation calendar' }
+        ],
+        'patrick-street-pub': [
+            { date: '2026-09-02', type: 'negotiation', title: 'JLC talks — split-shift compensation' },
+            { date: '2026-09-29', type: 'deadline', title: 'Deadline — works council nominations' }
+        ],
+        'limerick-distribution': [
+            { date: '2026-08-11', type: 'assembly', title: 'Warehouse assembly — heat protocol' },
+            { date: '2026-10-14', type: 'deadline', title: 'Deadline — union election registration' }
+        ],
+        /* es */
+        'boqueria-hostaleria': [
+            { date: '2026-07-16', type: 'assembly', title: 'Asamblea de plantilla — turnos partidos' },
+            { date: '2026-07-28', type: 'negotiation', title: 'Mesa del convenio de hostelería — 2ª sesión' },
+            { date: '2026-09-04', type: 'deadline', title: 'Fin de plazo de alegaciones al calendario laboral' }
+        ],
+        'zona-franca-logistica': [
+            { date: '2026-07-21', type: 'vote', title: 'Votación de huelga — cierre del sondeo' },
+            { date: '2026-07-24', type: 'assembly', title: 'Asamblea informativa previa a la votación' },
+            { date: '2026-10-01', type: 'strike', title: 'Jornada de huelga (si el sondeo supera el umbral)' }
+        ],
+        'clinica-sant-pere': [
+            { date: '2026-07-30', type: 'assembly', title: 'Asamblea — ratios de enfermería' },
+            { date: '2026-09-15', type: 'negotiation', title: 'Reunión con dirección — cambios de turno' }
+        ],
+        'techpark-solutions': [
+            { date: '2026-08-03', type: 'vote', title: 'Votación — cláusula de desconexión digital' },
+            { date: '2026-08-20', type: 'deadline', title: 'Plazo de firma del acuerdo de teletrabajo' }
+        ],
+        'supermercat-diari': [
+            { date: '2026-07-19', type: 'assembly', title: 'Asamblea — horarios de domingo' },
+            { date: '2026-10-13', type: 'negotiation', title: 'Revisión salarial anual — primera reunión' }
+        ],
+        'hospital-tarragona': [
+            { date: '2026-08-27', type: 'assembly', title: 'Asamblea de plantas — plan de verano' },
+            { date: '2026-09-22', type: 'deadline', title: 'Fin de plazo — bolsa de sustituciones' }
+        ],
+        'transport-ponent': [
+            { date: '2026-09-09', type: 'negotiation', title: 'Mesa de transporte — tablas salariales' },
+            { date: '2026-09-30', type: 'vote', title: 'Votación del calendario de movilizaciones' }
+        ],
+        'super-lleida': [
+            { date: '2026-08-14', type: 'assembly', title: 'Asamblea — descansos en caja' },
+            { date: '2026-10-06', type: 'deadline', title: 'Plazo de inscripción — elecciones sindicales' }
+        ]
+    };
+
+    const AGENDA_BY_TERRITORY = {
+        es: {
+            'barcelona-ciutat': [
+                { date: '2026-07-18', type: 'assembly', title: 'Asamblea de vecinos — bloque Balmes 120' },
+                { date: '2026-09-01', type: 'deadline', title: 'Fin de moratoria — revisar lanzamientos previstos' }
+            ],
+            'barcelona-litoral': [
+                { date: '2026-08-09', type: 'assembly', title: 'Asamblea PAH Litoral — calendario de otoño' }
+            ],
+            'girona-comarca': [
+                { date: '2026-09-17', type: 'negotiation', title: 'Negociación con gran tenedor — pisos turísticos' }
+            ]
+        },
+        ie: {
+            'dublin-docklands': [
+                { date: '2026-07-25', type: 'assembly', title: 'Tenant assembly — Mayor Street block' },
+                { date: '2026-09-08', type: 'deadline', title: 'RPZ review submissions close' }
+            ],
+            'cork-city': [
+                { date: '2026-08-15', type: 'assembly', title: 'Tenant union Cork — open assembly' }
+            ],
+            'galway-city': [
+                { date: '2026-09-21', type: 'negotiation', title: 'Negotiation with receiver — Eyre Square flats' }
+            ]
+        }
+    };
+
+    const AGENDA_EVENT_TYPES = ['assembly', 'vote', 'deadline', 'strike', 'negotiation'];
+
+    function agendaTypeLabel(locale, type) {
+        const types = t(locale).agendaTypes || {};
+        return types[type] || type;
+    }
+
+    function formatAgendaDate(locale, iso) {
+        const d = new Date(`${iso}T12:00:00`);
+        if (Number.isNaN(d.getTime())) return iso;
+        return d.toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-IE', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    function isUpcomingAgendaEvent(ev) {
+        const today = new Date();
+        const todayIso = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        return String(ev.date || '') >= todayIso;
+    }
+
+    function sortAgendaEvents(events) {
+        return events.filter(isUpcomingAgendaEvent).sort((a, b) => String(a.date).localeCompare(String(b.date)));
+    }
+
+    function getAgendaForWorkplace(locale, workplaceId) {
+        const wp = findWorkplace(locale, workplaceId);
+        const custom = (loadState().agendaEvents || {})[workplaceId] || [];
+        const base = AGENDA_BY_WORKPLACE[workplaceId] || [];
+        return sortAgendaEvents([...base, ...custom].map((ev) => ({ ...ev, scope: ev.scope || wp?.name || '' })));
+    }
+
+    function addAgendaEvent(workplaceId, payload) {
+        const entry = {
+            date: String(payload.date || '').slice(0, 10),
+            type: AGENDA_EVENT_TYPES.includes(payload.type) ? payload.type : 'assembly',
+            title: String(payload.title || '').trim().slice(0, 120),
+            custom: true
+        };
+        if (!workplaceId || !entry.date || !entry.title) return null;
+        const state = loadState();
+        state.agendaEvents = state.agendaEvents || {};
+        state.agendaEvents[workplaceId] = state.agendaEvents[workplaceId] || [];
+        state.agendaEvents[workplaceId].push(entry);
+        saveState(state);
+        return entry;
+    }
+
+    function getAgendaForTerritory(locale, territoryId) {
+        const terr = getSubterritoryById(locale, territoryId);
+        const base = AGENDA_BY_TERRITORY[localeKey(locale)]?.[territoryId] || [];
+        return sortAgendaEvents(base.map((ev) => ({ ...ev, scope: ev.scope || terr?.name || '' })));
+    }
+
+    function getUpcomingAgendaDigest(locale, limit) {
+        const events = [];
+        getWorkplaces(locale).forEach((wp) => {
+            (AGENDA_BY_WORKPLACE[wp.id] || []).forEach((ev) => events.push({ ...ev, scope: wp.name }));
+        });
+        const subterritories = getSubterritories(locale);
+        Object.entries(AGENDA_BY_TERRITORY[localeKey(locale)] || {}).forEach(([terrId, list]) => {
+            const terr = subterritories.find((s) => s.id === terrId);
+            list.forEach((ev) => events.push({ ...ev, scope: terr ? `${terr.parentName} / ${terr.name}` : terrId }));
+        });
+        return sortAgendaEvents(events).slice(0, limit || 5);
+    }
+
+    /** R4 — renderer único de agenda: lista cronológica sobria (fecha, chip de tipo, título, ámbito). */
+    function buildAgendaHtml(locale, events, opts) {
+        const c = t(locale);
+        const o = opts || {};
+        const rows = (events || []).map((ev) => `
+            <li class="sindicato-agenda-item">
+                <time class="sindicato-agenda-date" datetime="${ev.date}">${formatAgendaDate(locale, ev.date)}</time>
+                <span class="sindicato-agenda-chip sindicato-agenda-chip--${ev.type}">${agendaTypeLabel(locale, ev.type)}</span>
+                <span class="sindicato-agenda-body"><strong>${ev.title}</strong>${ev.scope ? `<span class="sindicato-agenda-scope">${ev.scope}</span>` : ''}</span>
+            </li>`).join('');
+        const list = rows
+            ? `<ul class="sindicato-agenda-list${o.compact ? ' sindicato-agenda-list--compact' : ''}">${rows}</ul>`
+            : `<p class="template-muted">${c.agendaEmpty}</p>`;
+        return `<div class="sindicato-agenda">${o.title ? `<h3>${o.title}</h3>` : ''}${list}</div>`;
+    }
+
+    function buildAgendaAddFormHtml(locale, workplaceId) {
+        const c = t(locale);
+        const typeOptions = AGENDA_EVENT_TYPES.map((k) => `<option value="${k}">${agendaTypeLabel(locale, k)}</option>`).join('');
+        return `<form class="sindicato-agenda-add" data-sindicato-agenda-form data-sindicato-workplace-id="${workplaceId}">
+            <strong>${c.agendaAddTitle}</strong>
+            <div class="sindicato-form-row">
+                <label>${c.agendaFieldType}<select name="type" required>${typeOptions}</select></label>
+                <label>${c.agendaFieldDate}<input type="date" name="date" required></label>
+            </div>
+            <label>${c.agendaFieldTitle}<input type="text" name="title" maxlength="120" required></label>
+            <p class="sindicato-form-hint">${c.agendaAddHint}</p>
+            <button type="submit" class="sindicato-cta-btn sindicato-cta-btn-active">${c.agendaAddSubmit}</button>
+        </form>`;
+    }
+
+    /* ============================================================
+       R5 — Verificación como arquitectura: niveles de confianza
+       (anónimo → persona verificada → trabajador verificado) con
+       sindicatos como garantes de identidad. Flujo demo en localStorage.
+       ============================================================ */
+    const FORUM_THREAD_TRUST = {
+        ie: {
+            'faq-delegate': 'worker',
+            'convenio-hospitality': 'worker',
+            'split-shift': 'anon',
+            'rent-docklands': 'person',
+            'hr-retaliation': 'anon',
+            'pay-scales': 'worker',
+            'nurse-ratios': 'worker',
+            'remote-policy': 'person',
+            'minutes-template': 'worker',
+            'anonymous-report': 'person',
+            'strike-fund': 'worker'
+        },
+        es: {
+            'faq-delegado': 'worker',
+            'convenio-hosteleria': 'worker',
+            'turno-partido': 'anon',
+            'desahucio-balmes': 'person',
+            'filtracion-rrhh': 'anon',
+            'tablas-salariales': 'worker',
+            'ratios-sanidad': 'worker',
+            'teletrabajo-22': 'person',
+            'modelo-acta': 'worker',
+            'denuncia-anonima': 'person',
+            'fondo-huelga': 'worker'
+        }
+    };
+
+    function forumThreadTrust(locale, slug) {
+        return FORUM_THREAD_TRUST[localeKey(locale)]?.[slug] || 'person';
+    }
+
+    /** Las denuncias son mayoritariamente anónimas (ese es el sentido de la sección);
+        las reclamaciones salariales suelen venir de cuentas avaladas. */
+    function reportTrustLevel(type) {
+        return type === 'lowPay' ? 'worker' : 'anon';
+    }
+
+    function buildTrustBadgeHtml(locale, level) {
+        const c = t(locale);
+        const lvl = c.trustLevels && c.trustLevels[level] ? level : 'anon';
+        return `<span class="sindicato-trust-badge sindicato-trust-badge--${lvl}">${c.trustLevels[lvl]}</span>`;
+    }
+
+    function getVerification() {
+        const v = loadState().verification;
+        if (!v || typeof v !== 'object') return { level: 'anon', unionId: '', pending: false };
+        return { level: v.level || 'anon', unionId: v.unionId || '', pending: Boolean(v.pending) };
+    }
+
+    function requestUnionEndorsement(unionId) {
+        const state = loadState();
+        state.verification = { level: 'anon', unionId: String(unionId || ''), pending: true };
+        saveState(state);
+        return state.verification;
+    }
+
+    function confirmUnionEndorsement() {
+        const state = loadState();
+        const v = state.verification;
+        if (!v || !v.pending || !v.unionId) return v || null;
+        state.verification = { level: 'worker', unionId: v.unionId, pending: false };
+        saveState(state);
+        return state.verification;
+    }
+
+    /** R5 — tarjeta de verificación (módulo Usuario → Resumen). */
+    function buildVerificationCardHtml(locale) {
+        const c = t(locale);
+        const v = getVerification();
+        const union = v.unionId ? findUnion(locale, v.unionId) : null;
+        const ladder = ['anon', 'person', 'worker'].map((lvl) =>
+            `<li class="${!v.pending && v.level === lvl ? 'is-current' : ''}">${buildTrustBadgeHtml(locale, lvl)}<span>${c.trustLevelDesc[lvl]}</span></li>`
+        ).join('');
+        let statusHtml;
+        let actionHtml = '';
+        if (v.level === 'worker' && union) {
+            statusHtml = `${buildTrustBadgeHtml(locale, 'worker')} <span>${c.verifyDone} ${union.name}.</span>`;
+        } else if (v.pending && union) {
+            statusHtml = `${buildTrustBadgeHtml(locale, 'anon')} <span>${c.verifyPending} ${union.name}.</span>`;
+            actionHtml = `<button type="button" class="sindicato-cta-btn" data-sindicato-verify-confirm>${c.verifyConfirmBtn}</button>`;
+        } else {
+            statusHtml = buildTrustBadgeHtml(locale, v.level);
+            const unionOptions = getUnions(locale).map((u) => `<option value="${u.id}">${u.name}</option>`).join('');
+            actionHtml = `<form class="sindicato-verify-form" data-sindicato-verify-request>
+                <label>${c.verifySelectUnion}
+                    <select name="unionId" required>
+                        <option value="">${c.selectUnion}</option>
+                        ${unionOptions}
+                    </select>
+                </label>
+                <button type="submit" class="sindicato-cta-btn sindicato-cta-btn-active">${c.verifyRequestBtn}</button>
+            </form>`;
+        }
+        return `<div class="sindicato-verification">
+            <h3>${c.verificationTitle}</h3>
+            <p class="sindicato-verify-status"><strong>${c.verificationCurrent}:</strong> ${statusHtml}</p>
+            <ul class="sindicato-verify-ladder">${ladder}</ul>
+            ${actionHtml}
+            <p class="sindicato-verify-doctrine">${c.verificationDoctrine}</p>
+        </div>`;
+    }
+
+    /* ============================================================
+       R7 — Vivienda: perfil automático de edificio. Datos demo por
+       territorio (edificios, estado, rentas) + lista de confirmación
+       de acción colectiva de inquilinos en localStorage.
+       ============================================================ */
+    const BUILDINGS_BY_TERRITORY = {
+        es: {
+            'barcelona-ciutat': [
+                { id: 'bcn-balmes-120', address: 'Carrer de Balmes 120', units: 24, owner: 'Vertex Patrimonial SOCIMI', largeHolder: true, year: 1931 },
+                { id: 'bcn-consell-245', address: 'Carrer del Consell de Cent 245', units: 18, owner: 'Comunidad de propietarios', largeHolder: false, year: 1905 },
+                { id: 'bcn-marina-88', address: 'Carrer de la Marina 88', units: 32, owner: 'Fons Residencial Iberia SL', largeHolder: true, year: 1978 },
+                { id: 'bcn-gran-via-411', address: 'Gran Via de les Corts Catalanes 411', units: 28, owner: 'Inversiones Laietana SA', largeHolder: true, year: 1964 },
+                { id: 'bcn-verdi-52', address: 'Carrer de Verdi 52 (Gràcia)', units: 10, owner: 'Propietario particular', largeHolder: false, year: 1922 }
+            ],
+            'barcelona-litoral': [
+                { id: 'lit-rambla-poblenou-95', address: 'Rambla del Poblenou 95', units: 16, owner: 'Comunidad de propietarios', largeHolder: false, year: 1971 },
+                { id: 'lit-pere-iv-140', address: 'Carrer de Pere IV 140', units: 22, owner: 'Blau Litoral Gestió SL', largeHolder: true, year: 1985 },
+                { id: 'lit-maresme-310', address: 'Carrer del Maresme 310', units: 40, owner: 'Fons Residencial Iberia SL', largeHolder: true, year: 1992 },
+                { id: 'lit-badalona-mar-12', address: 'Carrer del Mar 12, Badalona', units: 8, owner: 'Propietario particular', largeHolder: false, year: 1954 }
+            ],
+            'girona-comarca': [
+                { id: 'gir-placa-vi-3', address: 'Plaça del Vi 3, Girona', units: 6, owner: 'Torrent Capital SL (fondo)', largeHolder: true, year: 1890 },
+                { id: 'gir-santa-clara-44', address: 'Carrer de Santa Clara 44, Girona', units: 12, owner: 'Propietario particular', largeHolder: false, year: 1935 },
+                { id: 'gir-migdia-77', address: 'Carrer Migdia 77, Girona', units: 20, owner: 'Habitatge Gironí SA', largeHolder: true, year: 1989 },
+                { id: 'gir-salt-major-15', address: 'Carrer Major 15, Salt', units: 14, owner: 'Comunidad de propietarios', largeHolder: false, year: 1968 }
+            ]
+        },
+        ie: {
+            'dublin-docklands': [
+                { id: 'dub-mayor-12', address: '12 Mayor Street Lower', units: 36, owner: 'Liffey Point Residential Fund', largeHolder: true, year: 2007 },
+                { id: 'dub-sheriff-84', address: '84 Sheriff Street Upper', units: 20, owner: 'Private landlord', largeHolder: false, year: 1998 },
+                { id: 'dub-castleforbes-3', address: '3 Castleforbes Road', units: 48, owner: 'Anchorage REIT', largeHolder: true, year: 2016 },
+                { id: 'dub-eastwall-27', address: '27 East Wall Road', units: 9, owner: 'Private landlord', largeHolder: false, year: 1936 },
+                { id: 'dub-northwall-56', address: '56 North Wall Quay', units: 30, owner: 'Docklands Living Ltd', largeHolder: true, year: 2011 }
+            ],
+            'cork-city': [
+                { id: 'cork-patrick-45', address: '45 Patrick Street', units: 12, owner: 'Lee Valley Properties Ltd', largeHolder: true, year: 1902 },
+                { id: 'cork-macurtain-18', address: '18 MacCurtain Street', units: 8, owner: 'Private landlord', largeHolder: false, year: 1911 },
+                { id: 'cork-blackpool-60', address: '60 Great William O\'Brien Street, Blackpool', units: 16, owner: 'Shandon Residential Fund', largeHolder: true, year: 1995 },
+                { id: 'cork-douglas-9', address: '9 Douglas Street', units: 6, owner: 'Private landlord', largeHolder: false, year: 1927 }
+            ],
+            'galway-city': [
+                { id: 'gal-eyre-8', address: '8 Eyre Square', units: 10, owner: 'Corrib Asset Management (receivership)', largeHolder: true, year: 1898 },
+                { id: 'gal-dominick-33', address: '33 Lower Dominick Street', units: 7, owner: 'Private landlord', largeHolder: false, year: 1904 },
+                { id: 'gal-headford-120', address: '120 Headford Road', units: 42, owner: 'Atlantic Quarter REIT', largeHolder: true, year: 2019 },
+                { id: 'gal-salthill-5', address: '5 Upper Salthill Road', units: 12, owner: 'Private landlord', largeHolder: false, year: 1975 }
+            ]
+        }
+    };
+
+    const BUILDING_CONDITION_REPORTS = {
+        'bcn-balmes-120': [
+            { issue: 'Humedades en escalera y bajos', count: 4, severity: 'high' },
+            { issue: 'Ascensor averiado desde marzo', count: 6, severity: 'high' },
+            { issue: 'Calefacción central sin revisión', count: 2, severity: 'medium' }
+        ],
+        'bcn-marina-88': [
+            { issue: 'Grietas en fachada interior', count: 3, severity: 'medium' },
+            { issue: 'Portero automático fuera de servicio', count: 2, severity: 'low' }
+        ],
+        'bcn-gran-via-411': [
+            { issue: 'Bajante comunitaria con fugas', count: 3, severity: 'medium' }
+        ],
+        'gir-placa-vi-3': [
+            { issue: 'Instalación eléctrica antigua', count: 2, severity: 'medium' }
+        ],
+        'dub-mayor-12': [
+            { issue: 'Mould in stairwell and ground-floor flats', count: 4, severity: 'high' },
+            { issue: 'Lift out of order since March', count: 5, severity: 'high' }
+        ],
+        'dub-castleforbes-3': [
+            { issue: 'Ventilation faults in inner units', count: 3, severity: 'medium' }
+        ],
+        'cork-patrick-45': [
+            { issue: 'Damp in rear bedrooms', count: 3, severity: 'medium' },
+            { issue: 'Fire door does not close', count: 2, severity: 'high' }
+        ],
+        'gal-eyre-8': [
+            { issue: 'Windows in poor repair', count: 2, severity: 'medium' }
+        ]
+    };
+
+    const RENT_BANDS_BY_TERRITORY = {
+        es: {
+            'barcelona-ciutat': { m2: '15,1 €/m²', typical: '1.060 €/mes (70 m²)' },
+            'barcelona-litoral': { m2: '13,4 €/m²', typical: '940 €/mes (70 m²)' },
+            'girona-comarca': { m2: '10,2 €/m²', typical: '710 €/mes (70 m²)' }
+        },
+        ie: {
+            'dublin-docklands': { m2: '€27.90 / m²', typical: '€2,050 / month (two-bed)' },
+            'cork-city': { m2: '€18.60 / m²', typical: '€1,480 / month (two-bed)' },
+            'galway-city': { m2: '€19.10 / m²', typical: '€1,520 / month (two-bed)' }
+        }
+    };
+
+    const TENANT_PLEDGE_BASE = {
+        'bcn-balmes-120': 14,
+        'bcn-marina-88': 6,
+        'gir-placa-vi-3': 3,
+        'dub-mayor-12': 11,
+        'cork-patrick-45': 5,
+        'gal-eyre-8': 4
+    };
+
+    function getBuildingsForTerritory(locale, territoryId) {
+        return BUILDINGS_BY_TERRITORY[localeKey(locale)]?.[territoryId] || [];
+    }
+
+    function findBuilding(locale, buildingId) {
+        const map = BUILDINGS_BY_TERRITORY[localeKey(locale)] || {};
+        for (const [terrId, list] of Object.entries(map)) {
+            const found = list.find((b) => b.id === buildingId);
+            if (found) return { ...found, territoryId: terrId };
+        }
+        return null;
+    }
+
+    function getTenantPledgeCount(buildingId) {
+        const base = TENANT_PLEDGE_BASE[buildingId] || 0;
+        const extra = (loadState().tenantPledges || {})[buildingId] || 0;
+        return base + extra;
+    }
+
+    function addTenantPledge(buildingId) {
+        if (!buildingId) return 0;
+        const state = loadState();
+        state.tenantPledges = state.tenantPledges || {};
+        state.tenantPledges[buildingId] = (state.tenantPledges[buildingId] || 0) + 1;
+        saveState(state);
+        return getTenantPledgeCount(buildingId);
+    }
+
+    function buildBuildingsBlockHtml(locale, territoryId) {
+        const c = t(locale);
+        const buildings = getBuildingsForTerritory(locale, territoryId);
+        if (!buildings.length) return '';
+        const rows = buildings.map((b) => `
+            <button type="button" class="sindicato-building-card" data-sindicato-goto-building="${b.id}">
+                <div class="sindicato-building-card-head">
+                    <strong>${b.address}</strong>
+                    ${b.largeHolder ? `<span class="sindicato-building-flag">${c.buildingLargeHolder}</span>` : ''}
+                </div>
+                <div class="sindicato-building-meta">
+                    <span>${b.units} ${c.buildingUnits}</span>
+                    <span>${c.buildingOwnerLabel}: ${b.owner}</span>
+                    <span>${c.buildingYearLabel}: ${b.year}</span>
+                </div>
+            </button>`).join('');
+        return `<h3>${c.buildingsTitle}</h3>
+            <p class="template-muted">${c.buildingsIntro}</p>
+            <div class="sindicato-building-grid">${rows}</div>`;
+    }
+
+    /** R7 — perfil de edificio: Estado · Rentas · Contrato y derechos · Acción. */
+    function buildBuildingProfileHtml(locale, building, terr) {
+        const c = t(locale);
+        const es = locale === 'es';
+        const condition = BUILDING_CONDITION_REPORTS[building.id] || [];
+        const conditionRows = condition.length ? condition.map((r) => `
+            <div class="sindicato-report-row ${severityClass(r.severity)}">
+                <span class="sindicato-report-type">${r.issue} ${buildTrustBadgeHtml(locale, 'anon')}</span>
+                <span class="sindicato-report-count">${r.count}</span>
+                <span class="sindicato-report-sev">${r.severity}</span>
+            </div>`).join('') : `<p class="template-muted">${c.buildingStateEmpty}</p>`;
+        const rent = RENT_BANDS_BY_TERRITORY[localeKey(locale)]?.[terr.id] || null;
+        const rentHtml = rent
+            ? `<dl class="sindicato-registry-grid">
+                <div><dt>${c.buildingRentM2}</dt><dd>${rent.m2}</dd></div>
+                <div><dt>${c.buildingRentTypical}</dt><dd>${rent.typical}</dd></div>
+            </dl>`
+            : `<p class="template-muted">—</p>`;
+        const faq = (c.buildingContractFaq || []).map((f) => `<details><summary>${f.q}</summary><p>${f.a}</p></details>`).join('');
+        const alerts = getViviendaAlerts(locale, terr.id);
+        const alertsHtml = alerts.length
+            ? alerts.map((alert) => {
+                const statusLabel = alert.status === 'scheduled' ? (es ? 'Programado' : 'Scheduled') : (es ? 'Riesgo' : 'At risk');
+                return `<div class="sindicato-coord-card sindicato-alert-card"><strong>${alert.date} — ${statusLabel}</strong><p>${alert.address}</p></div>`;
+            }).join('')
+            : `<p class="template-muted">${c.viviendaNoAlerts}</p>`;
+        const pledges = getTenantPledgeCount(building.id);
+        return `<div class="sindicato-panel sindicato-building-profile">
+            <p><button type="button" class="sindicato-back-btn" data-sindicato-building-back>← ${c.buildingBack}</button></p>
+            <h2>${building.address}</h2>
+            <p class="template-muted">${terr.parentName} / ${terr.name} · ${building.units} ${c.buildingUnits} · ${c.buildingYearLabel} ${building.year}</p>
+            <div class="sindicato-building-owner">
+                <span><strong>${c.buildingOwnerLabel}:</strong> ${building.owner}</span>
+                ${building.largeHolder ? `<span class="sindicato-building-flag">${c.buildingLargeHolder}</span>` : ''}
+            </div>
+            <h3>${c.buildingStateTitle}</h3>
+            <p class="template-muted">${c.buildingStateIntro}</p>
+            <div class="sindicato-report-list">${conditionRows}</div>
+            <p class="sindicato-note">${c.buildingStateModNote}</p>
+            <h3>${c.buildingRentsTitle}</h3>
+            ${rentHtml}
+            <p class="sindicato-note">${c.buildingRentIndexNote}</p>
+            <h3>${c.buildingContractTitle}</h3>
+            <div class="sindicato-faq">${faq}</div>
+            <h3>${c.buildingActionTitle}</h3>
+            <p class="template-muted">${c.buildingEvictionLinkNote}</p>
+            ${alertsHtml}
+            <form class="sindicato-tenant-pledge" data-sindicato-tenant-pledge data-sindicato-building-id="${building.id}">
+                <button type="submit" class="sindicato-cta-btn sindicato-cta-btn-active">${c.tenantPledgeBtn}</button>
+                <span class="sindicato-tenant-pledge-count"><strong>${pledges}</strong> ${c.tenantPledgeCount}</span>
+            </form>
+            <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
+        </div>`;
+    }
+
     const DEFAULT_MAP_CENTER = { ie: { lat: 53.3498, lng: -6.2603 }, es: { lat: 41.3874, lng: 2.1686 } };
 
     function defaultState() {
@@ -502,7 +1264,11 @@
             customWorkplaces: { ie: [], es: [] },
             moderationQueue: [],
             strikeVotes: {},
-            forumReads: {}
+            forumReads: {},
+            /* R4/R5/R7 — agenda por empresa, verificación demo y confirmaciones de inquilinos */
+            agendaEvents: {},
+            verification: { level: 'anon', unionId: '', pending: false },
+            tenantPledges: {}
         };
     }
 
@@ -529,7 +1295,10 @@
                 customWorkplaces: parsed.customWorkplaces || { ie: [], es: [] },
                 moderationQueue: Array.isArray(parsed.moderationQueue) ? parsed.moderationQueue : [],
                 strikeVotes: parsed.strikeVotes && typeof parsed.strikeVotes === 'object' ? parsed.strikeVotes : {},
-                forumReads: parsed.forumReads && typeof parsed.forumReads === 'object' ? parsed.forumReads : {}
+                forumReads: parsed.forumReads && typeof parsed.forumReads === 'object' ? parsed.forumReads : {},
+                agendaEvents: parsed.agendaEvents && typeof parsed.agendaEvents === 'object' ? parsed.agendaEvents : {},
+                verification: parsed.verification && typeof parsed.verification === 'object' ? parsed.verification : { level: 'anon', unionId: '', pending: false },
+                tenantPledges: parsed.tenantPledges && typeof parsed.tenantPledges === 'object' ? parsed.tenantPledges : {}
             };
         } catch (_) {
             return defaultState();
@@ -907,7 +1676,76 @@
         </div>`;
     }
 
-    function buildWorkplaceOverviewHtml(locale, wp) {
+    /* R3 — bloque de datos registrales en el Resumen de empresa. */
+    function buildRegistroHtml(locale, wp) {
+        const c = t(locale);
+        const reg = REGISTRO_BY_WORKPLACE[wp.id];
+        if (!reg) return '';
+        return `<div class="sindicato-registry">
+            <h3>${c.registryTitle}</h3>
+            <dl class="sindicato-registry-grid">
+                <div><dt>${c.registryLegalForm}</dt><dd>${reg.legalForm}</dd></div>
+                <div><dt>${c.registryFounded}</dt><dd>${reg.founded}</dd></div>
+                <div><dt>${c.registryAdmins}</dt><dd>${reg.admins}</dd></div>
+                <div><dt>${c.registryLastAccounts}</dt><dd>${reg.lastAccounts}</dd></div>
+                <div><dt>${c.registryRevenue}</dt><dd>${reg.revenue}</dd></div>
+                <div><dt>${c.registryResult}</dt><dd>${reg.result}</dd></div>
+                <div><dt>${c.registryEbitda}</dt><dd>${reg.ebitda}</dd></div>
+            </dl>
+            <p class="sindicato-registry-source">${c.registrySource}</p>
+            <p class="sindicato-registry-tagline">${c.registryTagline}</p>
+        </div>`;
+    }
+
+    /* R2 — puente institucional: cauces oficiales de denuncia con fuerza legal. */
+    function buildOfficialChannelsHtml(locale) {
+        const c = t(locale);
+        const items = (c.officialChannels || []).map((ch) => {
+            const name = ch.url
+                ? `<a href="${ch.url}" target="_blank" rel="noopener">${ch.name}</a>`
+                : `<strong>${ch.name}</strong>`;
+            return `<li>${name}<span>${ch.desc}</span></li>`;
+        }).join('');
+        return `<div class="sindicato-official-channels">
+            <h3>${c.officialChannelsTitle}</h3>
+            <p class="template-muted">${c.officialChannelsIntro}</p>
+            <ul>${items}</ul>
+        </div>`;
+    }
+
+    /* R1 — calculadora de convenio (categoría + jornada + salario vs. mínimo de la tabla demo). */
+    function buildConvenioCalculatorHtml(locale) {
+        const c = t(locale);
+        const table = getConvenioSalaryTable(locale);
+        const options = table.categories.map((cat) =>
+            `<option value="${cat.annualMin}">${cat.name} — ${formatEuroAmount(locale, cat.annualMin)} €</option>`
+        ).join('');
+        return `<form class="sindicato-convenio-calc" data-sindicato-convenio-calc>
+            <h4>${c.calcTitle}</h4>
+            <p class="template-muted">${c.calcIntro}</p>
+            <p class="sindicato-calc-table-label">${table.label}</p>
+            <label>${c.calcCategory}
+                <select name="category" required>
+                    <option value="">${c.calcSelectCategory}</option>
+                    ${options}
+                </select>
+            </label>
+            <div class="sindicato-form-row">
+                <label>${c.calcHours}<input type="number" name="hours" min="1" max="60" step="0.5" value="40" required></label>
+                <label>${c.calcSalary}<input type="number" name="salary" min="0" step="any" required></label>
+            </div>
+            <fieldset class="sindicato-calc-period">
+                <legend>${c.calcPeriod}</legend>
+                <label><input type="radio" name="period" value="monthly" checked> ${c.calcPeriodMonthly}</label>
+                <label><input type="radio" name="period" value="annual"> ${c.calcPeriodAnnual}</label>
+            </fieldset>
+            <button type="submit" class="sindicato-cta-btn sindicato-cta-btn-active">${c.calcSubmit}</button>
+            <p class="sindicato-calc-result" data-sindicato-calc-out hidden></p>
+            <p class="sindicato-note">${c.calcDisclaimer}</p>
+        </form>`;
+    }
+
+    function buildWorkplaceOverviewHtml(locale, wp, opts) {
         const c = t(locale);
         const unionTags = buildUnionTagsHtml(locale, wp.unions || []);
         return `<div class="sindicato-panel">
@@ -918,6 +1756,8 @@
                 <div class="sindicato-stat"><strong>${wp.reports + getApprovedReportCount(wp.id)}</strong><span>${c.reports}</span></div>
                 <div class="sindicato-stat"><strong>${wp.strikeSupport}%</strong><span>${c.strikeSupport}</span></div>
             </div>
+            ${opts && opts.selfView ? buildVerificationCardHtml(locale) : ''}
+            ${buildRegistroHtml(locale, wp)}
             <h3>${c.unionsPresent}</h3>
             <div class="sindicato-union-tags">${unionTags}</div>
             <div class="sindicato-private-room">
@@ -959,7 +1799,7 @@
         const reports = REPORTS_BY_WORKPLACE[wp.id] || [];
         const rows = reports.map((r) => `
             <div class="sindicato-report-row ${severityClass(r.severity)}">
-                <span class="sindicato-report-type">${c.reportTypes[r.type] || r.type}</span>
+                <span class="sindicato-report-type">${c.reportTypes[r.type] || r.type} ${buildTrustBadgeHtml(locale, reportTrustLevel(r.type))}</span>
                 <span class="sindicato-report-count">${r.count}</span>
                 <span class="sindicato-report-sev">${r.severity}</span>
             </div>`).join('');
@@ -980,6 +1820,7 @@
                 <button type="submit" class="sindicato-cta-btn sindicato-cta-btn-active">${c.reportFormSubmit}</button>
             </form>
             ${buildModerationHtml(locale, wp)}
+            ${buildOfficialChannelsHtml(locale)}
         </div>`;
     }
 
@@ -1031,6 +1872,7 @@
                         <p>${c.aiContractHint}</p>
                     </details>
                 </div>
+                ${buildConvenioCalculatorHtml(locale)}
             </div>
         </div>`;
     }
@@ -1055,6 +1897,8 @@
                 </div>
                 ${userVoted ? `<p class="sindicato-note">${c.strikeVoteThanks}</p>` : ''}
             </form>
+            ${buildAgendaHtml(locale, getAgendaForWorkplace(locale, wp.id), { title: c.agendaTitle })}
+            ${buildAgendaAddFormHtml(locale, wp.id)}
             <ul class="sindicato-action-list">
                 <li>📝 ${c.actionPrivateList}</li>
                 <li>💬 ${c.actionCoordChat}</li>
@@ -1075,14 +1919,19 @@
             return `<button type="button" class="sindicato-union-card sindicato-union-card--link" data-sindicato-goto-union="${u.id}">
                 <div class="sindicato-union-card-head">
                     <strong>${u.name}</strong>
-                    <span class="sindicato-prestige">${u.prestige}% ${c.prestige}</span>
                 </div>
                 <span class="template-muted">${u.sector}</span>
                 <div class="sindicato-union-meta">
                     <span>${u.members.toLocaleString()} ${c.members}</span>
                     ${u.liberado !== '—' ? `<span>${c.officerLabel}: ${u.liberado}</span>` : ''}
                 </div>
-                <div class="sindicato-prestige-bar"><div style="width:${u.prestige}%"></div></div>
+                <p class="sindicato-union-companies-label">${c.presenceTitle}</p>
+                <div class="sindicato-union-presence">
+                    <span>${c.presenceDelegates}: <strong>${u.delegates}</strong></span>
+                    <span>${c.companiesOnSite}: <strong>${companies.length}</strong></span>
+                    <span>${c.presenceAgreements}: <strong>${u.agreements}</strong></span>
+                    <span>${c.presenceSectors}: <strong>${u.mainSectors}</strong></span>
+                </div>
                 <p class="sindicato-union-companies-label">${c.companiesOnSite}</p>
                 <div class="sindicato-union-companies">${companyLinks}${more}</div>
             </button>`;
@@ -1104,12 +1953,15 @@
             <p class="template-muted">${c.unionOverviewIntro}</p>
             <span class="template-muted">${union.sector}</span>
             <div class="sindicato-summary-grid">
-                <div class="sindicato-stat"><strong>${union.prestige}%</strong><span>${c.prestige}</span></div>
+                <div class="sindicato-stat"><strong>${union.delegates}</strong><span>${c.presenceDelegates}</span></div>
                 <div class="sindicato-stat"><strong>${union.members.toLocaleString()}</strong><span>${c.members}</span></div>
                 <div class="sindicato-stat"><strong>${companies.length}</strong><span>${c.companiesOnSite}</span></div>
             </div>
             ${union.liberado !== '—' ? `<p><strong>${c.officerLabel}:</strong> ${union.liberado}</p>` : ''}
-            <div class="sindicato-prestige-bar"><div style="width:${union.prestige}%"></div></div>
+            <div class="sindicato-union-presence">
+                <span>${c.presenceAgreements}: <strong>${union.agreements}</strong></span>
+                <span>${c.presenceSectors}: <strong>${union.mainSectors}</strong></span>
+            </div>
             <div class="sindicato-bridge-jumps">
                 ${buildUnionSectionJumpBtn('forum', c.unionOpenForum, union.id)}
                 ${buildUnionSectionJumpBtn('structure', c.unionOpenStructure, union.id)}
@@ -1254,7 +2106,7 @@
         return `<div class="sindicato-panel sindicato-forum-thread">
             <p><button type="button" class="sindicato-back-btn" data-sindicato-forum-back>← ${c.forumBack}</button></p>
             <h2>${thread.title}</h2>
-            <p class="template-muted">${thread.meta}</p>
+            <p class="template-muted">${thread.meta} · ${buildTrustBadgeHtml(locale, forumThreadTrust(locale, slug))}</p>
             <div class="sindicato-forum-thread-body">${getForumThreadBody(locale, slug)}</div>
             <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
         </div>`;
@@ -1264,7 +2116,7 @@
         const items = getGeneralForumThreads(locale).map((thread, i) => {
             const pinned = thread.pinned ? ' cp-forum-post--pinned' : '';
             const slug = thread.id || `thread-${i}`;
-            return `<li><a class="cp-forum-post${pinned}" href="#sindicato-forum:${slug}" data-sindicato-forum-thread="${slug}"><span class="cp-forum-post-title">${thread.title}</span><span class="cp-forum-post-meta">${thread.meta}</span></a></li>`;
+            return `<li><a class="cp-forum-post${pinned}" href="#sindicato-forum:${slug}" data-sindicato-forum-thread="${slug}"><span class="cp-forum-post-title">${thread.title}</span><span class="cp-forum-post-meta">${thread.meta} · ${buildTrustBadgeHtml(locale, forumThreadTrust(locale, slug))}</span></a></li>`;
         }).join('');
         return `<ul class="cp-forum-board">${items}</ul>`;
     }
@@ -1298,6 +2150,7 @@
             return `<div class="sindicato-panel">
                 <h2>${c.feedScopeGeneral}</h2>
                 <p class="template-muted">${c.feedIntro}</p>
+                ${buildAgendaHtml(locale, getUpcomingAgendaDigest(locale, 5), { title: c.agendaUpcomingTitle, compact: true })}
                 ${buildGeneralForumBoardHtml(locale)}
                 <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
             </div>`;
@@ -2262,7 +3115,7 @@
         </div>`;
     }
 
-    function buildViviendaHtml(locale, territoryId) {
+    function buildViviendaHtml(locale, territoryId, buildingId) {
         const c = t(locale);
         if (!territoryId) {
             return `<div class="sindicato-panel">
@@ -2278,6 +3131,13 @@
                 <h2>${c.viviendaTitle}</h2>
                 <p class="template-muted">${c.viviendaPickTerritory}</p>
             </div>`;
+        }
+        /* R7 — perfil de edificio (mismo patrón mostrar/ocultar que el resto de perfiles). */
+        if (buildingId) {
+            const building = findBuilding(locale, buildingId);
+            if (building && building.territoryId === territoryId) {
+                return buildBuildingProfileHtml(locale, building, terr);
+            }
         }
         const forumPosts = getViviendaForumPosts(locale, territoryId, terr.name);
         const forumHtml = forumPosts.map((post) =>
@@ -2305,6 +3165,8 @@
             <p class="template-muted">${c.viviendaIntro}</p>
             <h3>${c.viviendaAlertsTitle}</h3>
             ${alertsHtml}
+            ${buildAgendaHtml(locale, getAgendaForTerritory(locale, territoryId), { title: c.agendaViviendaTitle })}
+            ${buildBuildingsBlockHtml(locale, territoryId)}
             <h3>${c.viviendaForumTitle}</h3>
             ${forumHtml}
             <h3>${c.viviendaWorkplacesTitle}</h3>
@@ -2344,7 +3206,7 @@
             if (wikiSub === 'normas') return buildWikiNormasHtml(locale);
             return buildWikiIndexHtml(locale);
         }
-        if (sub === 'vivienda') return buildViviendaHtml(locale, ctx.viviendaTerritoryId || '');
+        if (sub === 'vivienda') return buildViviendaHtml(locale, ctx.viviendaTerritoryId || '', ctx.viviendaBuildingId || '');
         if (sub === 'workplaces') {
             if (!workplaceId) return buildWorkplacesDirectoryHtml(locale, filter);
             const wp = findWorkplace(locale, workplaceId);
@@ -2354,7 +3216,7 @@
             if (section === 'wages') return buildWorkplaceWagesHtml(locale, wp);
             if (section === 'convenio') return buildWorkplaceConvenioHtml(locale, wp);
             if (section === 'action') return buildWorkplaceActionHtml(locale, wp);
-            return buildWorkplaceOverviewHtml(locale, wp);
+            return buildWorkplaceOverviewHtml(locale, wp, ctx);
         }
         return buildWelcomeHtml(locale);
     }
@@ -2399,6 +3261,22 @@
         addCompany,
         submitReport,
         moderateReport,
+        /* R4 — agenda */
+        getAgendaForWorkplace,
+        getAgendaForTerritory,
+        getUpcomingAgendaDigest,
+        addAgendaEvent,
+        buildAgendaHtml,
+        /* R5 — verificación */
+        getVerification,
+        requestUnionEndorsement,
+        confirmUnionEndorsement,
+        buildTrustBadgeHtml,
+        /* R7 — edificios */
+        getBuildingsForTerritory,
+        findBuilding,
+        getTenantPledgeCount,
+        addTenantPledge,
         buildWorkspaceHtml,
         buildWelcomeHtml,
         buildSectoresSidebarTreeHtml,

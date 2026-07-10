@@ -19,48 +19,79 @@
         }
 
         :root {
-            --color-primary: #4d5cff;
-            --color-primary-hover: #3d4cef;
-            --color-primary-light: #f0f2ff;
-            --color-secondary: #f5f5f5;
-            --color-secondary-hover: #e9e9e9;
-            --color-secondary-dark: #d9d9d9;
-            --color-text-primary: #000;
-            --color-text-secondary: #333;
-            --color-text-muted: #555;
-            --color-text-light: #777;
+            /* Sistema de tokens — fase 1 del rediseno experimental (docs/DOXA-REDISENO.md, seccion 3) */
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+            /* Paleta civica */
+            --color-primary: #24549c;
+            --color-primary-hover: #1b4380;
+            --color-primary-light: #edf3fa;
+            --color-link: #24549c;
+            --color-accent: #5b21b6;
+            --color-success: #1a6b3c;
+            --color-danger: #c8323e;
+            --color-warning: #b45309;
+            --color-warning-bright: #f97316;
+
+            --color-secondary: #f4f5f7;
+            --color-secondary-hover: #e8eaee;
+            --color-secondary-dark: #d7dade;
+            --color-text-primary: #14181f;
+            --color-text-secondary: #2f3640;
+            --color-text-muted: #566070;
+            --color-text-light: #77808e;
             --color-bg-white: #fff;
-            --color-bg-lighter: #fcfcfc;
-            --color-bg-muted: #f9f9f9;
-            --color-bg-gray: #f5f5f5;
-            --color-border: #d9d9d9;
-            --color-border-light: #ddd;
-            --color-info-light: #e8f4fd;
-            --font-size-xs: 11px;
-            --font-size-sm: 12px;
-            --font-size-base: 13px;
-            --font-size-md: 14px;
-            --font-size-lg: 15px;
-            --font-size-xl: 16px;
+            --color-bg-lighter: #fcfcfd;
+            --color-bg-muted: #f8f9fa;
+            --color-bg-gray: #f4f5f7;
+            --color-border: #d7dade;
+            --color-border-light: #e2e5e9;
+            --color-border-strong: #c6cad0;
+            --color-info-light: #eaf3fb;
+
+            /* Escala tipografica (antes 11-16px, base 13) */
+            --font-size-xs: 12px;
+            --font-size-sm: 13px;
+            --font-size-base: 14px;
+            --font-size-md: 15px;
+            --font-size-lg: 17px;
+            --font-size-xl: 20px;
+            --line-height-base: 1.55;
             --font-weight-medium: 500;
             --font-weight-semibold: 600;
+
+            /* Espaciado */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+
             --radius-sm: 4px;
             --radius-md: 6px;
             --radius-lg: 10px;
-            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-sm: 0 1px 3px rgba(20, 24, 31, 0.08);
+            --shadow-md: 0 4px 12px rgba(20, 24, 31, 0.10);
+            --focus-ring: 0 0 0 3px rgba(36, 84, 156, 0.30);
         }
 
         * { box-sizing: border-box; }
+
+        :focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
 
         html, body {
             width: 100%;
             height: 100%;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: var(--font-sans);
             overflow: hidden;
             font-size: var(--font-size-md);
+            line-height: var(--line-height-base);
             color: var(--color-text-secondary);
         }
 
@@ -205,12 +236,6 @@
         }
 
         /* Module nav: Talk, Docs, Admin; Self above box; Geo/Topic Teams below box */
-        .template-module-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 0;
-        }
 
         .template-module-btn {
             width: 100%;
@@ -363,66 +388,12 @@
             cursor: pointer;
             font-size: 11px;
             background: #f9f9f9;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color-border-strong);
             border-radius: 3px;
             padding: 2px 6px;
         }
 
         /* Documentation (sidebar source; cloned to #map-text-display in text mode) */
-        .template-docs-container {
-            margin-top: 10px;
-            padding: 10px;
-            background: var(--color-bg-lighter);
-            border-radius: var(--radius-lg);
-            border: 2px solid var(--color-border);
-        }
-
-        .template-docs-header {
-            margin: 0 0 6px 0;
-            font-size: var(--font-size-base);
-            font-weight: var(--font-weight-semibold);
-        }
-
-        .template-docs-tabs {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 8px;
-        }
-
-        .template-docs-tab {
-            padding: 6px 8px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--color-border);
-            background: var(--color-bg-white);
-            font-size: var(--font-size-sm);
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .template-docs-tab.active {
-            border-color: var(--color-primary);
-            background: var(--color-primary-light);
-            color: var(--color-primary);
-        }
-
-        .template-docs-panel {
-            font-size: var(--font-size-sm);
-        }
-
-        .template-docs-section { display: none; }
-        .template-docs-section.active { display: block; }
-
-        .template-doc-edit-target h5 {
-            margin: 0 0 8px 0;
-            font-size: var(--font-size-md);
-        }
-
-        .template-doc-empty {
-            color: var(--color-text-muted);
-            font-style: italic;
-            margin: 4px 0 0 0;
-        }
 
         .template-sindicapp-placeholder {
             min-height: 120px;
@@ -431,11 +402,6 @@
             border-radius: var(--radius-md);
             color: var(--color-text-muted);
             font-size: var(--font-size-sm);
-        }
-
-        #map-text-display .template-docs-tabs,
-        #map-text-display .template-docs-panel {
-            max-height: none;
         }
 
         #map-text-display .template-module-panel,
@@ -621,7 +587,7 @@
             cursor: pointer;
             font-size: 11px;
             background: #f9f9f9;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color-border-strong);
             border-radius: 3px;
             padding: 2px 6px;
             list-style: none;
@@ -633,7 +599,7 @@
         }
         .border-info-btn.active {
             background: #e8f4ff;
-            border-color: #0066cc;
+            border-color: var(--color-link);
             box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
         }
         .border-info-btn.broken {
@@ -720,7 +686,7 @@
             line-height: 1.4;
         }
         .border-info-field-value.url {
-            color: #0066cc;
+            color: var(--color-link);
             word-break: break-all;
         }
         
@@ -765,7 +731,7 @@
             width: 100%;
             padding: 4px 6px;
             font-size: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color-border-strong);
             border-radius: 3px;
             margin-bottom: 6px;
             font-family: monospace;
@@ -778,7 +744,7 @@
         .border-info-edit-btn {
             padding: 4px 10px;
             font-size: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color-border-strong);
             border-radius: 3px;
             cursor: pointer;
             background: #fff;
@@ -789,13 +755,13 @@
             border-color: #4CAF50;
         }
         .border-info-edit-btn.cancel {
-            background: #f44336;
+            background: var(--color-danger);
             color: white;
-            border-color: #f44336;
+            border-color: var(--color-danger);
         }
         .border-info-edit-toggle {
             font-size: 10px;
-            color: #0066cc;
+            color: var(--color-link);
             cursor: pointer;
             text-decoration: underline;
             margin-top: 6px;
@@ -808,7 +774,7 @@
             padding: 6px;
             background: #f8f9fa;
             border-radius: 4px;
-            border: 1px dashed #ccc;
+            border: 1px dashed var(--color-border-strong);
         }
         .add-border-set-btn {
             width: 100%;
@@ -823,7 +789,7 @@
             justify-content: center;
             gap: 6px;
             font-weight: 600;
-            color: #0066cc;
+            color: var(--color-link);
         }
         .add-border-set-btn:hover {
             background: #d0e8ff;
@@ -872,7 +838,7 @@
             gap: 6px;
             padding: 2px 6px;
             margin: 0;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color-border-strong);
             border-radius: 3px;
             background: #f9f9f9;
             cursor: pointer;
@@ -936,7 +902,7 @@
             width: 24px;
             height: 24px;
             padding: 0;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color-border-strong);
             border-radius: 4px;
             background: #f9f9f9;
             cursor: pointer;
@@ -1012,7 +978,7 @@
             width: 32px;
             height: 18px;
             padding: 0;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color-border-strong);
         }
         .boundary-style-editor-row input[type="range"] {
             flex: 1;
@@ -1385,222 +1351,11 @@
         /* Bundlable: Yes */
         /* Dependencies: None */
         /* Feature Buttons */
-        .cartagrama-docs-container {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: var(--color-bg-lighter);
-            border-radius: var(--radius-lg);
-            border: 2px solid var(--color-border);
-            display: none;
-        }
-        .cartagrama-docs-header {
-            margin: 0 0 6px 0;
-            font-size: var(--font-size-base);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text-primary);
-        }
-        .cartagrama-docs-tabs {
-            display: flex;
-            flex-direction: column; /* stack buttons vertically */
-            gap: 6px;
-            margin-bottom: 8px;
-        }
-        .cartagrama-docs-tab {
-            padding: 6px 8px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--color-border);
-            background: var(--color-bg-white);
-            font-size: var(--font-size-sm);
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.2s ease;
-        }
-        .cartagrama-docs-tab.active {
-            border-color: var(--color-primary);
-            background: var(--color-primary-light);
-            color: var(--color-primary);
-            box-shadow: none;
-        }
-        .cartagrama-docs-panel {
-            max-height: 420px;
-            min-height: 260px;
-            overflow-y: auto;
-            padding-right: 4px;
-            font-size: var(--font-size-sm);
-        }
-
-        #console .cartagrama-docs-panel {
-            max-height: none;
-            min-height: 0;
-            overflow: visible;
-        }
         /* Pencil/edit UI for Cartagrama docs */
-        .cartagrama-doc-tab-row {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .cartagrama-doc-tab-row .cartagrama-docs-tab {
-            flex: 1 1 auto;
-        }
-
-        .cartagrama-doc-section-toolbar {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .cartagrama-docs-section .cartagrama-doc-edit-dropdown {
-            margin-bottom: 10px;
-        }
-
-        #map-text-display .cartagrama-doc-section-toolbar,
-        #map-text-display .cartagrama-doc-edit-dropdown {
-            display: none !important;
-        }
-
-        .cartagrama-doc-edit-pencil {
-            flex: 0 0 auto;
-            padding: 6px 10px;
-            border-radius: 999px;
-            border: 1px solid var(--color-border);
-            background: var(--color-bg-white);
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.2s ease;
-        }
-
-        .cartagrama-doc-edit-pencil:hover {
-            background: var(--color-bg-lighter);
-        }
-
-        .cartagrama-doc-edit-pencil.active {
-            border-color: var(--color-primary);
-            background: var(--color-primary-light);
-            color: var(--color-primary);
-            box-shadow: none;
-        }
-
-        .cartagrama-doc-edit-dropdown {
-            background: var(--color-bg-white);
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            margin: 0 0 6px;
-            overflow: visible; /* allow number spinner to show fully */
-        }
-
-        .cartagrama-doc-edit-dropdown-inner {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .cartagrama-doc-edit-format-row {
-            display: flex;
-            gap: 6px;
-            flex-wrap: nowrap; /* keep dropdown compact: B/I/U + font size on one line */
-            align-items: center;
-        }
-
-        .cartagrama-doc-format-btn {
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            cursor: pointer;
-            padding: 4px 8px;
-            background: var(--color-bg-gray);
-            font-weight: var(--font-weight-semibold);
-        }
-
-        .cartagrama-doc-format-btn:hover {
-            background: var(--color-bg-lighter);
-        }
-
-        .cartagrama-doc-edit-control-row {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .cartagrama-doc-edit-label {
-            font-size: 11px;
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text-muted);
-            min-width: 52px;
-        }
-
-        .cartagrama-doc-font-select {
-            flex: 1 1 auto;
-            font-size: 11px;
-            padding: 2px;
-        }
-
-        .cartagrama-doc-font-size-range {
-            flex: 1 1 auto;
-            margin: 0;
-        }
-
-        .cartagrama-doc-font-size-number {
-            flex: 0 0 auto;
-            width: 54px;
-            font-size: 11px;
-            padding: 0 4px;
-            height: 22px;
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            background: var(--color-bg-gray);
-        }
-
-        .cartagrama-doc-font-size-px {
-            flex: 0 0 auto;
-            font-size: 11px;
-            color: var(--color-text-muted);
-        }
-
-        .cartagrama-doc-edit-target[contenteditable="true"] {
-            outline: 2px solid var(--color-primary);
-            outline-offset: 2px;
-            padding: 8px;
-            border-radius: 8px;
-            background: var(--color-bg-white);
-        }
 
         /* Docs list spacing: avoid big left blank column */
-        #cartagrama-docs-container .cartagrama-docs-panel ul {
-            padding-left: 16px;
-            margin: 6px 0 10px 0;
-        }
-        #cartagrama-docs-container .cartagrama-docs-panel ul ul {
-            padding-left: 16px;
-            margin: 6px 0 8px 0;
-        }
-        #cartagrama-docs-container .cartagrama-docs-panel li {
-            margin: 0 0 6px 0;
-        }
         /* Readability: space between each top-level doc list item (ul lives inside .cartagrama-doc-edit-target) */
-        #cartagrama-docs-container .cartagrama-docs-panel .cartagrama-docs-section .cartagrama-doc-edit-target > ul > li,
-        #cartagrama-docs-container .cartagrama-docs-panel .cartagrama-docs-section > ul > li {
-            margin: 0 0 20px 0;
-            padding-bottom: 4px;
-        }
-        #cartagrama-docs-container .cartagrama-docs-panel .cartagrama-docs-section .cartagrama-doc-edit-target > ul > li:last-child,
-        #cartagrama-docs-container .cartagrama-docs-panel .cartagrama-docs-section > ul > li:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
         /* Docs are also cloned into #map-text-display in Documentation mode */
-        #map-text-display .cartagrama-docs-section .cartagrama-doc-edit-target > ul > li,
-        #map-text-display .cartagrama-docs-section > ul > li {
-            margin: 0 0 20px 0;
-            padding-bottom: 4px;
-        }
-        #map-text-display .cartagrama-docs-section .cartagrama-doc-edit-target > ul > li:last-child,
-        #map-text-display .cartagrama-docs-section > ul > li:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
         /* Embedded doc report dropdown (both in sidebar and cloned into map-text-display) */
         .doc-embed-details {
             margin-top: 6px;
@@ -1633,53 +1388,8 @@
             max-height: none;
             overflow: visible;
         }
-        .cartagrama-docs-section {
-            display: none;
-        }
-        .cartagrama-docs-section.active {
-            display: block;
-        }
-
-        .cartagrama-docs-subtabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin: 0 0 10px 0;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--color-border-light);
-        }
-
-        .cartagrama-docs-subtab {
-            padding: 5px 10px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--color-border);
-            background: var(--color-bg-white);
-            font-size: var(--font-size-xs);
-            cursor: pointer;
-        }
-
-        .cartagrama-docs-subtab.active {
-            border-color: var(--color-primary);
-            background: var(--color-primary-light);
-            color: var(--color-primary);
-            font-weight: var(--font-weight-semibold);
-        }
-        .cartagrama-docs-subtabs--depth-2 {
-            margin: 8px 0 4px;
-            padding-top: 8px;
-            border-top: 1px dashed var(--color-border-light);
-        }
-
-        .cartagrama-docs-subpanel {
-            display: none;
-        }
-
-        .cartagrama-docs-subpanel.active {
-            display: block;
-        }
 
         .template-territories-block { margin-top: 12px; }
-        .template-doc-empty { color: var(--color-text-muted); font-style: italic; margin: 4px 0 0 0; }
         /* ── Template shell: title, module picker, module body (overrides imported Lux21 doc/title rules) ── */
         .template-sidebar-header {
             margin-bottom: 8px;
@@ -1758,84 +1468,6 @@
             display: none !important;
         }
 
-        .template-nav-branch-group {
-            margin: 0 0 0 10px;
-        }
-
-        .template-nav-branch-group[hidden] {
-            display: none !important;
-        }
-
-        .template-nav-branch-lined {
-            margin: 0;
-            padding: 6px 0 6px 14px;
-            border-left: 2px solid var(--color-primary, #4d5cff);
-            position: relative;
-        }
-
-        .template-nav-branch-lined::before {
-            content: '';
-            position: absolute;
-            left: -2px;
-            top: 0;
-            width: 10px;
-            height: 2px;
-            background: var(--color-primary, #4d5cff);
-        }
-
-        .template-nav-branch-nested {
-            margin: 6px 0 0 0;
-            padding: 4px 0 4px 12px;
-            border-left: 2px solid var(--color-primary, #4d5cff);
-        }
-
-        .template-nav-branch-nested[hidden] {
-            display: none !important;
-        }
-
-        .template-submodule-nav--map-branch {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 4px;
-            margin: 0;
-        }
-
-        .template-submodule-nav--map-branch .template-module-btn {
-            flex: none;
-            width: 100%;
-            max-width: none;
-            justify-content: flex-start;
-            text-align: left;
-            font-size: 11px;
-            font-weight: 500;
-            padding: 6px 8px 6px 10px;
-            border-radius: 0 var(--radius-md, 6px) var(--radius-md, 6px) 0;
-            border-left: 3px solid var(--color-border, #ccc);
-            background: var(--color-bg-muted, #f9f9f9);
-        }
-
-        .template-submodule-nav--map-branch .template-module-btn:hover {
-            background: var(--color-primary-light, #e8f2fc);
-            border-left-color: var(--color-primary, #4d5cff);
-        }
-
-        .template-submodule-nav--map-branch .template-module-btn.active {
-            border-left-color: var(--color-primary, #4d5cff);
-            background: var(--color-primary-light, #e8f2fc);
-            font-weight: 600;
-        }
-
-        .template-nav-branch-label {
-            display: block;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: var(--color-text-muted, #888);
-            margin: 0 0 6px 0;
-            padding-left: 2px;
-        }
-
         .template-submodule-nav {
             display: flex;
             flex-direction: row;
@@ -1881,24 +1513,9 @@
             background: var(--color-primary-light, #e8f2fc);
         }
 
-        .template-submodule-nav--depth-2 .template-module-btn {
-            font-size: var(--font-size-sm);
-            padding: 7px 5px;
-            gap: 4px;
-            background: var(--color-bg-white, #fff);
-            border-color: var(--color-border, #ccc);
-            color: var(--color-text-primary, #111);
-        }
-
         .teams-team-nav-block {
             margin: 8px 0 10px 10px;
             padding: 0;
-        }
-
-        .teams-team-nav-block--full {
-            margin-left: 0;
-            margin-right: 0;
-            width: 100%;
         }
 
         .teams-team-nav-block[hidden] {
@@ -1916,15 +1533,6 @@
             margin-bottom: 10px;
         }
 
-        .topic-team-picker-row .team-picker-select.geo-picker-scroll {
-            display: block;
-            width: 100%;
-            min-height: 7.5rem;
-            max-height: 9.5rem;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
-
         .geo-picker-row .team-picker-select.geo-picker-scroll {
             display: block;
             width: 100%;
@@ -1937,71 +1545,7 @@
             margin-top: 4px;
         }
 
-        .geo-picker-row--disabled .team-picker-select {
-            opacity: 0.55;
-            cursor: not-allowed;
-        }
-
-        .geo-change-location-btn {
-            display: block;
-            width: 100%;
-            margin: 0 0 8px;
-            padding: 6px 10px;
-            border: 1px dashed var(--color-border);
-            border-radius: var(--radius-md);
-            background: transparent;
-            color: var(--color-text-primary);
-            font: inherit;
-            font-size: var(--font-size-sm);
-            cursor: pointer;
-            text-align: left;
-        }
-
-        .geo-change-location-btn:hover {
-            background: var(--color-bg-soft);
-        }
-
         /* Party + mirrors: Talk / Info / Admin in one horizontal row */
-        .template-submodule-nav--party-row,
-        #party-subnav {
-            flex-direction: row;
-            flex-wrap: nowrap;
-            gap: 6px;
-            margin-bottom: 12px;
-        }
-
-        #party-subnav {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
-
-        .template-submodule-nav--party-row .template-module-btn,
-        #party-subnav .template-module-btn {
-            flex: 1 1 0;
-            width: auto;
-            min-width: 0;
-            justify-content: center;
-            text-align: center;
-            font-size: var(--font-size-sm);
-            padding: 8px 4px;
-            gap: 4px;
-            line-height: 1.2;
-            white-space: normal;
-            overflow-wrap: anywhere;
-            background: var(--color-bg-white, #fff);
-            color: var(--color-text-primary, #111);
-        }
-
-        .teams-team-nav-block .template-submodule-nav--party-row {
-            margin-top: 4px;
-        }
-
-        #topic-teams-team-subnav {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
 
         #sindicato-subnav,
         #sindicato-workplace-section-nav,
@@ -2011,7 +1555,7 @@
             gap: 6px;
             padding: 8px;
             margin-bottom: 12px;
-            border: 1px solid var(--color-border, #ccc);
+            border: 1px solid var(--color-border);
             border-radius: var(--radius-md, 6px);
             background: var(--color-bg-soft, #f5f5f5);
             flex-direction: unset;
@@ -2069,7 +1613,7 @@
         .sindicato-map-territories-box {
             padding: 8px;
             margin-bottom: 10px;
-            border: 1px solid var(--color-border, #ccc);
+            border: 1px solid var(--color-border);
             border-radius: var(--radius-md, 6px);
             background: var(--color-bg-white, #fff);
         }
@@ -2085,33 +1629,17 @@
         }
 
         .sindicato-alert-card {
-            border-left: 3px solid #e11d48;
+            border-left: 3px solid var(--color-danger);
         }
 
         .team-picker-select {
             width: 100%;
             padding: 8px 10px;
             font-size: var(--font-size-sm);
-            border: 1px solid var(--color-border, #ccc);
+            border: 1px solid var(--color-border);
             border-radius: var(--radius-md, 6px);
             background: #fff;
             color: var(--color-text-primary, #111);
-        }
-
-        .team-party-wrap {
-            margin-top: 8px;
-        }
-
-        .team-party-wrap[hidden] {
-            display: none !important;
-        }
-
-        .team-sub-panel {
-            display: none;
-        }
-
-        .team-sub-panel.active {
-            display: block;
         }
 
         .geo-teams-view-panel {
@@ -2120,14 +1648,6 @@
 
         .geo-teams-view-panel.active {
             display: block;
-        }
-
-        .template-geo-teams-map-sub {
-            margin-bottom: 10px;
-        }
-
-        .template-geo-teams-map-sub[hidden] {
-            display: none !important;
         }
 
         .geo-teams-map-view-panel {
@@ -2149,7 +1669,7 @@
             cursor: pointer;
             font-size: 14px;
             background: #f9f9f9;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color-border-strong);
             border-radius: 4px;
             padding: 2px 8px;
             list-style: none;
@@ -2214,8 +1734,7 @@
             margin-bottom: 0;
         }
 
-        #console #cartagrama-content-territory-info.template-territory-info-block,
-        #console .geo-teams-map-view-panel.active#geo-teams-map-view-territory-info {
+        #console #cartagrama-content-territory-info.template-territory-info-block {
             display: block !important;
             max-height: none !important;
             overflow: visible !important;
@@ -2266,15 +1785,7 @@
             text-align: center;
         }
 
-        .template-module-picker .template-module-nav {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            margin-bottom: 0;
-        }
-
-        .template-module-picker > .template-module-btn,
-        .template-module-picker .template-module-nav .template-module-btn {
+        .template-module-picker > .template-module-btn {
             padding: 6px 8px;
             font-size: var(--font-size-sm);
             gap: 6px;
@@ -2436,13 +1947,7 @@
         #console .template-module-panel,
         #console #cartagrama-content-territories,
         #console #cartagrama-content-territories .territories-sub-content,
-        #console .boundary-controls,
-        #console .cartagrama-docs-container,
-        #console .cartagrama-docs-panel,
-        #console #topic-team-party-wrap .cartagrama-docs-container,
-        #console #topic-team-party-wrap .cartagrama-docs-panel,
-        #console #geo-team-party-wrap .cartagrama-docs-container,
-        #console #geo-team-party-wrap .cartagrama-docs-panel {
+        #console .boundary-controls {
             max-height: none !important;
             overflow: visible !important;
             overflow-y: visible !important;
@@ -2466,49 +1971,6 @@
         #cartagrama-content-territories > h2 {
             margin: 0 0 10px 0 !important;
             font-size: var(--font-size-lg) !important;
-        }
-
-        .template-subdocs-panel .cartagrama-docs-container,
-        .team-party-wrap .cartagrama-docs-container {
-            display: block !important;
-            margin-top: 0;
-            padding: 0;
-            border: none;
-            background: transparent;
-        }
-
-        .template-subdocs-panel .cartagrama-docs-panel,
-        .team-party-wrap .cartagrama-docs-panel {
-            display: block !important;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed var(--color-border);
-        }
-
-        .template-subdocs-panel .cartagrama-docs-tabs,
-        .team-party-wrap .cartagrama-docs-tabs {
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--color-border-light);
-        }
-
-        #map-text-display > .cartagrama-docs-section {
-            display: block !important;
-        }
-
-        #map-text-display .cartagrama-docs-subpanel,
-        #map-text-display .template-map-text-doc-section.cartagrama-docs-subpanel {
-            display: block !important;
-        }
-
-        #map-text-display .cp-workspace-doc-body {
-            max-width: 760px;
-        }
-
-        #map-text-display .template-workspace-heading {
-            margin: 0 0 12px 0;
-            font-size: var(--font-size-xl);
-            color: var(--color-text-primary);
         }
 
         .territory-info-box {
@@ -2614,268 +2076,8 @@
         }
 
         /* Personal account (Figma personal menu / personal score screens) */
-        .cp-opciones-list {
-            list-style: none;
-            padding: 0;
-            margin: 8px 0 0;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-        }
-        .cp-opciones-list li {
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--color-border-light);
-            font-size: var(--font-size-sm);
-        }
-        .cp-opciones-list li:last-child { border-bottom: none; }
-        .cp-opciones-list li strong { display: block; margin-bottom: 2px; }
-        .cp-vote-summary {
-            padding: 12px;
-            background: var(--color-info-light);
-            border-radius: var(--radius-md);
-            margin-bottom: 12px;
-        }
-        .cp-vote-summary .cp-vote-total {
-            font-size: var(--font-size-xl);
-            font-weight: var(--font-weight-semibold);
-            margin: 4px 0 0;
-        }
-        .cp-level-badge {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: var(--radius-sm);
-            background: var(--color-primary);
-            color: #fff;
-            font-size: var(--font-size-xs);
-            font-weight: var(--font-weight-semibold);
-        }
-        .cp-vote-list { list-style: none; padding: 0; margin: 8px 0 0; }
-        .cp-vote-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            border-bottom: 1px solid var(--color-border-light);
-            font-size: var(--font-size-sm);
-        }
-        .cp-vote-received-total {
-            margin-top: 12px;
-            padding: 12px 14px;
-            border: 2px solid var(--color-primary);
-            border-radius: var(--radius-md);
-            background: var(--color-primary-light);
-            font-size: var(--font-size-md);
-            text-align: center;
-        }
-        .cp-vote-secret-toggle {
-            margin-top: 10px;
-            border: 1px dashed var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-lighter);
-            padding: 8px 10px;
-        }
-        .cp-vote-secret-toggle summary {
-            cursor: pointer;
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text-secondary);
-        }
-        .cp-vote-secret-toggle summary::marker {
-            color: var(--color-primary);
-        }
-        .cp-vote-secret-list {
-            list-style: none;
-            margin: 8px 0 0;
-            padding: 0;
-            opacity: 0.82;
-        }
-        .cp-vote-secret-list li {
-            display: flex;
-            justify-content: flex-end;
-            padding: 4px 0;
-            border-bottom: 1px solid var(--color-border-light);
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-        }
-        .cp-vote-secret-list li:last-child { border-bottom: none; }
-        .cp-vote-cast-page {
-            margin-top: 10px;
-        }
-        .cp-vote-cast-summary-box {
-            padding: 14px;
-            border: 2px solid var(--color-primary);
-            border-radius: var(--radius-md);
-            background: var(--color-primary-light);
-        }
-        .cp-vote-cast-summary-box h6 {
-            margin: 0 0 8px;
-            font-size: var(--font-size-sm);
-        }
-        .cp-vote-cast-summary-empty {
-            margin: 0;
-            font-size: var(--font-size-sm);
-            color: var(--color-text-muted);
-            font-style: italic;
-        }
-        .cp-vote-cast-open-btn {
-            display: block;
-            width: 100%;
-            margin: 10px 0 0;
-            padding: 10px 14px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-white);
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
-            cursor: pointer;
-            text-align: center;
-        }
-        .cp-vote-cast-open-btn:hover {
-            border-color: var(--color-primary);
-            background: var(--color-primary-light);
-        }
-        .cp-vote-cast-editor-box {
-            margin-top: 10px;
-            padding: 14px;
-            border: 1px dashed var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-lighter);
-        }
-        .cp-vote-cast-editor-box h6 {
-            margin: 0 0 10px;
-            font-size: var(--font-size-sm);
-        }
-        .cp-vote-cast-tool {
-            padding: 0;
-            border: none;
-            border-radius: 0;
-            background: transparent;
-        }
-        .cp-vote-cast-meter {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: var(--font-size-sm);
-        }
-        .cp-vote-cast-meter strong {
-            font-size: var(--font-size-lg);
-            color: var(--color-primary);
-        }
-        .cp-vote-cast-meter.cp-vote-cast-meter--ok strong { color: #1a6b3c; }
-        .cp-vote-cast-meter.cp-vote-cast-meter--over strong { color: #a33; }
-        .cp-vote-cast-friends {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 12px;
-        }
-        .cp-vote-cast-friends li {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 8px 10px;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--color-border-light);
-            font-size: var(--font-size-sm);
-        }
-        .cp-vote-cast-friends li:last-child { border-bottom: none; }
-        .cp-vote-cast-friend-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-        .cp-vote-cast-pct-wrap {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .cp-vote-cast-pct {
-            width: 56px;
-            padding: 4px 6px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            font-size: var(--font-size-sm);
-            text-align: right;
-        }
-        .cp-vote-cast-pct:disabled {
-            opacity: 0.45;
-            background: var(--color-bg-muted);
-        }
-        .cp-vote-cast-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            align-items: center;
-        }
-        .cp-vote-cast-submit {
-            padding: 8px 16px;
-            border: none;
-            border-radius: var(--radius-md);
-            background: var(--color-primary);
-            color: #fff;
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
-            cursor: pointer;
-        }
-        .cp-vote-cast-submit:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-        }
-        .cp-vote-cast-reset {
-            padding: 8px 12px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-white);
-            font-size: var(--font-size-sm);
-            cursor: pointer;
-        }
-        .cp-vote-cast-status {
-            margin: 10px 0 0;
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-        }
-        .cp-vote-cast-status.cp-vote-cast-status--ok { color: #1a6b3c; }
-        .cp-vote-cast-status.cp-vote-cast-status--err { color: #a33; }
-        .cp-colectivo-list { list-style: none; padding: 0; margin: 8px 0 0; }
-        .cp-colectivo-list li {
-            padding: 8px 10px;
-            margin-bottom: 6px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-        }
-        .cp-colectivo-list .cp-colectivo-meta {
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-            margin-top: 4px;
-        }
         .cp-wiki h6 { margin: 12px 0 6px; font-size: var(--font-size-sm); }
         .cp-wiki p { margin: 0 0 8px; line-height: 1.5; }
-        .cp-statutes-wrap { margin-top: 8px; }
-        .cp-statutes-bg {
-            margin-top: 10px;
-            padding: 16px 18px;
-            max-height: 320px;
-            overflow-y: auto;
-            border: 1px dashed var(--color-border);
-            border-radius: var(--radius-md);
-            background: repeating-linear-gradient(
-                -45deg,
-                var(--color-bg-muted) 0,
-                var(--color-bg-muted) 8px,
-                var(--color-bg-lighter) 8px,
-                var(--color-bg-lighter) 16px
-            );
-            font-size: var(--font-size-sm);
-            line-height: 1.55;
-            color: var(--color-text-secondary);
-        }
-        .cp-statutes-bg h6 {
-            margin: 14px 0 6px;
-            font-size: var(--font-size-sm);
-            color: var(--color-text-primary);
-        }
-        .cp-statutes-bg h6:first-child { margin-top: 0; }
         .cp-wiki-pages {
             list-style: none;
             padding: 0;
@@ -2924,243 +2126,6 @@
         a[href^="#wiki:"]:hover {
             text-decoration: underline;
         }
-        .cp-wiki-back-btn {
-            display: inline-block;
-            margin: 0 0 14px 0;
-            padding: 6px 12px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-white);
-            font-size: var(--font-size-sm);
-            cursor: pointer;
-        }
-        .cp-wiki-back-btn:hover {
-            border-color: var(--color-primary);
-            background: var(--color-primary-light);
-        }
-        .cp-wiki-article-body {
-            padding: 16px 18px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-white);
-            font-size: var(--font-size-sm);
-            line-height: 1.55;
-        }
-        .cp-wiki-article-body h6 {
-            margin: 16px 0 8px;
-            font-size: var(--font-size-sm);
-        }
-        .cp-wiki-article-body h6:first-child { margin-top: 0; }
-        .cp-wiki-article-body .cp-opciones-list { margin-top: 10px; }
-
-        .cp-messages-page { margin-top: 10px; }
-        .cp-messages-layout {
-            display: grid;
-            grid-template-columns: minmax(160px, 220px) 1fr;
-            gap: 12px;
-            min-height: 280px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            background: var(--color-bg-white);
-        }
-        .cp-messages-threads {
-            border-right: 1px solid var(--color-border-light);
-            background: var(--color-bg-lighter);
-            padding: 10px 0;
-        }
-        .cp-messages-threads h6 {
-            margin: 0 12px 8px;
-            font-size: var(--font-size-xs);
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--color-text-muted);
-        }
-        .cp-messages-thread-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .cp-messages-thread-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 12px;
-            border: none;
-            border-bottom: 1px solid var(--color-border-light);
-            background: transparent;
-            text-align: left;
-            cursor: pointer;
-            font-size: var(--font-size-sm);
-        }
-        .cp-messages-thread-btn:hover {
-            background: var(--color-bg-white);
-        }
-        .cp-messages-thread-btn.active {
-            background: var(--color-primary-light);
-            border-left: 3px solid var(--color-primary);
-        }
-        .cp-messages-thread-name {
-            display: block;
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text-primary);
-        }
-        .cp-messages-thread-preview {
-            display: block;
-            margin-top: 3px;
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .cp-messages-chat {
-            display: flex;
-            flex-direction: column;
-            min-height: 260px;
-        }
-        .cp-messages-chat-header {
-            padding: 10px 14px;
-            border-bottom: 1px solid var(--color-border-light);
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
-        }
-        .cp-messages-log {
-            flex: 1;
-            padding: 12px 14px;
-            overflow-y: auto;
-            max-height: 320px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .cp-messages-bubble {
-            max-width: 85%;
-            padding: 8px 12px;
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-            line-height: 1.45;
-        }
-        .cp-messages-bubble--them {
-            align-self: flex-start;
-            background: var(--color-bg-muted);
-            border: 1px solid var(--color-border-light);
-        }
-        .cp-messages-bubble--me {
-            align-self: flex-end;
-            background: var(--color-primary-light);
-            border: 1px solid var(--color-primary);
-        }
-        .cp-messages-bubble time {
-            display: block;
-            margin-top: 4px;
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-        }
-        .cp-messages-compose {
-            display: flex;
-            gap: 8px;
-            padding: 10px 12px;
-            border-top: 1px solid var(--color-border-light);
-            background: var(--color-bg-lighter);
-        }
-        .cp-messages-compose input {
-            flex: 1;
-            padding: 8px 10px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-        }
-        .cp-messages-compose button {
-            padding: 8px 14px;
-            border: none;
-            border-radius: var(--radius-md);
-            background: var(--color-primary);
-            color: #fff;
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
-            cursor: pointer;
-        }
-        .cp-messages-compose button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        @media (max-width: 520px) {
-            .cp-messages-layout {
-                grid-template-columns: 1fr;
-            }
-            .cp-messages-threads {
-                border-right: none;
-                border-bottom: 1px solid var(--color-border-light);
-            }
-        }
-        .cp-repo-bar {
-            font-family: ui-monospace, monospace;
-            font-size: var(--font-size-sm);
-            padding: 8px 12px;
-            background: var(--color-bg-muted);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md) var(--radius-md) 0 0;
-            color: var(--color-text-secondary);
-        }
-        .cp-issues-toolbar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 8px 12px;
-            border: 1px solid var(--color-border);
-            border-top: none;
-            background: var(--color-bg-white);
-            font-size: var(--font-size-xs);
-        }
-        .cp-issues-toolbar span {
-            padding: 4px 8px;
-            border-radius: var(--radius-sm);
-            background: var(--color-bg-muted);
-        }
-        .cp-issues-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            border: 1px solid var(--color-border);
-            border-top: none;
-            border-radius: 0 0 var(--radius-md) var(--radius-md);
-        }
-        .cp-issue {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            gap: 10px;
-            align-items: start;
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--color-border-light);
-            font-size: var(--font-size-sm);
-        }
-        .cp-issue:last-child { border-bottom: none; }
-        .cp-issue-state {
-            font-size: var(--font-size-xs);
-            font-weight: var(--font-weight-bold);
-            padding: 2px 6px;
-            border-radius: var(--radius-sm);
-        }
-        .cp-issue.open .cp-issue-state {
-            background: #daf5e8;
-            color: #1a6b3c;
-        }
-        .cp-issue.closed .cp-issue-state {
-            background: #e8e8e8;
-            color: #666;
-        }
-        .cp-issue-meta {
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-            margin-top: 4px;
-        }
-        .cp-issue-tag {
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 10px;
-            background: var(--color-primary-light);
-            color: var(--color-primary);
-        }
         .cp-forum-board {
             list-style: none;
             padding: 0;
@@ -3196,617 +2161,12 @@
         .cp-forum-post--pinned .cp-forum-post-title::before {
             content: '📌 ';
         }
-        .cp-social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 10px;
-            margin-top: 12px;
-        }
-        .cp-social-link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            padding: 14px 10px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-white);
-            text-decoration: none;
-            color: var(--color-text-primary);
-            transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.12s ease;
-        }
-        .cp-social-link:hover {
-            border-color: var(--color-primary);
-            box-shadow: var(--shadow-sm);
-            transform: translateY(-1px);
-        }
-        .cp-social-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .cp-social-icon svg {
-            width: 36px;
-            height: 36px;
-        }
-        .cp-social-label {
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
-        }
-        .cp-social-desc {
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-            text-align: center;
-            line-height: 1.3;
-        }
-        .cp-social-link--wa:hover { border-color: #25d366; }
-        .cp-social-link--tg:hover { border-color: #229ed9; }
-        .cp-social-link--ig:hover { border-color: #e4405f; }
-        .cp-social-link--tk:hover { border-color: #010101; }
-        .cp-social-link--x:hover { border-color: #14171a; }
-        .cp-social-link--yt:hover { border-color: #ff0000; }
-
-        .cp-section-intro {
-            font-size: var(--font-size-sm);
-            line-height: 1.5;
-            color: var(--color-text-secondary);
-        }
-        .cp-section-intro p { margin: 0 0 8px; }
-        .cp-map-body { display: none; }
-        .cp-workspace-bg-box {
-            padding: 18px 20px;
-            background: linear-gradient(180deg, var(--color-bg-muted) 0%, var(--color-bg-lighter) 100%);
-            border: 2px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            max-width: 760px;
-            box-shadow: var(--shadow-sm);
-        }
-        #map-text-display .cp-section-intro { display: none !important; }
-        #map-text-display .cp-map-body {
-            display: block !important;
-        }
-        #map-text-display .cp-map-body[hidden] {
-            display: block !important;
-        }
-        .cp-news-feed {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .cp-news-item {
-            padding: 0;
-            border-bottom: 1px solid var(--color-border-light);
-        }
-        .cp-news-item:last-child { border-bottom: none; }
-        .cp-news-link {
-            display: block;
-            padding: 12px 0;
-            text-decoration: none;
-            color: inherit;
-            cursor: pointer;
-            transition: background 0.12s ease;
-        }
-        .cp-news-link:hover {
-            background: var(--color-primary-light);
-        }
-        .cp-news-link:hover strong {
-            text-decoration: underline;
-            color: var(--color-primary);
-        }
-        .cp-news-item time {
-            display: block;
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-            margin-bottom: 4px;
-        }
-        .cp-news-item strong {
-            display: block;
-            font-size: var(--font-size-sm);
-            margin-bottom: 4px;
-        }
-        .cp-news-item p {
-            margin: 0;
-            font-size: var(--font-size-sm);
-            line-height: 1.45;
-            color: var(--color-text-secondary);
-        }
-        .cp-news-article-date {
-            display: block;
-            margin: 0 0 12px;
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-        }
-        .cp-news-article-body p {
-            margin: 0 0 12px;
-            line-height: 1.55;
-        }
-        .cp-forum-thread-view {
-            margin-top: 4px;
-        }
-        .cp-forum-thread-op {
-            padding: 14px 16px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-white);
-            margin-bottom: 14px;
-        }
-        .cp-forum-thread-op-meta,
-        .cp-forum-reply-meta {
-            display: block;
-            margin-bottom: 8px;
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-        }
-        .cp-forum-thread-op-meta strong,
-        .cp-forum-reply-meta strong {
-            color: var(--color-text-primary);
-        }
-        .cp-forum-replies {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .cp-forum-reply {
-            padding: 12px 14px;
-            border: 1px solid var(--color-border-light);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-muted);
-            margin-bottom: 8px;
-        }
-        .cp-forum-reply p:last-child { margin-bottom: 0; }
 
         /* Talk: sidebar intro only; threads / news / social grid in background */
-        body.template-talk-sidebar-nav-only .template-subdocs-panel .cartagrama-doc-edit-target .cp-map-body,
-        body.template-talk-sidebar-nav-only .team-party-wrap .cartagrama-doc-edit-target .cp-map-body {
-            display: none !important;
-        }
-        body.template-talk-sidebar-nav-only .template-subdocs-panel .cartagrama-doc-section-toolbar,
-        body.template-talk-sidebar-nav-only .template-subdocs-panel .cartagrama-doc-edit-dropdown,
-        body.template-talk-sidebar-nav-only .team-party-wrap .cartagrama-doc-section-toolbar,
-        body.template-talk-sidebar-nav-only .team-party-wrap .cartagrama-doc-edit-dropdown {
-            display: none !important;
-        }
-
-        .cp-objective-tree ul {
-            list-style: none;
-            margin: 0;
-            padding-left: 18px;
-            position: relative;
-        }
-        .cp-objective-tree > ul { padding-left: 0; }
-        .cp-objective-tree li {
-            position: relative;
-            margin: 6px 0;
-            font-size: var(--font-size-sm);
-        }
-        .cp-objective-tree li::before {
-            content: '';
-            position: absolute;
-            left: -14px;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: var(--color-border);
-        }
-        .cp-objective-tree > ul > li::before { display: none; }
-        .cp-tree-node {
-            display: inline-block;
-            padding: 4px 10px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-white);
-        }
-        .cp-tree-node--root {
-            font-weight: var(--font-weight-semibold);
-            background: var(--color-primary-light);
-            border-color: var(--color-primary);
-        }
-        .cp-tree-node--done {
-            opacity: 0.65;
-            text-decoration: line-through;
-        }
-        .cp-contact-table,
-        .cp-ledger-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: var(--font-size-sm);
-            margin-top: 10px;
-        }
-        .cp-contact-table th,
-        .cp-contact-table td,
-        .cp-ledger-table th,
-        .cp-ledger-table td {
-            padding: 8px 10px;
-            border: 1px solid var(--color-border-light);
-            text-align: left;
-        }
-        .cp-contact-table th,
-        .cp-ledger-table th {
-            background: var(--color-bg-muted);
-            font-size: var(--font-size-xs);
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-        .cp-real-content-banner {
-            margin: 0 0 12px;
-            padding: 8px 10px;
-            border: 1px solid var(--color-primary);
-            border-radius: var(--radius-md);
-            background: var(--color-primary-light);
-            color: var(--color-text-primary);
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
-            line-height: 1.4;
-        }
-
-        .cp-militant-only-banner {
-            margin: 0 0 12px;
-            padding: 8px 12px;
-            font-size: var(--font-size-xs);
-            font-weight: var(--font-weight-semibold);
-            color: #5c4a00;
-            background: #fff8e6;
-            border: 1px solid #e6d48a;
-            border-radius: var(--radius-md);
-        }
-        .cp-people-filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px 16px;
-            align-items: flex-end;
-            margin: 0 0 12px;
-            padding: 10px 12px;
-            background: var(--color-bg-muted);
-            border: 1px solid var(--color-border-light);
-            border-radius: var(--radius-md);
-        }
-        .cp-people-filters label {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            font-size: var(--font-size-xs);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text-secondary);
-        }
-        .cp-people-filters select {
-            min-width: 160px;
-            max-width: 280px;
-            padding: 6px 8px;
-            font-size: var(--font-size-sm);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            background: var(--color-bg-white);
-        }
-        .cp-people-contact-count {
-            margin: 8px 0 0;
-            font-size: var(--font-size-xs);
-        }
-        .cp-people-full-list-link {
-            display: inline-block;
-            margin: 6px 0 10px;
-            padding: 8px 12px;
-            border: 1px solid var(--color-primary);
-            border-radius: var(--radius-sm);
-            background: var(--color-primary-light);
-            color: var(--color-primary);
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
-            text-decoration: none;
-        }
-        .cp-people-full-list-link-icon {
-            width: 14px;
-            height: 14px;
-            vertical-align: -2px;
-            margin-right: 6px;
-        }
-        .cp-people-full-list-link:hover {
-            filter: brightness(0.98);
-        }
-        .cp-contact-table tr[hidden] { display: none; }
-        .cp-party-structure-tree {
-            list-style: none;
-            margin: 10px 0 0;
-            padding: 0;
-            font-size: var(--font-size-sm);
-            line-height: 1.5;
-        }
-        .cp-party-structure-tree ul {
-            list-style: none;
-            margin: 4px 0 8px;
-            padding-left: 16px;
-            border-left: 2px solid var(--color-border-light);
-        }
-        .cp-party-structure-tree > li { margin-bottom: 10px; }
-        .cp-party-structure-tree strong { display: block; margin-bottom: 2px; }
-        .cp-party-structure-tree span {
-            color: var(--color-text-muted);
-            font-size: var(--font-size-xs);
-        }
-        .cp-party-structure-candidacy-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 6px;
-        }
-        .cp-party-structure-candidacy-split ul {
-            margin: 0;
-            padding-left: 14px;
-            border-left: 2px solid var(--color-border-light);
-        }
-        .cp-party-structure-candidacy-split > div > strong {
-            display: block;
-            font-size: var(--font-size-xs);
-            margin-bottom: 4px;
-            color: var(--color-text-secondary);
-        }
-        .cp-candidacy-meta {
-            margin: 0 0 12px;
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-        }
-        .cp-candidacy-bloc-title {
-            margin: 16px 0 8px;
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-primary);
-        }
-        .cp-candidacy-note {
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-        }
-        .cp-ledger-table .cp-ledger-in { color: #1a6b3c; }
-        .cp-ledger-table .cp-ledger-out { color: #a33; }
-        .cp-ledger-foot {
-            margin-top: 8px;
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-        }
-        .cp-fin-summary {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 10px 0 14px;
-        }
-        .cp-fin-summary-card {
-            padding: 10px 12px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-white);
-        }
-        .cp-fin-summary-card strong {
-            display: block;
-            font-size: var(--font-size-lg);
-            margin-top: 4px;
-        }
-        .cp-fin-summary-card span {
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-        .cp-fin-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: var(--font-size-sm);
-            margin-top: 8px;
-        }
-        .cp-fin-table th,
-        .cp-fin-table td {
-            padding: 7px 10px;
-            border: 1px solid var(--color-border-light);
-            text-align: left;
-        }
-        .cp-fin-table th {
-            background: var(--color-bg-muted);
-            font-size: var(--font-size-xs);
-        }
-        .cp-fin-table .cp-fin-total td {
-            font-weight: var(--font-weight-semibold);
-            background: var(--color-primary-light);
-        }
-        .cp-fin-table .cp-fin-subhead td {
-            font-weight: var(--font-weight-semibold);
-            background: var(--color-bg-muted);
-        }
-        .cp-ie-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 10px;
-        }
-        @media (max-width: 520px) {
-            .cp-fin-summary,
-            .cp-ie-grid { grid-template-columns: 1fr; }
-        }
-        .cp-ie-block h6 {
-            margin: 0 0 8px;
-            font-size: var(--font-size-sm);
-        }
-        .cp-ie-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .cp-ie-list li {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 6px 0;
-            border-bottom: 1px solid var(--color-border-light);
-            font-size: var(--font-size-sm);
-        }
-        .cp-ie-list li:last-child { border-bottom: none; }
-        .cp-ie-list .cp-ie-amt {
-            font-variant-numeric: tabular-nums;
-            white-space: nowrap;
-        }
-        .cp-ie-total {
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 2px solid var(--color-border);
-            font-weight: var(--font-weight-semibold);
-            display: flex;
-            justify-content: space-between;
-            font-size: var(--font-size-sm);
-        }
 
         /* Info: sidebar shows tabs only; body content lives in #map-text-display */
-        body.template-info-sidebar-nav-only .template-subdocs-panel .cartagrama-docs-panel {
-            border-top: none;
-            margin-top: 0;
-            padding-top: 0;
-        }
-        body.template-info-sidebar-nav-only .template-subdocs-panel .cartagrama-doc-edit-target,
-        body.template-info-sidebar-nav-only .template-subdocs-panel .cartagrama-doc-section-toolbar,
-        body.template-info-sidebar-nav-only .template-subdocs-panel .cartagrama-doc-edit-dropdown,
-        body.template-info-sidebar-nav-only .team-party-wrap .cartagrama-doc-edit-target,
-        body.template-info-sidebar-nav-only .team-party-wrap .cartagrama-doc-section-toolbar,
-        body.template-info-sidebar-nav-only .team-party-wrap .cartagrama-doc-edit-dropdown {
-            display: none !important;
-        }
-        body.template-self-content-sidebar-nav-only .cartagrama-doc-edit-target[data-doc-section="votes-received"],
-        body.template-self-content-sidebar-nav-only .cartagrama-doc-edit-target[data-doc-section="voting"],
-        body.template-self-content-sidebar-nav-only .cartagrama-doc-edit-target[data-doc-section="messages"] {
-            display: none !important;
-        }
-        body.template-self-content-sidebar-nav-only .template-subdocs-panel .cartagrama-docs-panel {
-            border-top: none;
-            margin-top: 0;
-            padding-top: 0;
-        }
 
         /* List of Collectives — area filter (2×4 + All) */
-        .topic-areas-filter {
-            margin-bottom: 12px;
-        }
-        .topic-areas-filter .teams-team-nav-subtitle {
-            margin-bottom: 8px;
-        }
-        .topic-area-btn {
-            width: 100%;
-            padding: 8px 6px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-white);
-            color: var(--color-text-secondary);
-            font-size: var(--font-size-xs);
-            font-weight: var(--font-weight-semibold);
-            line-height: 1.25;
-            cursor: pointer;
-            text-align: center;
-            transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-        }
-        .topic-area-btn:hover {
-            background: var(--color-primary-light);
-            border-color: var(--color-primary);
-        }
-        .topic-area-btn.active {
-            background: var(--color-primary);
-            border-color: var(--color-primary);
-            color: var(--color-bg-white);
-        }
-        .topic-areas-first-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            margin-bottom: 6px;
-        }
-        .topic-areas-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(3, auto);
-            gap: 6px;
-        }
-
-        #collectives-section-nav,
-        #collectives-lista-subnav,
-        #candidacy-subnav {
-            margin-bottom: 12px;
-        }
-
-        #candidacy-subnav {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 6px;
-        }
-
-        .collective-rep-profile-link {
-            display: inline;
-            padding: 0;
-            border: none;
-            background: none;
-            font: inherit;
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-primary);
-            cursor: pointer;
-            text-align: left;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
-
-        .collective-rep-profile-link:hover {
-            color: var(--color-primary-hover);
-        }
-
-        #local-groups-subnav {
-            margin-bottom: 12px;
-        }
-
-        #self-top-subnav-box {
-            margin-bottom: 10px;
-        }
-
-        #self-top-subnav-box #self-top-subnav {
-            margin-bottom: 0;
-        }
-
-        #self-party-sections-box {
-            margin-bottom: 8px;
-        }
-
-        #self-party-section-nav {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            margin-bottom: 0;
-        }
-
-        #self-party-section-nav .template-module-btn {
-            width: auto;
-            min-width: 0;
-            justify-content: center;
-            text-align: center;
-            font-size: var(--font-size-sm);
-            padding: 8px 6px;
-            white-space: normal;
-            line-height: 1.25;
-        }
-
-        #self-party-admin-nav {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            margin-top: 4px;
-            margin-bottom: 8px;
-        }
-
-        #self-party-admin-nav .template-module-btn {
-            width: auto;
-            min-width: 0;
-            justify-content: center;
-            text-align: center;
-            font-size: var(--font-size-sm);
-            padding: 8px 6px;
-            white-space: normal;
-            line-height: 1.25;
-        }
-
-        #template-module-self .cartagrama-docs-header,
-        #template-module-self .cartagrama-docs-tabs {
-            display: none !important;
-        }
 
         body.template-self-sindicato-location-workspace #map-container {
             display: block !important;
@@ -3822,127 +2182,6 @@
             overflow-y: auto;
             border-top: 3px solid var(--color-primary);
             box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
-        }
-
-        .collectives-representation-sidebar-intro {
-            margin: 0 0 10px 2px;
-            font-size: var(--font-size-sm);
-            color: var(--color-text-muted);
-            line-height: 1.45;
-        }
-
-        body.template-representation-workspace #map-container {
-            display: none !important;
-        }
-
-        body.template-representation-workspace #map-text-display {
-            display: block !important;
-        }
-
-        .collective-representation-panel {
-            max-width: 920px;
-            margin: 0 auto;
-        }
-
-        .collective-representation-panel h2 {
-            margin: 0 0 8px 0;
-            font-size: var(--font-size-xl);
-            color: var(--color-text-primary);
-        }
-
-        .collective-representation-summary {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 16px 0 20px 0;
-        }
-
-        .collective-representation-stat {
-            padding: 10px 12px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg-muted);
-        }
-
-        .collective-representation-stat strong {
-            display: block;
-            font-size: var(--font-size-lg);
-            color: var(--color-text-primary);
-        }
-
-        .collective-representation-stat span {
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-        }
-
-        .collective-representation-chart {
-            margin: 0 0 20px 0;
-            padding: 14px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            background: var(--color-bg-white);
-        }
-
-        .collective-representation-chart h3 {
-            margin: 0 0 12px 0;
-            font-size: var(--font-size-md);
-        }
-
-        .collective-rep-row {
-            display: grid;
-            grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr) auto;
-            gap: 10px;
-            align-items: center;
-            margin-bottom: 8px;
-            font-size: var(--font-size-sm);
-        }
-
-        .collective-rep-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .collective-rep-label {
-            min-width: 0;
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text-primary);
-        }
-
-        .collective-rep-meta {
-            display: block;
-            font-size: var(--font-size-xs);
-            font-weight: normal;
-            color: var(--color-text-muted);
-        }
-
-        .collective-rep-bar-track {
-            height: 14px;
-            border-radius: 999px;
-            background: var(--color-bg-muted);
-            overflow: hidden;
-        }
-
-        .collective-rep-bar-fill {
-            height: 100%;
-            border-radius: 999px;
-            background: linear-gradient(90deg, var(--color-primary) 0%, #6ba8e8 100%);
-            min-width: 2px;
-        }
-
-        .collective-rep-pct {
-            font-variant-numeric: tabular-nums;
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text-secondary);
-            white-space: nowrap;
-        }
-
-        .collective-representation-note {
-            margin: 0;
-            padding: 10px 12px;
-            border-left: 3px solid var(--color-primary);
-            background: var(--color-primary-light);
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            line-height: 1.5;
         }
 
         body.template-sindicato-text-workspace #map-container {
@@ -4188,7 +2427,7 @@
 
         .sindicato-mod-ai {
             font-size: var(--font-size-xs);
-            color: #5b21b6;
+            color: var(--color-accent);
         }
 
         .sindicato-mod-actions {
@@ -4236,7 +2475,7 @@
             background: #f5f3ff;
             border-radius: var(--radius-md);
             font-size: var(--font-size-sm);
-            color: #5b21b6;
+            color: var(--color-accent);
         }
 
         .sindicato-private-rules {
@@ -4288,7 +2527,7 @@
             align-items: center;
             justify-content: center;
             padding: 0;
-            border: 1px solid var(--color-border, #ccc);
+            border: 1px solid var(--color-border);
             border-right: none;
             border-radius: var(--radius-md, 6px) 0 0 var(--radius-md, 6px);
             background: var(--color-bg-muted, #f4f4f5);
@@ -4318,7 +2557,7 @@
             flex: 1;
             min-width: 0;
             padding: 7px 8px;
-            border: 1px solid var(--color-border, #ccc);
+            border: 1px solid var(--color-border);
             border-radius: 0 var(--radius-md, 6px) var(--radius-md, 6px) 0;
             background: var(--color-bg-white, #fff);
             font-size: var(--font-size-sm);
@@ -4353,7 +2592,7 @@
             display: none;
             margin: 4px 0 6px 0;
             padding: 4px 0 4px 14px;
-            border-left: 2px solid var(--color-border, #ccc);
+            border-left: 2px solid var(--color-border);
             list-style: none;
         }
 
@@ -4393,7 +2632,7 @@
         .sindicato-coord-card {
             margin: 12px 0;
             padding: 12px;
-            border: 1px solid var(--color-border, #ccc);
+            border: 1px solid var(--color-border);
             border-radius: var(--radius-md, 6px);
             background: var(--color-bg-white, #fff);
         }
@@ -4529,7 +2768,7 @@
         .sindicato-badge-ai {
             border-color: #c4b5fd;
             background: #f5f3ff;
-            color: #5b21b6;
+            color: var(--color-accent);
         }
 
         .sindicato-badge-neutral {
@@ -4577,7 +2816,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #e11d48;
+            background: var(--color-danger);
             flex-shrink: 0;
             box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.2);
         }
@@ -4793,7 +3032,7 @@
             padding: 10px 12px;
             border-radius: var(--radius-md);
             background: #f5f3ff;
-            color: #5b21b6;
+            color: var(--color-accent);
             font-size: var(--font-size-sm);
         }
 
@@ -4816,7 +3055,7 @@
         .sindicato-strike-fill {
             height: 100%;
             border-radius: 999px;
-            background: linear-gradient(90deg, #e11d48, #f97316);
+            background: linear-gradient(90deg, var(--color-danger), var(--color-warning-bright));
         }
 
         .sindicato-strike-label {
@@ -4890,12 +3129,6 @@
             margin-bottom: 4px;
         }
 
-        .sindicato-prestige {
-            font-size: var(--font-size-xs);
-            color: var(--color-primary);
-            font-weight: var(--font-weight-semibold);
-        }
-
         .sindicato-union-meta {
             display: flex;
             flex-direction: column;
@@ -4903,19 +3136,6 @@
             margin: 8px 0;
             font-size: var(--font-size-xs);
             color: var(--color-text-muted);
-        }
-
-        .sindicato-prestige-bar {
-            height: 6px;
-            border-radius: 999px;
-            background: var(--color-bg-muted);
-            overflow: hidden;
-        }
-
-        .sindicato-prestige-bar > div {
-            height: 100%;
-            border-radius: 999px;
-            background: var(--color-primary);
         }
 
         .sindicato-feed {
@@ -4977,4 +3197,453 @@
             color: var(--color-text-muted);
             font-size: var(--font-size-sm);
             cursor: not-allowed;
+        }
+
+        /* ============================================================
+           Reformas R1/R2/R3/R6 (docs/REFORMAS-PROPUESTAS.md):
+           calculadora de convenio, cauces oficiales de denuncia,
+           datos registrales de empresa e implantación sindical.
+           ============================================================ */
+
+        /* R2 — Cauces oficiales (Denuncias) */
+        .sindicato-official-channels {
+            margin-top: var(--space-5);
+            padding: var(--space-4);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-lighter);
+        }
+
+        .sindicato-official-channels ul {
+            list-style: none;
+            margin: var(--space-3) 0 0;
+            padding: 0;
+            display: grid;
+            gap: var(--space-3);
+        }
+
+        .sindicato-official-channels li {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+            font-size: var(--font-size-sm);
+            line-height: 1.5;
+        }
+
+        .sindicato-official-channels a {
+            color: var(--color-link);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        /* R3 — Datos registrales (Resumen de empresa) */
+        .sindicato-registry {
+            margin: var(--space-4) 0;
+            padding: var(--space-4);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-lighter);
+        }
+
+        .sindicato-registry-grid {
+            margin: var(--space-3) 0 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-3);
+        }
+
+        .sindicato-registry-grid dt {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        .sindicato-registry-grid dd {
+            margin: 0;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-primary);
+        }
+
+        .sindicato-registry-source {
+            margin: var(--space-3) 0 0;
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        .sindicato-registry-tagline {
+            margin: var(--space-1) 0 0;
+            font-size: var(--font-size-sm);
+            font-style: italic;
+            color: var(--color-text-secondary);
+        }
+
+        /* R6 — Implantación sindical (directorio y perfil de sindicato) */
+        .sindicato-union-presence {
+            margin: var(--space-2) 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: var(--space-1) var(--space-3);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        /* R1 — Calculadora de convenio (sección Convenio) */
+        .sindicato-convenio-calc {
+            margin-top: var(--space-5);
+            padding: var(--space-4);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-lighter);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .sindicato-convenio-calc h4 {
+            margin: 0;
+        }
+
+        .sindicato-convenio-calc label {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+            font-size: var(--font-size-sm);
+        }
+
+        .sindicato-convenio-calc select,
+        .sindicato-convenio-calc input[type="number"] {
+            padding: var(--space-2);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            font-family: var(--font-sans);
+        }
+
+        .sindicato-calc-table-label {
+            margin: 0;
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        .sindicato-calc-period {
+            margin: 0;
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-sm);
+        }
+
+        .sindicato-calc-period legend {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            padding: 0 var(--space-1);
+        }
+
+        .sindicato-calc-period label {
+            flex-direction: row;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .sindicato-calc-result {
+            margin: 0;
+            padding: var(--space-3);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            line-height: 1.5;
+            background: var(--color-bg-muted);
+        }
+
+        .sindicato-calc-result--ok {
+            color: var(--color-success);
+            border-left: 3px solid var(--color-success);
+        }
+
+        .sindicato-calc-result--below {
+            color: var(--color-danger);
+            border-left: 3px solid var(--color-danger);
+        }
+
+        /* ============================================================
+           Reformas R4/R5/R7 (docs/REFORMAS-PROPUESTAS.md):
+           agenda de acción (capa temporal), verificación con aval
+           sindical y perfiles automáticos de edificio en Vivienda.
+           ============================================================ */
+
+        /* R4 — Agenda */
+        .sindicato-agenda {
+            margin: var(--space-4) 0;
+        }
+
+        .sindicato-agenda h3 {
+            margin-bottom: var(--space-2);
+        }
+
+        .sindicato-agenda-list {
+            list-style: none;
+            margin: var(--space-2) 0 0;
+            padding: 0;
+            display: grid;
+            gap: var(--space-2);
+        }
+
+        .sindicato-agenda-item {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-3);
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-lighter);
+            font-size: var(--font-size-sm);
+        }
+
+        .sindicato-agenda-date {
+            flex: 0 0 92px;
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-secondary);
+        }
+
+        .sindicato-agenda-chip {
+            flex: 0 0 auto;
+            padding: 1px var(--space-2);
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            background: var(--color-bg-muted);
+            color: var(--color-text-secondary);
+        }
+
+        .sindicato-agenda-chip--assembly {
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+        }
+
+        .sindicato-agenda-chip--vote {
+            background: var(--color-info-light);
+            color: var(--color-primary);
+        }
+
+        .sindicato-agenda-chip--deadline {
+            color: var(--color-warning);
+        }
+
+        .sindicato-agenda-chip--strike {
+            color: var(--color-danger);
+        }
+
+        .sindicato-agenda-chip--negotiation {
+            color: var(--color-success);
+        }
+
+        .sindicato-agenda-body {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .sindicato-agenda-scope {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        .sindicato-agenda-list--compact .sindicato-agenda-item {
+            padding: var(--space-1) var(--space-2);
+        }
+
+        .sindicato-agenda-add {
+            margin-top: var(--space-4);
+            padding: var(--space-4);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-lighter);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            font-size: var(--font-size-sm);
+        }
+
+        .sindicato-agenda-add label {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .sindicato-agenda-add select,
+        .sindicato-agenda-add input {
+            padding: var(--space-2);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            font-family: var(--font-sans);
+        }
+
+        /* R5 — Niveles de confianza y verificación */
+        .sindicato-trust-badge {
+            display: inline-block;
+            padding: 0 var(--space-2);
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            line-height: 1.6;
+            background: var(--color-bg-muted);
+            color: var(--color-text-muted);
+            vertical-align: middle;
+        }
+
+        .sindicato-trust-badge--person {
+            background: var(--color-primary-light);
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .sindicato-trust-badge--worker {
+            background: var(--color-bg-lighter);
+            border-color: var(--color-success);
+            color: var(--color-success);
+        }
+
+        .sindicato-verification {
+            margin: var(--space-4) 0;
+            padding: var(--space-4);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-lighter);
+        }
+
+        .sindicato-verify-status {
+            margin: var(--space-2) 0;
+            font-size: var(--font-size-sm);
+        }
+
+        .sindicato-verify-ladder {
+            list-style: none;
+            margin: var(--space-3) 0;
+            padding: 0;
+            display: grid;
+            gap: var(--space-2);
+        }
+
+        .sindicato-verify-ladder li {
+            display: flex;
+            gap: var(--space-2);
+            align-items: baseline;
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            padding-left: var(--space-2);
+            border-left: 3px solid transparent;
+        }
+
+        .sindicato-verify-ladder li.is-current {
+            border-left-color: var(--color-primary);
+        }
+
+        .sindicato-verify-ladder .sindicato-trust-badge {
+            flex: 0 0 auto;
+        }
+
+        .sindicato-verify-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+            font-size: var(--font-size-sm);
+        }
+
+        .sindicato-verify-form label {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .sindicato-verify-form select {
+            padding: var(--space-2);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            font-family: var(--font-sans);
+        }
+
+        .sindicato-verify-doctrine {
+            margin: var(--space-3) 0 0;
+            font-size: var(--font-size-xs);
+            line-height: 1.5;
+            color: var(--color-text-muted);
+        }
+
+        /* R7 — Edificios (Vivienda) */
+        .sindicato-building-grid {
+            display: grid;
+            gap: var(--space-2);
+            margin: var(--space-3) 0;
+        }
+
+        .sindicato-building-card {
+            text-align: left;
+            padding: var(--space-3);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-white);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+            font-family: var(--font-sans);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-primary);
+        }
+
+        .sindicato-building-card:hover,
+        .sindicato-building-card:focus-visible {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sindicato-building-card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: var(--space-2);
+        }
+
+        .sindicato-building-flag {
+            padding: 0 var(--space-2);
+            border: 1px solid var(--color-warning);
+            border-radius: 999px;
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-warning);
+            background: var(--color-bg-lighter);
+            white-space: nowrap;
+        }
+
+        .sindicato-building-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-1) var(--space-3);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        .sindicato-building-owner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: var(--space-2) var(--space-3);
+            margin: var(--space-2) 0 var(--space-3);
+            font-size: var(--font-size-sm);
+        }
+
+        .sindicato-tenant-pledge {
+            margin-top: var(--space-3);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .sindicato-tenant-pledge-count {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
         }

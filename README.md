@@ -47,7 +47,7 @@ Al abrir la web, el **mapa OpenStreetMap** (Leaflet) carga de forma automática 
 
 - **Mapa** — explorar empresas por territorio y fronteras
 - **Empresas** — directorio con búsqueda; alta manual de empresas (demo en `localStorage`)
-- **Sindicatos** — directorio neutral con puntuación de prestigio comunitario
+- **Sindicatos** — directorio neutral con datos de implantación (delegados, empresas con presencia, convenios firmados)
 - **Sectores** — árbol sector → subsector → foro y empresas del ramo
 - **Foro** — tableros general, por sector y por territorio
 - **Vivienda** — coordinación por territorio: foro y alertas de desahucio (demo)

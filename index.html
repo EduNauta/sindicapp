@@ -91,11 +91,17 @@
 
                 <div class="template-nav-tree" id="sindicato-nav-tree" hidden aria-label="Syndicate navigation">
                     <nav class="template-submodule-nav template-submodule-nav--depth-1" id="sindicato-subnav" aria-label="Syndicate views">
-                        <button type="button" class="template-module-btn" data-sindicato-sub="coordination">
-                            <span aria-hidden="true">🤝</span> Coordination
+                        <button type="button" class="template-module-btn" data-sindicato-sub="map">
+                            <span aria-hidden="true">🗺️</span> Map
                         </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="wiki">
-                            <span aria-hidden="true">📖</span> Wiki
+                        <button type="button" class="template-module-btn" data-sindicato-sub="workplaces">
+                            <span aria-hidden="true">🏢</span> Companies
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="sectores">
+                            <span aria-hidden="true">🏭</span> Sectors
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="feed">
+                            <span aria-hidden="true">💬</span> Forum
                         </button>
                         <button type="button" class="template-module-btn" data-sindicato-sub="unions">
                             <span aria-hidden="true">🏛️</span> Unions
@@ -103,17 +109,11 @@
                         <button type="button" class="template-module-btn" data-sindicato-sub="vivienda">
                             <span aria-hidden="true">🏠</span> Vivienda
                         </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="map">
-                            <span aria-hidden="true">🗺️</span> Map
+                        <button type="button" class="template-module-btn" data-sindicato-sub="coordination">
+                            <span aria-hidden="true">🤝</span> Coordination
                         </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="feed">
-                            <span aria-hidden="true">💬</span> Forum
-                        </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="sectores">
-                            <span aria-hidden="true">🏭</span> Sectors
-                        </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="workplaces">
-                            <span aria-hidden="true">🏢</span> Companies
+                        <button type="button" class="template-module-btn" data-sindicato-sub="wiki">
+                            <span aria-hidden="true">📖</span> Wiki
                         </button>
                     </nav>
 
@@ -168,7 +168,7 @@
                         </div>
                     </div>
                     <div id="sindicato-unions-sidebar" class="teams-team-nav-block" hidden>
-                        <p class="sindicato-sidebar-intro" id="sindicato-unions-intro">Neutral directory — SIPTU, Unite, sector unions, and more. Prestige scores reflect community trust on the platform.</p>
+                        <p class="sindicato-sidebar-intro" id="sindicato-unions-intro">Neutral directory — SIPTU, Unite, sector unions, and more. Presence data (delegates, companies, agreements) comes from verifiable records, not community scoring.</p>
                         <select id="sindicato-union-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Select union">
                             <option value="">Select union…</option>
                         </select>
@@ -258,48 +258,8 @@
                             <button type="button" class="template-language-btn" data-locale="ie" aria-pressed="false" title="English" aria-label="English"><span class="flag-icon flag-en" aria-hidden="true"></span>EN</button>
                         </div>
                     </div>
-                <!-- Talk: News, Forum -->
-                <section id="template-module-talk" class="template-module-panel template-subdocs-panel" data-module-panel="talk" hidden>
-                    <div class="template-subdocs-mount" data-subdocs-module="talk"></div>
-                </section>
-
-                <!-- Collectives org (mirrors Party) -->
-                <section id="template-module-collectives-talk" class="template-module-panel template-subdocs-panel" data-module-panel="collectives-talk" hidden>
-                    <div class="template-subdocs-mount" data-subdocs-module="collectives-talk"></div>
-                </section>
-                <section id="template-module-collectives-info" class="template-module-panel template-subdocs-panel" data-module-panel="collectives-info" hidden>
-                    <div class="template-subdocs-mount" data-subdocs-module="collectives-info"></div>
-                </section>
-                <section id="template-module-collectives-admin" class="template-module-panel" data-module-panel="collectives-admin" hidden>
-                    <div id="collectives-admin-panel" class="party-admin-panel" data-collectives-admin-root></div>
-                </section>
-
-                <section id="template-module-collectives-representation" class="template-module-panel" data-module-panel="collectives-representation" hidden>
-                    <h4 class="template-section-title">Ranking</h4>
-                    <p class="template-muted">Voting-power ranking by collective — open the background workspace for the full chart. Click a collective to open its profile.</p>
-                </section>
-                <section id="template-module-collectives-general-coordination" class="template-module-panel" data-module-panel="collectives-general-coordination" hidden>
-                    <h4 class="template-section-title">General Coordination</h4>
-                    <p class="template-muted">Collective directorate — open the background workspace for the full lore dossier and seat table.</p>
-                </section>
-
-                <!-- Local Groups org (mirrors Party) -->
-                <section id="template-module-local-groups-talk" class="template-module-panel template-subdocs-panel" data-module-panel="local-groups-talk" hidden>
-                    <div class="template-subdocs-mount" data-subdocs-module="local-groups-talk"></div>
-                </section>
-                <section id="template-module-local-groups-info" class="template-module-panel template-subdocs-panel" data-module-panel="local-groups-info" hidden>
-                    <div class="template-subdocs-mount" data-subdocs-module="local-groups-info"></div>
-                </section>
-                <section id="template-module-local-groups-admin" class="template-module-panel" data-module-panel="local-groups-admin" hidden>
-                    <div id="local-groups-admin-panel" class="party-admin-panel" data-local-groups-admin-root></div>
-                </section>
-
-                <!-- Local Groups territory (Info Local Groups + Map) -->
+                <!-- Map workspace panel: provider + boundary layer controls (used by Colectivo → Mapa) -->
                 <section id="template-module-geo-teams" class="template-module-panel template-subdocs-panel" data-module-panel="geo-teams" hidden>
-                    <div id="geo-teams-view-info" class="geo-teams-view-panel">
-                        <div id="geo-team-party-wrap" class="team-party-wrap" hidden></div>
-                    </div>
-
                     <div id="geo-teams-view-map" class="geo-teams-view-panel active">
                     <div id="geo-teams-map-view-map-options" class="geo-teams-map-view-panel active">
                     <div id="map-selected-territory-bar" class="map-selected-territory-bar" hidden>
@@ -325,7 +285,7 @@
                         <details class="drawing-controls-intro-wrap borders-section-info">
                             <summary class="drawing-controls-intro-btn" aria-label="Borders help">ℹ️</summary>
                             <div class="drawing-controls-intro-box" id="geo-borders-help-box">
-                                <p id="geo-borders-help-1">Toggle administrative boundary layers on the map. Click a region to select it, then use <strong>Info</strong> to open its Local Groups page.</p>
+                                <p id="geo-borders-help-1">Toggle administrative boundary layers on the map. Click a region to select it, then use <strong>Info</strong> to focus its territory.</p>
                                 <p id="geo-borders-help-2"><em>💡 Tip: Activate/deactivate layers to explore the administrative structure at different levels.</em></p>
                                 <p id="geo-borders-help-3"><em>✅ = has border sets. ❌ = no border sets yet.</em></p>
                                 <p id="geo-borders-help-4"><em>💡 Tip: Click the 👁️ button to show boundaries on the map. Large datasets (municipalities, census) may take a moment.</em></p>
@@ -1266,30 +1226,14 @@
 
                 </section>
 
-                <!-- Info (Party submodule; formerly Docs) -->
-                <section id="template-module-info" class="template-module-panel template-subdocs-panel" data-module-panel="info" hidden>
-                    <div class="template-subdocs-mount" data-subdocs-module="info"></div>
-                </section>
-
-                <!-- Admin (Party submodule; topic teams mirror this panel) -->
-                <section id="template-module-admin" class="template-module-panel" data-module-panel="admin" hidden>
-                    <div id="party-admin-panel" class="party-admin-panel" data-party-admin-root></div>
-                </section>
-
                 <!-- Self -->
                 <section id="template-module-self" class="template-module-panel template-subdocs-panel" data-module-panel="self" hidden>
-                    <div class="template-subdocs-mount" data-subdocs-module="self"></div>
                 </section>
 
                 <!-- Sindicato (SindicApp worker coordination) -->
                 <section id="template-module-sindicato" class="template-module-panel" data-module-panel="sindicato" hidden>
                     <h4 class="template-section-title" id="sindicato-panel-title">Syndicate</h4>
                     <p class="template-muted" id="sindicato-panel-muted">Neutral workplace coordination — open the background workspace for the full view.</p>
-                </section>
-
-                <!-- List of Collectives (21 token teams — built in script) -->
-                <section id="template-module-topic-teams" class="template-module-panel template-subdocs-panel" data-module-panel="topic-teams" hidden>
-                    <div id="topic-team-party-wrap" class="team-party-wrap" hidden></div>
                 </section>
 
                 </div><!-- /template-module-body -->
