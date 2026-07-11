@@ -2,11 +2,29 @@
 
 All notable changes to SindicApp are documented in this file.
 
-Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). SindicApp doesn't have version numbers yet (it's a pre-1.0 prototype), so entries are grouped by date instead of version. Each new push should add an entry here — see `CLAUDE.md` for the process.
+Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Entries before v0.0.4 predate this project's use of version numbers and are grouped by date only; from v0.0.4 onward each batch of work gets a version and a git tag. Each new push should add an entry here — see `CLAUDE.md` for the process.
 
 ## Unreleased
 
 Nothing pending.
+
+## v0.0.4 — 2026-07-11 — Professional practices batch
+
+*What was originally planned as "fase 4" (UI/roadmap polish) became, at Edu's request, a pass to bring the repo's process up to standard practice. First version-tagged release; see [ADR 0001](../decisions/0001-split-single-file-prototype-into-vite-project.md) discussion for why the two prior working versions (`0.1.0` in `package.json`, set by Vite's scaffolding and never a deliberate choice, vs. the fase-numbering Edu had been using informally) are reconciled as `0.0.4` here rather than following the untouched placeholder.*
+
+### Added
+- Conventional Commits as the commit message format, documented in `CLAUDE.md`.
+- This changelog, backfilled with the project's full history.
+- `docs/decisions/`: an ADR process (template + 5 initial decisions covering the Vite split, classic scripts, no backend, GitHub Pages deploy, and map-as-navigation).
+- CI smoke tests (Playwright, `tests/smoke.spec.js`): page loads without console errors, Usuario/Sindicato menu hierarchy intact, map loads — runs on every push and pull request and blocks deployment on failure (`.github/workflows/deploy.yml`).
+- SEO/social preview support: `<meta name="description">`, Open Graph and Twitter Card tags in `index.html`, plus `robots.txt` and `sitemap.xml`.
+- `CONTRIBUTING.md`: human-facing setup and contribution conventions (CLAUDE.md remains the AI-assistant-facing equivalent).
+- `SECURITY.md`: vulnerability reporting policy.
+- `.github/dependabot.yml`: monthly automated dependency updates for npm and GitHub Actions.
+
+### Changed
+- `docs/plans/REFORMAS-FASE-4.md` renamed and restructured into `docs/plans/PLANES.md`: dropped the `F4-N` numbering scheme (now a general living plans doc, not tied to one reform round) and added a new section logging engineering practices considered but deliberately deferred (linting, pre-commit hooks, PR-based review, release automation) with the reasoning for each.
+- `package.json` version set to `0.0.4` (see note above).
 
 ## 2026-07-11
 

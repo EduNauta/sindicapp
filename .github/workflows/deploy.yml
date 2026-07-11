@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master, main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -25,13 +26,21 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # Smoke test the actual build output (served via `vite preview`, same
+      # as production) before it's allowed to deploy. See tests/smoke.spec.js
+      # and docs/plans/PLANES.md ("Harness de QA como herramienta del repo").
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
       - uses: actions/configure-pages@v5
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
         with:
           path: dist
 
   deploy:
     needs: build
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
     environment:
       name: github-pages

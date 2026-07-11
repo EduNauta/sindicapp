@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://edunauta.github.io/sindicapp/sitemap.xml
