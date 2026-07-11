@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SindicApp</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="https://unpkg.com/topojson-client@3" defer onload="if (typeof topojson !== 'undefined' && topojson.feature) window.topojsonFeature = topojson.feature;"></script>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body class="sidebar-open">
+    <script src="./js/locale-bootstrap.js"></script>
+    <h1 class="sr-only">SindicApp</h1>
+
+    <aside role="complementary" aria-label="Map view">
+        <div id="map-container">
+            <div id="map-provider-root">
+            </div>
+        </div>
+        <div id="territory-info-box" class="territory-info-box" style="display:none;">
+            <button type="button" class="close-btn" aria-label="Close">×</button>
+            <h4 id="territory-info-box-name">Territorio</h4>
+            <p id="territory-info-box-type" class="territory-info-box-meta"></p>
+            <p id="territory-info-box-population" class="territory-info-box-meta"></p>
+            <p id="territory-info-box-region" class="territory-info-box-meta"></p>
+            <div class="territory-info-box-actions">
+                <button type="button" id="territory-info-box-info-btn" class="territory-info-box-info-btn">Info</button>
+            </div>
+        </div>
+        <div id="map-text-display" aria-label="Text workspace"></div>
+    </aside>
+
+    <div class="sindicapp-mobile-chrome sindicapp-mobile-chrome--float" id="sindicapp-mobile-chrome-float">
+        <button type="button" id="mobile-toggle" aria-label="Mostrar barra lateral" aria-expanded="false">Barra lateral</button>
+    </div>
+
+    <div id="console" role="main" aria-label="Sidebar">
+        <div id="console-content">
+            <div id="content-lux21-template">
+
+                <header class="template-sidebar-header">
+                    <div class="sindicapp-header-grid">
+                        <div class="sindicapp-chrome-spacer" id="sindicapp-chrome-spacer" aria-hidden="true"></div>
+                        <div class="drawing-controls-title-row">
+                        <button type="button" class="template-title" id="template-home-title" aria-label="SindicApp home">
+                            <img class="sindicapp-header-logo" src="assets/sindicapp-logo.jpg" alt="" width="32" height="32" aria-hidden="true">
+                            <span class="sindicapp-header-title-text">SindicApp</span>
+                        </button>
+                        <!-- B2 (doxa §4.4) — selector de idioma también en cabecera; la portada conserva el suyo -->
+                        <div class="template-language-switch template-language-switch--header" role="group" aria-label="Language selection">
+                            <button type="button" class="template-language-btn" data-locale="es" aria-pressed="true" title="Español" aria-label="Español">ES</button>
+                            <button type="button" class="template-language-btn" data-locale="ie" aria-pressed="false" title="English" aria-label="English">EN</button>
+                        </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="template-module-picker sindicapp-module-stack" id="template-module-picker" aria-label="Module selection">
+                    <div class="sindicapp-module-box-row">
+                        <button type="button" class="template-module-btn" data-module="self" id="sindicapp-module-self-btn">
+                            <span aria-hidden="true">👤</span> Usuario
+                        </button>
+                        <button type="button" class="template-module-btn" data-module="sindicato" id="sindicapp-module-sindicato-btn">
+                            <span aria-hidden="true">✊</span> Colectivo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="template-nav-tree" id="self-nav-tree" hidden aria-label="User account navigation">
+                    <div id="self-sindicato-block" class="teams-team-nav-block" hidden>
+                        <p class="teams-team-nav-subtitle" id="self-sindicato-workplace-label">Tu empresa</p>
+                        <p class="sindicato-sidebar-intro" id="self-sindicato-workplace-name">—</p>
+                        <nav class="template-submodule-nav template-submodule-nav--depth-1" id="self-sindicato-section-nav" aria-label="Personal workplace tools">
+                            <button type="button" class="template-module-btn active" data-self-sindicato-section="overview">
+                                <span aria-hidden="true">📋</span> Resumen
+                            </button>
+                            <button type="button" class="template-module-btn" data-self-sindicato-section="location">
+                                <span aria-hidden="true">📍</span> Localización
+                            </button>
+                            <button type="button" class="template-module-btn" data-self-sindicato-section="reports">
+                                <span aria-hidden="true">📢</span> Denuncias
+                            </button>
+                            <button type="button" class="template-module-btn" data-self-sindicato-section="wages">
+                                <span aria-hidden="true">💶</span> Sueldos
+                            </button>
+                            <button type="button" class="template-module-btn" data-self-sindicato-section="convenio">
+                                <span aria-hidden="true">📜</span> Convenio
+                            </button>
+                            <button type="button" class="template-module-btn" data-self-sindicato-section="action">
+                                <span aria-hidden="true">✊</span> Acción
+                            </button>
+                        </nav>
+                    </div>
+                    </div>
+
+                <div class="template-nav-tree" id="sindicato-nav-tree" hidden aria-label="Syndicate navigation">
+                    <nav class="template-submodule-nav template-submodule-nav--depth-1" id="sindicato-subnav" aria-label="Syndicate views">
+                        <button type="button" class="template-module-btn" data-sindicato-sub="map">
+                            <span aria-hidden="true">🗺️</span> Map
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="workplaces">
+                            <span aria-hidden="true">🏢</span> Empresas
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="sectores">
+                            <span aria-hidden="true">🏭</span> Sectores
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="feed">
+                            <span aria-hidden="true">💬</span> Foro
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="unions">
+                            <span aria-hidden="true">🏛️</span> Unions
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="vivienda">
+                            <span aria-hidden="true">🏠</span> Vivienda
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="coordination">
+                            <span aria-hidden="true">🤝</span> Coordination
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="wiki">
+                            <span aria-hidden="true">📖</span> Wiki
+                        </button>
+                    </nav>
+
+                    <div id="sindicato-workplaces-block" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-workplaces-intro">Busca empresas en el mapa o elige una para abrir su perfil.</p>
+                        <input type="search" id="sindicato-workplace-search" class="sindicato-search-input" placeholder="Busca por nombre o sector…" aria-label="Search companies">
+                        <select id="sindicato-workplace-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Select company">
+                            <option value="">Seleccionar empresa…</option>
+                        </select>
+                        <div id="sindicato-add-company-sidebar-mount"></div>
+                        <nav class="template-submodule-nav" id="sindicato-workplace-section-nav" aria-label="Company sections" hidden>
+                            <button type="button" class="template-module-btn active" data-sindicato-section="location">
+                                <span aria-hidden="true">📍</span> Localización
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-section="overview">
+                                <span aria-hidden="true">📋</span> Resumen
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-section="reports">
+                                <span aria-hidden="true">⚠️</span> Denuncias
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-section="wages">
+                                <span aria-hidden="true">💶</span> Sueldos
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-section="convenio">
+                                <span aria-hidden="true">📜</span> Convenio
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-section="action">
+                                <span aria-hidden="true">✊</span> Acción
+                            </button>
+                        </nav>
+                    </div>
+
+                    <div id="sindicato-map-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-map-intro">Geography-first: every workplace gets an auto-generated profile. Click a pin in the workspace or pick a territory below.</p>
+                        <!-- Duplicado de «Proveedor de mapa» retirado (10-07-2026): el control
+                             original de Cartagrama, más abajo en este mismo panel, es el funcional. -->
+                        <div class="sindicato-map-territories-box">
+                            <h4 class="template-section-title" id="sindicato-map-territories-title">Territories</h4>
+                            <div id="sindicato-map-territory-tree-mount" class="sindicato-sector-tree" role="tree" aria-label="Territories"></div>
+                        </div>
+                    </div>
+                    <div id="sindicato-unions-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-unions-intro">Neutral directory — SIPTU, Unite, sector unions, and more. Presence data (delegates, companies, agreements) comes from verifiable records, not community scoring.</p>
+                        <select id="sindicato-union-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Select union">
+                            <option value="">Select union…</option>
+                        </select>
+                        <nav class="template-submodule-nav" id="sindicato-union-section-nav" aria-label="Union sections" hidden>
+                            <button type="button" class="template-module-btn active" data-sindicato-union-section="overview">
+                                <span aria-hidden="true">📋</span> Resumen
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="forum">
+                                <span aria-hidden="true">💬</span> Foro
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="structure">
+                                <span aria-hidden="true">🧱</span> Estructura
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="companies">
+                                <span aria-hidden="true">🏢</span> Empresas
+                            </button>
+                        </nav>
+                    </div>
+                    <div id="sindicato-feed-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-feed-intro">Three forum scopes — one button per row. General board, sector forums, and territory forums.</p>
+                        <nav class="template-submodule-nav" id="sindicato-feed-subnav" aria-label="Forum scopes">
+                            <button type="button" class="template-module-btn active" data-sindicato-feed-scope="general">
+                                <span aria-hidden="true">💬</span> General
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-feed-scope="sectores">
+                                <span aria-hidden="true">🏭</span> Sectores
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-feed-scope="territorios">
+                                <span aria-hidden="true">🗺️</span> Territorios
+                            </button>
+                        </nav>
+                        <div id="sindicato-feed-scope-tree-mount" class="sindicato-sector-tree" role="tree" aria-label="Forum scope" hidden></div>
+                        <label id="sindicato-feed-company-label" class="sindicato-feed-company-label" for="sindicato-feed-company-select" hidden>Company in this scope</label>
+                        <select id="sindicato-feed-company-select" class="team-picker-select geo-picker-scroll" size="4" aria-label="Companies in forum scope" hidden>
+                            <option value="">All companies in scope…</option>
+                        </select>
+                    </div>
+                    <div id="sindicato-sectores-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-sectores-intro">Economic sectors — expand each branch to see unions on site and the sector forum.</p>
+                        <div id="sindicato-sectores-tree-mount" class="sindicato-sector-tree" role="tree" aria-label="Economic sectors"></div>
+                    </div>
+                    <div id="sindicato-coordination-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-coordination-intro">Platform coordination — structure, money and objectives.</p>
+                        <nav class="template-submodule-nav sindicato-coord-subnav" id="sindicato-coordination-subnav" aria-label="Coordination sections">
+                            <button type="button" class="template-module-btn active" data-sindicato-coord-sub="estructura">
+                                <span aria-hidden="true">🧱</span> Estructura
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="dinero">
+                                <span aria-hidden="true">💶</span> Money
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="objetivos">
+                                <span aria-hidden="true">🎯</span> Objectives
+                            </button>
+                        </nav>
+                    </div>
+                    <div id="sindicato-wiki-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-wiki-intro">Internal wiki — index and platform rules.</p>
+                        <nav class="template-submodule-nav sindicato-wiki-subnav" id="sindicato-wiki-subnav" aria-label="Wiki sections">
+                            <button type="button" class="template-module-btn active" data-sindicato-wiki-sub="index">
+                                <span aria-hidden="true">📖</span> Index
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-wiki-sub="normas">
+                                <span aria-hidden="true">📜</span> Rules
+                            </button>
+                        </nav>
+                    </div>
+                    <div id="sindicato-vivienda-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-vivienda-intro">Coordinación en vivienda por territorio — foro y alertas de desahucio.</p>
+                        <div id="sindicato-vivienda-parent-row" class="geo-picker-row">
+                            <p class="teams-team-nav-subtitle" id="sindicato-vivienda-parent-label">Elige región</p>
+                            <select id="sindicato-vivienda-parent-select" class="team-picker-select geo-picker-scroll" size="4" aria-label="Select region"></select>
+                        </div>
+                        <div id="sindicato-vivienda-territory-row" class="geo-picker-row">
+                            <p class="teams-team-nav-subtitle" id="sindicato-vivienda-territory-label">Elige territorio</p>
+                            <select id="sindicato-vivienda-territory-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Select territory"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="template-module-body" id="template-module-body">
+                    <p class="template-zone-label" id="template-module-body-label" hidden></p>
+                    <div class="template-module-landing portada-welcome-box" id="template-module-landing">
+                        <img class="portada-welcome-logo" id="portada-welcome-logo" alt="SindicApp" width="96" height="96" />
+                        <p class="template-welcome" id="portada-welcome-title">Bienvenido/a a SindicApp</p>
+                        <div class="template-language-switch" role="group" aria-label="Language selection">
+                            <button type="button" class="template-language-btn" data-locale="es" aria-pressed="true" title="Español" aria-label="Español"><span class="flag-icon flag-es" aria-hidden="true"></span>ES</button>
+                            <button type="button" class="template-language-btn" data-locale="ie" aria-pressed="false" title="English" aria-label="English"><span class="flag-icon flag-en" aria-hidden="true"></span>EN</button>
+                        </div>
+                    </div>
+                <!-- Map workspace panel: provider + boundary layer controls (used by Colectivo → Mapa) -->
+                <section id="template-module-geo-teams" class="template-module-panel template-subdocs-panel" data-module-panel="geo-teams" hidden>
+                    <div id="geo-teams-view-map" class="geo-teams-view-panel active">
+                    <div id="geo-teams-map-view-map-options" class="geo-teams-map-view-panel active">
+                    <div id="map-selected-territory-bar" class="map-selected-territory-bar" hidden>
+                        <span id="map-selected-territory-name" class="map-selected-territory-bar-name">—</span>
+                        <button type="button" id="map-selected-territory-info-btn" class="map-selected-territory-info-btn">Info</button>
+                    </div>
+                    <h4 class="template-section-title" id="geo-map-provider-title">Map provider</h4>
+                    <p class="template-muted" id="geo-map-provider-muted">OpenStreetMap only (no extra tile overlays in this template).</p>
+                    <div class="map-api-buttons">
+                        <div class="map-api-card">
+                            <button type="button" class="map-api-button" data-api="openstreetmap">
+                                <span class="api-icon" aria-hidden="true">🌍</span>
+                                <span class="api-info">
+                                    <span class="api-name">OpenStreetMap</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="cartagrama-content-territories" class="template-territories-block">
+                    <div class="borders-section-title-row">
+                        <h3 class="template-section-title" id="geo-borders-title">🗺️ Borders</h3>
+                        <details class="drawing-controls-intro-wrap borders-section-info">
+                            <summary class="drawing-controls-intro-btn" aria-label="Borders help">ℹ️</summary>
+                            <div class="drawing-controls-intro-box" id="geo-borders-help-box">
+                                <p id="geo-borders-help-1">Toggle administrative boundary layers on the map. Click a region to select it, then use <strong>Info</strong> to focus its territory.</p>
+                                <p id="geo-borders-help-2"><em>💡 Tip: Activate/deactivate layers to explore the administrative structure at different levels.</em></p>
+                                <p id="geo-borders-help-3"><em>✅ = has border sets. ❌ = no border sets yet.</em></p>
+                                <p id="geo-borders-help-4"><em>💡 Tip: Click the 👁️ button to show boundaries on the map. Large datasets (municipalities, census) may take a moment.</em></p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="boundary-controls boundary-controls-compact">
+                        <!-- Europe section: accessible accordion (button, no interactive elements in summary) -->
+                        <div class="border-control-group border-control-group-compact">
+                            <div class="border-subgroup continent-subgroup" data-expanded="false">
+                                <div class="border-subgroup-header">
+                                    <button type="button" class="border-expand-btn" aria-expanded="false" aria-controls="europe-content">
+                                        <span class="border-summary-label"><strong>Europe</strong></span>
+                                        <span class="border-summary-spacer"></span>
+                                        <span class="border-triangle">▶</span>
+                                    </button>
+                                            <details class="border-info-details"><summary class="border-info-btn" title="Info">ℹ️</summary><p class="border-info-content">European administrative divisions</p></details>
+                                </div>
+                                <div id="europe-content" class="border-sub-content">
+                                <!-- Space 1: Country list with checkboxes (collapses when Europe is closed) -->
+                                <div class="continent-country-list" data-continent="europe"></div>
+                                </div>
+                                <!-- Space 2: Checked countries / border sets (always visible, never disappears) -->
+                                <div id="europe-border-sets" class="europe-border-sets">
+                                <!-- NUTS regions (linked to NUTS Regions checkbox) -->
+                                <div class="border-subgroup" data-expanded="false" data-list-country="NUTS Regions">
+                                    <div class="border-subgroup-header">
+                                        <button type="button" class="border-expand-btn" aria-expanded="false" aria-controls="nuts-content">
+                                            <span class="border-summary-label"><strong>NUTS regions</strong></span>
+                                            <span class="border-summary-spacer"></span>
+                                            <span class="border-triangle">▶</span>
+                                        </button>
+                                        <details class="border-info-details"><summary class="border-info-btn" title="Info">ℹ️</summary><p class="border-info-content">Nomenclature of Territorial Units for Statistics (EU)</p></details>
+                                    </div>
+                                    <div id="nuts-content" class="border-sub-content">
+                                <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>NUTS 1</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="nuts1" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="nuts1" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="nuts1" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn" data-layer="nuts1" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="nuts1" style="display: none;">
+                                                <p><strong>NUTS 1 Regions</strong></p>
+                                                <p>Major socio-economic regions of the European Union</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts1', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">Eurostat GISCO (Nuts2json NUTS 2021)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts1', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">https://raw.githubusercontent.com/eurostat/Nuts2json/master/pub/v2/NUTS2021/NUTS1/20M/4326/NUTS1_2021_20M.geojson</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://raw.githubusercontent.com/eurostat/Nuts2json/master/pub/v2/NUTS2021/NUTS1/20M/4326/NUTS1_2021_20M.geojson'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts1', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts1', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">Open Data (Eurostat)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>NUTS 2</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="nuts2" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="nuts2" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="nuts2" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn" data-layer="nuts2" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="nuts2" style="display: none;">
+                                                <p><strong>NUTS 2 Regions</strong></p>
+                                                <p>Basic regions for regional policies</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts2', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">Eurostat GISCO (Nuts2json NUTS 2021)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts2', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">https://raw.githubusercontent.com/eurostat/Nuts2json/master/pub/v2/NUTS2021/NUTS2/20M/4326/NUTS2_2021_20M.geojson</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://raw.githubusercontent.com/eurostat/Nuts2json/master/pub/v2/NUTS2021/NUTS2/20M/4326/NUTS2_2021_20M.geojson'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts2', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts2', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">Open Data (Eurostat)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>NUTS 3</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="nuts3" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="nuts3" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="nuts3" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn" data-layer="nuts3" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="nuts3" style="display: none;">
+                                                <p><strong>NUTS 3 Regions</strong></p>
+                                                <p>Small regions for specific diagnoses</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts3', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">Eurostat GISCO (Nuts2json NUTS 2021)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts3', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">https://raw.githubusercontent.com/eurostat/Nuts2json/master/pub/v2/NUTS2021/NUTS3/20M/4326/NUTS3_2021_20M.geojson</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://raw.githubusercontent.com/eurostat/Nuts2json/master/pub/v2/NUTS2021/NUTS3/20M/4326/NUTS3_2021_20M.geojson'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts3', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'nuts3', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">Open Data (Eurostat)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Add Border Set Button for NUTS Regions -->
+                                        <div class="add-border-set-container">
+                                            <button type="button" class="add-border-set-btn" data-country="NUTS Regions">
+                                                <span>➕</span>
+                                                <span>Add Border Set</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Catalunya (linked to Catalunya checkbox) -->
+                                <div class="border-subgroup" data-expanded="true" data-list-country="Catalunya">
+                                    <div class="border-subgroup-header">
+                                        <button type="button" class="border-expand-btn" aria-expanded="true" aria-controls="catalonia-content">
+                                            <span class="border-summary-label"><strong>Catalunya</strong></span>
+                                            <span class="border-summary-spacer"></span>
+                                            <span class="border-triangle">▶</span>
+                                        </button>
+                                        <details class="border-info-details"><summary class="border-info-btn" title="Info">ℹ️</summary><p class="border-info-content">Catalan administrative divisions</p></details>
+                                    </div>
+                                    <div id="catalonia-content" class="border-sub-content">
+                                <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>Provinces</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="catProvinces" data-sync-group="catProvinces" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="catProvinces" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="catProvinces" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn" data-layer="catProvinces" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="catProvinces" style="display: none;">
+                                                <p><strong>Catalan provinces</strong></p>
+                                                <p>Barcelona, Girona, Lleida, Tarragona</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catProvinces', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">codeforgermany/click_that_hood (Catalan provinces)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catProvinces', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/spain-provinces.geojson</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/spain-provinces.geojson'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catProvinces', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catProvinces', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">Open Data</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>Comarques</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="catComarques" data-sync-group="catComarques" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="catComarques" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="catComarques" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn" data-layer="catComarques" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="catComarques" style="display: none;">
+                                                <p><strong>Catalan comarques</strong></p>
+                                                <p>Catalan counties/regions</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catComarques', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">ArnauInes/geometries_cat_bcn_2024</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catComarques', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">https://raw.githubusercontent.com/ArnauInes/geometries_cat_bcn_2024/main/dts_comarques_cat_2025.json</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://raw.githubusercontent.com/ArnauInes/geometries_cat_bcn_2024/main/dts_comarques_cat_2025.json'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catComarques', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catComarques', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">Open Data</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>Municipalities</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="catMunicipalities" data-sync-group="catMunicipalities" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="catMunicipalities" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="catMunicipalities" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn" data-layer="catMunicipalities" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="catMunicipalities" style="display: none;">
+                                                <p><strong>Catalan municipalities</strong></p>
+                                                <p>Catalan municipalities</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catMunicipalities', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">ArnauInes/geometries_cat_bcn_2024</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catMunicipalities', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">https://raw.githubusercontent.com/ArnauInes/geometries_cat_bcn_2024/main/dts_municipis_cat_2025.json</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://raw.githubusercontent.com/ArnauInes/geometries_cat_bcn_2024/main/dts_municipis_cat_2025.json'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catMunicipalities', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catMunicipalities', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">Open Data</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>Census sections</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="catCensus" data-sync-group="catCensus" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="catCensus" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="catCensus" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn" data-layer="catCensus" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="catCensus" style="display: none;">
+                                                <p><strong>Catalan census sections</strong></p>
+                                                <p>Catalan census sections</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catCensus', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">ArnauInes/geometries_cat_bcn_2024</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catCensus', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">https://raw.githubusercontent.com/ArnauInes/geometries_cat_bcn_2024/main/dts_seccions_censals_cat_2025.json</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://raw.githubusercontent.com/ArnauInes/geometries_cat_bcn_2024/main/dts_seccions_censals_cat_2025.json'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catCensus', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'catCensus', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">Open Data</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Add Border Set Button for Catalunya -->
+                                        <div class="add-border-set-container">
+                                            <button type="button" class="add-border-set-btn" data-country="Catalunya">
+                                                <span>➕</span>
+                                                <span>Add Border Set</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- España (linked to Spain checkbox) -->
+                                <div class="border-subgroup" data-expanded="false" data-list-country="Spain">
+                                    <div class="border-subgroup-header">
+                                        <button type="button" class="border-expand-btn" aria-expanded="false" aria-controls="espana-content">
+                                            <span class="border-summary-label"><strong>Spain</strong></span>
+                                            <span class="border-summary-spacer"></span>
+                                            <span class="border-triangle">▶</span>
+                                        </button>
+                                        <details class="border-info-details"><summary class="border-info-btn" title="Info">ℹ️</summary><p class="border-info-content">Administrative divisions of Spain</p></details>
+                                    </div>
+                                    <div id="espana-content" class="border-sub-content">
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>CCAA</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="spainCCAA" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="spainCCAA" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="spainCCAA" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn" data-layer="spainCCAA" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="spainCCAA" style="display: none;">
+                                                <p><strong>Autonomous communities (CCAA)</strong></p>
+                                                <p>Spanish autonomous communities</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainCCAA', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">TBD (IGN/INE)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainCCAA', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">—</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="if(this.previousElementSibling.textContent!=='—'){navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)}">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainCCAA', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainCCAA', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">TBD</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>Provinces</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="spainProvinces" data-sync-group="spainProvinces" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="spainProvinces" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="spainProvinces" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn" data-layer="spainProvinces" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="spainProvinces" style="display: none;">
+                                                <p><strong>Spanish provinces</strong></p>
+                                                <p>All Spanish provinces</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainProvinces', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">codeforgermany/click_that_hood (full Spain)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainProvinces', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/spain-provinces.geojson</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/spain-provinces.geojson'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainProvinces', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainProvinces', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">Open Data</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>Comarcas</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="spainComarques" data-sync-group="spainComarques" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="spainComarques" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="spainComarques" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn broken" data-layer="spainComarques" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="spainComarques" style="display: none;">
+                                                <p><strong style="color: #d32f2f;">⚠️ Currently not working</strong></p>
+                                                <p>Spanish comarcas (currently using autonomous communities as a substitute)</p>
+                                                <p><em>Note: True comarca boundaries only exist officially in Catalunya, Aragon, Galicia, and some other regions</em></p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainComarques', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">Highcharts Map Collection</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainComarques', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">es-all.geo.json</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('es-all.geo.json'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainComarques', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainComarques', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">TBD</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>Municipalities</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="spainMunicipalities" data-sync-group="spainMunicipalities" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="spainMunicipalities" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="spainMunicipalities" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn broken" data-layer="spainMunicipalities" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="spainMunicipalities" style="display: none;">
+                                                <p><strong style="color: #d32f2f;">⚠️ Currently not working</strong></p>
+                                                <p><strong>Note:</strong> After ~1–2 minutes, an <em>incomplete</em> municipalities dataset sometimes loads. This source should likely be replaced.</p>
+                                                <p>Spanish municipalities (8,000+ municipalities across Spain)</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainMunicipalities', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">Spanish National Geographic Institute (IGN)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainMunicipalities', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">https://api-features.ign.es (OGC API-Features, Collection: administrativeunit)</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://api-features.ign.es'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainMunicipalities', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON (via OGC API)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainMunicipalities', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">CC BY 4.0</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>Census sections</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="spainCensus" data-sync-group="spainCensus" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="spainCensus" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="spainCensus" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn broken" data-layer="spainCensus" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="spainCensus" style="display: none;">
+                                                <p><strong style="color: #d32f2f;">⚠️ Currently not working</strong></p>
+                                                <p>Spanish census sections (35,000+ sections, capped at 2,000 for performance)</p>
+                                                <p><em>Note: Limited to 2,000 features for web display performance. For province-specific data, add CQL filter</em></p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainCensus', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">Spanish National Statistics Institute (INE)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainCensus', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">WFS Service (Layer: Secciones_2024)</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="if(this.previousElementSibling.textContent.includes('http')){navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)}">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainCensus', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">WFS (Web Feature Service)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'spainCensus', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">Open Data (INE)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Add Border Set Button for Spain -->
+                                        <div class="add-border-set-container">
+                                            <button type="button" class="add-border-set-btn" data-country="Spain">
+                                                <span>➕</span>
+                                                <span>Add Border Set</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Ireland (linked to Ireland checkbox) -->
+                                <div class="border-subgroup" data-expanded="false" data-list-country="Ireland">
+                                    <div class="border-subgroup-header">
+                                        <button type="button" class="border-expand-btn" aria-expanded="false" aria-controls="ireland-content">
+                                            <span class="border-summary-label"><strong>Ireland</strong></span>
+                                            <span class="border-summary-spacer"></span>
+                                            <span class="border-triangle">▶</span>
+                                        </button>
+                                        <details class="border-info-details"><summary class="border-info-btn" title="Info">ℹ️</summary><p class="border-info-content">Administrative divisions of Ireland (Republic of Ireland and Northern Ireland)</p></details>
+                                    </div>
+                                    <div id="ireland-content" class="border-sub-content">
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>Counties</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="irelandCounties" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="irelandCounties" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="irelandCounties" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn" data-layer="irelandCounties" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="irelandCounties" style="display: none;">
+                                                <p><strong>Counties of Ireland</strong></p>
+                                                <p>26 counties of Ireland (Republic) + 6 counties of Northern Ireland</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'irelandCounties', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">Tailte Éireann / OSi (Administrative Areas - National Statutory Boundaries, data.gov.ie)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'irelandCounties', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">https://data-osi.opendata.arcgis.com/api/download/v1/items/d81188d16e804bde81548e982e80c53e/geojson?layers=0</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://data-osi.opendata.arcgis.com/api/download/v1/items/d81188d16e804bde81548e982e80c53e/geojson?layers=0'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'irelandCounties', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'irelandCounties', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">Open Data</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border-sub-item">
+                                            <div class="border-control-header">
+                                                <label><strong>Municipal districts</strong></label>
+                                                <button type="button" class="border-eye-btn" data-layer="irelandMunicipalDistricts" aria-label="Toggle visibility">👁️</button>
+                                                <button type="button" class="border-style-btn" data-layer="irelandMunicipalDistricts" aria-label="Edit style">🎨</button>
+                                                <button type="button" class="border-list-btn" data-layer="irelandMunicipalDistricts" aria-label="Show territory list">▶</button>
+                                                <button type="button" class="border-info-btn" data-layer="irelandMunicipalDistricts" title="Info">ℹ️</button>
+                                            </div>
+                                            <div class="border-info-content" data-layer="irelandMunicipalDistricts" style="display: none;">
+                                                <p><strong>Municipal Districts (Ireland)</strong></p>
+                                                <p>Local government municipal districts (LEAs)</p>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Source
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'irelandMunicipalDistricts', 'source')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="source">Tailte Éireann / OSi (Municipal Districts - National Statutory Boundaries, data.gov.ie)</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        URL
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'irelandMunicipalDistricts', 'url')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value url" data-field="url">https://data-osi.opendata.arcgis.com/api/download/v1/items/b03f26c576d14331be20bbf943e870cd/geojson?layers=0</div>
+                                                    <div class="border-info-copy-row">
+                                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://data-osi.opendata.arcgis.com/api/download/v1/items/b03f26c576d14331be20bbf943e870cd/geojson?layers=0'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        Format
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'irelandMunicipalDistricts', 'format')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                                </div>
+                                                
+                                                <div class="border-info-field-row">
+                                                    <div class="border-info-field-label">
+                                                        License
+                                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'irelandMunicipalDistricts', 'license')">✏️ Edit</button>
+                                                    </div>
+                                                    <div class="border-info-field-value" data-field="license">Open Data</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Add Border Set Button for Ireland -->
+                                        <div class="add-border-set-container">
+                                            <button type="button" class="add-border-set-btn" data-country="Ireland">
+                                                <span>➕</span>
+                                                <span>Add Border Set</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="continent-selected-countries" data-continent="europe"></div>
+                        </div>
+
+                        <!-- Other continents tree (structural, no data yet) -->
+                        <div class="border-control-group border-control-group-compact">
+                            <div class="border-subgroup continent-subgroup" data-expanded="false">
+                                <div class="border-subgroup-header">
+                                    <button type="button" class="border-expand-btn" aria-expanded="false" aria-controls="other-continents-accordion">
+                                        <span class="border-summary-label"><strong>Other continents</strong></span>
+                                        <span class="border-summary-spacer"></span>
+                                        <span class="border-triangle">▶</span>
+                                    </button>
+                                </div>
+                                <div id="other-continents-accordion" class="border-sub-content">
+                                    <div class="border-subgroup continent-subgroup" data-expanded="false" data-continent="asia">
+                                        <div class="border-subgroup-header">
+                                            <button type="button" class="border-expand-btn" aria-expanded="false" aria-controls="asia-content">
+                                                <span class="border-summary-label"><strong>Asia</strong></span>
+                                                <span class="border-summary-spacer"></span>
+                                                <span class="border-triangle">▶</span>
+                                            </button>
+                                            <details class="border-info-details"><summary class="border-info-btn" title="Info">ℹ️</summary><p class="border-info-content">Asian administrative divisions</p></details>
+                                        </div>
+                                        <div id="asia-content" class="continent-dropdown-content">
+                                            <div class="continent-country-list" data-continent="asia"></div>
+                                        </div>
+                                        <div class="continent-selected-countries" data-continent="asia"></div>
+                                    </div>
+                                    <div class="border-subgroup continent-subgroup" data-expanded="false" data-continent="africa">
+                                        <div class="border-subgroup-header">
+                                            <button type="button" class="border-expand-btn" aria-expanded="false" aria-controls="africa-content">
+                                                <span class="border-summary-label"><strong>Africa</strong></span>
+                                                <span class="border-summary-spacer"></span>
+                                                <span class="border-triangle">▶</span>
+                                            </button>
+                                            <details class="border-info-details"><summary class="border-info-btn" title="Info">ℹ️</summary><p class="border-info-content">African administrative divisions</p></details>
+                                        </div>
+                                        <div id="africa-content" class="continent-dropdown-content">
+                                            <div class="continent-country-list" data-continent="africa"></div>
+                                        </div>
+                                        <div class="continent-selected-countries" data-continent="africa"></div>
+                                    </div>
+                                    <div class="border-subgroup continent-subgroup" data-expanded="false" data-continent="americas">
+                                        <div class="border-subgroup-header">
+                                            <button type="button" class="border-expand-btn" aria-expanded="false" aria-controls="americas-content">
+                                                <span class="border-summary-label"><strong>America</strong></span>
+                                                <span class="border-summary-spacer"></span>
+                                                <span class="border-triangle">▶</span>
+                                            </button>
+                                            <details class="border-info-details"><summary class="border-info-btn" title="Info">ℹ️</summary><p class="border-info-content">North and South American administrative divisions (America)</p></details>
+                                        </div>
+                                        <div id="americas-content" class="continent-dropdown-content">
+                                            <div class="continent-country-list" data-continent="americas"></div>
+                                        </div>
+                                        <div class="continent-selected-countries" data-continent="americas"></div>
+                                    </div>
+                                    <div class="border-subgroup continent-subgroup" data-expanded="false" data-continent="other">
+                                        <div class="border-subgroup-header">
+                                            <button type="button" class="border-expand-btn" aria-expanded="false" aria-controls="other-content">
+                                                <span class="border-summary-label"><strong>Other</strong></span>
+                                                <span class="border-summary-spacer"></span>
+                                                <span class="border-triangle">▶</span>
+                                            </button>
+                                            <details class="border-info-details"><summary class="border-info-btn" title="Info">ℹ️</summary><p class="border-info-content">Australia, Oceania, Antarctica</p></details>
+                                        </div>
+                                        <div id="other-content" class="continent-dropdown-content">
+                                            <div class="continent-country-list" data-continent="other"></div>
+                                        </div>
+                                        <div class="continent-selected-countries" data-continent="other"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="border-section-title">World</h4>
+                        <div class="border-control-group border-control-group-compact">
+                            <div class="border-control-header">
+                                <label><span>🌍 World Countries</span></label>
+                                <button type="button" class="border-eye-btn" data-layer="worldCountries" aria-label="Toggle visibility">👁️</button>
+                                <button type="button" class="border-style-btn" data-layer="worldCountries" aria-label="Edit style">🎨</button>
+                                <button type="button" class="border-list-btn" data-layer="worldCountries" aria-label="Show territory list">▶</button>
+                                <button type="button" class="border-info-btn" data-layer="worldCountries" title="Info">ℹ️</button>
+                            </div>
+                            <div class="border-info-content" data-layer="worldCountries" style="display: none;">
+                                <p><strong>World Countries</strong></p>
+                                <p>Global country boundaries (DataHub / Mapbox visualization)</p>
+                                
+                                <div class="border-info-field-row">
+                                    <div class="border-info-field-label">
+                                        Source
+                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'worldCountries', 'source')">✏️ Edit</button>
+                                    </div>
+                                    <div class="border-info-field-value" data-field="source">Natural Earth / Mapbox</div>
+                                </div>
+                                
+                                <div class="border-info-field-row">
+                                    <div class="border-info-field-label">
+                                        URL
+                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'worldCountries', 'url')">✏️ Edit</button>
+                                    </div>
+                                    <div class="border-info-field-value url" data-field="url">https://datahub.io/core/geo-countries/r/countries.geojson</div>
+                                    <div class="border-info-copy-row">
+                                        <button class="border-info-field-action-btn" onclick="navigator.clipboard.writeText('https://datahub.io/core/geo-countries/r/countries.geojson'); this.textContent='✓ Copied'; setTimeout(() => this.textContent='📋 Copy', 1500)">📋 Copy</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="border-info-field-row">
+                                    <div class="border-info-field-label">
+                                        Format
+                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'worldCountries', 'format')">✏️ Edit</button>
+                                    </div>
+                                    <div class="border-info-field-value" data-field="format">GeoJSON</div>
+                                </div>
+                                
+                                <div class="border-info-field-row">
+                                    <div class="border-info-field-label">
+                                        License
+                                        <button class="border-info-field-action-btn edit" onclick="toggleInfoEdit(this, 'worldCountries', 'license')">✏️ Edit</button>
+                                    </div>
+                                    <div class="border-info-field-value" data-field="license">Public Domain (DataHub)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Custom Border Sets (collapsible, info outside row like Europe) -->
+                        <div class="border-control-group border-control-group-compact" style="margin-top: 12px;">
+                            <div class="border-subgroup continent-subgroup" data-expanded="false" id="custom-border-sets-group">
+                                <div class="border-subgroup-header">
+                                    <button type="button" class="border-expand-btn" aria-expanded="false" aria-controls="custom-border-sets-content">
+                                        <span class="border-summary-label"><strong>➕ Custom Border Sets</strong></span>
+                                        <span class="border-summary-spacer"></span>
+                                        <span class="border-triangle">▶</span>
+                                    </button>
+                                    <details class="border-info-details"><summary class="border-info-btn" title="Info">ℹ️</summary><div class="border-info-content"><p><strong>Add Your Own GeoJSON</strong></p><p>Load custom territorial boundaries from any public GeoJSON URL. Perfect for adding your own datasets, regional borders, or specialized administrative divisions.</p><p style="margin-top: 8px;"><strong>Requirements:</strong></p><ul style="margin: 4px 0; padding-left: 20px; font-size: 10px;"><li>Must be a valid GeoJSON file</li><li>URL must be publicly accessible (CORS-enabled)</li><li>Recommended: use CDN or GitHub raw URLs</li><li>Max file size: ~10MB for performance</li></ul><p style="margin-top: 8px;"><strong>Example URLs:</strong></p><p style="font-size: 10px; font-family: monospace; background: #f5f5f5; padding: 4px; border-radius: 2px; word-break: break-all;">https://raw.githubusercontent.com/user/repo/main/data.geojson</p></div></details>
+                                </div>
+                                <div id="custom-border-sets-content" class="border-sub-content">
+                                    <div style="margin-top: 8px;">
+                                        <div style="display: flex; gap: 6px; margin-bottom: 6px;">
+                                            <input type="text" id="custom-border-name-input" placeholder="Border set name (e.g., 'US States')" style="flex: 1; padding: 6px 8px; font-size: 12px; border: 1px solid #ccc; border-radius: 4px;">
+                                        </div>
+                                        <div style="display: flex; gap: 6px; margin-bottom: 6px;">
+                                            <input type="text" id="custom-border-url-input" placeholder="GeoJSON URL" style="flex: 1; min-width: 0; padding: 6px 8px; font-size: 12px; border: 1px solid #ccc; border-radius: 4px;">
+                                            <button type="button" id="custom-border-add-btn" style="flex: 0 0 auto; padding: 6px 10px; font-size: 12px; background: #4A90E2; color: white; border: none; border-radius: 4px; cursor: pointer; white-space: nowrap;">+ Add</button>
+                                        </div>
+                                        <div id="custom-borders-list" style="margin-top: 10px;">
+                                            <!-- Custom border sets will be added here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="boundary-loading-indicator" class="boundary-loading" style="display: none;">Loading boundaries...</div>
+                    </div>
+                    </div>
+
+                </section>
+
+                <!-- Self -->
+                <section id="template-module-self" class="template-module-panel template-subdocs-panel" data-module-panel="self" hidden>
+                </section>
+
+                <!-- Sindicato (SindicApp worker coordination) -->
+                <section id="template-module-sindicato" class="template-module-panel" data-module-panel="sindicato" hidden>
+                    <h4 class="template-section-title" id="sindicato-panel-title">Syndicate</h4>
+                    <p class="template-muted" id="sindicato-panel-muted">Neutral workplace coordination — open the background workspace for the full view.</p>
+                </section>
+
+                </div><!-- /template-module-body -->
+
+            </div>
+        </div>
+    </div>
+
+<!-- SINDICAPP_BUNDLED_SCRIPTS_START -->
+    <script src="./js/cartagrama-territories-bundle.js"></script>
+    <script src="./js/sindicapp-locale-geo-data.js"></script>
+    <script src="./js/sindicapp-locale-en-content.js"></script>
+    <script src="./js/sindicapp-locale-es-content.js"></script>
+    <script src="./js/sindicapp-sindicato.js"></script>
+    <!-- SINDICAPP_BUNDLED_SCRIPTS_END -->
+    <script src="./js/sindicapp-main.js"></script>
+</body>
+</html>
