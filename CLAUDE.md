@@ -28,22 +28,35 @@ sindicapp/
 │   ├── sindicapp-locale-es-content.js      # España (ES) locale pack
 │   ├── sindicapp-sindicato.js              # Sindicato module (window.SINDICAPP_SINDICATO)
 │   └── sindicapp-main.js                   # main app (runSindicApp)
+├── assets/                                 # logo etc.; copied into dist/ by vite.config.js
 ├── package.json / vite.config.js           # Vite tooling (dev/build/preview)
-├── .github/workflows/deploy.yml            # GitHub Pages deploy on push to master/main
+├── .github/workflows/deploy.yml            # GitHub Pages deploy on push to main
 ├── legacy/SindicApp.html                   # original monolith, kept verbatim for reference
+├── docs/
+│   ├── decisions/                          # ADRs — see "Architecture decisions" below
+│   ├── changelog/CHANGELOG.md              # dated changelog — see "Changelog" below
+│   ├── plans/                              # roadmap / proposal docs, incl. plans/old/ (superseded proposals)
+│   └── wiki/                               # archived historical snapshots of the app (frozen, not maintained)
 ├── LICENSE
 └── README.md
 ```
 
-The split mirrors the module boundaries that were already documented inside the old single-file `SindicApp.html` (`/* sindicapp/... */` header comments and `SINDICAPP_BUNDLED_SCRIPTS` markers). Script contents were extracted verbatim; a reassembly of the split files reproduces the original file byte-for-byte.
+The `index.html` + `css/` + `js/` split mirrors the module boundaries that were already documented inside the old single-file `SindicApp.html` (`/* sindicapp/... */` header comments and `SINDICAPP_BUNDLED_SCRIPTS` markers); see [docs/decisions/0001](docs/decisions/0001-split-single-file-prototype-into-vite-project.md). **`index.html` must exist at the repo root** — both Vite's build and GitHub Pages' default document depend on that exact name and location; moving or renaming it (e.g. during a docs reorg) breaks the deploy.
+
+## Commit message conventions
+
+Use [Conventional Commits](https://www.conventionalcommits.org/): `type(scope): summary`, e.g. `fix(usuario): call syncTextWorkspace on denuncia submit`. Common types: `feat`, `fix`, `refactor`, `docs`, `style`, `test`, `chore`, `build`, `ci`. Scope is optional but helpful (module or area name). Body paragraphs below the summary line are welcome for anything non-trivial — explain the *why*, not just the *what*.
+
+## Changelog
+
+`docs/changelog/CHANGELOG.md` follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), grouped by date (this project has no version numbers yet). Add an entry — under Added / Changed / Fixed / Removed as appropriate — for every push that a future reader would want to know about. Trivial pushes (typo fixes, doc-only tweaks) don't need one; use judgment.
+
+## Architecture decisions
+
+`docs/decisions/` holds ADRs for decisions that would confuse a future contributor if only the code were visible — see `docs/decisions/README.md` for the template and when to write one. Current set: [0001](docs/decisions/0001-split-single-file-prototype-into-vite-project.md) Vite split, [0002](docs/decisions/0002-keep-application-scripts-classic-not-es-modules.md) classic scripts, [0003](docs/decisions/0003-avoid-backend-store-demo-state-in-localstorage.md) no backend, [0004](docs/decisions/0004-deploy-via-github-pages-using-github-actions.md) GitHub Pages via Actions, [0005](docs/decisions/0005-keep-map-as-primary-navigation-surface.md) map as primary navigation. Don't edit an old ADR to reflect a change of mind — write a new one that supersedes it.
 
 ## Commit policy — read before touching git
 
-**Every commit to this repository must be authored and pushed by Edu Collin (the project owner), and only by Edu Collin.**
+Edu Collin (project owner) is the only human author of this repo; every commit should be attributable to him even when Claude runs the git commands. As of 2026-07-10, Edu has authorized Claude to commit and push directly when he says **"push"**: commit everything currently in the working folder (using conventional commit format above, and adding a changelog entry) and push it — to whichever branch is currently checked out, not automatically to `main` unless `main` is what's checked out or Edu says so explicitly. Local git identity should be set to Edu's name/email; a short-lived, repo-scoped GitHub token is supplied by Edu each session for the actual push (never persisted to disk).
 
-- Claude (or any AI assistant working in this project) must **never** run `git commit` or `git push` against this repository on its own initiative or as a "favor."
-- Claude may prepare changes (edit files, stage a diff, draft a commit message) and hand them to Edu for review, but the actual `git add` / `git commit` / `git push` steps are performed by Edu, from his own machine, under his own GitHub account.
-- If Claude is ever asked to "just commit this" or "push this for me," it should pause and confirm explicitly with Edu first, and should default to *not* pushing unless that confirmation is unambiguous and specific to that request.
-- This applies to all branches, not just `main`.
-
-Reason: authorship and review of every change to this codebase needs to trace back to a single accountable human (Edu), not to an assistant acting autonomously.
+This supersedes any stricter "never push" default for this specific project and this specific phrase. Still pause and confirm before pushing anything that looks like it could be accidental or destructive (e.g. a large unexplained deletion, like `index.html` going missing during a reorg on 2026-07-11) — "push" means "commit and push what's clearly intended," not "push blindly no matter what's in the folder."
