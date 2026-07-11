@@ -26,6 +26,9 @@ Nothing pending.
 - `docs/plans/REFORMAS-FASE-4.md` renamed and restructured into `docs/plans/PLANES.md`: dropped the `F4-N` numbering scheme (now a general living plans doc, not tied to one reform round) and added a new section logging engineering practices considered but deliberately deferred (linting, pre-commit hooks, PR-based review, release automation) with the reasoning for each.
 - `package.json` version set to `0.0.4` (see note above).
 
+### Fixed
+- `deploy.yml`'s concurrency group was a static `"pages"` string shared across every event. Within seconds of this batch landing, Dependabot opened five PRs at once, and their CI runs shared that group with the actual `main` deploy — cancelling it before it finished. Scoped the group per-branch/per-PR instead (`pages-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}`) so unrelated runs no longer cancel each other.
+
 ## 2026-07-11
 
 ### Changed

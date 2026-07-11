@@ -12,7 +12,11 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  # Scoped per-ref: keeps deploys of the same branch from overlapping,
+  # without cancelling unrelated PR runs (e.g. Dependabot opening several
+  # PRs at once previously cancelled the actual main-branch deploy, since
+  # they all shared one static "pages" group).
+  group: pages-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
