@@ -35,7 +35,7 @@ jobs:
       # and docs/plans/PLANES.md ("Harness de QA como herramienta del repo").
       - run: npx playwright install --with-deps chromium
       - run: npm test
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
       - uses: actions/upload-pages-artifact@v5
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
