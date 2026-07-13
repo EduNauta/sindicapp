@@ -16,10 +16,15 @@
             const sindicatoWorkplacesBlock = document.getElementById('sindicato-workplaces-block');
             const sindicatoMapSidebar = document.getElementById('sindicato-map-sidebar');
             const sindicatoUnionsSidebar = document.getElementById('sindicato-unions-sidebar');
+            const sindicatoUnionSearch = document.getElementById('sindicato-union-search');
             const sindicatoUnionSelect = document.getElementById('sindicato-union-select');
             const sindicatoUnionSectionNav = document.getElementById('sindicato-union-section-nav');
             const sindicatoUnionSectionButtons = document.querySelectorAll('[data-sindicato-union-section]');
             const sindicatoFeedSidebar = document.getElementById('sindicato-feed-sidebar');
+            /* 13-07-2026: Foro con sidebar propia (ámbitos); Consumidores/Estudiantes solo intro */
+            const sindicatoForoSidebar = document.getElementById('sindicato-foro-sidebar');
+            const sindicatoConsumidoresSidebar = document.getElementById('sindicato-consumidores-sidebar');
+            const sindicatoEstudiantesSidebar = document.getElementById('sindicato-estudiantes-sidebar');
             const sindicatoFeedSubnav = document.getElementById('sindicato-feed-subnav');
             const sindicatoFeedScopeButtons = document.querySelectorAll('[data-sindicato-feed-scope]');
             const sindicatoFeedScopeTreeMount = document.getElementById('sindicato-feed-scope-tree-mount');
@@ -30,15 +35,24 @@
             const sindicatoCoordinationSidebar = document.getElementById('sindicato-coordination-sidebar');
             const sindicatoWikiSidebar = document.getElementById('sindicato-wiki-sidebar');
             const sindicatoViviendaSidebar = document.getElementById('sindicato-vivienda-sidebar');
+            /* Vivienda / Housing (13-07-2026) — módulo nuevo, distinto de Territorios */
+            const sindicatoHousingSidebar = document.getElementById('sindicato-housing-sidebar');
+            const sindicatoHousingSubnav = document.getElementById('sindicato-housing-subnav');
+            const sindicatoHousingSubButtons = document.querySelectorAll('[data-sindicato-housing-sub]');
             const sindicatoViviendaParentSelect = document.getElementById('sindicato-vivienda-parent-select');
             const sindicatoViviendaTerritorySelect = document.getElementById('sindicato-vivienda-territory-select');
+            const sindicatoViviendaMunicipalitySelect = document.getElementById('sindicato-vivienda-municipality-select');
             const sindicatoMapTerritoryTreeMount = document.getElementById('sindicato-map-territory-tree-mount');
             const sindicatoCoordSubnav = document.getElementById('sindicato-coordination-subnav');
             const sindicatoCoordSubButtons = document.querySelectorAll('[data-sindicato-coord-sub]');
+            /* CRM (12-07-2026) — selector de organización del CRM */
+            const sindicatoCrmOrgSelect = document.getElementById('sindicato-crm-org-select');
+            const sindicatoCrmOrgLabel = document.getElementById('sindicato-crm-org-label');
             const sindicatoWikiSubnav = document.getElementById('sindicato-wiki-subnav');
             const sindicatoWikiSubButtons = document.querySelectorAll('[data-sindicato-wiki-sub]');
             const sindicatoWorkplaceSearch = document.getElementById('sindicato-workplace-search');
             const sindicatoWorkplaceSelect = document.getElementById('sindicato-workplace-select');
+            const sindicatoWorkplacesViewNav = document.getElementById('sindicato-workplaces-view-nav');
             const sindicatoWorkplaceSectionNav = document.getElementById('sindicato-workplace-section-nav');
             const sindicatoSectionButtons = document.querySelectorAll('[data-sindicato-section]');
             const sindicatoAddCompanySidebarMount = document.getElementById('sindicato-add-company-sidebar-mount');
@@ -84,22 +98,43 @@
             let lastMapTerritorySelection = null;
             let activeSindicatoSub = '';
             let activeSindicatoWorkplace = '';
-            let activeSindicatoSection = 'location';
+            let activeSindicatoSection = 'overview';
             let activeSindicatoSector = '';
             let activeSindicatoUnion = '';
             let activeSindicatoUnionSection = 'overview';
-            let activeSindicatoCoordSub = 'estructura';
+            let activeSindicatoCoordSub = 'afiliadas';
+            /* CRM (12-07-2026) — organización activa y estado de vista por módulo */
+            let activeSindicatoCrmOrg = 'sindicapp';
+            let sindicatoCrmMemberQuery = '';
+            let sindicatoCrmMemberFilter = 'todas';
+            let sindicatoCrmFinanzasView = 'resumen';
+            let sindicatoCrmDocFilter = 'todas';
             let activeSindicatoWikiSub = 'index';
+            /* 13-07-2026: página wiki personalizada por entidad (empresa/sector/sindicato/territorio). */
+            let activeSindicatoWikiEntityKind = '';
+            let activeSindicatoWikiEntityId = '';
+            /* Vivienda / Housing (13-07-2026) — huelgómetro | alarmas */
+            let activeSindicatoHousingSub = 'huelgometro';
             let activeSindicatoViviendaParent = '';
             let activeSindicatoViviendaTerritory = '';
-            let activeSindicatoViviendaBuilding = ''; /* R7 — perfil de edificio en Vivienda */
+            let activeSindicatoViviendaBuilding = ''; /* R7 — perfil de edificio en Territorios */
+            let activeSindicatoViviendaMunicipality = ''; /* Territorios — municipio (solo estructura, 12-07-2026) */
+            /* Reestructura 12-07-2026: Empresas y Territorios tienen dos vistas, Mapa y Lista.
+               Default «map» (geography-first). El antiguo sub «map» de primer nivel se
+               redirige a Territorios→Mapa. */
+            let activeSindicatoViviendaView = 'map';
+            let activeSindicatoWorkplacesView = 'map';
             let activeSindicatoMapTerritory = '';
             let activeSindicatoFeedScope = 'general';
             let activeSindicatoFeedSectorId = '';
             let activeSindicatoFeedTerritoryId = '';
             let activeSindicatoFeedCompanyId = '';
             let activeSindicatoForumThread = '';
+            /* Consumidores y Estudiantes (13-07-2026) — perfil abierto en cada directorio */
+            let activeSindicatoConsumidor = '';
+            let activeSindicatoEstudiantesCentro = '';
             let sindicatoWorkplaceFilter = '';
+            let sindicatoUnionFilter = '';
             let activeSelfSub = 'sindicato';
             let activeSelfSindicatoSection = 'overview';
             const USER_WORKPLACE_BY_LOCALE = { es: 'zona-franca-logistica', ie: 'docklands-logistics' };
@@ -260,10 +295,7 @@
                 if (mapInfoBtn && ui.territoryInfo) mapInfoBtn.textContent = ui.territoryInfo;
                 const territoryInfoBtn = document.getElementById('territory-info-box-info-btn');
                 if (territoryInfoBtn && ui.territoryInfo) territoryInfoBtn.textContent = ui.territoryInfo;
-                const mapProviderTitle = document.getElementById('geo-map-provider-title');
-                if (mapProviderTitle && ui.mapProviderTitle) mapProviderTitle.textContent = ui.mapProviderTitle;
-                const mapProviderMuted = document.getElementById('geo-map-provider-muted');
-                if (mapProviderMuted && ui.mapProviderMuted) mapProviderMuted.textContent = ui.mapProviderMuted;
+                /* Bloque «Proveedor de mapa» retirado del DOM (12-07-2026). */
                 const bordersTitle = document.getElementById('geo-borders-title');
                 if (bordersTitle && ui.bordersTitle) bordersTitle.textContent = `🗺️ ${ui.bordersTitle}`;
                 const bordersHelp1 = document.getElementById('geo-borders-help-1');
@@ -281,9 +313,7 @@
                         else btn.textContent = label;
                     });
                 });
-                const sindTitle = document.getElementById('sindicato-panel-title');
-                const modLabels = getModuleLabels();
-                if (sindTitle && modLabels.sindicato) sindTitle.textContent = modLabels.sindicato;
+                /* Panel stub de Sindicato retirado (12-07-2026) — ya no hay título que sincronizar. */
                 const sindNavTree = document.getElementById('sindicato-nav-tree');
                 if (sindNavTree && ui.sindicatoNavAria) sindNavTree.setAttribute('aria-label', ui.sindicatoNavAria);
                 const sindSubnav = document.getElementById('sindicato-subnav');
@@ -429,7 +459,6 @@
 
             function refreshSindicatoSidebarLabels() {
                 const c = getSindicatoCopy();
-                const mapIntro = document.getElementById('sindicato-map-intro');
                 const wpIntro = document.getElementById('sindicato-workplaces-intro');
                 const unionsIntro = document.getElementById('sindicato-unions-intro');
                 const feedIntro = document.getElementById('sindicato-feed-intro');
@@ -437,17 +466,31 @@
                 const coordinationIntro = document.getElementById('sindicato-coordination-intro');
                 const wikiIntro = document.getElementById('sindicato-wiki-intro');
                 const viviendaIntro = document.getElementById('sindicato-vivienda-intro');
-                const mapProviderTitle = document.getElementById('sindicato-map-provider-title');
-                const mapProviderMuted = document.getElementById('sindicato-map-provider-muted');
-                const mapTerritoriesTitle = document.getElementById('sindicato-map-territories-title');
                 const viviendaParentLabel = document.getElementById('sindicato-vivienda-parent-label');
                 const viviendaTerritoryLabel = document.getElementById('sindicato-vivienda-territory-label');
-                const panelMuted = document.getElementById('sindicato-panel-muted');
-                if (mapIntro && c.mapIntro) mapIntro.textContent = c.mapIntro;
+                const viviendaMunicipalityLabel = document.getElementById('sindicato-vivienda-municipality-label');
                 if (wpIntro && c.workplacesIntro) wpIntro.textContent = c.workplacesIntro;
+                /* Toggles Mapa/Lista (12-07-2026) */
+                document.querySelectorAll('[data-sindicato-vivienda-view], [data-sindicato-workplaces-view]').forEach((btn) => {
+                    const id = btn.getAttribute('data-sindicato-vivienda-view') || btn.getAttribute('data-sindicato-workplaces-view');
+                    const label = (c.viewToggle && c.viewToggle[id]) || (id === 'map' ? 'Mapa' : 'Lista');
+                    const icon = btn.querySelector('[aria-hidden="true"]');
+                    if (icon) btn.innerHTML = `${icon.outerHTML} ${label}`;
+                });
                 if (unionsIntro && c.unionsIntro) unionsIntro.textContent = c.unionsIntro;
-                if (feedIntro && c.feedIntroSidebar) feedIntro.textContent = c.feedIntroSidebar;
-                else if (feedIntro && c.feedIntro) feedIntro.textContent = c.feedIntro;
+                /* 13-07-2026: la sidebar de «feed» es ahora la intro de Red Social; el foro
+                   tiene bloque propio (#sindicato-foro-intro) con la intro de ámbitos. */
+                if (feedIntro && (c.redSocialIntroSidebar || c.feedIntroSidebar)) {
+                    feedIntro.textContent = c.redSocialIntroSidebar || c.feedIntroSidebar;
+                }
+                const foroIntro = document.getElementById('sindicato-foro-intro');
+                if (foroIntro && (c.feedIntroSidebar || c.feedIntro)) {
+                    foroIntro.textContent = c.feedIntroSidebar || c.feedIntro;
+                }
+                const consumidoresIntroEl = document.getElementById('sindicato-consumidores-intro');
+                if (consumidoresIntroEl && c.consumidoresIntro) consumidoresIntroEl.textContent = c.consumidoresIntro;
+                const estudiantesIntroEl = document.getElementById('sindicato-estudiantes-intro');
+                if (estudiantesIntroEl && c.estudiantesIntro) estudiantesIntroEl.textContent = c.estudiantesIntro;
                 if (sindicatoFeedCompanyLabel && c.feedCompanyFilter) {
                     sindicatoFeedCompanyLabel.textContent = c.feedCompanyFilter;
                 }
@@ -460,23 +503,31 @@
                 if (sectoresIntro && c.sectoresIntro) sectoresIntro.textContent = c.sectoresIntro;
                 if (coordinationIntro && c.coordinationIntroSidebar) coordinationIntro.textContent = c.coordinationIntroSidebar;
                 else if (coordinationIntro && c.coordinationIntro) coordinationIntro.textContent = c.coordinationIntro;
+                if (sindicatoCrmOrgLabel && c.crmOrgLabel) {
+                    sindicatoCrmOrgLabel.textContent = c.crmOrgLabel;
+                    if (sindicatoCrmOrgSelect) sindicatoCrmOrgSelect.setAttribute('aria-label', c.crmOrgLabel);
+                }
+                rebuildSindicatoCrmOrgSelect();
                 if (wikiIntro && c.wikiIntroSidebar) wikiIntro.textContent = c.wikiIntroSidebar;
                 if (viviendaIntro && c.viviendaIntroSidebar) viviendaIntro.textContent = c.viviendaIntroSidebar;
-                if (mapProviderTitle && c.mapProviderTitle) mapProviderTitle.textContent = c.mapProviderTitle;
-                if (mapProviderMuted && c.mapProviderMuted) mapProviderMuted.textContent = c.mapProviderMuted;
-                if (mapTerritoriesTitle && c.mapTerritoriesTitle) mapTerritoriesTitle.textContent = c.mapTerritoriesTitle;
-                if (viviendaParentLabel && c.viviendaParentLabel) viviendaParentLabel.textContent = c.viviendaParentLabel;
-                if (viviendaTerritoryLabel && c.viviendaTerritoryLabel) viviendaTerritoryLabel.textContent = c.viviendaTerritoryLabel;
+                /* Reforma legibilidad 12-07: labels cortos («Provincia») encima del dropdown;
+                   el «Selecciona…» completo queda en el aria-label del select. */
+                if (viviendaParentLabel && (c.viviendaParentShort || c.viviendaParentLabel)) viviendaParentLabel.textContent = c.viviendaParentShort || c.viviendaParentLabel;
+                if (viviendaTerritoryLabel && (c.viviendaTerritoryShort || c.viviendaTerritoryLabel)) viviendaTerritoryLabel.textContent = c.viviendaTerritoryShort || c.viviendaTerritoryLabel;
+                if (viviendaMunicipalityLabel && (c.viviendaMunicipalityShort || c.viviendaMunicipalityLabel)) viviendaMunicipalityLabel.textContent = c.viviendaMunicipalityShort || c.viviendaMunicipalityLabel;
                 sindicatoUnionSectionButtons.forEach((btn) => {
                     const id = btn.getAttribute('data-sindicato-union-section');
                     const label = (c.unionSections && c.unionSections[id]) || id;
                     const icon = btn.querySelector('[aria-hidden="true"]');
                     if (icon) btn.innerHTML = `${icon.outerHTML} ${label}`;
                 });
-                if (panelMuted && c.panelMuted) panelMuted.textContent = c.panelMuted;
                 if (sindicatoWorkplaceSearch && c.searchPlaceholder) {
                     sindicatoWorkplaceSearch.placeholder = c.searchPlaceholder;
                     sindicatoWorkplaceSearch.setAttribute('aria-label', c.searchPlaceholder);
+                }
+                if (sindicatoUnionSearch && c.unionSearchPlaceholder) {
+                    sindicatoUnionSearch.placeholder = c.unionSearchPlaceholder;
+                    sindicatoUnionSearch.setAttribute('aria-label', c.unionSearchPlaceholder);
                 }
                 sindicatoSubButtons.forEach((btn) => {
                     const id = btn.getAttribute('data-sindicato-sub');
@@ -502,6 +553,14 @@
                     const icon = btn.querySelector('[aria-hidden="true"]');
                     if (icon) btn.innerHTML = `${icon.outerHTML} ${label}`;
                 });
+                sindicatoHousingSubButtons.forEach((btn) => {
+                    const id = btn.getAttribute('data-sindicato-housing-sub');
+                    const label = (c.housingSubs && c.housingSubs[id]) || id;
+                    const icon = btn.querySelector('[aria-hidden="true"]');
+                    if (icon) btn.innerHTML = `${icon.outerHTML} ${label}`;
+                });
+                const housingIntroEl = document.getElementById('sindicato-housing-intro');
+                if (housingIntroEl && c.housingIntro) housingIntroEl.textContent = c.housingIntro;
                 rebuildSindicatoWorkplaceSelect();
                 renderSindicatoAddCompanySidebarForm();
                 renderSindicatoSectoresTree();
@@ -537,6 +596,34 @@
                 sindicatoViviendaTerritorySelect.value = activeSindicatoViviendaTerritory || '';
                 sindicatoViviendaParentSelect.setAttribute('aria-label', parentPlaceholder);
                 sindicatoViviendaTerritorySelect.setAttribute('aria-label', territoryPlaceholder);
+                /* Territorios — tercer selector: municipio (solo estructura, 12-07-2026) */
+                if (sindicatoViviendaMunicipalitySelect) {
+                    const municipalityPlaceholder = c.viviendaMunicipalityLabel || 'Selecciona municipio';
+                    const allLabel = c.viviendaMunicipalityAll || 'Toda la comarca';
+                    const municipalities = activeSindicatoViviendaTerritory
+                        ? (window.SINDICAPP_SINDICATO.getMunicipalitiesForTerritory?.(activeLocale, activeSindicatoViviendaTerritory) || [])
+                        : [];
+                    if (activeSindicatoViviendaMunicipality && !municipalities.some((m) => m.id === activeSindicatoViviendaMunicipality)) {
+                        activeSindicatoViviendaMunicipality = '';
+                    }
+                    sindicatoViviendaMunicipalitySelect.innerHTML = `<option value="">${allLabel}</option>`
+                        + municipalities.map((m) => `<option value="${m.id}">${m.name}</option>`).join('');
+                    sindicatoViviendaMunicipalitySelect.value = activeSindicatoViviendaMunicipality || '';
+                    sindicatoViviendaMunicipalitySelect.setAttribute('aria-label', municipalityPlaceholder);
+                }
+                /* Reforma legibilidad 12-07 — línea de ruta con la selección actual. */
+                const pathEl = document.getElementById('sindicato-vivienda-path');
+                if (pathEl) {
+                    const parentName = parents.find((p) => p.id === activeSindicatoViviendaParent)?.name || '';
+                    const terrName = subs.find((s) => s.id === activeSindicatoViviendaTerritory)?.name || '';
+                    const munis = activeSindicatoViviendaTerritory
+                        ? (window.SINDICAPP_SINDICATO.getMunicipalitiesForTerritory?.(activeLocale, activeSindicatoViviendaTerritory) || [])
+                        : [];
+                    const muniName = munis.find((m) => m.id === activeSindicatoViviendaMunicipality)?.name || '';
+                    const parts = [parentName, terrName, muniName].filter(Boolean);
+                    pathEl.textContent = parts.length ? `📍 ${parts.join(' › ')}` : '';
+                    pathEl.hidden = !parts.length;
+                }
             }
 
             function setSindicatoViviendaParent(parentId) {
@@ -548,6 +635,7 @@
                     : [];
                 activeSindicatoViviendaTerritory = subs[0]?.id || '';
                 activeSindicatoViviendaBuilding = '';
+                activeSindicatoViviendaMunicipality = '';
                 rebuildSindicatoViviendaSelects();
                 applySindicatoViewSync();
             }
@@ -559,7 +647,20 @@
                     : [];
                 activeSindicatoViviendaTerritory = subs.some((s) => s.id === territoryId) ? territoryId : (subs[0]?.id || '');
                 activeSindicatoViviendaBuilding = '';
+                activeSindicatoViviendaMunicipality = '';
                 if (sindicatoViviendaTerritorySelect) sindicatoViviendaTerritorySelect.value = activeSindicatoViviendaTerritory || '';
+                rebuildSindicatoViviendaSelects();
+                applySindicatoViewSync();
+            }
+
+            function setSindicatoViviendaMunicipality(municipalityId) {
+                if (!window.SINDICAPP_SINDICATO) return;
+                const municipalities = activeSindicatoViviendaTerritory
+                    ? (window.SINDICAPP_SINDICATO.getMunicipalitiesForTerritory?.(activeLocale, activeSindicatoViviendaTerritory) || [])
+                    : [];
+                activeSindicatoViviendaMunicipality = municipalities.some((m) => m.id === municipalityId) ? municipalityId : '';
+                if (sindicatoViviendaMunicipalitySelect) sindicatoViviendaMunicipalitySelect.value = activeSindicatoViviendaMunicipality || '';
+                rebuildSindicatoViviendaSelects(); /* refresca la línea de ruta 📍 */
                 applySindicatoViewSync();
             }
 
@@ -665,18 +766,17 @@
             function setSindicatoFeedScope(scopeId) {
                 const allowed = ['general', 'sectores', 'territorios'];
                 activeSindicatoFeedScope = allowed.includes(scopeId) ? scopeId : 'general';
-                if (activeSindicatoFeedScope === 'general') {
-                    activeSindicatoFeedSectorId = '';
-                    activeSindicatoFeedTerritoryId = '';
-                    activeSindicatoFeedCompanyId = '';
-                }
-                if (activeSindicatoFeedScope !== 'sectores') activeSindicatoFeedSectorId = '';
-                if (activeSindicatoFeedScope !== 'territorios') activeSindicatoFeedTerritoryId = '';
-                if (activeSindicatoFeedScope !== 'general') activeSindicatoForumThread = '';
+                /* 13-07-2026: elegir un ámbito devuelve siempre a su raíz (árbol de
+                   subforos en el fondo o tablón general) — también sirve de «volver»
+                   desde un subforo abierto. */
+                activeSindicatoFeedSectorId = '';
+                activeSindicatoFeedTerritoryId = '';
                 activeSindicatoFeedCompanyId = '';
-                if (activeSindicatoSub !== 'feed') {
+                if (activeSindicatoFeedScope !== 'general') activeSindicatoForumThread = '';
+                /* 13-07-2026: el foro vive en el sub «foro» (antes «feed»). */
+                if (activeSindicatoSub !== 'foro') {
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                    setSindicatoSub('feed');
+                    setSindicatoSub('foro');
                 }
                 renderSindicatoFeedSidebar();
                 applySindicatoViewSync();
@@ -687,9 +787,9 @@
                 activeSindicatoFeedTerritoryId = '';
                 activeSindicatoFeedCompanyId = '';
                 activeSindicatoFeedScope = 'sectores';
-                if (activeSindicatoSub !== 'feed') {
+                if (activeSindicatoSub !== 'foro') {
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                    setSindicatoSub('feed');
+                    setSindicatoSub('foro');
                 }
                 renderSindicatoFeedSidebar();
                 applySindicatoViewSync();
@@ -700,9 +800,9 @@
                 activeSindicatoFeedSectorId = '';
                 activeSindicatoFeedCompanyId = '';
                 activeSindicatoFeedScope = 'territorios';
-                if (activeSindicatoSub !== 'feed') {
+                if (activeSindicatoSub !== 'foro') {
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                    setSindicatoSub('feed');
+                    setSindicatoSub('foro');
                 }
                 renderSindicatoFeedSidebar();
                 applySindicatoViewSync();
@@ -732,15 +832,26 @@
                         unionId: activeSindicatoUnion,
                         unionSection: activeSindicatoUnionSection,
                         coordSub: activeSindicatoCoordSub,
+                        crmOrg: activeSindicatoCrmOrg,
+                        crmMemberQuery: sindicatoCrmMemberQuery,
+                        crmMemberFilter: sindicatoCrmMemberFilter,
+                        crmFinanzasView: sindicatoCrmFinanzasView,
+                        crmDocFilter: sindicatoCrmDocFilter,
                         wikiSub: activeSindicatoWikiSub,
+                        wikiEntityKind: activeSindicatoWikiEntityKind,
+                        wikiEntityId: activeSindicatoWikiEntityId,
+                        housingSub: activeSindicatoHousingSub,
                         feedScope: activeSindicatoFeedScope,
                         feedSectorId: activeSindicatoFeedSectorId,
                         feedTerritoryId: activeSindicatoFeedTerritoryId,
                         feedCompanyId: activeSindicatoFeedCompanyId,
                         forumThreadSlug: activeSindicatoForumThread,
+                        consumidorId: activeSindicatoConsumidor,
+                        estudianteCentroId: activeSindicatoEstudiantesCentro,
                         mapTerritoryId: activeSindicatoMapTerritory,
                         viviendaTerritoryId: activeSindicatoViviendaTerritory,
-                        viviendaBuildingId: activeSindicatoViviendaBuilding
+                        viviendaBuildingId: activeSindicatoViviendaBuilding,
+                        viviendaMunicipalityId: activeSindicatoViviendaMunicipality
                     }
                 );
             }
@@ -750,24 +861,30 @@
                 if (!route) {
                     if (activeSindicatoForumThread) {
                         activeSindicatoForumThread = '';
-                        if (activeModule === SINDICATO_MODULE && activeSindicatoSub === 'feed') {
+                        if (activeModule === SINDICATO_MODULE && activeSindicatoSub === 'foro') {
                             applySindicatoViewSync();
                         }
                     }
                     return;
                 }
                 if (route.view === 'forum-thread') {
+                    /* 13-07-2026: los hilos del foro general viven en el sub «foro». */
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                    if (activeSindicatoSub !== 'feed') setSindicatoSub('feed');
+                    if (activeSindicatoSub !== 'foro') setSindicatoSub('foro');
                     setSindicatoFeedScope('general');
                     activeSindicatoForumThread = route.slug;
                     applySindicatoViewSync();
                     return;
                 }
                 if (route.view === 'territory-dossier') {
+                    /* Reestructura 12-07-2026: el deep link #sindicato-territorio:id
+                       abre ahora la página del territorio en Territorios→Lista. */
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                    if (activeSindicatoSub !== 'map') setSindicatoSub('map');
-                    setSindicatoMapTerritory(route.territoryId);
+                    if (activeSindicatoSub !== 'vivienda') setSindicatoSub('vivienda');
+                    activeSindicatoViviendaView = 'lista';
+                    const terr = window.SINDICAPP_SINDICATO?.getSubterritoryById(activeLocale, route.territoryId);
+                    if (terr?.parentId) setSindicatoViviendaParent(terr.parentId);
+                    setSindicatoViviendaTerritory(route.territoryId);
                     return;
                 }
                 /* C7 — deep link al perfil de empresa */
@@ -785,8 +902,9 @@
                 let next = '';
                 if (activeSindicatoSub === 'workplaces' && activeSindicatoWorkplace) {
                     next = '#sindicato-empresa:' + activeSindicatoWorkplace + ':' + activeSindicatoSection;
-                } else if (activeSindicatoSub === 'map' && activeSindicatoMapTerritory) {
-                    next = '#sindicato-territorio:' + activeSindicatoMapTerritory;
+                } else if (activeSindicatoSub === 'vivienda' && activeSindicatoViviendaView === 'lista'
+                    && activeSindicatoViviendaTerritory) {
+                    next = '#sindicato-territorio:' + activeSindicatoViviendaTerritory;
                 }
                 if (next && location.hash !== next) {
                     history.replaceState(null, '', location.pathname + location.search + next);
@@ -800,7 +918,7 @@
                 if (location.hash.match(/^#sindicato-forum:/)) {
                     history.replaceState(null, '', location.pathname + location.search);
                 }
-                if (activeModule === SINDICATO_MODULE && activeSindicatoSub === 'feed') {
+                if (activeModule === SINDICATO_MODULE && activeSindicatoSub === 'foro') {
                     applySindicatoViewSync();
                 }
             }
@@ -826,8 +944,12 @@
 
             function isSindicatoMapVisible() {
                 if (activeModule !== SINDICATO_MODULE) return false;
-                if (activeSindicatoSub === 'map') return true;
-                if (activeSindicatoSub === 'workplaces' && !activeSindicatoWorkplace) return true;
+                /* Reestructura 12-07-2026: dos mapas — Territorios→Mapa (geojson) y
+                   Empresas→Mapa (pins). */
+                if (activeSindicatoSub === 'vivienda') return activeSindicatoViviendaView === 'map';
+                if (activeSindicatoSub === 'workplaces' && !activeSindicatoWorkplace) {
+                    return activeSindicatoWorkplacesView === 'map';
+                }
                 if (isSindicatoLocationWorkspace()) return true;
                 return false;
             }
@@ -842,9 +964,14 @@
                 if (activeModule !== SINDICATO_MODULE) return false;
                 if (!activeSindicatoSub) return false;
                 if (activeSindicatoSub === 'unions') return true;
-                if (activeSindicatoSub === 'feed') return true;
+                if (activeSindicatoSub === 'feed' || activeSindicatoSub === 'foro') return true;
                 if (activeSindicatoSub === 'sectores' || activeSindicatoSub === 'coordination'
-                    || activeSindicatoSub === 'wiki' || activeSindicatoSub === 'vivienda') return true;
+                    || activeSindicatoSub === 'wiki' || activeSindicatoSub === 'housing'
+                    || activeSindicatoSub === 'consumidores' || activeSindicatoSub === 'estudiantes') return true;
+                if (activeSindicatoSub === 'vivienda') return activeSindicatoViviendaView === 'lista';
+                if (activeSindicatoSub === 'workplaces' && !activeSindicatoWorkplace) {
+                    return activeSindicatoWorkplacesView === 'lista';
+                }
                 return activeSindicatoSub === 'workplaces'
                     && Boolean(activeSindicatoWorkplace)
                     && activeSindicatoSection !== 'location';
@@ -886,17 +1013,20 @@
                 if (!currentMap || !window.SINDICAPP_SINDICATO || typeof L === 'undefined') return;
                 clearSindicatoMapMarkers();
                 if (!isSindicatoMapVisible()) return;
+                /* Split limpio 12-07-2026: los pins de empresa solo en Empresas→Mapa
+                   y en Localización; el mapa de Territorios va sin pins. */
+                if (activeSindicatoSub === 'vivienda') return;
                 sindicatoMarkersLayer = L.layerGroup();
                 window.SINDICAPP_SINDICATO.getWorkplaces(activeLocale).forEach((wp) => {
                     if (wp.lat == null || wp.lng == null) return;
                     if (activeSindicatoMapTerritory && wp.territoryId !== activeSindicatoMapTerritory) return;
                     const isActive = activeSindicatoWorkplace === wp.id;
                     const marker = L.circleMarker([wp.lat, wp.lng], {
-                        radius: isActive ? 11 : 8,
+                        radius: isActive ? 6 : 4,
                         color: '#e11d48',
                         fillColor: '#e11d48',
                         fillOpacity: isActive ? 1 : 0.85,
-                        weight: isActive ? 3 : 2
+                        weight: isActive ? 2 : 1
                     });
                     marker.bindPopup(`<strong>${wp.name}</strong><br><span>${wp.sector}</span>`);
                     marker.on('click', () => {
@@ -930,7 +1060,16 @@
                     syncSindicatoMapMarkers();
                     restoreMapWorkspaceAfterTextMode();
                 }
-                ensureSindicatoDefaultBoundaryLayer();
+                /* Territorios→Mapa es el selector de territorios: ahí sí se enciende la
+                   capa por defecto (comarques/counties). En Empresas→Mapa, solo pins:
+                   se apagan las capas de límites que quedaran encendidas. */
+                if (activeSindicatoSub === 'vivienda' && activeSindicatoViviendaView === 'map') {
+                    ensureSindicatoDefaultBoundaryLayer();
+                } else if (activeSindicatoSub === 'workplaces') {
+                    document.querySelectorAll('.boundary-controls .border-eye-btn[data-layer]').forEach((btn) => {
+                        if (!btn.classList.contains('eye-off')) btn.click();
+                    });
+                }
                 if (activeSindicatoMapTerritory) {
                     highlightSindicatoTerritoryBoundaries(activeSindicatoMapTerritory);
                 }
@@ -939,6 +1078,7 @@
             function applySindicatoViewSync() {
                 updateModuleNavTrees();
                 applyVisiblePanels();
+                syncSindicatoViewToggles();
                 syncTextModeBodyClasses();
                 if (isSindicatoMapVisible()) {
                     activateSindicatoMapWorkspace();
@@ -958,16 +1098,29 @@
             }
 
             function setSindicatoSub(subId) {
-                const allowed = ['coordination', 'wiki', 'unions', 'vivienda', 'map', 'feed', 'sectores', 'workplaces'];
+                /* Reestructura 12-07-2026: «map» ya no es sub de primer nivel; los
+                   enlaces y rutas antiguos caen en Territorios→Mapa. */
+                if (subId === 'map') {
+                    subId = 'vivienda';
+                    activeSindicatoViviendaView = 'map';
+                }
+                /* 13-07-2026: «feed» = Red Social (master); «foro», «consumidores» y
+                   «estudiantes» son subs propios. El estado del foro (ámbitos) cuelga
+                   ahora de «foro», no de «feed». */
+                const allowed = ['coordination', 'wiki', 'unions', 'vivienda', 'feed', 'foro', 'sectores', 'workplaces', 'housing', 'consumidores', 'estudiantes'];
                 if (subId === '' || subId == null) {
                     activeSindicatoSub = '';
                     activeSindicatoWorkplace = '';
-                    activeSindicatoSection = 'location';
+                    activeSindicatoSection = 'overview';
                     activeSindicatoSector = '';
                     activeSindicatoUnion = '';
                     activeSindicatoUnionSection = 'overview';
-                    activeSindicatoCoordSub = 'estructura';
+                    activeSindicatoCoordSub = 'afiliadas';
+                    resetSindicatoCrmViewState();
                     activeSindicatoWikiSub = 'index';
+                    activeSindicatoWikiEntityKind = '';
+                    activeSindicatoWikiEntityId = '';
+                    activeSindicatoHousingSub = 'huelgometro';
                     activeSindicatoViviendaParent = '';
                     activeSindicatoViviendaTerritory = '';
                     activeSindicatoViviendaBuilding = '';
@@ -976,12 +1129,15 @@
                     activeSindicatoFeedSectorId = '';
                     activeSindicatoFeedTerritoryId = '';
                     activeSindicatoFeedCompanyId = '';
+                    activeSindicatoConsumidor = '';
+                    activeSindicatoEstudiantesCentro = '';
                 } else {
                     activeSindicatoSub = allowed.includes(subId) ? subId : '';
                 }
                 if (activeSindicatoSub !== 'workplaces') {
                     activeSindicatoWorkplace = '';
-                    activeSindicatoSection = 'location';
+                    activeSindicatoSection = 'overview';
+                    activeSindicatoWorkplacesView = 'map';
                 }
                 if (activeSindicatoSub !== 'sectores') {
                     activeSindicatoSector = '';
@@ -990,24 +1146,35 @@
                     activeSindicatoUnion = '';
                     activeSindicatoUnionSection = 'overview';
                 }
-                if (activeSindicatoSub !== 'feed') {
+                if (activeSindicatoSub !== 'foro') {
                     activeSindicatoFeedScope = 'general';
                     activeSindicatoFeedSectorId = '';
                     activeSindicatoFeedTerritoryId = '';
                     activeSindicatoFeedCompanyId = '';
                 }
+                if (activeSindicatoSub !== 'consumidores') {
+                    activeSindicatoConsumidor = '';
+                }
+                if (activeSindicatoSub !== 'estudiantes') {
+                    activeSindicatoEstudiantesCentro = '';
+                }
                 if (activeSindicatoSub !== 'coordination') {
-                    activeSindicatoCoordSub = 'estructura';
+                    activeSindicatoCoordSub = 'afiliadas';
+                    resetSindicatoCrmViewState();
                 }
                 if (activeSindicatoSub !== 'wiki') {
                     activeSindicatoWikiSub = 'index';
+                    activeSindicatoWikiEntityKind = '';
+                    activeSindicatoWikiEntityId = '';
+                }
+                if (activeSindicatoSub !== 'housing') {
+                    activeSindicatoHousingSub = 'huelgometro';
                 }
                 if (activeSindicatoSub !== 'vivienda') {
                     activeSindicatoViviendaParent = '';
                     activeSindicatoViviendaTerritory = '';
                     activeSindicatoViviendaBuilding = '';
-                }
-                if (activeSindicatoSub !== 'map') {
+                    activeSindicatoViviendaView = 'map';
                     activeSindicatoMapTerritory = '';
                 }
                 sindicatoSubButtons.forEach((btn) => {
@@ -1019,11 +1186,18 @@
                         const id = btn.getAttribute('data-sindicato-coord-sub');
                         btn.classList.toggle('active', id === activeSindicatoCoordSub);
                     });
+                    rebuildSindicatoCrmOrgSelect();
                 }
                 if (activeSindicatoSub === 'wiki') {
                     sindicatoWikiSubButtons.forEach((btn) => {
                         const id = btn.getAttribute('data-sindicato-wiki-sub');
                         btn.classList.toggle('active', id === activeSindicatoWikiSub);
+                    });
+                }
+                if (activeSindicatoSub === 'housing') {
+                    sindicatoHousingSubButtons.forEach((btn) => {
+                        const id = btn.getAttribute('data-sindicato-housing-sub');
+                        btn.classList.toggle('active', id === activeSindicatoHousingSub);
                     });
                 }
                 if (activeSindicatoSub === 'sectores') {
@@ -1032,16 +1206,56 @@
                 if (activeSindicatoSub === 'unions') {
                     rebuildSindicatoUnionSelect();
                 }
-                if (activeSindicatoSub === 'feed') {
+                if (activeSindicatoSub === 'foro') {
                     renderSindicatoFeedSidebar();
                 }
                 if (activeSindicatoSub === 'vivienda') {
                     rebuildSindicatoViviendaSelects();
                 }
-                if (activeSindicatoSub === 'map') {
-                    renderSindicatoMapTerritoryTree();
+                applySindicatoViewSync();
+            }
+
+            /* Reestructura 12-07-2026: cambio de vista Mapa/Lista dentro de un sub. */
+            function setSindicatoViviendaView(view) {
+                activeSindicatoViviendaView = view === 'lista' ? 'lista' : 'map';
+                applySindicatoViewSync();
+            }
+
+            function setSindicatoWorkplacesView(view) {
+                activeSindicatoWorkplacesView = view === 'lista' ? 'lista' : 'map';
+                /* Fusión Mapa 12-07: con una empresa abierta el toggle general es la salida —
+                   deselecciona la empresa y devuelve a la vista de todas (mapa con pines / lista). */
+                if (activeSindicatoWorkplace) {
+                    activeSindicatoWorkplace = '';
+                    activeSindicatoSection = 'overview';
+                    rebuildSindicatoWorkplaceSelect();
+                    reflectSindicatoHash();
                 }
                 applySindicatoViewSync();
+            }
+
+            function syncSindicatoViewToggles() {
+                document.querySelectorAll('[data-sindicato-vivienda-view]').forEach((btn) => {
+                    btn.classList.toggle('active', btn.getAttribute('data-sindicato-vivienda-view') === activeSindicatoViviendaView);
+                });
+                /* Sin empresa: refleja la vista activa. Con empresa abierta el toggle es una salida,
+                   así que no se resalta ninguno (evita leer «Mapa» activo estando en Resumen). */
+                const wpToggleReflectsView = !activeSindicatoWorkplace;
+                document.querySelectorAll('[data-sindicato-workplaces-view]').forEach((btn) => {
+                    btn.classList.toggle('active', wpToggleReflectsView
+                        && btn.getAttribute('data-sindicato-workplaces-view') === activeSindicatoWorkplacesView);
+                });
+                /* En Territorios→Mapa se ocultan los selectores y la ruta (se elige en el mapa);
+                   el bloque Borders del workspace solo aparece en Territorios→Mapa. */
+                const onViviendaMap = activeModule === SINDICATO_MODULE
+                    && activeSindicatoSub === 'vivienda' && activeSindicatoViviendaView === 'map';
+                ['sindicato-vivienda-parent-row', 'sindicato-vivienda-territory-row',
+                 'sindicato-vivienda-municipality-row', 'sindicato-vivienda-path'].forEach((id) => {
+                    const el = document.getElementById(id);
+                    if (el) el.hidden = onViviendaMap;
+                });
+                const bordersBlock = document.getElementById('cartagrama-content-territories');
+                if (bordersBlock) bordersBlock.hidden = !onViviendaMap;
             }
 
             function setSindicatoSector(sectorId) {
@@ -1054,9 +1268,27 @@
                 applySindicatoViewSync();
             }
 
+            function resetSindicatoCrmViewState() {
+                sindicatoCrmMemberQuery = '';
+                sindicatoCrmMemberFilter = 'todas';
+                sindicatoCrmFinanzasView = 'resumen';
+                sindicatoCrmDocFilter = 'todas';
+            }
+
+            function rebuildSindicatoCrmOrgSelect() {
+                if (!sindicatoCrmOrgSelect || !window.SINDICAPP_SINDICATO) return;
+                const orgs = window.SINDICAPP_SINDICATO.getCrmOrgs(activeLocale);
+                if (!orgs.some((o) => o.id === activeSindicatoCrmOrg)) {
+                    activeSindicatoCrmOrg = 'sindicapp';
+                }
+                sindicatoCrmOrgSelect.innerHTML = orgs.map((o) =>
+                    `<option value="${o.id}"${o.id === activeSindicatoCrmOrg ? ' selected' : ''}>${o.name}</option>`
+                ).join('');
+            }
+
             function setSindicatoCoordSub(subId) {
-                const allowed = ['estructura', 'dinero', 'objetivos'];
-                activeSindicatoCoordSub = allowed.includes(subId) ? subId : 'estructura';
+                const allowed = ['afiliadas', 'casos', 'campanas', 'finanzas', 'comunicaciones', 'calendario', 'documentos'];
+                activeSindicatoCoordSub = allowed.includes(subId) ? subId : 'afiliadas';
                 if (activeSindicatoSub !== 'coordination') {
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                     setSindicatoSub('coordination');
@@ -1069,12 +1301,14 @@
             }
 
             function setSindicatoWikiSub(subId) {
-                const allowed = ['index', 'normas'];
-                activeSindicatoWikiSub = allowed.includes(subId) ? subId : 'index';
+                const allowed = ['index', 'sindicapp', 'derechos', 'denunciar', 'organizar', 'glosario', 'normas'];
                 if (activeSindicatoSub !== 'wiki') {
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                     setSindicatoSub('wiki');
                 }
+                activeSindicatoWikiSub = allowed.includes(subId) ? subId : 'index';
+                activeSindicatoWikiEntityKind = '';
+                activeSindicatoWikiEntityId = '';
                 sindicatoWikiSubButtons.forEach((btn) => {
                     const id = btn.getAttribute('data-sindicato-wiki-sub');
                     btn.classList.toggle('active', id === activeSindicatoWikiSub);
@@ -1082,14 +1316,52 @@
                 applySindicatoViewSync();
             }
 
+            /* Vivienda / Housing (13-07-2026) — huelgómetro | alarmas */
+            function setSindicatoHousingSub(subId) {
+                const allowed = ['huelgometro', 'alarmas', 'tenedores', 'calculadora', 'asambleas'];
+                if (activeSindicatoSub !== 'housing') {
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    setSindicatoSub('housing');
+                }
+                activeSindicatoHousingSub = allowed.includes(subId) ? subId : 'huelgometro';
+                sindicatoHousingSubButtons.forEach((btn) => {
+                    const id = btn.getAttribute('data-sindicato-housing-sub');
+                    btn.classList.toggle('active', id === activeSindicatoHousingSub);
+                });
+                applySindicatoViewSync();
+            }
+
+            /* 13-07-2026: abre la página wiki personalizada de una entidad concreta. */
+            function setSindicatoWikiEntity(kind, id) {
+                const allowedKinds = ['workplace', 'sector', 'union', 'territory'];
+                if (!allowedKinds.includes(kind) || !id) return;
+                if (activeSindicatoSub !== 'wiki') {
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    setSindicatoSub('wiki');
+                }
+                activeSindicatoWikiSub = 'entity';
+                activeSindicatoWikiEntityKind = kind;
+                activeSindicatoWikiEntityId = id;
+                sindicatoWikiSubButtons.forEach((btn) => btn.classList.remove('active'));
+                applySindicatoViewSync();
+            }
+
             function rebuildSindicatoUnionSelect() {
                 if (!sindicatoUnionSelect || !window.SINDICAPP_SINDICATO) return;
                 const c = window.SINDICAPP_SINDICATO.t(activeLocale);
                 const placeholder = c.selectUnion || 'Select union…';
-                const unions = window.SINDICAPP_SINDICATO.getUnions(activeLocale);
-                sindicatoUnionSelect.innerHTML = `<option value="">${placeholder}</option>`
-                    + unions.map((u) => `<option value="${u.id}">${u.name}</option>`).join('');
-                sindicatoUnionSelect.value = activeSindicatoUnion || '';
+                const q = sindicatoUnionFilter.trim().toLowerCase();
+                const list = window.SINDICAPP_SINDICATO.getUnions(activeLocale).filter((u) =>
+                    !q || u.name.toLowerCase().includes(q) || u.sector.toLowerCase().includes(q)
+                );
+                sindicatoUnionSelect.innerHTML = `<option value="">${placeholder}</option>`;
+                list.forEach((u) => {
+                    const opt = document.createElement('option');
+                    opt.value = u.id;
+                    opt.textContent = `${u.name} (${u.sector})`;
+                    sindicatoUnionSelect.appendChild(opt);
+                });
+                sindicatoUnionSelect.value = list.some((u) => u.id === activeSindicatoUnion) ? activeSindicatoUnion : '';
             }
 
             function setSindicatoUnion(unionId, sectionId) {
@@ -1121,7 +1393,7 @@
 
             function setSindicatoWorkplace(workplaceId, sectionId) {
                 activeSindicatoWorkplace = workplaceId || '';
-                activeSindicatoSection = sectionId || (workplaceId ? 'location' : 'location');
+                activeSindicatoSection = sectionId || 'overview';
                 if (workplaceId) activeSindicatoSub = 'workplaces';
                 sindicatoSubButtons.forEach((btn) => {
                     const id = btn.getAttribute('data-sindicato-sub');
@@ -1148,10 +1420,158 @@
             }
 
             function handleSindicatoWorkspaceClick(e) {
+                /* ===== Red Social (13-07-2026) — paneles de stats: tronco hacia los módulos ===== */
+                const gotoSubBtn = e.target.closest?.('[data-sindicato-goto-sub]');
+                if (gotoSubBtn) {
+                    e.preventDefault();
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    setSindicatoSub(gotoSubBtn.getAttribute('data-sindicato-goto-sub') || '');
+                    return;
+                }
+
+                /* ===== Foro (13-07-2026) — árboles de subforos y botón «volver» en el fondo ===== */
+                const scopeTreeToggle = e.target.closest?.('.sindicato-forum-scope-tree .sindicato-sector-toggle');
+                if (scopeTreeToggle) {
+                    e.preventDefault();
+                    const node = scopeTreeToggle.closest('.sindicato-sector-node');
+                    const children = node?.querySelector(':scope > .sindicato-sector-children');
+                    const icon = scopeTreeToggle.querySelector('.sindicato-sector-toggle-icon');
+                    if (children) {
+                        const open = children.classList.toggle('is-open');
+                        scopeTreeToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                        if (icon) icon.textContent = open ? '▼' : '▶';
+                    }
+                    return;
+                }
+
+                const wsFeedScopeBtn = e.target.closest?.('[data-sindicato-feed-scope]');
+                if (wsFeedScopeBtn) {
+                    e.preventDefault();
+                    setSindicatoFeedScope(wsFeedScopeBtn.getAttribute('data-sindicato-feed-scope'));
+                    return;
+                }
+
+                const wsFeedSectorBtn = e.target.closest?.('[data-sindicato-feed-sector]');
+                if (wsFeedSectorBtn) {
+                    e.preventDefault();
+                    setSindicatoFeedSector(wsFeedSectorBtn.getAttribute('data-sindicato-feed-sector'));
+                    return;
+                }
+
+                const wsFeedTerritoryBtn = e.target.closest?.('[data-sindicato-feed-territory]');
+                if (wsFeedTerritoryBtn) {
+                    e.preventDefault();
+                    setSindicatoFeedTerritory(wsFeedTerritoryBtn.getAttribute('data-sindicato-feed-territory'));
+                    return;
+                }
+
+                /* ===== Consumidores / Estudiantes (13-07-2026) — abrir y cerrar perfiles ===== */
+                const gotoConsumidor = e.target.closest?.('[data-sindicato-goto-consumidor]');
+                if (gotoConsumidor) {
+                    e.preventDefault();
+                    activeSindicatoConsumidor = gotoConsumidor.getAttribute('data-sindicato-goto-consumidor') || '';
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (activeSindicatoSub !== 'consumidores') {
+                        const keep = activeSindicatoConsumidor;
+                        setSindicatoSub('consumidores');
+                        activeSindicatoConsumidor = keep;
+                    }
+                    applySindicatoViewSync();
+                    return;
+                }
+
+                const gotoCentro = e.target.closest?.('[data-sindicato-goto-centro]');
+                if (gotoCentro) {
+                    e.preventDefault();
+                    activeSindicatoEstudiantesCentro = gotoCentro.getAttribute('data-sindicato-goto-centro') || '';
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (activeSindicatoSub !== 'estudiantes') {
+                        const keep = activeSindicatoEstudiantesCentro;
+                        setSindicatoSub('estudiantes');
+                        activeSindicatoEstudiantesCentro = keep;
+                    }
+                    applySindicatoViewSync();
+                    return;
+                }
+
+                /* ===== CRM (12-07-2026) — interacciones de los módulos ===== */
+                const crmMemberFilterBtn = e.target.closest?.('[data-sindicato-crm-member-filter]');
+                if (crmMemberFilterBtn) {
+                    e.preventDefault();
+                    sindicatoCrmMemberFilter = crmMemberFilterBtn.getAttribute('data-sindicato-crm-member-filter') || 'todas';
+                    syncTextWorkspace();
+                    return;
+                }
+
+                const crmCaseMoveBtn = e.target.closest?.('[data-sindicato-crm-case-move]');
+                if (crmCaseMoveBtn && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    const [caseId, dir] = (crmCaseMoveBtn.getAttribute('data-sindicato-crm-case-move') || '').split(':');
+                    if (caseId) {
+                        window.SINDICAPP_SINDICATO.crmMoveCase(activeLocale, activeSindicatoCrmOrg, caseId, dir === 'back' ? 'back' : 'fwd');
+                        syncTextWorkspace();
+                    }
+                    return;
+                }
+
+                const crmCampaignBtn = e.target.closest?.('[data-sindicato-crm-campaign-support]');
+                if (crmCampaignBtn && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    window.SINDICAPP_SINDICATO.crmSupportCampaign(activeLocale, activeSindicatoCrmOrg, crmCampaignBtn.getAttribute('data-sindicato-crm-campaign-support'));
+                    syncTextWorkspace();
+                    return;
+                }
+
+                const crmFinanzasBtn = e.target.closest?.('[data-sindicato-crm-finanzas-view]');
+                if (crmFinanzasBtn) {
+                    e.preventDefault();
+                    sindicatoCrmFinanzasView = crmFinanzasBtn.getAttribute('data-sindicato-crm-finanzas-view') || 'resumen';
+                    syncTextWorkspace();
+                    return;
+                }
+
+                const crmCommBtn = e.target.closest?.('[data-sindicato-crm-comm-send]');
+                if (crmCommBtn && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    window.SINDICAPP_SINDICATO.crmSendComm(activeLocale, activeSindicatoCrmOrg, crmCommBtn.getAttribute('data-sindicato-crm-comm-send'));
+                    syncTextWorkspace();
+                    return;
+                }
+
+                const crmDocFilterBtn = e.target.closest?.('[data-sindicato-crm-doc-filter]');
+                if (crmDocFilterBtn) {
+                    e.preventDefault();
+                    sindicatoCrmDocFilter = crmDocFilterBtn.getAttribute('data-sindicato-crm-doc-filter') || 'todas';
+                    syncTextWorkspace();
+                    return;
+                }
+
+                const crmEventForm = (e.type === 'submit' && e.target.matches?.('[data-sindicato-crm-event-form]'))
+                    ? e.target
+                    : null;
+                if (crmEventForm && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    if (typeof crmEventForm.reportValidity === 'function' && !crmEventForm.reportValidity()) return;
+                    window.SINDICAPP_SINDICATO.crmAddEvent(activeLocale, activeSindicatoCrmOrg, {
+                        type: crmEventForm.querySelector('[name="type"]')?.value,
+                        date: crmEventForm.querySelector('[name="date"]')?.value,
+                        title: crmEventForm.querySelector('[name="title"]')?.value
+                    });
+                    syncTextWorkspace();
+                    return;
+                }
+
                 const forumBack = e.target.closest('[data-sindicato-forum-back]');
                 if (forumBack) {
                     e.preventDefault();
                     clearSindicatoForumThread();
+                    return;
+                }
+
+                const unionBackBtn = e.target.closest('[data-sindicato-union-back]');
+                if (unionBackBtn) {
+                    e.preventDefault();
+                    setSindicatoUnion('');
                     return;
                 }
 
@@ -1171,8 +1591,34 @@
                     const terr = window.SINDICAPP_SINDICATO.getSubterritoryById(activeLocale, terrId);
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                     setSindicatoSub('vivienda');
+                    activeSindicatoViviendaView = 'lista';
                     if (terr?.parentId) setSindicatoViviendaParent(terr.parentId);
                     setSindicatoViviendaTerritory(terrId);
+                    return;
+                }
+
+                /* Reforma legibilidad 12-07 — del perfil de territorio al mapa con el
+                   territorio resaltado (ahora Territorios→Mapa). */
+                const gotoMapTerritory = e.target.closest('[data-sindicato-goto-map-territory]');
+                if (gotoMapTerritory) {
+                    e.preventDefault();
+                    const terrId = gotoMapTerritory.getAttribute('data-sindicato-goto-map-territory');
+                    if (!terrId) return;
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (activeSindicatoSub !== 'vivienda') setSindicatoSub('vivienda');
+                    activeSindicatoViviendaView = 'map';
+                    applySindicatoViewSync();
+                    highlightSindicatoTerritoryBoundaries(terrId);
+                    return;
+                }
+
+                /* Reforma legibilidad 12-07 — del perfil de territorio a su foro (ámbito territorios) */
+                const gotoTerritoryForum = e.target.closest('[data-sindicato-goto-territory-forum]');
+                if (gotoTerritoryForum) {
+                    e.preventDefault();
+                    const terrId = gotoTerritoryForum.getAttribute('data-sindicato-goto-territory-forum');
+                    if (!terrId) return;
+                    setSindicatoFeedTerritory(terrId);
                     return;
                 }
 
@@ -1196,7 +1642,7 @@
                 const forumThreadLink = e.target.closest('[data-sindicato-forum-thread]');
                 if (forumThreadLink) {
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                    if (activeSindicatoSub !== 'feed') setSindicatoSub('feed');
+                    if (activeSindicatoSub !== 'foro') setSindicatoSub('foro');
                     setSindicatoFeedScope('general');
                     return;
                 }
@@ -1279,12 +1725,76 @@
                     return;
                 }
 
+                /* Huelgómetro de vivienda (13-07-2026) — compromiso nacional de huelga de alquileres */
+                const housingPledge = (e.type === 'submit' && e.target.matches?.('[data-sindicato-housing-pledge]'))
+                    ? e.target
+                    : e.target.closest?.('[data-sindicato-housing-pledge]');
+                if (housingPledge && (e.type === 'submit' || e.target.type === 'submit') && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    window.SINDICAPP_SINDICATO.addHousingStrikePledge(activeLocale);
+                    syncTextWorkspace();
+                    notify(sindicatoNotice('pledgeSaved'));
+                    return;
+                }
+
+                /* Vivienda ampliado (13-07-2026) — acompañamiento a desahucios por alerta */
+                const housingEscort = e.target.closest?.('[data-sindicato-housing-escort]');
+                if (housingEscort && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    window.SINDICAPP_SINDICATO.addHousingEscortPledge(housingEscort.getAttribute('data-sindicato-housing-escort'));
+                    syncTextWorkspace();
+                    notify(sindicatoNotice('pledgeSaved'));
+                    return;
+                }
+
+                /* Vivienda ampliado (13-07-2026) — calculadora de alquiler: solo se
+                   actualiza el div de resultado, así el formulario no pierde estado. */
+                const housingCalc = (e.type === 'submit' && e.target.matches?.('[data-sindicato-housing-calc]'))
+                    ? e.target
+                    : null;
+                if (housingCalc && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    const fd = new FormData(housingCalc);
+                    const resultMount = mapTextDisplay?.querySelector('[data-sindicato-housing-calc-result]');
+                    if (resultMount) {
+                        resultMount.innerHTML = window.SINDICAPP_SINDICATO.buildHousingCalcResultHtml(
+                            activeLocale,
+                            fd.get('territory'),
+                            fd.get('m2'),
+                            fd.get('rent')
+                        );
+                    }
+                    return;
+                }
+
                 const wikiJump = e.target.closest('[data-sindicato-wiki-jump]');
                 if (wikiJump) {
                     e.preventDefault();
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                     if (activeSindicatoSub !== 'wiki') setSindicatoSub('wiki');
                     setSindicatoWikiSub(wikiJump.getAttribute('data-sindicato-wiki-jump'));
+                    return;
+                }
+
+                /* 13-07-2026: página wiki personalizada de una entidad (kind:id). */
+                const wikiEntity = e.target.closest('[data-sindicato-wiki-entity]');
+                if (wikiEntity) {
+                    e.preventDefault();
+                    const raw = wikiEntity.getAttribute('data-sindicato-wiki-entity') || '';
+                    const sep = raw.indexOf(':');
+                    if (sep === -1) return;
+                    setSindicatoWikiEntity(raw.slice(0, sep), raw.slice(sep + 1));
+                    return;
+                }
+
+                /* 13-07-2026: abrir el dossier de un sector desde un enlace inline. */
+                const gotoSector = e.target.closest('[data-sindicato-goto-sector]');
+                if (gotoSector) {
+                    e.preventDefault();
+                    const sectorId = gotoSector.getAttribute('data-sindicato-goto-sector');
+                    if (!sectorId) return;
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    setSindicatoSector(sectorId);
                     return;
                 }
 
@@ -1305,6 +1815,17 @@
                     if (!unionId) return;
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                     setSindicatoUnion(unionId, section);
+                    return;
+                }
+
+                /* Dossier de sector — botón "Abrir foro del sector": salta directo al foro filtrado por ese sector. */
+                const gotoSectorForum = e.target.closest('[data-sindicato-goto-sector-forum]');
+                if (gotoSectorForum) {
+                    e.preventDefault();
+                    const sectorId = gotoSectorForum.getAttribute('data-sindicato-goto-sector-forum');
+                    if (!sectorId) return;
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    setSindicatoFeedSector(sectorId);
                     return;
                 }
 
@@ -1445,7 +1966,9 @@
                     const id = goto.getAttribute('data-sindicato-goto-workplace');
                     if (!id) return;
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                    setSindicatoWorkplace(id, 'location');
+                    /* Fusión Mapa 12-07: abrir una empresa desde una tarjeta/enlace lleva a
+                       Resumen (pestaña por defecto). Los pines del mapa siguen abriendo «Mapa». */
+                    setSindicatoWorkplace(id);
                 }
             }
 
@@ -1469,6 +1992,21 @@
                 if (sindicatoFeedSidebar) {
                     sindicatoFeedSidebar.hidden = !onSindicato || activeSindicatoSub !== 'feed';
                 }
+                /* Fusión portada ↔ Red Social (13-07-2026): con Red Social activa, la
+                   portada original (logo, bienvenida, selector de idioma) se muestra en
+                   la sidebar — su UI de siempre — mientras el fondo lleva el dashboard. */
+                if (moduleBody) {
+                    moduleBody.classList.toggle('redsocial-landing', onSindicato && activeSindicatoSub === 'feed');
+                }
+                if (sindicatoForoSidebar) {
+                    sindicatoForoSidebar.hidden = !onSindicato || activeSindicatoSub !== 'foro';
+                }
+                if (sindicatoConsumidoresSidebar) {
+                    sindicatoConsumidoresSidebar.hidden = !onSindicato || activeSindicatoSub !== 'consumidores';
+                }
+                if (sindicatoEstudiantesSidebar) {
+                    sindicatoEstudiantesSidebar.hidden = !onSindicato || activeSindicatoSub !== 'estudiantes';
+                }
                 if (sindicatoSectoresSidebar) {
                     sindicatoSectoresSidebar.hidden = !onSindicato || activeSindicatoSub !== 'sectores';
                 }
@@ -1481,34 +2019,65 @@
                 if (sindicatoViviendaSidebar) {
                     sindicatoViviendaSidebar.hidden = !onSindicato || activeSindicatoSub !== 'vivienda';
                 }
+                if (sindicatoHousingSidebar) {
+                    sindicatoHousingSidebar.hidden = !onSindicato || activeSindicatoSub !== 'housing';
+                }
+                /* Fusión Mapa 12-07: el toggle [Mapa|Lista] queda siempre visible en Empresas.
+                   Con una empresa abierta hace de salida: deselecciona y vuelve a la vista general
+                   (ver setSindicatoWorkplacesView). Así siempre hay camino de vuelta a Lista/Mapa. */
+                if (sindicatoWorkplacesViewNav) {
+                    sindicatoWorkplacesViewNav.hidden = !onSindicato || activeSindicatoSub !== 'workplaces';
+                }
                 if (sindicatoWorkplaceSectionNav) {
                     sindicatoWorkplaceSectionNav.hidden = !onSindicato || activeSindicatoSub !== 'workplaces' || !activeSindicatoWorkplace;
                 }
                 if (sindicatoUnionSectionNav) {
                     sindicatoUnionSectionNav.hidden = !onSindicato || activeSindicatoSub !== 'unions' || !activeSindicatoUnion;
                 }
+                /* 13-07-2026: subnav unificado siempre visible (8 módulos). Usuario ya no es
+                   un módulo paraguas sino el 8º botón, que activa el módulo interno 'self'. */
+                sindicatoSubButtons.forEach((btn) => {
+                    const id = btn.getAttribute('data-sindicato-sub');
+                    const on = (onSelf && id === 'usuario')
+                        || (onSindicato && id === activeSindicatoSub);
+                    btn.classList.toggle('active', on);
+                });
                 updateMapSelectedTerritoryBar();
             }
 
             function updateMapSelectedTerritoryBar() {
                 if (!mapSelectedTerritoryBar || !mapSelectedTerritoryName) return;
                 const selection = lastMapTerritorySelection;
-                const show = Boolean(selection?.name)
-                    && (isGeoTeamsMapWorkspace() || isSindicatoMapVisible());
+                /* Fix 12-07-2026: isGeoTeamsMapWorkspace() ya no existe tras el
+                   refactor — su llamada rompía todo listener que pasara por aquí.
+                   La barra de selección solo tiene sentido en Territorios→Mapa. */
+                const show = Boolean(selection?.name) && isSindicatoMapVisible()
+                    && activeSindicatoSub === 'vivienda';
                 mapSelectedTerritoryBar.hidden = !show;
                 mapSelectedTerritoryName.textContent = selection?.name || '—';
             }
 
             function navigateSindicatoMapTerritoryFromSelection(selection) {
                 if (!selection?.name) return;
-                if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                if (activeSindicatoSub !== 'map') setSindicatoSub('map');
-                const terrId = window.SINDICAPP_SINDICATO?.resolveSindicatoTerritoryFromBoundary(
+                /* Linking (12-07-2026): el botón Info de la burbuja del mapa lleva a la
+                   página del territorio en Territorios→Lista, para provincias y comarcas. */
+                const page = window.SINDICAPP_SINDICATO?.resolveTerritoryPageFromBoundary?.(
                     activeLocale,
                     selection.type,
                     selection.name
                 );
-                if (terrId) setSindicatoMapTerritory(terrId);
+                if (page?.parentId) {
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (activeSindicatoSub !== 'vivienda') setSindicatoSub('vivienda');
+                    activeSindicatoViviendaView = 'lista';
+                    setSindicatoViviendaParent(page.parentId);
+                    if (page.territoryId) setSindicatoViviendaTerritory(page.territoryId);
+                    if (typeof window.hideTerritoryInfoBox === 'function') {
+                        window.hideTerritoryInfoBox();
+                    }
+                    return;
+                }
+                /* Capas sin página de territorio (municipios, censo…): solo cerrar la burbuja. */
                 if (typeof window.hideTerritoryInfoBox === 'function') {
                     window.hideTerritoryInfoBox();
                 }
@@ -1521,7 +2090,14 @@
                         try {
                             currentMap.invalidateSize(true);
                         } catch (_) {}
-                        recenterMapForLocale();
+                        /* Fix zoom 12-07: el recenter diferido pisaba el setView de foco de empresa
+                           (la vista saltaba de vuelta al país). En la pestaña «Mapa» de una empresa
+                           reenfocamos su pin en lugar de recentrar. */
+                        if (isSindicatoLocationWorkspace() && activeSindicatoWorkplace) {
+                            focusSindicatoWorkplaceOnMap(activeSindicatoWorkplace);
+                        } else {
+                            recenterMapForLocale();
+                        }
                         if (typeof window.ensureBoundaryLayersOnMap === 'function') {
                             window.ensureBoundaryLayersOnMap();
                         }
@@ -1640,9 +2216,6 @@
                 }).addTo(currentMap);
                 mapInitialized = true;
                 currentProvider = 'openstreetmap';
-                document.querySelectorAll('.map-api-button[data-api="openstreetmap"]').forEach((btn) => {
-                    btn.classList.add('active');
-                });
                 if (typeof window.cartagramaSetMapContext === 'function') {
                     window.cartagramaSetMapContext(currentMap, 'openstreetmap');
                 }
@@ -1808,7 +2381,8 @@
             }
 
             function syncPortadaWelcome() {
-                if (activeModule) return;
+                /* Fusión 13-07-2026: la portada vive también bajo Red Social, así que se
+                   sincroniza siempre (antes solo sin módulo activo). */
                 const logo = portadaWelcomeLogo || document.getElementById('portada-welcome-logo');
                 const titleEl = document.getElementById('portada-welcome-title');
                 const logoSrc = window.SINDICAPP_SINDICATO?.LOGO_SRC || window.SINDICAPP_LOGO?.LOGO_SRC;
@@ -1820,6 +2394,15 @@
             function updateModuleBodyLabel() {
                 if (!moduleBodyLabel) return;
                 if (!activeModule) {
+                    moduleBodyLabel.textContent = '';
+                    moduleBodyLabel.hidden = true;
+                    syncPortadaWelcome();
+                    return;
+                }
+                /* 12-07-2026 — con el panel stub de Sindicato retirado, la etiqueta al pie de la
+                   sidebar («Territorios — Gironès», etc.) era redundante: la vista completa ya
+                   lleva su propio título en el espacio de fondo. Solo se mantiene en Mapa. */
+                if (activeModule === SINDICATO_MODULE && getActivePanelId() === 'sindicato') {
                     moduleBodyLabel.textContent = '';
                     moduleBodyLabel.hidden = true;
                     syncPortadaWelcome();
@@ -1846,14 +2429,14 @@
                     } else if (activeSindicatoSub === 'coordination') {
                         const coordSubs = c.coordSubs || {};
                         const coordLabel = coordSubs[activeSindicatoCoordSub] || activeSindicatoCoordSub;
-                        title = `${subs.coordination || 'Coordination'} — ${coordLabel}`;
+                        title = `${subs.coordination || 'CRM'} — ${coordLabel}`;
                     } else if (activeSindicatoSub === 'wiki') {
                         const wikiSubs = c.wikiSubs || {};
                         const wikiLabel = wikiSubs[activeSindicatoWikiSub] || activeSindicatoWikiSub;
                         title = `${subs.wiki || 'Wiki'} — ${wikiLabel}`;
                     } else if (activeSindicatoSub === 'vivienda' && activeSindicatoViviendaTerritory && window.SINDICAPP_SINDICATO) {
                         const terr = window.SINDICAPP_SINDICATO.getSubterritoryById(activeLocale, activeSindicatoViviendaTerritory);
-                        if (terr) title = `${subs.vivienda || 'Vivienda'} — ${terr.name}`;
+                        if (terr) title = `${subs.vivienda || 'Territorios'} — ${terr.name}`;
                     } else if (activeSindicatoSub === 'unions' && activeSindicatoUnion && window.SINDICAPP_SINDICATO) {
                         const union = window.SINDICAPP_SINDICATO.findUnion(activeLocale, activeSindicatoUnion);
                         const unionSections = c.unionSections || {};
@@ -1900,49 +2483,46 @@
             if (mapSelectedTerritoryInfoBtn) {
                 mapSelectedTerritoryInfoBtn.addEventListener('click', () => navigateSindicatoMapTerritoryFromSelection(lastMapTerritorySelection));
             }
-            const territoryInfoBoxEl = document.getElementById('territory-info-box');
-            if (territoryInfoBoxEl) {
-                const territoryInfoBoxCloseBtn = territoryInfoBoxEl.querySelector('.close-btn');
-                if (territoryInfoBoxCloseBtn && !territoryInfoBoxCloseBtn.dataset.sindicappCloseWired) {
-                    territoryInfoBoxCloseBtn.dataset.sindicappCloseWired = '1';
-                    territoryInfoBoxCloseBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (typeof window.closeTerritoryInfoBox === 'function') {
-                            window.closeTerritoryInfoBox();
-                        }
-                    });
+            /* Fix 12-07-2026: delegación a nivel de documento — Cartagrama puede
+               recrear la burbuja (#territory-info-box) y un listener atado al
+               elemento original se perdería. */
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('#territory-info-box-info-btn')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    navigateSindicatoMapTerritoryFromSelection(lastMapTerritorySelection);
+                    return;
                 }
-                territoryInfoBoxEl.addEventListener('click', (e) => {
-                    if (e.target.closest('#territory-info-box-info-btn')) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        navigateSindicatoMapTerritoryFromSelection(lastMapTerritorySelection);
-                    }
-                });
-            }
+                const bubbleClose = e.target.closest('#territory-info-box .close-btn');
+                if (bubbleClose && typeof window.closeTerritoryInfoBox === 'function') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.closeTerritoryInfoBox();
+                }
+            });
             if (typeof window.wireTerritoryInfoBoxControls === 'function') {
                 window.wireTerritoryInfoBoxControls();
             }
 
-            document.addEventListener('sindicapp-territory-selected', (e) => {
+            /* Fix 12-07-2026: Cartagrama emite «pandora-territory-selected/cleared»;
+               aquí se escuchaba «sindicapp-territory-…», que no emite nadie — por eso
+               el botón Info de la burbuja no respondía a clics reales en el geojson.
+               Se escuchan ambos nombres por compatibilidad. */
+            const onMapTerritorySelected = (e) => {
                 lastMapTerritorySelection = e.detail || null;
                 updateMapSelectedTerritoryBar();
-                if (activeModule === SINDICATO_MODULE && activeSindicatoSub === 'map' && e.detail) {
-                    const terrId = window.SINDICAPP_SINDICATO?.resolveSindicatoTerritoryFromBoundary(
-                        activeLocale,
-                        e.detail.type,
-                        e.detail.name
-                    );
-                    if (terrId && terrId !== activeSindicatoMapTerritory) {
-                        setSindicatoMapTerritory(terrId);
-                    }
-                }
-            });
-            document.addEventListener('sindicapp-territory-cleared', () => {
+                /* Reestructura 12-07-2026: seleccionar una feature ya no abre el dossier
+                   antiguo; la navegación a la página del territorio la hace el botón
+                   Info de la burbuja (navigateSindicatoMapTerritoryFromSelection). */
+            };
+            const onMapTerritoryCleared = () => {
                 lastMapTerritorySelection = null;
                 updateMapSelectedTerritoryBar();
-            });
+            };
+            document.addEventListener('pandora-territory-selected', onMapTerritorySelected);
+            document.addEventListener('sindicapp-territory-selected', onMapTerritorySelected);
+            document.addEventListener('pandora-territory-cleared', onMapTerritoryCleared);
+            document.addEventListener('sindicapp-territory-cleared', onMapTerritoryCleared);
 
             if (templateModulePicker) {
                 templateModulePicker.addEventListener('click', (e) => {
@@ -1963,8 +2543,30 @@
 
             sindicatoSubButtons.forEach((btn) => {
                 btn.addEventListener('click', () => {
+                    const sub = btn.getAttribute('data-sindicato-sub');
+                    /* 13-07-2026: Usuario es el 8º botón del subnav; activa el módulo 'self'. */
+                    if (sub === 'usuario') {
+                        if (activeModule !== 'self') setActiveModule('self');
+                        return;
+                    }
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                    setSindicatoSub(btn.getAttribute('data-sindicato-sub'));
+                    setSindicatoSub(sub);
+                });
+            });
+
+            /* Reestructura 12-07-2026: toggles Mapa/Lista en Empresas y Territorios */
+            document.querySelectorAll('[data-sindicato-vivienda-view]').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (activeSindicatoSub !== 'vivienda') setSindicatoSub('vivienda');
+                    setSindicatoViviendaView(btn.getAttribute('data-sindicato-vivienda-view'));
+                });
+            });
+            document.querySelectorAll('[data-sindicato-workplaces-view]').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (activeSindicatoSub !== 'workplaces') setSindicatoSub('workplaces');
+                    setSindicatoWorkplacesView(btn.getAttribute('data-sindicato-workplaces-view'));
                 });
             });
 
@@ -1984,6 +2586,14 @@
                 });
             });
 
+            sindicatoHousingSubButtons.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (activeSindicatoSub !== 'housing') setSindicatoSub('housing');
+                    setSindicatoHousingSub(btn.getAttribute('data-sindicato-housing-sub'));
+                });
+            });
+
             if (sindicatoViviendaParentSelect) {
                 sindicatoViviendaParentSelect.addEventListener('change', () => {
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
@@ -1997,6 +2607,14 @@
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                     if (activeSindicatoSub !== 'vivienda') setSindicatoSub('vivienda');
                     setSindicatoViviendaTerritory(sindicatoViviendaTerritorySelect.value);
+                });
+            }
+
+            if (sindicatoViviendaMunicipalitySelect) {
+                sindicatoViviendaMunicipalitySelect.addEventListener('change', () => {
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (activeSindicatoSub !== 'vivienda') setSindicatoSub('vivienda');
+                    setSindicatoViviendaMunicipality(sindicatoViviendaMunicipalitySelect.value);
                 });
             }
 
@@ -2041,6 +2659,13 @@
                 });
             }
 
+            if (sindicatoUnionSearch) {
+                sindicatoUnionSearch.addEventListener('input', () => {
+                    sindicatoUnionFilter = sindicatoUnionSearch.value;
+                    rebuildSindicatoUnionSelect();
+                });
+            }
+
             sindicatoSectionButtons.forEach((btn) => {
                 btn.addEventListener('click', () => {
                     if (!activeSindicatoWorkplace) return;
@@ -2069,6 +2694,29 @@
             if (mapTextDisplay) {
                 mapTextDisplay.addEventListener('click', handleSindicatoWorkspaceClick);
                 mapTextDisplay.addEventListener('submit', handleSindicatoWorkspaceClick);
+                /* CRM — la búsqueda de afiliadas actualiza solo el tbody para no perder el foco */
+                mapTextDisplay.addEventListener('input', (e) => {
+                    const search = e.target.closest?.('[data-sindicato-crm-member-search]');
+                    if (!search || !window.SINDICAPP_SINDICATO) return;
+                    sindicatoCrmMemberQuery = search.value;
+                    const tbody = mapTextDisplay.querySelector('[data-sindicato-crm-member-list]');
+                    if (tbody) {
+                        tbody.innerHTML = window.SINDICAPP_SINDICATO.buildCrmMemberRowsHtml(
+                            activeLocale, activeSindicatoCrmOrg, sindicatoCrmMemberQuery, sindicatoCrmMemberFilter
+                        );
+                    }
+                });
+            }
+
+            /* CRM (12-07-2026) — cambio de organización re-contextualiza todos los módulos */
+            if (sindicatoCrmOrgSelect) {
+                sindicatoCrmOrgSelect.addEventListener('change', () => {
+                    activeSindicatoCrmOrg = sindicatoCrmOrgSelect.value || 'sindicapp';
+                    resetSindicatoCrmViewState();
+                    if (activeModule === SINDICATO_MODULE && activeSindicatoSub === 'coordination') {
+                        applySindicatoViewSync();
+                    }
+                });
             }
 
             window.addEventListener('hashchange', applySindicatoHashRoute);
@@ -2100,36 +2748,21 @@
                 });
             }
 
+            /* 13-07-2026: los ámbitos del foro viven en el sub «foro». Los árboles de
+               subforos ya no se montan en la sidebar — se renderizan en el fondo y sus
+               clics los atiende handleSindicatoWorkspaceClick. */
             sindicatoFeedScopeButtons.forEach((btn) => {
                 btn.addEventListener('click', () => {
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                    if (activeSindicatoSub !== 'feed') setSindicatoSub('feed');
+                    if (activeSindicatoSub !== 'foro') setSindicatoSub('foro');
                     setSindicatoFeedScope(btn.getAttribute('data-sindicato-feed-scope'));
                 });
             });
 
-            if (sindicatoFeedScopeTreeMount) {
-                sindicatoFeedScopeTreeMount.addEventListener('click', (e) => {
-                    handleSindicatoSectorTreeClick(e, (sectorBtn) => {
-                        const feedSector = sectorBtn.getAttribute('data-sindicato-feed-sector');
-                        const feedTerritory = sectorBtn.getAttribute('data-sindicato-feed-territory');
-                        if (feedSector) {
-                            if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                            setSindicatoFeedSector(feedSector);
-                            return;
-                        }
-                        if (feedTerritory) {
-                            if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                            setSindicatoFeedTerritory(feedTerritory);
-                        }
-                    });
-                });
-            }
-
             if (sindicatoFeedCompanySelect) {
                 sindicatoFeedCompanySelect.addEventListener('change', () => {
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                    if (activeSindicatoSub !== 'feed') setSindicatoSub('feed');
+                    if (activeSindicatoSub !== 'foro') setSindicatoSub('foro');
                     setSindicatoFeedCompany(sindicatoFeedCompanySelect.value);
                 });
             }
@@ -2212,18 +2845,17 @@
             }
 
             if (homeTitle) {
-                homeTitle.addEventListener('click', () => setActiveModule(null));
+                /* Fusión portada ↔ Red Social (13-07-2026): el título de cabecera lleva a la
+                   landing fusionada (portada en sidebar + dashboard en fondo), no a la
+                   portada suelta con mapa. */
+                homeTitle.addEventListener('click', () => {
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    setSindicatoSub('feed');
+                });
             }
 
-            document.querySelectorAll('.map-api-button[data-api="openstreetmap"]').forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    if (!isSindicatoMapVisible()) {
-                        if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                        setSindicatoSub('map');
-                    }
-                    initOpenStreetMap();
-                });
-            });
+            /* Botón «OpenStreetMap» retirado del DOM (12-07-2026): el mapa
+               se inicializa solo en el boot y al entrar en Mapa. */
 
             function finishSindicAppBoot() {
                 try {
@@ -2232,7 +2864,15 @@
                     updateModuleNavTrees();
                     initBoundaryControlsOnce();
                     initOpenStreetMap();
-                    setActiveModule(null);
+                    /* 13-07-2026: Red Social es la landing por defecto (módulo master).
+                       La portada clásica sigue accesible desde el título de cabecera.
+                       Si la URL trae un deep link (#sindicato-…), se respeta re-aplicando
+                       la ruta después de fijar la landing. */
+                    setActiveModule(SINDICATO_MODULE);
+                    setSindicatoSub('feed');
+                    if (/^#sindicato-/.test(location.hash)) {
+                        applySindicatoHashRoute();
+                    }
                     relocalizeForLocale();
                 } catch (bootErr) {
                     console.error('SindicApp startup error:', bootErr);

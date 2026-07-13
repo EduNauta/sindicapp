@@ -270,6 +270,17 @@
             box-shadow: inset 0 0 0 1px var(--color-primary);
         }
 
+        /* 13-07-2026 — marcador de posición para módulos futuros (Consumidores, Vivienda) */
+        .template-module-btn--soon {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .template-module-btn--soon:hover {
+            background: var(--color-bg-white);
+            border-color: var(--color-border);
+        }
+
         .template-module-panel {
             display: none;
         }
@@ -1507,7 +1518,8 @@
             border-width: 2px;
         }
 
-        .template-nav-tree .template-module-btn {
+        .template-nav-tree .template-module-btn,
+        .template-module-picker .template-module-btn {
             color: var(--color-text-primary, #111);
         }
 
@@ -1600,14 +1612,16 @@
         }
 
         .sindicato-coord-subnav,
-        .sindicato-wiki-subnav {
+        .sindicato-wiki-subnav,
+        .sindicato-housing-subnav {
             display: flex;
             flex-direction: column;
             gap: 6px;
         }
 
         .sindicato-coord-subnav .template-module-btn,
-        .sindicato-wiki-subnav .template-module-btn {
+        .sindicato-wiki-subnav .template-module-btn,
+        .sindicato-housing-subnav .template-module-btn {
             width: 100%;
             justify-content: flex-start;
         }
@@ -2617,7 +2631,8 @@
         }
 
         .sindicato-coord-subnav,
-        .sindicato-wiki-subnav {
+        .sindicato-wiki-subnav,
+        .sindicato-housing-subnav {
             margin-top: 8px;
             padding-left: 10px;
             border-left: 2px solid var(--color-primary, #4d5cff);
@@ -2638,6 +2653,304 @@
             border: 1px solid var(--color-border);
             border-radius: var(--radius-md, 6px);
             background: var(--color-bg-white, #fff);
+        }
+
+        /* ===== CRM (reforma 12-07-2026) — módulos de gestión multi-organización ===== */
+
+        .crm-org-tag {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-normal, 400);
+            color: var(--color-text-muted);
+        }
+
+        .crm-stat-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .crm-stat {
+            flex: 1 1 120px;
+            padding: 10px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-muted);
+            text-align: center;
+        }
+
+        .crm-stat strong {
+            display: block;
+            font-size: var(--font-size-lg);
+            color: var(--color-primary);
+        }
+
+        .crm-stat span {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        .crm-chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 12px;
+        }
+
+        .crm-chip {
+            padding: 4px 10px;
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            background: var(--color-bg-muted);
+            font-size: var(--font-size-xs);
+            cursor: pointer;
+        }
+
+        .crm-chip:hover {
+            border-color: var(--color-primary);
+        }
+
+        .crm-chip.active {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: #fff;
+        }
+
+        .crm-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--font-size-sm);
+        }
+
+        .crm-table th,
+        .crm-table td {
+            padding: 7px 9px;
+            border-bottom: 1px solid var(--color-border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .crm-table th {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .crm-num {
+            text-align: right;
+        }
+
+        td.crm-num {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .crm-pos { color: var(--color-success); }
+        .crm-neg { color: var(--color-danger); }
+
+        .crm-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: var(--font-size-xs);
+            background: var(--color-bg-gray);
+            color: var(--color-text-secondary);
+            white-space: nowrap;
+        }
+
+        .crm-badge-activa { background: #e3f2e8; color: var(--color-success); }
+        .crm-badge-pendiente { background: #fdf0e0; color: var(--color-warning); }
+        .crm-badge-baja { background: #fbe5e7; color: var(--color-danger); }
+        .crm-badge-enviada { background: #e3f2e8; color: var(--color-success); }
+        .crm-badge-programada { background: #fdf0e0; color: var(--color-warning); }
+        .crm-badge-borrador { background: var(--color-bg-gray); color: var(--color-text-muted); }
+        .crm-badge-asamblea { background: var(--color-primary-light); color: var(--color-primary); }
+        .crm-badge-negociacion { background: #f0e9fb; color: var(--color-accent); }
+        .crm-badge-formacion { background: #e3f2e8; color: var(--color-success); }
+        .crm-badge-doc { background: var(--color-primary-light); color: var(--color-primary); margin-right: 8px; }
+
+        .crm-pipeline {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .crm-pipeline-col {
+            padding: 8px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-muted);
+            min-height: 120px;
+        }
+
+        .crm-pipeline-col h4 {
+            margin: 2px 2px 8px;
+            font-size: var(--font-size-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--color-text-muted);
+        }
+
+        .crm-count {
+            float: right;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-primary);
+        }
+
+        .crm-case-card {
+            margin-bottom: 8px;
+            padding: 8px 10px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-white);
+            font-size: var(--font-size-sm);
+        }
+
+        .crm-case-card p {
+            margin: 3px 0;
+        }
+
+        .crm-case-meta {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-light);
+        }
+
+        .crm-case-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 6px;
+        }
+
+        .crm-mini-btn {
+            padding: 2px 10px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            background: var(--color-bg-muted);
+            cursor: pointer;
+            font-size: var(--font-size-xs);
+        }
+
+        .crm-mini-btn:hover:not(:disabled) {
+            border-color: var(--color-primary);
+        }
+
+        .crm-mini-btn:disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+
+        .crm-empty-col {
+            font-size: var(--font-size-xs);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .crm-btn {
+            margin-top: 8px;
+            padding: 6px 14px;
+            border: 1px solid var(--color-primary);
+            border-radius: var(--radius-md);
+            background: var(--color-primary);
+            color: #fff;
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+        }
+
+        .crm-btn:hover:not(:disabled) {
+            background: var(--color-primary-hover);
+        }
+
+        .crm-btn:disabled {
+            opacity: 0.45;
+            cursor: default;
+        }
+
+        .crm-progress {
+            height: 10px;
+            margin: 10px 0 6px;
+            border-radius: 999px;
+            background: var(--color-bg-gray);
+            overflow: hidden;
+        }
+
+        .crm-progress-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: var(--color-primary);
+        }
+
+        .crm-comm-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .crm-event-list {
+            list-style: none;
+            margin: 12px 0;
+            padding: 0;
+        }
+
+        .crm-event-list li {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 7px 4px;
+            border-bottom: 1px solid var(--color-border);
+            font-size: var(--font-size-sm);
+        }
+
+        .crm-event-date {
+            font-variant-numeric: tabular-nums;
+            color: var(--color-text-muted);
+            white-space: nowrap;
+        }
+
+        .crm-event-form {
+            margin-top: 14px;
+            padding: 12px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .crm-event-form h4 {
+            width: 100%;
+            margin: 0 0 4px;
+            font-size: var(--font-size-sm);
+        }
+
+        .crm-event-form select,
+        .crm-event-form input {
+            padding: 6px 8px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+        }
+
+        .crm-event-form input[name="title"] {
+            flex: 1 1 180px;
+        }
+
+        .crm-event-form .crm-btn {
+            margin-top: 0;
+        }
+
+        @media (max-width: 900px) {
+            .crm-pipeline {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 560px) {
+            .crm-pipeline {
+                grid-template-columns: 1fr;
+            }
         }
 
         .sindicato-union-companies-label {
@@ -2706,6 +3019,272 @@
         .sindicato-panel h3 {
             margin: 16px 0 8px;
             font-size: var(--font-size-md);
+        }
+
+        /* Dossier de sector/subsector — bloques claramente diferenciados: foro, empresas, sindicatos, convenios */
+        .sindicato-sector-dossier-head {
+            margin-bottom: 14px;
+        }
+
+        .sindicato-sector-sections {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin: 4px 0 16px;
+        }
+
+        @media (max-width: 760px) {
+            .sindicato-sector-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sindicato-sector-section {
+            padding: 14px 16px;
+            border: 1px solid var(--color-border);
+            border-left: 4px solid var(--color-border-strong);
+            border-radius: var(--radius-md, 6px);
+            background: var(--color-bg-white, #fff);
+        }
+
+        .sindicato-sector-section h3 {
+            margin: 0;
+            font-size: var(--font-size-sm);
+        }
+
+        .sindicato-sector-section > .template-muted:first-of-type {
+            margin-top: 6px;
+        }
+
+        .sindicato-sector-section--forum {
+            border-left-color: var(--color-primary);
+        }
+
+        .sindicato-sector-section--empresas {
+            border-left-color: var(--color-warning);
+        }
+
+        .sindicato-sector-section--sindicatos {
+            border-left-color: var(--color-success);
+        }
+
+        .sindicato-sector-section--convenio {
+            border-left-color: var(--color-accent);
+        }
+
+        .sindicato-sector-section-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .sindicato-sector-section-icon {
+            font-size: var(--font-size-md);
+            line-height: 1;
+        }
+
+        .sindicato-sector-section--forum .sindicato-cta-btn {
+            margin-top: 10px;
+        }
+
+        /* Wiki transversal (13-07-2026): sección embebida en cada perfil + páginas de la wiki. */
+        .sindicato-sector-section--wiki {
+            border-left-color: #6d5bd0;
+        }
+
+        .sindicato-sector-section--wiki .sindicato-cta-btn {
+            margin-top: 10px;
+        }
+
+        .cp-wiki-section-title {
+            margin: 18px 0 6px;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+        }
+
+        .cp-wiki-back {
+            margin-bottom: 10px;
+        }
+
+        .cp-wiki-article-body {
+            line-height: 1.55;
+        }
+
+        .cp-wiki-article-body .sindicato-coord-card {
+            margin-top: 8px;
+        }
+
+        .sindicato-wiki-steps {
+            margin: 8px 0 8px 18px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            line-height: 1.5;
+        }
+
+        .sindicato-wiki-glossary {
+            margin: 8px 0;
+        }
+
+        .sindicato-wiki-glossary dt {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-primary, #111);
+            margin-top: 8px;
+        }
+
+        .sindicato-wiki-glossary dd {
+            margin: 2px 0 0;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .cp-wiki-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-white);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-primary, #111);
+        }
+
+        /* ===== Territorios — reforma de legibilidad (12-07-2026) =====
+           Cabecera con migas + chips de stats y tarjetas coloreadas reutilizando
+           el patrón sindicato-sector-section del dossier de sector. */
+
+        .sindicato-territory-head {
+            margin-bottom: 16px;
+            padding: 16px 18px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-bg-white) 70%);
+        }
+
+        .sindicato-territory-breadcrumb {
+            margin: 0 0 6px;
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-muted);
+        }
+
+        .sindicato-territory-breadcrumb-sep {
+            margin: 0 3px;
+            color: var(--color-text-light);
+        }
+
+        .sindicato-territory-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .sindicato-territory-title-row h2 {
+            margin: 0;
+        }
+
+        .sindicato-territory-map-btn {
+            flex: 0 0 auto;
+        }
+
+        .sindicato-territory-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .sindicato-territory-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            background: var(--color-bg-white);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+        }
+
+        .sindicato-territory-stat strong {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-primary);
+        }
+
+        .sindicato-territory-stat--alert {
+            border-color: var(--color-danger);
+            background: #fdecea;
+            color: var(--color-danger);
+        }
+
+        .sindicato-territory-stat--alert strong {
+            color: var(--color-danger);
+        }
+
+        .sindicato-territory-municipality-note {
+            display: inline-block;
+            margin: 12px 0 0;
+            padding: 6px 12px;
+            border: 1px dashed var(--color-border-strong);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-white);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        /* Acentos de color por tarjeta del perfil de territorio */
+        .sindicato-territory-section--empresas { border-left-color: var(--color-warning); }
+        .sindicato-territory-section--alertas { border-left-color: var(--color-danger); }
+        .sindicato-territory-section--agenda { border-left-color: var(--color-accent); }
+        .sindicato-territory-section--edificios { border-left-color: var(--color-warning-bright); }
+        .sindicato-territory-section--foro { border-left-color: var(--color-primary); }
+        .sindicato-territory-section--redes { border-left-color: var(--color-success); }
+
+        .sindicato-territory-profile .sindicato-sector-section > .sindicato-coord-card:first-of-type {
+            margin-top: 8px;
+        }
+
+        .sindicato-territory-profile .sindicato-sector-section .sindicato-cta-btn {
+            margin-top: 10px;
+        }
+
+        /* Sidebar Territorios: labels cortos en mayúsculas + línea de ruta */
+        .geo-picker-label {
+            margin-bottom: 4px;
+            font-size: var(--font-size-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .geo-picker-row + .geo-picker-row {
+            margin-top: 8px;
+        }
+
+        .sindicato-geo-path {
+            margin: 10px 2px 0;
+            padding: 8px 12px;
+            border-radius: var(--radius-md);
+            background: var(--color-primary-light);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-primary);
+            line-height: 1.4;
+        }
+
+        .sindicato-geo-path[hidden] {
+            display: none;
+        }
+
+        .sindicato-sector-convenio-name {
+            margin: 4px 0 2px;
         }
 
         .sindicato-manifest-lead {
@@ -3048,6 +3627,12 @@
             margin: 16px 0;
         }
 
+        .sindicato-strike-meter-title {
+            margin: 0 0 8px;
+            font-size: var(--font-size-md);
+            font-weight: var(--font-weight-semibold);
+        }
+
         .sindicato-strike-track {
             height: 18px;
             border-radius: 999px;
@@ -3115,6 +3700,88 @@
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 10px;
             margin: 16px 0;
+        }
+
+        .sindicato-union-empty-hint {
+            margin: 18px 0 0;
+            padding: 16px 18px;
+            border: 1px dashed var(--color-border);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-muted);
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .sindicato-unions-empty .sindicato-summary-grid {
+            margin-top: 12px;
+        }
+
+        .sindicato-union-founded-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 6px 0 10px;
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .sindicato-union-founded-row a {
+            color: var(--color-link, var(--color-primary));
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .sindicato-union-about {
+            margin: 4px 0 14px;
+            line-height: 1.55;
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        .sindicato-union-milestones {
+            margin-top: 18px;
+        }
+
+        .sindicato-milestone-list {
+            list-style: none;
+            margin: 10px 0 0;
+            padding: 2px 0 2px 16px;
+            border-left: 2px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sindicato-milestone-item {
+            position: relative;
+            padding-left: 4px;
+        }
+
+        .sindicato-milestone-item::before {
+            content: '';
+            position: absolute;
+            left: -21px;
+            top: 5px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-primary, #4d5cff);
+            box-shadow: 0 0 0 3px var(--color-primary-light, rgba(77, 92, 255, 0.15));
+        }
+
+        .sindicato-milestone-year {
+            display: block;
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-xs);
+            color: var(--color-primary, #4d5cff);
+        }
+
+        .sindicato-milestone-text {
+            display: block;
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.45;
         }
 
         .sindicato-union-card {
@@ -3824,4 +4491,148 @@
             .sindicapp-toast {
                 transition: none;
             }
+        }
+
+        /* Reestructura 12-07-2026: toggle Mapa/Lista en Empresas y Territorios */
+        .sindicato-view-toggle {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .sindicato-view-toggle .template-module-btn {
+            flex: 1 1 0;
+            justify-content: center;
+        }
+
+        /* ================================================================
+         * Red Social (13-07-2026) — módulo master: paneles de stats por
+         * módulo (tronco hacia Sindicatos, Territorios, Sectores, Empresas,
+         * Consumidores y Estudiantes) + feed de actividad.
+         * ================================================================ */
+        .sindicato-redsocial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin: 14px 0;
+        }
+
+        .sindicato-redsocial-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            padding: 14px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md, 6px);
+            background: var(--color-bg-white, #fff);
+            text-align: left;
+            cursor: pointer;
+            font: inherit;
+            color: inherit;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+        }
+
+        .sindicato-redsocial-card:hover,
+        .sindicato-redsocial-card:focus-visible {
+            border-color: var(--color-primary);
+            box-shadow: 0 2px 8px rgba(36, 84, 156, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .sindicato-redsocial-card-icon {
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        .sindicato-redsocial-card-name {
+            font-size: var(--font-size-md, 1rem);
+        }
+
+        .sindicato-redsocial-card-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+        }
+
+        .sindicato-redsocial-card-stats strong {
+            color: var(--color-text, inherit);
+        }
+
+        /* Directorios de Consumidores y Estudiantes: mismas tarjetas, con meta extra */
+        .sindicato-dir-card .template-muted {
+            font-size: var(--font-size-sm);
+        }
+
+        /* ================================================================
+         * Redes y canales (13-07-2026) — Telegram destacado en cada entidad
+         * ================================================================ */
+        .sindicato-social-links {
+            margin: 8px 0 12px;
+        }
+
+        .sindicato-social-link--telegram {
+            border-color: var(--color-primary);
+            background: var(--color-primary-light);
+            font-weight: var(--font-weight-semibold, 600);
+        }
+
+        /* ================================================================
+         * Foro (13-07-2026) — árboles de subforos en el fondo, no en la sidebar
+         * ================================================================ */
+        .sindicato-forum-scope-tree {
+            margin-top: 10px;
+            max-width: 560px;
+        }
+
+        .sindicato-forum-scope-tree .sindicato-sector-node-btn {
+            width: 100%;
+        }
+
+        /* Consumidores — barra de apoyo de campaña (reutiliza la pista del huelgómetro) */
+        .sindicato-campaign-track {
+            height: 10px;
+            margin: 8px 0 4px;
+        }
+
+        /* Estudiantes — tarjeta de movilización con fecha destacada */
+        .sindicato-mob-card strong {
+            color: var(--color-primary);
+        }
+
+        /* Fusión portada ↔ Red Social (13-07-2026): con Red Social activa, la portada
+           original (logo, bienvenida, selector de idioma) se muestra en la sidebar,
+           reaprovechando que este módulo no tiene controles propios; el fondo lleva
+           el dashboard de stats + actividad. */
+        .template-module-body.has-module.redsocial-landing .template-module-landing {
+            display: block;
+        }
+
+        .template-module-body.has-module.redsocial-landing .portada-welcome-logo {
+            display: block;
+        }
+
+        /* Vivienda ampliado (13-07-2026): acompañamiento, tenedores y asambleas */
+        .sindicato-escort-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .sindicato-escort-count {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+        }
+
+        .sindicato-holder-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
         }

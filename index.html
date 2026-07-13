@@ -66,15 +66,61 @@
                     </div>
                 </header>
 
+                <!-- Reestructura 13-07-2026 (v3): Red Social pasa a ser el módulo master —
+                     landing por defecto al cargar y tronco hacia Sindicatos, Territorios,
+                     Sectores, Empresas, Consumidores y Estudiantes (panel de stats por módulo
+                     en el fondo + feed de actividad). El subnav envuelve de 2 en 2 (flex 50%),
+                     así que el orden del DOM define las filas visuales:
+                     Red Social+Sindicatos / CRM+Territorios / Perfil+Sectores / Foro+Empresas /
+                     Wiki+Consumidores / Vivienda+Estudiantes.
+                     «Foro» (4º botón de la columna izquierda) recibe el foro real que antes
+                     vivía en el módulo feed: ámbitos General / Sectores / Territorios, con los
+                     árboles de subforos en el fondo, no en la sidebar. Consumidores y
+                     Estudiantes estrenan vista propia (13-07-2026). Vivienda (id `housing`)
+                     tiene Huelgómetro y Alarmas por desahucios. Ya no quedan marcadores
+                     de posición deshabilitados. -->
                 <div class="template-module-picker sindicapp-module-stack" id="template-module-picker" aria-label="Module selection">
-                    <div class="sindicapp-module-box-row">
-                        <button type="button" class="template-module-btn" data-module="self" id="sindicapp-module-self-btn">
-                            <span aria-hidden="true">👤</span> Usuario
+                    <nav class="template-submodule-nav template-submodule-nav--depth-1" id="sindicato-subnav" aria-label="SindicApp modules">
+                        <button type="button" class="template-module-btn" data-sindicato-sub="feed">
+                            <span aria-hidden="true">💬</span> Red Social
                         </button>
-                        <button type="button" class="template-module-btn" data-module="sindicato" id="sindicapp-module-sindicato-btn">
-                            <span aria-hidden="true">✊</span> Colectivo
+                        <button type="button" class="template-module-btn" data-sindicato-sub="unions">
+                            <span aria-hidden="true">🏛️</span> Unions
                         </button>
-                    </div>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="coordination">
+                            <span aria-hidden="true">📇</span> CRM
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="vivienda">
+                            <span aria-hidden="true">🏘️</span> Territorios
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="usuario">
+                            <span aria-hidden="true">👤</span> Perfil
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="sectores">
+                            <span aria-hidden="true">🏭</span> Sectores
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="foro">
+                            <span aria-hidden="true">🗣️</span> Foro
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="workplaces">
+                            <span aria-hidden="true">🏢</span> Empresas
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="wiki">
+                            <span aria-hidden="true">📖</span> Wiki
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="consumidores">
+                            <span aria-hidden="true">🛒</span> Consumidores
+                        </button>
+                        <!-- Vivienda (13-07-2026): módulo nuevo, distinto de Territorios. Dos
+                             funcionalidades: Huelgómetro (umbral 1M inquilinos) y Alarmas por
+                             desahucios (agregado de todos los territorios). -->
+                        <button type="button" class="template-module-btn" data-sindicato-sub="housing">
+                            <span aria-hidden="true">🏠</span> Vivienda
+                        </button>
+                        <button type="button" class="template-module-btn" data-sindicato-sub="estudiantes">
+                            <span aria-hidden="true">🎓</span> Estudiantes
+                        </button>
+                    </nav>
                 </div>
 
                 <div class="template-nav-tree" id="self-nav-tree" hidden aria-label="User account navigation">
@@ -86,7 +132,7 @@
                                 <span aria-hidden="true">📋</span> Resumen
                             </button>
                             <button type="button" class="template-module-btn" data-self-sindicato-section="location">
-                                <span aria-hidden="true">📍</span> Localización
+                                <span aria-hidden="true">🗺️</span> Mapa
                             </button>
                             <button type="button" class="template-module-btn" data-self-sindicato-section="reports">
                                 <span aria-hidden="true">📢</span> Denuncias
@@ -105,46 +151,31 @@
                     </div>
 
                 <div class="template-nav-tree" id="sindicato-nav-tree" hidden aria-label="Syndicate navigation">
-                    <nav class="template-submodule-nav template-submodule-nav--depth-1" id="sindicato-subnav" aria-label="Syndicate views">
-                        <button type="button" class="template-module-btn" data-sindicato-sub="map">
-                            <span aria-hidden="true">🗺️</span> Map
-                        </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="workplaces">
-                            <span aria-hidden="true">🏢</span> Empresas
-                        </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="sectores">
-                            <span aria-hidden="true">🏭</span> Sectores
-                        </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="feed">
-                            <span aria-hidden="true">💬</span> Foro
-                        </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="unions">
-                            <span aria-hidden="true">🏛️</span> Unions
-                        </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="vivienda">
-                            <span aria-hidden="true">🏠</span> Vivienda
-                        </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="coordination">
-                            <span aria-hidden="true">🤝</span> Coordination
-                        </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="wiki">
-                            <span aria-hidden="true">📖</span> Wiki
-                        </button>
-                    </nav>
-
+                    <!-- Reestructura 12-07-2026: el botón «Mapa» de primer nivel desaparece.
+                         El mapa vive ahora como vista Mapa/Lista dentro de Empresas y Territorios
+                         (dos mapas: pins de empresas vs. capas geojson de territorios).
+                         13-07-2026: el subnav de módulos se movió arriba (#template-module-picker),
+                         siempre visible; aquí quedan solo los bloques de detalle de cada sub. -->
                     <div id="sindicato-workplaces-block" class="teams-team-nav-block" hidden>
-                        <p class="sindicato-sidebar-intro" id="sindicato-workplaces-intro">Busca empresas en el mapa o elige una para abrir su perfil.</p>
+                        <nav class="template-submodule-nav sindicato-view-toggle" id="sindicato-workplaces-view-nav" aria-label="Company views">
+                            <button type="button" class="template-module-btn active" data-sindicato-workplaces-view="map">
+                                <span aria-hidden="true">🗺️</span> Mapa
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-workplaces-view="lista">
+                                <span aria-hidden="true">📋</span> Lista
+                            </button>
+                        </nav>
                         <input type="search" id="sindicato-workplace-search" class="sindicato-search-input" placeholder="Busca por nombre o sector…" aria-label="Search companies">
                         <select id="sindicato-workplace-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Select company">
                             <option value="">Seleccionar empresa…</option>
                         </select>
                         <div id="sindicato-add-company-sidebar-mount"></div>
                         <nav class="template-submodule-nav" id="sindicato-workplace-section-nav" aria-label="Company sections" hidden>
-                            <button type="button" class="template-module-btn active" data-sindicato-section="location">
-                                <span aria-hidden="true">📍</span> Localización
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-section="overview">
+                            <button type="button" class="template-module-btn active" data-sindicato-section="overview">
                                 <span aria-hidden="true">📋</span> Resumen
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-section="location">
+                                <span aria-hidden="true">🗺️</span> Mapa
                             </button>
                             <button type="button" class="template-module-btn" data-sindicato-section="reports">
                                 <span aria-hidden="true">⚠️</span> Denuncias
@@ -161,17 +192,12 @@
                         </nav>
                     </div>
 
-                    <div id="sindicato-map-sidebar" class="teams-team-nav-block" hidden>
-                        <p class="sindicato-sidebar-intro" id="sindicato-map-intro">Geography-first: every workplace gets an auto-generated profile. Click a pin in the workspace or pick a territory below.</p>
-                        <!-- Duplicado de «Proveedor de mapa» retirado (10-07-2026): el control
-                             original de Cartagrama, más abajo en este mismo panel, es el funcional. -->
-                        <div class="sindicato-map-territories-box">
-                            <h4 class="template-section-title" id="sindicato-map-territories-title">Territories</h4>
-                            <div id="sindicato-map-territory-tree-mount" class="sindicato-sector-tree" role="tree" aria-label="Territories"></div>
-                        </div>
-                    </div>
+                    <!-- Sidebar de Mapa retirado (12-07-2026): intro, árbol de territorios y nota demo
+                         eran redundantes con el propio mapa. Las páginas de territorio llegarán en una
+                         fase posterior con su propia navegación (foro, redes, telegram…). -->
                     <div id="sindicato-unions-sidebar" class="teams-team-nav-block" hidden>
                         <p class="sindicato-sidebar-intro" id="sindicato-unions-intro">Neutral directory — SIPTU, Unite, sector unions, and more. Presence data (delegates, companies, agreements) comes from verifiable records, not community scoring.</p>
+                        <input type="search" id="sindicato-union-search" class="sindicato-search-input" placeholder="Search by union or sector…" aria-label="Search unions">
                         <select id="sindicato-union-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Select union">
                             <option value="">Select union…</option>
                         </select>
@@ -190,8 +216,16 @@
                             </button>
                         </nav>
                     </div>
+                    <!-- Red Social (13-07-2026): módulo master. La sidebar solo lleva la intro;
+                         los paneles de stats por módulo y el feed de actividad viven en el fondo. -->
                     <div id="sindicato-feed-sidebar" class="teams-team-nav-block" hidden>
-                        <p class="sindicato-sidebar-intro" id="sindicato-feed-intro">Three forum scopes — one button per row. General board, sector forums, and territory forums.</p>
+                        <p class="sindicato-sidebar-intro" id="sindicato-feed-intro">Portada de la red — stats de cada módulo y actividad reciente en el fondo.</p>
+                    </div>
+                    <!-- Foro (13-07-2026): antes vivía dentro del módulo feed. La sidebar solo
+                         lleva los tres ámbitos; los árboles de subforos (sectores, territorios)
+                         se eligen en el fondo, no aquí. -->
+                    <div id="sindicato-foro-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-foro-intro">Three forum scopes — one button per row. General board, sector forums, and territory forums.</p>
                         <nav class="template-submodule-nav" id="sindicato-feed-subnav" aria-label="Forum scopes">
                             <button type="button" class="template-module-btn active" data-sindicato-feed-scope="general">
                                 <span aria-hidden="true">💬</span> General
@@ -203,7 +237,6 @@
                                 <span aria-hidden="true">🗺️</span> Territorios
                             </button>
                         </nav>
-                        <div id="sindicato-feed-scope-tree-mount" class="sindicato-sector-tree" role="tree" aria-label="Forum scope" hidden></div>
                         <label id="sindicato-feed-company-label" class="sindicato-feed-company-label" for="sindicato-feed-company-select" hidden>Company in this scope</label>
                         <select id="sindicato-feed-company-select" class="team-picker-select geo-picker-scroll" size="4" aria-label="Companies in forum scope" hidden>
                             <option value="">All companies in scope…</option>
@@ -214,16 +247,30 @@
                         <div id="sindicato-sectores-tree-mount" class="sindicato-sector-tree" role="tree" aria-label="Economic sectors"></div>
                     </div>
                     <div id="sindicato-coordination-sidebar" class="teams-team-nav-block" hidden>
-                        <p class="sindicato-sidebar-intro" id="sindicato-coordination-intro">Platform coordination — structure, money and objectives.</p>
-                        <nav class="template-submodule-nav sindicato-coord-subnav" id="sindicato-coordination-subnav" aria-label="Coordination sections">
-                            <button type="button" class="template-module-btn active" data-sindicato-coord-sub="estructura">
-                                <span aria-hidden="true">🧱</span> Estructura
+                        <p class="sindicato-sidebar-intro" id="sindicato-coordination-intro">CRM sindical — elige organización y gestiona afiliadas, casos, campañas y finanzas.</p>
+                        <p class="teams-team-nav-subtitle" id="sindicato-crm-org-label">Organización</p>
+                        <select id="sindicato-crm-org-select" class="team-picker-select" aria-label="Organización del CRM"></select>
+                        <nav class="template-submodule-nav sindicato-coord-subnav" id="sindicato-coordination-subnav" aria-label="CRM sections">
+                            <button type="button" class="template-module-btn active" data-sindicato-coord-sub="afiliadas">
+                                <span aria-hidden="true">👥</span> Afiliadas
                             </button>
-                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="dinero">
-                                <span aria-hidden="true">💶</span> Money
+                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="casos">
+                                <span aria-hidden="true">⚖️</span> Casos
                             </button>
-                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="objetivos">
-                                <span aria-hidden="true">🎯</span> Objectives
+                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="campanas">
+                                <span aria-hidden="true">📣</span> Campañas
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="finanzas">
+                                <span aria-hidden="true">💶</span> Finanzas
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="comunicaciones">
+                                <span aria-hidden="true">✉️</span> Comunicaciones
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="calendario">
+                                <span aria-hidden="true">📅</span> Calendario
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="documentos">
+                                <span aria-hidden="true">📁</span> Documentos
                             </button>
                         </nav>
                     </div>
@@ -233,21 +280,84 @@
                             <button type="button" class="template-module-btn active" data-sindicato-wiki-sub="index">
                                 <span aria-hidden="true">📖</span> Index
                             </button>
+                            <button type="button" class="template-module-btn" data-sindicato-wiki-sub="sindicapp">
+                                <span aria-hidden="true">✊</span> SindicApp
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-wiki-sub="derechos">
+                                <span aria-hidden="true">⚖️</span> Rights
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-wiki-sub="denunciar">
+                                <span aria-hidden="true">📢</span> Reporting
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-wiki-sub="organizar">
+                                <span aria-hidden="true">✊</span> Organising
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-wiki-sub="glosario">
+                                <span aria-hidden="true">🔤</span> Glossary
+                            </button>
                             <button type="button" class="template-module-btn" data-sindicato-wiki-sub="normas">
                                 <span aria-hidden="true">📜</span> Rules
                             </button>
                         </nav>
                     </div>
+                    <!-- Territorios (12-07-2026): antes «Vivienda». Cada territorio tiene su perfil
+                         (empresas, vivienda, foro, redes). Selectores provincia → comarca → municipio
+                         como dropdowns compactos (reforma legibilidad 12-07) con línea de ruta debajo.
+                         El id interno «vivienda» se conserva para no romper rutas ni datos demo. -->
                     <div id="sindicato-vivienda-sidebar" class="teams-team-nav-block" hidden>
-                        <p class="sindicato-sidebar-intro" id="sindicato-vivienda-intro">Coordinación en vivienda por territorio — foro y alertas de desahucio.</p>
+                        <p class="sindicato-sidebar-intro" id="sindicato-vivienda-intro">Cada territorio tiene su perfil — empresas, vivienda, foro y redes.</p>
+                        <nav class="template-submodule-nav sindicato-view-toggle" id="sindicato-vivienda-view-nav" aria-label="Territory views">
+                            <button type="button" class="template-module-btn active" data-sindicato-vivienda-view="map">
+                                <span aria-hidden="true">🗺️</span> Mapa
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-vivienda-view="lista">
+                                <span aria-hidden="true">📋</span> Lista
+                            </button>
+                        </nav>
                         <div id="sindicato-vivienda-parent-row" class="geo-picker-row">
-                            <p class="teams-team-nav-subtitle" id="sindicato-vivienda-parent-label">Elige región</p>
-                            <select id="sindicato-vivienda-parent-select" class="team-picker-select geo-picker-scroll" size="4" aria-label="Select region"></select>
+                            <p class="teams-team-nav-subtitle geo-picker-label" id="sindicato-vivienda-parent-label">Provincia</p>
+                            <select id="sindicato-vivienda-parent-select" class="team-picker-select" aria-label="Selecciona provincia"></select>
                         </div>
                         <div id="sindicato-vivienda-territory-row" class="geo-picker-row">
-                            <p class="teams-team-nav-subtitle" id="sindicato-vivienda-territory-label">Elige territorio</p>
-                            <select id="sindicato-vivienda-territory-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Select territory"></select>
+                            <p class="teams-team-nav-subtitle geo-picker-label" id="sindicato-vivienda-territory-label">Comarca</p>
+                            <select id="sindicato-vivienda-territory-select" class="team-picker-select" aria-label="Selecciona comarca"></select>
                         </div>
+                        <div id="sindicato-vivienda-municipality-row" class="geo-picker-row">
+                            <p class="teams-team-nav-subtitle geo-picker-label" id="sindicato-vivienda-municipality-label">Municipio</p>
+                            <select id="sindicato-vivienda-municipality-select" class="team-picker-select" aria-label="Selecciona municipio"></select>
+                        </div>
+                        <p class="sindicato-geo-path" id="sindicato-vivienda-path" aria-live="polite"></p>
+                    </div>
+                    <!-- Vivienda / Housing (13-07-2026): módulo nuevo y distinto de Territorios.
+                         Dos funcionalidades: Huelgómetro y Alarmas por desahucios. -->
+                    <div id="sindicato-housing-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-housing-intro">Organización de inquilinos — huelgómetro y alarmas por desahucios.</p>
+                        <nav class="template-submodule-nav sindicato-housing-subnav" id="sindicato-housing-subnav" aria-label="Housing sections">
+                            <button type="button" class="template-module-btn active" data-sindicato-housing-sub="huelgometro">
+                                <span aria-hidden="true">🌡️</span> Huelgómetro
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-housing-sub="alarmas">
+                                <span aria-hidden="true">🚨</span> Alarmas
+                            </button>
+                            <!-- Vivienda ampliado (13-07-2026): tenedores, calculadora y asambleas -->
+                            <button type="button" class="template-module-btn" data-sindicato-housing-sub="tenedores">
+                                <span aria-hidden="true">🏦</span> Tenedores
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-housing-sub="calculadora">
+                                <span aria-hidden="true">🧮</span> Calculadora
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-housing-sub="asambleas">
+                                <span aria-hidden="true">🫂</span> Asambleas
+                            </button>
+                        </nav>
+                    </div>
+                    <!-- Consumidores y Estudiantes (13-07-2026): módulos nuevos. Sidebar mínima
+                         (solo intro); directorio y perfiles viven en el fondo. -->
+                    <div id="sindicato-consumidores-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-consumidores-intro">Coordinación de consumo — productos y servicios con denuncias, campañas y alternativas.</p>
+                    </div>
+                    <div id="sindicato-estudiantes-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-estudiantes-intro">Centros de estudios — asociaciones, reivindicaciones y movilizaciones.</p>
                     </div>
                 </div>
 
@@ -269,18 +379,9 @@
                         <span id="map-selected-territory-name" class="map-selected-territory-bar-name">—</span>
                         <button type="button" id="map-selected-territory-info-btn" class="map-selected-territory-info-btn">Info</button>
                     </div>
-                    <h4 class="template-section-title" id="geo-map-provider-title">Map provider</h4>
-                    <p class="template-muted" id="geo-map-provider-muted">OpenStreetMap only (no extra tile overlays in this template).</p>
-                    <div class="map-api-buttons">
-                        <div class="map-api-card">
-                            <button type="button" class="map-api-button" data-api="openstreetmap">
-                                <span class="api-icon" aria-hidden="true">🌍</span>
-                                <span class="api-info">
-                                    <span class="api-name">OpenStreetMap</span>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
+                    <!-- Bloque «Proveedor de mapa» retirado (12-07-2026): OpenStreetMap se abre
+                         solo al entrar en Mapa (initOpenStreetMap en el boot), así que el selector
+                         de proveedor era ruido de plantilla. -->
 
                     <div id="cartagrama-content-territories" class="template-territories-block">
                     <div class="borders-section-title-row">
@@ -1233,10 +1334,9 @@
                 <section id="template-module-self" class="template-module-panel template-subdocs-panel" data-module-panel="self" hidden>
                 </section>
 
-                <!-- Sindicato (SindicApp worker coordination) -->
+                <!-- Panel stub de Sindicato retirado (12-07-2026): el bloque «Colectivo /
+                     Coordinación laboral neutral…» al pie de la sidebar era redundante. -->
                 <section id="template-module-sindicato" class="template-module-panel" data-module-panel="sindicato" hidden>
-                    <h4 class="template-section-title" id="sindicato-panel-title">Syndicate</h4>
-                    <p class="template-muted" id="sindicato-panel-muted">Neutral workplace coordination — open the background workspace for the full view.</p>
                 </section>
 
                 </div><!-- /template-module-body -->

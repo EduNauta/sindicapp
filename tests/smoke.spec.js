@@ -21,25 +21,38 @@ test('loads with no console errors', async ({ page }) => {
 test('core module/menu hierarchy is intact', async ({ page }) => {
   await page.goto('/');
 
-  // The Usuario/Colectivo module picker is the top of the nav hierarchy —
-  // if this is gone or renamed, navigation is broken for everyone.
+  // Since ADR 0010 the module picker holds the flat, always-visible subnav
+  // (eight peer modules, no Usuario/Colectivo umbrella). If the subnav or its
+  // key buttons are gone, navigation is broken for everyone.
   await expect(page.locator('#template-module-picker')).toBeVisible();
-  await expect(page.locator('#sindicapp-module-self-btn')).toBeVisible();
-  await expect(page.locator('#sindicapp-module-sindicato-btn')).toBeVisible();
-
-  // Switching to the Sindicato module should reveal its nav tree.
-  await page.locator('#sindicapp-module-sindicato-btn').click();
-  await expect(page.locator('#sindicato-nav-tree')).toBeVisible();
   await expect(page.locator('#sindicato-subnav')).toBeVisible();
+  await expect(page.locator('#sindicato-subnav [data-sindicato-sub="workplaces"]')).toBeVisible();
+  await expect(page.locator('#sindicato-subnav [data-sindicato-sub="usuario"]')).toBeVisible();
 
-  // Switching to Usuario should reveal its nav tree.
-  await page.locator('#sindicapp-module-self-btn').click();
+  // Opening a collective module (Empresas) should reveal the sindicato nav tree.
+  await page.locator('#sindicato-subnav [data-sindicato-sub="workplaces"]').click();
+  await expect(page.locator('#sindicato-nav-tree')).toBeVisible();
+
+  // The Usuario/Perfil module (eighth button) should reveal the self nav tree.
+  await page.locator('#sindicato-subnav [data-sindicato-sub="usuario"]').click();
   await expect(page.locator('#self-nav-tree')).toBeVisible();
 });
 
 test('map background loads', async ({ page }) => {
   await page.goto('/');
+  // Since 13-07-2026 the default landing is Red Social (a text workspace),
+  // so the map is only visible after opening a map view — Empresas → Mapa.
+  await page.locator('#sindicato-subnav [data-sindicato-sub="workplaces"]').click();
   await expect(page.locator('#map-container')).toBeVisible();
   // Leaflet stamps this class on its root pane once initialized.
   await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10_000 });
+});
+
+test('red social landing shows module stat panels', async ({ page }) => {
+  await page.goto('/');
+  // Master module (13-07-2026): six clickable stat panels, one per trunk module.
+  await expect(page.locator('.sindicato-redsocial-card')).toHaveCount(6);
+  // Panels navigate: Consumidores opens its directory in the workspace.
+  await page.locator('.sindicato-redsocial-card[data-sindicato-goto-sub="consumidores"]').click();
+  await expect(page.locator('#map-text-display .sindicato-dir-card').first()).toBeVisible();
 });

@@ -28,7 +28,7 @@ La interfaz principal se organiza en dos módulos:
 | Módulo | Rol |
 |--------|-----|
 | **Usuario** | Tu empresa: ubicación en el mapa, denuncias, salarios, convenio y acción desde la perspectiva personal |
-| **Sindicato** | Vista colectiva: mapa de empresas, directorio sindical, sectores, foro, vivienda, wiki y coordinación de plataforma |
+| **Sindicato** | Vista colectiva: mapa de empresas, directorio sindical, sectores, foro, territorios, wiki y CRM multi-organización |
 
 Al abrir la web, el **mapa OpenStreetMap** (Leaflet) carga de forma automática como fondo interactivo. El panel lateral permite alternar entre barra de navegación y mapa a pantalla completa.
 
@@ -45,14 +45,18 @@ Al abrir la web, el **mapa OpenStreetMap** (Leaflet) carga de forma automática 
 
 ### Módulo Sindicato
 
-- **Mapa** — explorar empresas por territorio y fronteras
-- **Empresas** — directorio con búsqueda; alta manual de empresas (demo en `localStorage`)
+- **Empresas** — vistas Mapa (pins de empresa) y Lista (directorio con búsqueda); alta manual de empresas (demo en `localStorage`)
 - **Sindicatos** — directorio neutral con datos de implantación (delegados, empresas con presencia, convenios firmados)
 - **Sectores** — árbol sector → subsector → foro y empresas del ramo
-- **Foro** — tableros general, por sector y por territorio
-- **Vivienda** — coordinación por territorio: foro y alertas de desahucio (demo)
-- **Coordinación** — estructura, dinero y objetivos de la plataforma
+- **Red Social** — módulo master y landing por defecto (ver ADR 0012): portada de la red con panel de stats por módulo (Sindicatos, Territorios, Sectores, Empresas, Consumidores, Estudiantes) + actividad reciente; la portada clásica (logo, bienvenida, selector de idioma) vive fusionada en su barra lateral
+- **Foro** — tableros general, por sector y por territorio; los árboles de subforos se eligen en el fondo, no en la barra lateral (módulo distinto de «Red Social», que antes llevaba este foro)
+- **Territorios** — vistas Mapa (selector sobre las fronteras geojson: clic en comarca/provincia → Info → su perfil) y Lista (provincia → comarca → municipio, las 42 comarcas catalanas): empresas, vivienda (alertas de desahucio, agenda, edificios), foro y redes del territorio (demo)
+- **CRM** — gestión para cualquier organización (SindicApp o cualquier sindicato del directorio): afiliadas, casos, campañas, finanzas, comunicaciones, calendario y documentos (demo en memoria de sesión)
 - **Wiki** — índice y normas internas
+- **Vivienda** — módulo nuevo y distinto de Territorios (ver ADR 0011), con cinco pestañas: Huelgómetro (recuento nacional de inquilinos comprometidos con una huelga de alquileres, umbral 1.000.000, botón de compromiso), Alarmas (todos los desahucios de todos los territorios en un tablón, con «me apunto al acompañamiento» por alerta), Tenedores (campañas de negociación colectiva por gran tenedor), Calculadora (tu renta vs índice de referencia demo) y Asambleas (asambleas locales con su grupo de Telegram)
+- **Consumidores** — coordinación de consumo: productos y servicios con denuncias, campañas de presión, alternativas justas y enlace a la empresa del mapa
+- **Estudiantes** — centros de estudios con colectivos estudiantiles, reivindicaciones, movilizaciones y salto al perfil de su territorio
+- **Redes por entidad** — cada territorio, sector, sindicato, empresa, producto/servicio y centro de estudios lleva su grupo de Telegram y canales sociales (enlaces demo)
 
 ### Perfil de empresa (automático)
 
@@ -65,7 +69,7 @@ Cada empresa incluye secciones de demostración:
 - Coordinación de huelga (votaciones, confirmaciones)
 - Sala privada de trabajadores (concepto verificado)
 
-### Módulo Usuario
+### Módulo Usuario (en el subnav, «Perfil»)
 
 - Perfil vinculado a **tu empresa** de demostración
 - Mismas secciones (ubicación, denuncias, salarios, convenio, acción) desde la perspectiva personal
@@ -174,7 +178,7 @@ SindicApp es un **prototipo embrionario**. Muchas funciones son interfaces de de
 - [x] Mapa OpenStreetMap con carga automática
 - [x] Fronteras administrativas
 - [x] Perfiles de empresa geolocalizados
-- [x] Foros, sectores, sindicatos y vivienda (UI + demo)
+- [x] Foros, sectores, sindicatos y perfiles de territorio (UI + demo)
 - [x] Denuncias anónimas y moderación (simulada)
 - [x] Bilingüe ES / EN
 - [ ] Backend, autenticación real y base de datos
