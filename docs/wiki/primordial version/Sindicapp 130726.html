@@ -66,50 +66,32 @@
                     </div>
                 </header>
 
-                <!-- Reestructura 15-07-2026: renombrado + dos módulos nuevos sin contenido.
-                     «Unions» pasa a llamarse Trabajadores (id sigue siendo `unions`); se
-                     recupera el nombre «Sindicatos» para un módulo nuevo y vacío (id
-                     `sindicatos`), junto a otro módulo nuevo y vacío, Autónomos (id
-                     `autonomos`) — ambos en 3ª/4ª posición del cuadro. Vivienda (id `housing`)
-                     y Territorios (id `vivienda`) intercambian posición: Vivienda ahora
-                     ocupa el hueco que dejó Territorios (y se renombra a Inquilinos);
-                     Territorios pasa al final del bloque izquierdo (y se renombra a Mapa).
-                     El subnav envuelve de 2 en 2 (flex 50%), así que el orden del DOM define
-                     las filas visuales:
-                     Red Social+Trabajadores / Sindicatos+Autónomos / CRM+Inquilinos /
-                     Perfil+Sectores / Foro+Empresas / Wiki+Consumidores / Mapa+Estudiantes.
+                <!-- Reestructura 13-07-2026 (v3): Red Social pasa a ser el módulo master —
+                     landing por defecto al cargar y tronco hacia Sindicatos, Territorios,
+                     Sectores, Empresas, Consumidores y Estudiantes (panel de stats por módulo
+                     en el fondo + feed de actividad). El subnav envuelve de 2 en 2 (flex 50%),
+                     así que el orden del DOM define las filas visuales:
+                     Red Social+Sindicatos / CRM+Territorios / Perfil+Sectores / Foro+Empresas /
+                     Wiki+Consumidores / Vivienda+Estudiantes.
                      «Foro» (4º botón de la columna izquierda) recibe el foro real que antes
                      vivía en el módulo feed: ámbitos General / Sectores / Territorios, con los
                      árboles de subforos en el fondo, no en la sidebar. Consumidores y
-                     Estudiantes estrenan vista propia (13-07-2026). Inquilinos (id `housing`)
-                     tiene Huelgómetro y Alarmas por desahucios, distinto de Mapa (id
-                     `vivienda`, antes «Territorios»). Ya no quedan marcadores de posición
-                     deshabilitados salvo Sindicatos y Autónomos, deliberadamente vacíos. -->
+                     Estudiantes estrenan vista propia (13-07-2026). Vivienda (id `housing`)
+                     tiene Huelgómetro y Alarmas por desahucios. Ya no quedan marcadores
+                     de posición deshabilitados. -->
                 <div class="template-module-picker sindicapp-module-stack" id="template-module-picker" aria-label="Module selection">
                     <nav class="template-submodule-nav template-submodule-nav--depth-1" id="sindicato-subnav" aria-label="SindicApp modules">
                         <button type="button" class="template-module-btn" data-sindicato-sub="feed">
                             <span aria-hidden="true">💬</span> Red Social
                         </button>
                         <button type="button" class="template-module-btn" data-sindicato-sub="unions">
-                            <span aria-hidden="true">🏛️</span> Trabajadores
-                        </button>
-                        <!-- Sindicatos y Autónomos (15-07-2026): módulos nuevos, sin contenido
-                             de momento. -->
-                        <button type="button" class="template-module-btn" data-sindicato-sub="sindicatos">
-                            <span aria-hidden="true">🚩</span> Sindicatos
-                        </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="autonomos">
-                            <span aria-hidden="true">🧰</span> Autónomos
+                            <span aria-hidden="true">🏛️</span> Unions
                         </button>
                         <button type="button" class="template-module-btn" data-sindicato-sub="coordination">
                             <span aria-hidden="true">📇</span> CRM
                         </button>
-                        <!-- Vivienda (13-07-2026): módulo nuevo, distinto de Territorios. Dos
-                             funcionalidades: Huelgómetro (umbral 1M inquilinos) y Alarmas por
-                             desahucios (agregado de todos los territorios). Ahora renombrado
-                             Inquilinos y en la posición que ocupaba Territorios (15-07-2026). -->
-                        <button type="button" class="template-module-btn" data-sindicato-sub="housing">
-                            <span aria-hidden="true">🏠</span> Inquilinos
+                        <button type="button" class="template-module-btn" data-sindicato-sub="vivienda">
+                            <span aria-hidden="true">🏘️</span> Territorios
                         </button>
                         <button type="button" class="template-module-btn" data-sindicato-sub="usuario">
                             <span aria-hidden="true">👤</span> Perfil
@@ -129,8 +111,11 @@
                         <button type="button" class="template-module-btn" data-sindicato-sub="consumidores">
                             <span aria-hidden="true">🛒</span> Consumidores
                         </button>
-                        <button type="button" class="template-module-btn" data-sindicato-sub="vivienda">
-                            <span aria-hidden="true">🏘️</span> Mapa
+                        <!-- Vivienda (13-07-2026): módulo nuevo, distinto de Territorios. Dos
+                             funcionalidades: Huelgómetro (umbral 1M inquilinos) y Alarmas por
+                             desahucios (agregado de todos los territorios). -->
+                        <button type="button" class="template-module-btn" data-sindicato-sub="housing">
+                            <span aria-hidden="true">🏠</span> Vivienda
                         </button>
                         <button type="button" class="template-module-btn" data-sindicato-sub="estudiantes">
                             <span aria-hidden="true">🎓</span> Estudiantes

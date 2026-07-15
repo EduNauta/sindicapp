@@ -189,7 +189,7 @@
                 convenio: 'Convenio',
                 action: 'Action'
             },
-            subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Unions', vivienda: 'Territories', map: 'Map', feed: 'Social Network', foro: 'Forum', sectores: 'Sectors', workplaces: 'Companies', housing: 'Housing', consumidores: 'Consumers', estudiantes: 'Students', usuario: 'Profile' },
+            subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Workers', sindicatos: 'Unions', autonomos: 'Self-employed', vivienda: 'Map', map: 'Map', feed: 'Social Network', foro: 'Forum', sectores: 'Sectors', workplaces: 'Companies', housing: 'Tenants', consumidores: 'Consumers', estudiantes: 'Students', usuario: 'Profile' },
             /* Red Social (13-07-2026) — módulo master: landing + panel de stats por módulo + actividad. */
             redSocialTitle: 'Social network',
             redSocialIntro: 'Home of the network — every module at a glance. Open a panel to dive in.',
@@ -678,7 +678,7 @@
                 convenio: 'Convenio',
                 action: 'Acción'
             },
-            subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Sindicatos', vivienda: 'Territorios', map: 'Mapa', feed: 'Red Social', foro: 'Foro', sectores: 'Sectores', workplaces: 'Empresas', housing: 'Vivienda', consumidores: 'Consumidores', estudiantes: 'Estudiantes', usuario: 'Perfil' },
+            subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Trabajadores', sindicatos: 'Sindicatos', autonomos: 'Autónomos', vivienda: 'Mapa', map: 'Mapa', feed: 'Red Social', foro: 'Foro', sectores: 'Sectores', workplaces: 'Empresas', housing: 'Inquilinos', consumidores: 'Consumidores', estudiantes: 'Estudiantes', usuario: 'Perfil' },
             /* Red Social (13-07-2026) — módulo master: landing + panel de stats por módulo + actividad. */
             redSocialTitle: 'Red social',
             redSocialIntro: 'Portada de la red — todos los módulos de un vistazo. Abre un panel para entrar.',
@@ -2893,6 +2893,25 @@
                 <span class="sindicato-badge sindicato-badge-ai">✨ ${c.badges.ai}</span>
                 <span class="sindicato-badge sindicato-badge-verified">🛡️ ${c.badges.verified}</span>
             </div>
+        </div>`;
+    }
+
+    /* Sindicatos y Autónomos (15-07-2026): módulos nuevos, sin contenido de momento —
+       placeholder simple hasta que se defina su alcance. */
+    function buildComingSoonHtml(locale, icon, sub) {
+        const c = t(locale);
+        const title = (c.subs && c.subs[sub]) || sub;
+        const es = locale === 'es';
+        const lead = es
+            ? 'Este módulo todavía no tiene contenido.'
+            : 'This module has no content yet.';
+        const hint = es
+            ? 'Está reservado en el cuadro de módulos y llegará en una próxima iteración.'
+            : "It's reserved in the module grid and will arrive in a future iteration.";
+        return `<div class="sindicato-panel sindicato-coming-soon">
+            <h2>${icon} ${title}</h2>
+            <p class="template-muted">${lead}</p>
+            <p class="sindicato-note">${hint}</p>
         </div>`;
     }
 
@@ -5394,6 +5413,8 @@
         }
         if (sub === 'vivienda') return buildViviendaHtml(locale, ctx.viviendaTerritoryId || '', ctx.viviendaBuildingId || '', ctx.viviendaMunicipalityId || '');
         if (sub === 'housing') return buildHousingHtml(locale, ctx.housingSub || 'huelgometro');
+        if (sub === 'sindicatos') return buildComingSoonHtml(locale, '🚩', 'sindicatos');
+        if (sub === 'autonomos') return buildComingSoonHtml(locale, '🧰', 'autonomos');
         if (sub === 'workplaces') {
             if (!workplaceId) return buildWorkplacesDirectoryHtml(locale, filter);
             const wp = findWorkplace(locale, workplaceId);

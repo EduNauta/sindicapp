@@ -6,7 +6,12 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
-Nothing pending.
+### Added
+- Two new placeholder modules in the subnav, 3rd and 4th position, with no content yet: **Sindicatos** (`data-sindicato-sub="sindicatos"`) and **Autónomos** (`data-sindicato-sub="autonomos"`). Fully wired (click, active state, header title, locale labels) but render a simple "sin contenido de momento" panel until their scope is defined.
+
+### Changed
+- Subnav relabelling: the former union-directory module **Sindicatos** (`unions`) is now **Trabajadores**, freeing up the "Sindicatos" name for the new module above. The housing module **Vivienda** (`housing`) is now **Inquilinos**. The territory-profile module **Territorios** (`vivienda`) is now **Mapa**. Internal sub ids (`unions`, `housing`, `vivienda`) are unchanged — only display labels moved, in both locale packs and in the Red Social landing's stat cards.
+- Swapped the subnav positions of **Inquilinos** (`housing`) and **Mapa** (`vivienda`): Inquilinos now sits right after CRM, and Mapa moved down next to Estudiantes.
 
 ## v0.1.0 — 2026-07-13 — Platform reforms: Red Social, CRM, Territorios, and four new modules
 

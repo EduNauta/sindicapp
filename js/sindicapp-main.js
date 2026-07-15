@@ -967,7 +967,8 @@
                 if (activeSindicatoSub === 'feed' || activeSindicatoSub === 'foro') return true;
                 if (activeSindicatoSub === 'sectores' || activeSindicatoSub === 'coordination'
                     || activeSindicatoSub === 'wiki' || activeSindicatoSub === 'housing'
-                    || activeSindicatoSub === 'consumidores' || activeSindicatoSub === 'estudiantes') return true;
+                    || activeSindicatoSub === 'consumidores' || activeSindicatoSub === 'estudiantes'
+                    || activeSindicatoSub === 'sindicatos' || activeSindicatoSub === 'autonomos') return true;
                 if (activeSindicatoSub === 'vivienda') return activeSindicatoViviendaView === 'lista';
                 if (activeSindicatoSub === 'workplaces' && !activeSindicatoWorkplace) {
                     return activeSindicatoWorkplacesView === 'lista';
@@ -1107,7 +1108,7 @@
                 /* 13-07-2026: «feed» = Red Social (master); «foro», «consumidores» y
                    «estudiantes» son subs propios. El estado del foro (ámbitos) cuelga
                    ahora de «foro», no de «feed». */
-                const allowed = ['coordination', 'wiki', 'unions', 'vivienda', 'feed', 'foro', 'sectores', 'workplaces', 'housing', 'consumidores', 'estudiantes'];
+                const allowed = ['coordination', 'wiki', 'unions', 'vivienda', 'feed', 'foro', 'sectores', 'workplaces', 'housing', 'consumidores', 'estudiantes', 'sindicatos', 'autonomos'];
                 if (subId === '' || subId == null) {
                     activeSindicatoSub = '';
                     activeSindicatoWorkplace = '';
