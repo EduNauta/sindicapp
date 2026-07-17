@@ -25,6 +25,9 @@
             const sindicatoForoSidebar = document.getElementById('sindicato-foro-sidebar');
             const sindicatoConsumidoresSidebar = document.getElementById('sindicato-consumidores-sidebar');
             const sindicatoEstudiantesSidebar = document.getElementById('sindicato-estudiantes-sidebar');
+            /* 17-07-2026: Profesionales y Autónomos, mismo patrón de sidebar mínima */
+            const sindicatoProfesionalesSidebar = document.getElementById('sindicato-profesionales-sidebar');
+            const sindicatoAutonomosSidebar = document.getElementById('sindicato-autonomos-sidebar');
             const sindicatoFeedSubnav = document.getElementById('sindicato-feed-subnav');
             const sindicatoFeedScopeButtons = document.querySelectorAll('[data-sindicato-feed-scope]');
             const sindicatoFeedScopeTreeMount = document.getElementById('sindicato-feed-scope-tree-mount');
@@ -133,6 +136,9 @@
             /* Consumidores y Estudiantes (13-07-2026) — perfil abierto en cada directorio */
             let activeSindicatoConsumidor = '';
             let activeSindicatoEstudiantesCentro = '';
+            /* Profesionales y Autónomos (17-07-2026) — perfil abierto en cada directorio */
+            let activeSindicatoProfesional = '';
+            let activeSindicatoAutonomo = '';
             let sindicatoWorkplaceFilter = '';
             let sindicatoUnionFilter = '';
             let activeSelfSub = 'sindicato';
@@ -491,6 +497,10 @@
                 if (consumidoresIntroEl && c.consumidoresIntro) consumidoresIntroEl.textContent = c.consumidoresIntro;
                 const estudiantesIntroEl = document.getElementById('sindicato-estudiantes-intro');
                 if (estudiantesIntroEl && c.estudiantesIntro) estudiantesIntroEl.textContent = c.estudiantesIntro;
+                const profesionalesIntroEl = document.getElementById('sindicato-profesionales-intro');
+                if (profesionalesIntroEl && c.profesionalesIntro) profesionalesIntroEl.textContent = c.profesionalesIntro;
+                const autonomosIntroEl = document.getElementById('sindicato-autonomos-intro');
+                if (autonomosIntroEl && c.autonomosIntro) autonomosIntroEl.textContent = c.autonomosIntro;
                 if (sindicatoFeedCompanyLabel && c.feedCompanyFilter) {
                     sindicatoFeedCompanyLabel.textContent = c.feedCompanyFilter;
                 }
@@ -848,6 +858,8 @@
                         forumThreadSlug: activeSindicatoForumThread,
                         consumidorId: activeSindicatoConsumidor,
                         estudianteCentroId: activeSindicatoEstudiantesCentro,
+                        profesionalId: activeSindicatoProfesional,
+                        autonomoId: activeSindicatoAutonomo,
                         mapTerritoryId: activeSindicatoMapTerritory,
                         viviendaTerritoryId: activeSindicatoViviendaTerritory,
                         viviendaBuildingId: activeSindicatoViviendaBuilding,
@@ -968,7 +980,8 @@
                 if (activeSindicatoSub === 'sectores' || activeSindicatoSub === 'coordination'
                     || activeSindicatoSub === 'wiki' || activeSindicatoSub === 'housing'
                     || activeSindicatoSub === 'consumidores' || activeSindicatoSub === 'estudiantes'
-                    || activeSindicatoSub === 'sindicatos' || activeSindicatoSub === 'autonomos') return true;
+                    || activeSindicatoSub === 'sindicatos' || activeSindicatoSub === 'autonomos'
+                    || activeSindicatoSub === 'profesionales') return true;
                 if (activeSindicatoSub === 'vivienda') return activeSindicatoViviendaView === 'lista';
                 if (activeSindicatoSub === 'workplaces' && !activeSindicatoWorkplace) {
                     return activeSindicatoWorkplacesView === 'lista';
@@ -1108,7 +1121,7 @@
                 /* 13-07-2026: «feed» = Red Social (master); «foro», «consumidores» y
                    «estudiantes» son subs propios. El estado del foro (ámbitos) cuelga
                    ahora de «foro», no de «feed». */
-                const allowed = ['coordination', 'wiki', 'unions', 'vivienda', 'feed', 'foro', 'sectores', 'workplaces', 'housing', 'consumidores', 'estudiantes', 'sindicatos', 'autonomos'];
+                const allowed = ['coordination', 'wiki', 'unions', 'vivienda', 'feed', 'foro', 'sectores', 'workplaces', 'housing', 'consumidores', 'estudiantes', 'sindicatos', 'autonomos', 'profesionales'];
                 if (subId === '' || subId == null) {
                     activeSindicatoSub = '';
                     activeSindicatoWorkplace = '';
@@ -1132,6 +1145,8 @@
                     activeSindicatoFeedCompanyId = '';
                     activeSindicatoConsumidor = '';
                     activeSindicatoEstudiantesCentro = '';
+                    activeSindicatoProfesional = '';
+                    activeSindicatoAutonomo = '';
                 } else {
                     activeSindicatoSub = allowed.includes(subId) ? subId : '';
                 }
@@ -1158,6 +1173,12 @@
                 }
                 if (activeSindicatoSub !== 'estudiantes') {
                     activeSindicatoEstudiantesCentro = '';
+                }
+                if (activeSindicatoSub !== 'profesionales') {
+                    activeSindicatoProfesional = '';
+                }
+                if (activeSindicatoSub !== 'autonomos') {
+                    activeSindicatoAutonomo = '';
                 }
                 if (activeSindicatoSub !== 'coordination') {
                     activeSindicatoCoordSub = 'afiliadas';
@@ -1302,7 +1323,7 @@
             }
 
             function setSindicatoWikiSub(subId) {
-                const allowed = ['index', 'sindicapp', 'derechos', 'denunciar', 'organizar', 'glosario', 'normas'];
+                const allowed = ['index', 'sindicapp', 'derechos', 'denunciar', 'organizar', 'glosario', 'normas', 'ia'];
                 if (activeSindicatoSub !== 'wiki') {
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                     setSindicatoSub('wiki');
@@ -1495,6 +1516,35 @@
                     return;
                 }
 
+                /* ===== Profesionales / Autónomos (17-07-2026) — abrir y cerrar perfiles ===== */
+                const gotoProfesional = e.target.closest?.('[data-sindicato-goto-profesional]');
+                if (gotoProfesional) {
+                    e.preventDefault();
+                    activeSindicatoProfesional = gotoProfesional.getAttribute('data-sindicato-goto-profesional') || '';
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (activeSindicatoSub !== 'profesionales') {
+                        const keep = activeSindicatoProfesional;
+                        setSindicatoSub('profesionales');
+                        activeSindicatoProfesional = keep;
+                    }
+                    applySindicatoViewSync();
+                    return;
+                }
+
+                const gotoAutonomo = e.target.closest?.('[data-sindicato-goto-autonomo]');
+                if (gotoAutonomo) {
+                    e.preventDefault();
+                    activeSindicatoAutonomo = gotoAutonomo.getAttribute('data-sindicato-goto-autonomo') || '';
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (activeSindicatoSub !== 'autonomos') {
+                        const keep = activeSindicatoAutonomo;
+                        setSindicatoSub('autonomos');
+                        activeSindicatoAutonomo = keep;
+                    }
+                    applySindicatoViewSync();
+                    return;
+                }
+
                 /* ===== CRM (12-07-2026) — interacciones de los módulos ===== */
                 const crmMemberFilterBtn = e.target.closest?.('[data-sindicato-crm-member-filter]');
                 if (crmMemberFilterBtn) {
@@ -1544,6 +1594,46 @@
                     e.preventDefault();
                     sindicatoCrmDocFilter = crmDocFilterBtn.getAttribute('data-sindicato-crm-doc-filter') || 'todas';
                     syncTextWorkspace();
+                    return;
+                }
+
+                /* 17-07-2026: plantillas de respuesta (CRM → Comunicaciones) — copiar al portapapeles. */
+                const crmTemplateBtn = e.target.closest?.('[data-sindicato-crm-template-copy]');
+                if (crmTemplateBtn && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    const tp = window.SINDICAPP_SINDICATO.crmGetTemplate(activeLocale, activeSindicatoCrmOrg, crmTemplateBtn.getAttribute('data-sindicato-crm-template-copy'));
+                    if (tp) {
+                        const done = () => notify(sindicatoNotice('crmTemplateCopied'));
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            navigator.clipboard.writeText(tp.body).then(done, done);
+                        } else {
+                            const ta = document.createElement('textarea');
+                            ta.value = tp.body;
+                            document.body.appendChild(ta);
+                            ta.select();
+                            try { document.execCommand('copy'); } catch (err) { /* demo: sin portapapeles */ }
+                            ta.remove();
+                            done();
+                        }
+                    }
+                    return;
+                }
+
+                /* 17-07-2026: export JSON de la organización (CRM → Documentos) — «tus datos son tuyos». */
+                const crmExportBtn = e.target.closest?.('[data-sindicato-crm-export]');
+                if (crmExportBtn && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    const payload = window.SINDICAPP_SINDICATO.crmExportPayload(activeLocale, activeSindicatoCrmOrg);
+                    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `sindicapp-crm-${payload.organisation.id}-${payload.exportedAt.slice(0, 10)}.json`;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    setTimeout(() => URL.revokeObjectURL(url), 1000);
+                    notify(sindicatoNotice('crmExported'));
                     return;
                 }
 
@@ -2007,6 +2097,12 @@
                 }
                 if (sindicatoEstudiantesSidebar) {
                     sindicatoEstudiantesSidebar.hidden = !onSindicato || activeSindicatoSub !== 'estudiantes';
+                }
+                if (sindicatoProfesionalesSidebar) {
+                    sindicatoProfesionalesSidebar.hidden = !onSindicato || activeSindicatoSub !== 'profesionales';
+                }
+                if (sindicatoAutonomosSidebar) {
+                    sindicatoAutonomosSidebar.hidden = !onSindicato || activeSindicatoSub !== 'autonomos';
                 }
                 if (sindicatoSectoresSidebar) {
                     sindicatoSectoresSidebar.hidden = !onSindicato || activeSindicatoSub !== 'sectores';

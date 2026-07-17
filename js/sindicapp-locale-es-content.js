@@ -47,6 +47,7 @@
             '[data-sindicato-sub="unions"]': 'Trabajadores',
             '[data-sindicato-sub="sindicatos"]': 'Sindicatos',
             '[data-sindicato-sub="autonomos"]': 'Autónomos',
+            '[data-sindicato-sub="profesionales"]': 'Profesionales',
             '[data-sindicato-sub="vivienda"]': 'Mapa',
             '[data-sindicato-sub="coordination"]': 'CRM',
             '[data-sindicato-sub="wiki"]': 'Wiki',

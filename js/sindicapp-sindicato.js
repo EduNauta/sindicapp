@@ -155,6 +155,16 @@
                         + '<dt>Strike fund</dt><dd>Money set aside to support members during industrial action.</dd>'
                         + '<dt>Verified worker</dt><dd>An account confirmed as an on-site employee, giving reports and votes more weight.</dd>'
                         + '</dl>'
+                },
+                ia: {
+                    title: 'AI and unionism: our doctrine',
+                    summary: 'Where AI fits on a union platform — and where it does not.',
+                    body: '<p>Automation is attractive, but on a union platform it can damage exactly what makes organising possible: privacy, trust and accountability. SindicApp\'s position:</p>'
+                        + '<div class="sindicato-coord-card"><strong>Official sources only</strong><p>Any assistant works exclusively over official, public texts — collective agreements, legislation, union-approved guides. Never over rumour or scraped opinion.</p></div>'
+                        + '<div class="sindicato-coord-card"><strong>Human review, always</strong><p>No automated output triggers action or publication on its own. Community and organiser review comes first.</p></div>'
+                        + '<div class="sindicato-coord-card"><strong>Never personal case data</strong><p>Intake, cases, assemblies and documents — the internal side of union work — are designed <em>without</em> AI. Sensitive personal data is not assistant fuel.</p></div>'
+                        + '<div class="sindicato-coord-card"><strong>Basics first</strong><p>Before automating anything: clear permissions, stable data practices and human workflows that already make sense.</p></div>'
+                        + '<p class="template-muted">This is why the agreement tab offers a bounded «guided lookup (demo)» and why AI only <em>assists</em> the community moderation of public reports.</p>'
                 }
             },
             wikiEmbedBlurbs: {
@@ -189,7 +199,7 @@
                 convenio: 'Convenio',
                 action: 'Action'
             },
-            subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Workers', sindicatos: 'Unions', autonomos: 'Self-employed', vivienda: 'Map', map: 'Map', feed: 'Social Network', foro: 'Forum', sectores: 'Sectors', workplaces: 'Companies', housing: 'Tenants', consumidores: 'Consumers', estudiantes: 'Students', usuario: 'Profile' },
+            subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Workers', sindicatos: 'Unions', autonomos: 'Self-employed', profesionales: 'Professionals', vivienda: 'Map', map: 'Map', feed: 'Social Network', foro: 'Forum', sectores: 'Sectors', workplaces: 'Companies', housing: 'Tenants', consumidores: 'Consumers', estudiantes: 'Students', usuario: 'Profile' },
             /* Red Social (13-07-2026) — módulo master: landing + panel de stats por módulo + actividad. */
             redSocialTitle: 'Social network',
             redSocialIntro: 'Home of the network — every module at a glance. Open a panel to dive in.',
@@ -197,6 +207,8 @@
             redSocialActivityTitle: 'Latest activity',
             redSocialStatLabels: {
                 unions: ['unions in directory', 'combined members'],
+                profesionales: ['professional bodies', 'unions present'],
+                autonomos: ['platforms & clients', 'active campaigns'],
                 vivienda: ['territory profiles', 'eviction alerts'],
                 sectores: ['sector branches', 'subsector forums'],
                 workplaces: ['companies on the map', 'open reports'],
@@ -238,6 +250,29 @@
             estudiantesIssuesTitle: 'Grievances & demands',
             estudiantesMobilizationsTitle: 'Mobilisations',
             estudiantesBack: 'Back to centres',
+            /* Profesionales (17-07-2026) */
+            profesionalesTitle: 'Professional bodies',
+            profesionalesIntro: 'Doctors, lawyers, architects, nurses — every professional body gets a profile with membership, fees, grievances and the profession\'s unions. Collegiate work, organised.',
+            profesionalesDirectoryHint: 'Open a body to see its profile.',
+            profesionalesStatMembers: 'registered members',
+            profesionalesStatFee: 'annual fee',
+            profesionalesStatIssues: 'open grievances',
+            profesionalesUnionsTitle: 'Professional unions present',
+            profesionalesIssuesTitle: 'Grievances & demands',
+            profesionalesMobilizationsTitle: 'Mobilisations',
+            profesionalesBack: 'Back to directory',
+            /* Autónomos (17-07-2026) */
+            autonomosTitle: 'Self-employed coordination',
+            autonomosIntro: 'Platforms and big clients that set the terms for freelance work — each one gets a profile with collaborative rates, pressure campaigns and the associations organising there.',
+            autonomosDirectoryHint: 'Open a platform or client to see its record.',
+            autonomosStatFreelancers: 'freelancers active',
+            autonomosStatCampaigns: 'active campaigns',
+            autonomosStatRates: 'rates shared',
+            autonomosRatesTitle: 'Collaborative rates',
+            autonomosRatesHint: 'Rates shared anonymously by freelancers — ✓ marks confirmations.',
+            autonomosCampaignsTitle: 'Pressure campaigns',
+            autonomosAssociationsTitle: 'Associations present',
+            autonomosBack: 'Back to directory',
             housingSubs: { huelgometro: 'Strike-o-meter', alarmas: 'Eviction alerts', tenedores: 'Big landlords', calculadora: 'Rent check', asambleas: 'Assemblies' },
             housingIntro: 'Tenant organising — strike-o-meter, eviction alerts, big-landlord campaigns, a rent checker and local assemblies.',
             /* Vivienda ampliado (13-07-2026): tenedores, calculadora, asambleas, acompañamiento */
@@ -326,10 +361,10 @@
             unionOverviewIntro: 'Union profile on the neutral SindicApp directory.',
             unionOpenForum: 'Open forum',
             unionOpenStructure: 'View structure',
-            convenioAskAi: 'Ask AI about convenio',
+            convenioAskAi: 'Guided lookup (demo) on the agreement',
             convenioAskPlaceholder: 'Paste a clause or describe your doubt…',
             convenioAskBtn: 'Explain in plain language',
-            convenioAiSample: 'AI assist (demo): This clause limits overtime to 80h/year unless collectively agreed. If your contract says otherwise, flag it with a report.',
+            convenioAiSample: 'Guided lookup (demo): This clause limits overtime to 80h/year unless collectively agreed. Grounded only in the official agreement text — human review comes before any action. If your contract says otherwise, flag it with a report.',
             demoNote: 'Demo data for SindicApp. Production would use verified accounts, legal review, and union partnerships.',
             forumBack: 'Back to general forum',
             forumThreadMissing: 'Thread not found.',
@@ -349,7 +384,7 @@
             convenioBranchTitle: 'Branch clauses (from collective agreement library)',
             mapTerritoryDossier: 'Territory dossier',
             mapClearTerritory: 'Show all territories',
-            aiConvenioHint: 'AI convenio assist explains clauses in plain language and flags common employer workarounds.',
+            aiConvenioHint: 'Guided lookup (demo) explains clauses in plain language — official sources only, human review always, never personal case data.',
             aiContractHint: 'Upload a contract for community review plus AI summary of risky clauses (demo).',
             fieldName: 'Company name',
             fieldSector: 'Sector',
@@ -445,7 +480,9 @@
                 companyAdded: 'Company profile created.',
                 companyFormInvalid: 'Name and address are required.',
                 wageSubmitted: 'Salary contribution saved. Thank you.',
-                pledgeSaved: 'Pledge recorded (demo).'
+                pledgeSaved: 'Pledge recorded (demo).',
+                crmTemplateCopied: 'Template copied to clipboard.',
+                crmExported: 'Organisation data exported as JSON.'
             },
             /* R4 — Agenda: la capa temporal */
             agendaTitle: 'Action agenda',
@@ -651,6 +688,16 @@
                         + '<dt>Caja de resistencia</dt><dd>Fondo reservado para sostener a las afiliadas durante una acción sindical.</dd>'
                         + '<dt>Trabajadora verificada</dt><dd>Cuenta confirmada como empleada en el centro, que da más peso a denuncias y votos.</dd>'
                         + '</dl>'
+                },
+                ia: {
+                    title: 'IA y sindicalismo: nuestra doctrina',
+                    summary: 'Dónde cabe la IA en una plataforma sindical — y dónde no.',
+                    body: '<p>La automatización es atractiva, pero en una plataforma sindical puede dañar justo lo que hace posible organizarse: privacidad, confianza y responsabilidad. La posición de SindicApp:</p>'
+                        + '<div class="sindicato-coord-card"><strong>Solo fuentes oficiales</strong><p>Cualquier asistente trabaja exclusivamente sobre textos oficiales y públicos — convenios, legislación, guías aprobadas por sindicatos. Nunca sobre rumor ni opinión raspada.</p></div>'
+                        + '<div class="sindicato-coord-card"><strong>Revisión humana, siempre</strong><p>Ninguna salida automática dispara por sí sola una acción o publicación. Primero pasa la revisión comunitaria y organizadora.</p></div>'
+                        + '<div class="sindicato-coord-card"><strong>Nunca datos personales de casos</strong><p>Intake, casos, asambleas y documentos — la cara interna del trabajo sindical — se diseñan <em>sin</em> IA. Los datos sensibles no son combustible de asistentes.</p></div>'
+                        + '<div class="sindicato-coord-card"><strong>Primero las bases</strong><p>Antes de automatizar nada: permisos claros, prácticas de datos estables y flujos humanos que ya funcionan.</p></div>'
+                        + '<p class="template-muted">Por eso la pestaña de convenio ofrece una «consulta guiada (demo)» acotada y la IA solo <em>asiste</em> a la moderación comunitaria de denuncias públicas.</p>'
                 }
             },
             wikiEmbedBlurbs: {
@@ -678,7 +725,7 @@
                 convenio: 'Convenio',
                 action: 'Acción'
             },
-            subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Trabajadores', sindicatos: 'Sindicatos', autonomos: 'Autónomos', vivienda: 'Mapa', map: 'Mapa', feed: 'Red Social', foro: 'Foro', sectores: 'Sectores', workplaces: 'Empresas', housing: 'Inquilinos', consumidores: 'Consumidores', estudiantes: 'Estudiantes', usuario: 'Perfil' },
+            subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Trabajadores', sindicatos: 'Sindicatos', autonomos: 'Autónomos', profesionales: 'Profesionales', vivienda: 'Mapa', map: 'Mapa', feed: 'Red Social', foro: 'Foro', sectores: 'Sectores', workplaces: 'Empresas', housing: 'Inquilinos', consumidores: 'Consumidores', estudiantes: 'Estudiantes', usuario: 'Perfil' },
             /* Red Social (13-07-2026) — módulo master: landing + panel de stats por módulo + actividad. */
             redSocialTitle: 'Red social',
             redSocialIntro: 'Portada de la red — todos los módulos de un vistazo. Abre un panel para entrar.',
@@ -686,6 +733,8 @@
             redSocialActivityTitle: 'Actividad reciente',
             redSocialStatLabels: {
                 unions: ['sindicatos en el directorio', 'afiliación combinada'],
+                profesionales: ['colegios profesionales', 'sindicatos de profesión'],
+                autonomos: ['plataformas y clientes', 'campañas activas'],
                 vivienda: ['perfiles de territorio', 'alertas de desahucio'],
                 sectores: ['ramas sectoriales', 'foros de subsector'],
                 workplaces: ['empresas en el mapa', 'denuncias abiertas'],
@@ -727,6 +776,29 @@
             estudiantesIssuesTitle: 'Quejas y reivindicaciones',
             estudiantesMobilizationsTitle: 'Movilizaciones',
             estudiantesBack: 'Volver a centros',
+            /* Profesionales (17-07-2026) */
+            profesionalesTitle: 'Colegios profesionales',
+            profesionalesIntro: 'Médicos, abogados, arquitectos, enfermería — cada colegio profesional tiene su perfil con colegiación, cuotas, reivindicaciones y los sindicatos de la profesión. El trabajo colegiado, organizado.',
+            profesionalesDirectoryHint: 'Abre un colegio para ver su perfil.',
+            profesionalesStatMembers: 'colegiadas',
+            profesionalesStatFee: 'cuota anual',
+            profesionalesStatIssues: 'reivindicaciones abiertas',
+            profesionalesUnionsTitle: 'Sindicatos de profesión presentes',
+            profesionalesIssuesTitle: 'Quejas y reivindicaciones',
+            profesionalesMobilizationsTitle: 'Movilizaciones',
+            profesionalesBack: 'Volver al directorio',
+            /* Autónomos (17-07-2026) */
+            autonomosTitle: 'Coordinación de autónomos',
+            autonomosIntro: 'Plataformas y grandes clientes que fijan las condiciones del trabajo autónomo — cada uno con su perfil: tarifas colaborativas, campañas de presión y las asociaciones que se organizan ahí.',
+            autonomosDirectoryHint: 'Abre una plataforma o cliente para ver su registro.',
+            autonomosStatFreelancers: 'autónomas activas',
+            autonomosStatCampaigns: 'campañas activas',
+            autonomosStatRates: 'tarifas compartidas',
+            autonomosRatesTitle: 'Tarifas colaborativas',
+            autonomosRatesHint: 'Tarifas compartidas anónimamente por autónomas — ✓ marca confirmaciones.',
+            autonomosCampaignsTitle: 'Campañas de presión',
+            autonomosAssociationsTitle: 'Asociaciones presentes',
+            autonomosBack: 'Volver al directorio',
             housingSubs: { huelgometro: 'Huelgómetro', alarmas: 'Alarmas', tenedores: 'Tenedores', calculadora: 'Calculadora', asambleas: 'Asambleas' },
             housingIntro: 'Organización de inquilinos — huelgómetro, alarmas por desahucios, campañas por gran tenedor, calculadora de alquiler y asambleas locales.',
             /* Vivienda ampliado (13-07-2026): tenedores, calculadora, asambleas, acompañamiento */
@@ -815,10 +887,10 @@
             unionOverviewIntro: 'Perfil del sindicato en el directorio neutral SindicApp.',
             unionOpenForum: 'Abrir foro',
             unionOpenStructure: 'Ver estructura',
-            convenioAskAi: 'Preguntar a la IA sobre el convenio',
+            convenioAskAi: 'Consulta guiada (demo) sobre el convenio',
             convenioAskPlaceholder: 'Pega una cláusula o describe tu duda…',
             convenioAskBtn: 'Explicar en lenguaje llano',
-            convenioAiSample: 'Asistencia IA (demo): Esta cláusula limita las horas extra a 80 h/año salvo pacto. Si tu contrato dice otra cosa, denúncialo.',
+            convenioAiSample: 'Consulta guiada (demo): Esta cláusula limita las horas extra a 80 h/año salvo pacto. Basada solo en el texto oficial del convenio — antes de actuar, revisión humana. Si tu contrato dice otra cosa, denúncialo.',
             demoNote: 'Datos demo de SindicApp. En producción: cuentas verificadas, revisión legal y acuerdos con sindicatos.',
             forumBack: 'Volver al foro general',
             forumThreadMissing: 'Hilo no encontrado.',
@@ -838,7 +910,7 @@
             convenioBranchTitle: 'Cláusulas de rama (biblioteca de convenio)',
             mapTerritoryDossier: 'Dossier territorial',
             mapClearTerritory: 'Ver todos los territorios',
-            aiConvenioHint: 'La asistencia IA de convenio explica cláusulas en lenguaje llano y señala artimañas habituales del empleador.',
+            aiConvenioHint: 'La consulta guiada (demo) explica cláusulas en lenguaje llano — solo fuentes oficiales, revisión humana siempre, nunca datos personales de casos.',
             aiContractHint: 'Sube un contrato para revisión comunitaria y resumen IA de cláusulas de riesgo (demo).',
             fieldName: 'Nombre de empresa',
             fieldSector: 'Sector',
@@ -935,7 +1007,9 @@
                 companyAdded: 'Perfil de empresa creado.',
                 companyFormInvalid: 'Nombre y dirección son obligatorios.',
                 wageSubmitted: 'Aportación salarial guardada. Gracias.',
-                pledgeSaved: 'Confirmación registrada (demo).'
+                pledgeSaved: 'Confirmación registrada (demo).',
+                crmTemplateCopied: 'Plantilla copiada al portapapeles.',
+                crmExported: 'Datos de la organización exportados en JSON.'
             },
             agendaTitle: 'Agenda de acción',
             agendaUpcomingTitle: 'Próximas fechas',
@@ -1103,14 +1177,14 @@
             { id: 'f1', type: 'report', workplaceId: 'temple-bar-hospitality', section: 'reports', workplace: 'Temple Bar Hospitality Group', text: '3 new anonymous reports: unpaid closing shifts, tip pooling by management.', time: '2h ago', hot: true },
             { id: 'f2', type: 'wage', workplaceId: 'docklands-logistics', section: 'wages', workplace: 'Dublin Docklands Logistics', text: 'Night-shift pallet rate updated in crowd-sourced wage chart — €16.10 median.', time: '5h ago', hot: false },
             { id: 'f3', type: 'strike', workplaceId: 'silicon-docks-tech', section: 'action', workplace: 'Silicon Docks Tech Ltd', text: 'Strike readiness poll at 41% — needs 55% to schedule action window.', time: '8h ago', hot: true },
-            { id: 'f4', type: 'convenio', workplaceId: 'grafton-retail', section: 'convenio', workplace: 'Grafton Retail Co-op', text: 'AI convenio assist answered: Sunday premium clause applies after 6 months tenure.', time: '1d ago', hot: false },
+            { id: 'f4', type: 'convenio', workplaceId: 'grafton-retail', section: 'convenio', workplace: 'Grafton Retail Co-op', text: 'Guided lookup answered: Sunday premium clause applies after 6 months tenure.', time: '1d ago', hot: false },
             { id: 'f5', type: 'union', unionId: 'inmo', workplaceId: 'st-james-medical', section: 'forum', workplace: "St James's Medical Services", text: 'INMO posted liberado contact and FAQ on roster-change rights.', time: '1d ago', hot: false }
         ],
         es: [
             { id: 'f1', type: 'report', workplaceId: 'boqueria-hostaleria', section: 'reports', workplace: 'Mercat Central Hostaleria SL', text: '4 denuncias nuevas: turnos partidos sin compensación, propinas retenidas.', time: 'hace 2h', hot: true },
             { id: 'f2', type: 'wage', workplaceId: 'zona-franca-logistica', section: 'wages', workplace: 'Polígon Nord Logística', text: 'Actualizado organigrama anónimo — carretillero 1.720 € media mensual.', time: 'hace 4h', hot: false },
             { id: 'f3', type: 'strike', workplaceId: 'techpark-solutions', section: 'action', workplace: 'TechPark Solutions', text: 'Sondeo de huelga al 44% — umbral de convocatoria en 55%.', time: 'hace 6h', hot: true },
-            { id: 'f4', type: 'convenio', workplaceId: 'supermercat-diari', section: 'convenio', workplace: 'Supermercat Diari', text: 'Asistencia IA: el plus de festivo del convenio aplica desde el primer mes.', time: 'hace 1d', hot: false },
+            { id: 'f4', type: 'convenio', workplaceId: 'supermercat-diari', section: 'convenio', workplace: 'Supermercat Diari', text: 'Consulta guiada: el plus de festivo del convenio aplica desde el primer mes.', time: 'hace 1d', hot: false },
             { id: 'f5', type: 'union', unionId: 'ccoo', workplaceId: 'clinica-sant-pere', section: 'forum', workplace: 'Clínica Privada Sant Pere', text: 'CCOO publicó contacto de delegada y alerta sobre cambios de turno.', time: 'hace 1d', hot: false }
         ]
     };
@@ -2439,9 +2513,283 @@
     }
 
     /* ================================================================
+     * Profesionales (17-07-2026) — colegios profesionales (médicos, abogados,
+     * arquitectos, enfermería…) con colegiación, cuota, reivindicaciones y
+     * sindicatos de profesión. Mismo patrón directorio+perfil que Estudiantes.
+     * ================================================================ */
+    const PRO_BODIES = {
+        es: [
+            { id: 'comb-metges-bcn', icon: '🩺', name: 'Col·legi de Metges de Barcelona (CoMB)', type: 'Colegio de médicos', territoryId: 'barcelona-ciutat', members: 30000, fee: 560,
+                unions: ['Metges de Catalunya', 'CCOO Sanitat'],
+                issues: [
+                    { title: 'Límite de agendas: máximo de visitas diarias en primaria', replies: 58 },
+                    { title: 'Descanso efectivo tras guardia de 24 h', replies: 44 }
+                ],
+                mobilizations: [{ date: '2026-10-06', title: 'Concentración por la primaria', place: 'Passeig de la Bonanova' }] },
+            { id: 'icab-advocacia', icon: '⚖️', name: 'Il·lustre Col·legi de l\'Advocacia de Barcelona (ICAB)', type: 'Colegio de la abogacía', territoryId: 'barcelona-ciutat', members: 25000, fee: 480,
+                unions: ['Advocacia Jove', 'Plataforma Torn d\'Ofici Digne'],
+                issues: [
+                    { title: 'Turno de oficio: baremos dignos y pago puntual', replies: 63 },
+                    { title: 'Conciliación: suspensión de plazos por baja parental', replies: 37 }
+                ],
+                mobilizations: [{ date: '2026-09-29', title: 'Paro del turno de oficio', place: 'Ciutat de la Justícia' }] },
+            { id: 'coac-arquitectes', icon: '📐', name: 'Col·legi d\'Arquitectes de Catalunya (COAC)', type: 'Colegio de arquitectos', territoryId: 'barcelona-ciutat', members: 10500, fee: 350,
+                unions: ['Sindicat d\'Arquitectes (SArq)'],
+                issues: [
+                    { title: 'Concursos: fin de las bajas temerarias en honorarios', replies: 29 },
+                    { title: 'Falso autónomo en estudios de arquitectura', replies: 41 }
+                ],
+                mobilizations: [] },
+            { id: 'coib-infermeria', icon: '💉', name: 'Col·legi Oficial d\'Infermeres de Barcelona (COIB)', type: 'Colegio de enfermería', territoryId: 'barcelona-ciutat', members: 45000, fee: 180,
+                unions: ['SATSE', 'Infermeres de Catalunya'],
+                issues: [
+                    { title: 'Ratios seguras de pacientes por enfermera', replies: 72 },
+                    { title: 'Reconocimiento efectivo de las especialidades', replies: 33 }
+                ],
+                mobilizations: [{ date: '2026-10-12', title: 'Jornada por las ratios seguras', place: 'Plaça Sant Jaume' }] },
+            { id: 'comg-metges-girona', icon: '🩺', name: 'Col·legi de Metges de Girona', type: 'Colegio de médicos', territoryId: 'girona-comarca', members: 3200, fee: 520,
+                unions: ['Metges de Catalunya'],
+                issues: [{ title: 'Cobertura de plazas en comarcas: incentivos reales', replies: 21 }],
+                mobilizations: [] }
+        ],
+        ie: [
+            { id: 'rcpi-physicians', icon: '🩺', name: 'Royal College of Physicians of Ireland', type: 'Medical professional body', territoryId: 'dublin-city-centre', members: 11000, fee: 540,
+                unions: ['IMO', 'IHCA'],
+                issues: [
+                    { title: 'Safe rosters — end 24h+ hospital shifts', replies: 51 },
+                    { title: 'Consultant posts left unfilled outside Dublin', replies: 34 }
+                ],
+                mobilizations: [{ date: '2026-10-07', title: 'NCHD lunchtime protest', place: 'St James\'s Hospital' }] },
+            { id: 'law-society-ie', icon: '⚖️', name: 'Law Society of Ireland', type: 'Solicitors\' professional body', territoryId: 'dublin-city-centre', members: 12000, fee: 300,
+                unions: ['Trainee Solicitors\' Forum', 'FLAC'],
+                issues: [
+                    { title: 'Legal aid rates — restore and index fees', replies: 46 },
+                    { title: 'Trainee minimum salary across all firms', replies: 39 }
+                ],
+                mobilizations: [] },
+            { id: 'nmbi-nursing', icon: '💉', name: 'Nursing & Midwifery Board of Ireland', type: 'Nursing professional body', territoryId: 'dublin-city-centre', members: 79000, fee: 100,
+                unions: ['INMO'],
+                issues: [
+                    { title: 'Safe staffing ratios in every ward', replies: 68 },
+                    { title: 'Recognition of overseas qualifications, faster', replies: 27 }
+                ],
+                mobilizations: [{ date: '2026-10-15', title: 'Safe staffing rally', place: 'Merrion Square' }] },
+            { id: 'riai-architects', icon: '📐', name: 'Royal Institute of the Architects of Ireland', type: 'Architects\' professional body', territoryId: 'dublin-city-centre', members: 3200, fee: 380,
+                unions: ['Architectural Workers Assembly'],
+                issues: [{ title: 'Unpaid overtime culture in practices', replies: 24 }],
+                mobilizations: [] },
+            { id: 'teaching-council-ie', icon: '🏫', name: 'The Teaching Council', type: 'Teachers\' professional body', territoryId: 'dublin-south', members: 120000, fee: 65,
+                unions: ['INTO', 'ASTI', 'TUI'],
+                issues: [{ title: 'Permanent contracts for young teachers', replies: 57 }],
+                mobilizations: [{ date: '2026-10-02', title: 'Equal pay for equal work march', place: 'Leinster House' }] }
+        ]
+    };
+
+    function getProBodies(locale) {
+        return PRO_BODIES[localeKey(locale)] || [];
+    }
+
+    function findProBody(locale, bodyId) {
+        return getProBodies(locale).find((b) => b.id === bodyId) || null;
+    }
+
+    function buildProfesionalesHtml(locale, bodyId) {
+        const c = t(locale);
+        const es = locale === 'es';
+        const localeTag = es ? 'es-ES' : 'en-IE';
+        const bodies = getProBodies(locale);
+        const body = bodyId ? findProBody(locale, bodyId) : null;
+        if (!body) {
+            const cards = bodies.map((b) => `
+                <button type="button" class="sindicato-redsocial-card sindicato-dir-card" data-sindicato-goto-profesional="${b.id}">
+                    <span class="sindicato-redsocial-card-icon" aria-hidden="true">${b.icon}</span>
+                    <strong class="sindicato-redsocial-card-name">${b.name}</strong>
+                    <span class="template-muted">${b.type}</span>
+                    <span class="sindicato-redsocial-card-stats">
+                        <span><strong>${b.members.toLocaleString(localeTag)}</strong> ${c.profesionalesStatMembers}</span>
+                        <span><strong>${b.unions.length}</strong> ${c.profesionalesUnionsTitle.toLowerCase()}</span>
+                    </span>
+                </button>`).join('');
+            return `<div class="sindicato-panel sindicato-profesionales">
+                <h2>🩺 ${c.profesionalesTitle}</h2>
+                <p class="template-muted">${c.profesionalesIntro}</p>
+                <p>${c.profesionalesDirectoryHint}</p>
+                <div class="sindicato-redsocial-grid">${cards}</div>
+                <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
+            </div>`;
+        }
+        const terr = getSubterritoryById(locale, body.territoryId);
+        const unionTags = body.unions.map((u) => `<span class="sindicato-union-tag">${u}</span>`).join('');
+        const issueCards = body.issues.map((i) =>
+            `<div class="sindicato-coord-card"><strong>${i.title}</strong><p class="template-muted">${i.replies} ${es ? 'respuestas' : 'replies'}</p></div>`
+        ).join('') || `<p class="template-muted">—</p>`;
+        const mobCards = body.mobilizations.map((m) =>
+            `<div class="sindicato-coord-card sindicato-mob-card"><strong>${m.date}</strong><p>${m.title}</p><p class="template-muted">📍 ${m.place}</p></div>`
+        ).join('') || `<p class="template-muted">—</p>`;
+        const terrBtn = terr
+            ? `<p><button type="button" class="sindicato-cta-btn" data-sindicato-goto-vivienda="${terr.id}">🗺️ ${terr.parentName} / ${terr.name}</button></p>`
+            : '';
+        return `<div class="sindicato-panel sindicato-profesionales-profile">
+            <p><button type="button" class="sindicato-back-btn" data-sindicato-goto-profesional="">← ${c.profesionalesBack}</button></p>
+            <h2>${body.icon} ${body.name}</h2>
+            <p class="template-muted">${body.type}${terr ? ` · ${terr.name}` : ''}</p>
+            <div class="sindicato-summary-grid">
+                <div class="sindicato-stat"><strong>${body.members.toLocaleString(localeTag)}</strong><span>${c.profesionalesStatMembers}</span></div>
+                <div class="sindicato-stat"><strong>€ ${body.fee.toLocaleString(localeTag)}</strong><span>${c.profesionalesStatFee}</span></div>
+                <div class="sindicato-stat"><strong>${body.issues.length}</strong><span>${c.profesionalesStatIssues}</span></div>
+            </div>
+            <h3>✊ ${c.profesionalesUnionsTitle}</h3>
+            <div class="sindicato-union-tags">${unionTags}</div>
+            <h3>📢 ${c.profesionalesIssuesTitle}</h3>
+            ${issueCards}
+            <h3>📅 ${c.profesionalesMobilizationsTitle}</h3>
+            ${mobCards}
+            ${terrBtn}
+            ${buildSocialLinksBlockHtml(locale, body.id)}
+            <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
+        </div>`;
+    }
+
+    /* ================================================================
+     * Autónomos (17-07-2026) — plataformas y grandes clientes que fijan las
+     * condiciones del trabajo autónomo: tarifas colaborativas (estilo
+     * Sueldos), campañas de presión y asociaciones presentes.
+     * ================================================================ */
+    const AUTONOMO_PLATFORMS = {
+        es: [
+            { id: 'glovo-reparto', icon: '🛵', name: 'Glovo', type: 'Plataforma de reparto', sector: 'Reparto y última milla', freelancers: 12000,
+                rates: [
+                    { role: 'Pedido medio (Barcelona)', rate: '€ 4,20 / pedido', votes: 61 },
+                    { role: 'Hora en franja punta', rate: '€ 9,50 / h', votes: 38 }
+                ],
+                campaigns: [
+                    { title: 'Tarifa mínima garantizada por pedido', support: 64 },
+                    { title: 'Fin de las desconexiones sin causa', support: 71 }
+                ],
+                associations: ['RidersXDerechos', 'Mensakas (coop alternativa)'] },
+            { id: 'vtc-uber-cabify', icon: '🚗', name: 'Uber / Cabify (VTC)', type: 'Plataforma VTC', sector: 'Transporte de pasajeros', freelancers: 8000,
+                rates: [
+                    { role: 'Hora efectiva de conducción', rate: '€ 11,00 / h', votes: 45 },
+                    { role: 'Km en trayecto asignado', rate: '€ 0,52 / km', votes: 27 }
+                ],
+                campaigns: [{ title: 'Tarifa mínima por km y hora de espera', support: 58 }],
+                associations: ['Conductors Units VTC'] },
+            { id: 'amazon-flex-es', icon: '📦', name: 'Amazon Flex', type: 'Reparto de paquetería', sector: 'Logística', freelancers: 4000,
+                rates: [{ role: 'Bloque de 2 h (furgoneta propia)', rate: '€ 26 / bloque', votes: 33 }],
+                campaigns: [{ title: 'Que el bloque cubra combustible y seguro', support: 49 }],
+                associations: ['Repartidores Unidos'] },
+            { id: 'malt-fiverr-freelance', icon: '💻', name: 'Malt / Fiverr', type: 'Marketplace freelance', sector: 'Diseño, código y contenidos', freelancers: 15000,
+                rates: [
+                    { role: 'Diseño gráfico — hora', rate: '€ 28 / h', votes: 42 },
+                    { role: 'Desarrollo web — hora', rate: '€ 45 / h', votes: 55 }
+                ],
+                campaigns: [{ title: 'Comisiones de plataforma por debajo del 10%', support: 47 }],
+                associations: ['Coordinadora Freelance'] },
+            { id: 'prensa-colaboradores', icon: '📰', name: 'Medios — colaboradores', type: 'Gran cliente (prensa)', sector: 'Periodismo y contenidos', freelancers: 2500,
+                rates: [{ role: 'Pieza estándar (800 palabras)', rate: '€ 80 / pieza', votes: 29 }],
+                campaigns: [{ title: 'Pago a 30 días, no a 90', support: 76 }],
+                associations: ['Sindicat de Periodistes de Catalunya'] }
+        ],
+        ie: [
+            { id: 'deliveroo-ie', icon: '🛵', name: 'Deliveroo', type: 'Delivery platform', sector: 'Last-mile delivery', freelancers: 5000,
+                rates: [
+                    { role: 'Average drop (Dublin)', rate: '€ 4.60 / drop', votes: 48 },
+                    { role: 'Peak-hour rate', rate: '€ 12.00 / h', votes: 31 }
+                ],
+                campaigns: [
+                    { title: 'Guaranteed minimum per drop', support: 62 },
+                    { title: 'No deactivation without appeal', support: 69 }
+                ],
+                associations: ['Dublin Couriers Collective'] },
+            { id: 'uber-ie', icon: '🚗', name: 'Uber', type: 'Ride-hailing platform', sector: 'Passenger transport', freelancers: 3000,
+                rates: [{ role: 'Effective driving hour', rate: '€ 13.50 / h', votes: 26 }],
+                campaigns: [{ title: 'Fair per-km rate and waiting pay', support: 54 }],
+                associations: ['App Drivers Alliance'] },
+            { id: 'amazon-flex-ie', icon: '📦', name: 'Amazon Flex', type: 'Parcel delivery', sector: 'Logistics', freelancers: 1500,
+                rates: [{ role: '2h block (own van)', rate: '€ 30 / block', votes: 19 }],
+                campaigns: [{ title: 'Blocks must cover fuel and insurance', support: 44 }],
+                associations: ['Couriers Together'] },
+            { id: 'upwork-ie', icon: '💻', name: 'Upwork', type: 'Freelance marketplace', sector: 'Design, code & content', freelancers: 9000,
+                rates: [
+                    { role: 'Graphic design — hour', rate: '€ 32 / h', votes: 37 },
+                    { role: 'Web development — hour', rate: '€ 50 / h', votes: 41 }
+                ],
+                campaigns: [{ title: 'Platform fees below 10%', support: 51 }],
+                associations: ['Freelance Ireland'] }
+        ]
+    };
+
+    function getAutonomoPlatforms(locale) {
+        return AUTONOMO_PLATFORMS[localeKey(locale)] || [];
+    }
+
+    function findAutonomoPlatform(locale, platformId) {
+        return getAutonomoPlatforms(locale).find((p) => p.id === platformId) || null;
+    }
+
+    function buildAutonomosHtml(locale, platformId) {
+        const c = t(locale);
+        const es = locale === 'es';
+        const localeTag = es ? 'es-ES' : 'en-IE';
+        const platforms = getAutonomoPlatforms(locale);
+        const plat = platformId ? findAutonomoPlatform(locale, platformId) : null;
+        if (!plat) {
+            const cards = platforms.map((p) => `
+                <button type="button" class="sindicato-redsocial-card sindicato-dir-card" data-sindicato-goto-autonomo="${p.id}">
+                    <span class="sindicato-redsocial-card-icon" aria-hidden="true">${p.icon}</span>
+                    <strong class="sindicato-redsocial-card-name">${p.name}</strong>
+                    <span class="template-muted">${p.type}</span>
+                    <span class="sindicato-redsocial-card-stats">
+                        <span><strong>${p.freelancers.toLocaleString(localeTag)}</strong> ${c.autonomosStatFreelancers}</span>
+                        <span><strong>${p.campaigns.length}</strong> ${c.autonomosStatCampaigns}</span>
+                    </span>
+                </button>`).join('');
+            return `<div class="sindicato-panel sindicato-autonomos">
+                <h2>🧰 ${c.autonomosTitle}</h2>
+                <p class="template-muted">${c.autonomosIntro}</p>
+                <p>${c.autonomosDirectoryHint}</p>
+                <div class="sindicato-redsocial-grid">${cards}</div>
+                <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
+            </div>`;
+        }
+        const rateCards = plat.rates.map((r) =>
+            `<div class="sindicato-coord-card"><strong>${r.role}</strong><p>${r.rate} <span class="template-muted">· ✓ ${r.votes}</span></p></div>`
+        ).join('') || `<p class="template-muted">—</p>`;
+        const campaignCards = plat.campaigns.map((k) => `
+            <div class="sindicato-coord-card sindicato-campaign-card">
+                <strong>${k.title}</strong>
+                <div class="sindicato-strike-track sindicato-campaign-track">
+                    <div class="sindicato-strike-fill" style="width:${k.support}%"></div>
+                </div>
+                <p class="template-muted">${k.support}% ${es ? 'de apoyo' : 'support'}</p>
+            </div>`).join('') || `<p class="template-muted">—</p>`;
+        const assocTags = plat.associations.map((a) => `<span class="sindicato-union-tag">${a}</span>`).join('');
+        return `<div class="sindicato-panel sindicato-autonomos-profile">
+            <p><button type="button" class="sindicato-back-btn" data-sindicato-goto-autonomo="">← ${c.autonomosBack}</button></p>
+            <h2>${plat.icon} ${plat.name}</h2>
+            <p class="template-muted">${plat.type} · ${plat.sector}</p>
+            <div class="sindicato-summary-grid">
+                <div class="sindicato-stat"><strong>${plat.freelancers.toLocaleString(localeTag)}</strong><span>${c.autonomosStatFreelancers}</span></div>
+                <div class="sindicato-stat"><strong>${plat.campaigns.length}</strong><span>${c.autonomosStatCampaigns}</span></div>
+                <div class="sindicato-stat"><strong>${plat.rates.length}</strong><span>${c.autonomosStatRates}</span></div>
+            </div>
+            <h3>💶 ${c.autonomosRatesTitle}</h3>
+            <p class="template-muted">${c.autonomosRatesHint}</p>
+            ${rateCards}
+            <h3>📢 ${c.autonomosCampaignsTitle}</h3>
+            ${campaignCards}
+            <h3>✊ ${c.autonomosAssociationsTitle}</h3>
+            <div class="sindicato-union-tags">${assocTags}</div>
+            ${buildSocialLinksBlockHtml(locale, plat.id)}
+            <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
+        </div>`;
+    }
+
+    /* ================================================================
      * Red Social (13-07-2026) — módulo master: landing por defecto, tronco
-     * hacia Sindicatos, Territorios, Sectores, Empresas, Consumidores y
-     * Estudiantes. Panel de stats por módulo + feed de actividad.
+     * hacia los módulos de colectivo y herramienta. Panel de stats por
+     * módulo + feed de actividad. 17-07-2026: se añaden Profesionales y
+     * Autónomos (8 tarjetas).
      * ================================================================ */
     function buildRedSocialHtml(locale) {
         const c = t(locale);
@@ -2463,6 +2811,10 @@
         const consumerCampaigns = consumers.reduce((s, i) => s + i.campaigns.length, 0);
         const centers = getStudyCenters(locale);
         const studentGroups = centers.reduce((s, x) => s + x.groups.length, 0);
+        const proBodies = getProBodies(locale);
+        const proUnions = proBodies.reduce((s, b) => s + b.unions.length, 0);
+        const autPlatforms = getAutonomoPlatforms(locale);
+        const autCampaigns = autPlatforms.reduce((s, p) => s + p.campaigns.length, 0);
         const labels = c.redSocialStatLabels || {};
         const fmt = (n) => n.toLocaleString(localeTag);
         const card = (sub, icon, a, b) => `
@@ -2480,6 +2832,8 @@
             <p class="template-muted">${c.redSocialIntro}</p>
             <div class="sindicato-redsocial-grid">
                 ${card('unions', '🏛️', unions.length, members)}
+                ${card('profesionales', '🩺', proBodies.length, proUnions)}
+                ${card('autonomos', '🧰', autPlatforms.length, autCampaigns)}
                 ${card('vivienda', '🏘️', terrs.length, alerts.length)}
                 ${card('sectores', '🏭', sectorParents, subforums)}
                 ${card('workplaces', '🏢', wps.length, reports)}
@@ -3167,15 +3521,18 @@
 
     function buildWorkplaceConvenioHtml(locale, wp) {
         const c = t(locale);
+        const es = locale === 'es';
         const branchClauses = getConvenioClausesForWorkplace(locale, wp);
         const clauseRows = branchClauses.map((cl) =>
             `<details><summary>${cl.title}</summary><p>${cl.body}</p></details>`
         ).join('');
+        const iaDoctrine = (c.wikiArticles || {}).ia;
         return `<div class="sindicato-panel">
             <h2>${wp.name} — ${c.sections.convenio}</h2>
             <div class="sindicato-convenio-box">
                 <h3>📋 ${wp.convenio}</h3>
                 <p class="sindicato-ai-hint">✨ ${c.aiConvenioHint}</p>
+                ${iaDoctrine ? `<button type="button" class="sindicato-union-company-link" data-sindicato-wiki-jump="ia">📖 ${iaDoctrine.title}</button>` : ''}
                 ${clauseRows ? `<div class="sindicato-faq"><h4>${c.convenioBranchTitle}</h4>${clauseRows}</div>` : ''}
                 <form class="sindicato-convenio-ask" data-sindicato-convenio-ask>
                     <label>${c.convenioAskAi}
@@ -4786,9 +5143,56 @@
             id: `d${i}`,
             cat,
             title,
-            updated: `2026-0${1 + ((h + i) % 7)}`
+            updated: `2026-0${1 + ((h + i) % 7)}`,
+            by: person(i + 4)
         }));
-        return { members, cases, campaigns, finances, comms, events, docs };
+        /* 17-07-2026: registro de fuentes de datos de la organización (petición literal
+           de la reunión SdLl 14-07): qué fuentes alimentan los datos, quién responde de
+           cada una y su estado de integración en el macrosistema. */
+        const sourceDefs = es
+            ? [
+                ['Base de datos de afiliación', 'BD principal', 'integrada'],
+                ['CRM externo (Action Network)', 'CRM', 'parcial'],
+                ['Encuestas a afiliadas', 'Formularios', 'parcial'],
+                ['Hojas de cálculo heredadas', 'Excel', 'pendiente'],
+                ['Calendario compartido', 'Calendario', 'integrada']
+            ]
+            : [
+                ['Membership database', 'Main DB', 'integrada'],
+                ['External CRM (Action Network)', 'CRM', 'parcial'],
+                ['Member surveys', 'Forms', 'parcial'],
+                ['Legacy spreadsheets', 'Excel', 'pendiente'],
+                ['Shared calendar', 'Calendar', 'integrada']
+            ];
+        const sources = sourceDefs.map(([name, tipo, estado], i) => ({ name, tipo, estado, owner: person(i + 2) }));
+        /* 17-07-2026: plantillas de respuesta (petición de la reunión SdLl 14-07:
+           «automatización de emails de respuesta, plantillas») rellenadas con datos demo. */
+        const orgName = (findCrmOrg(locale, orgId) || {}).name || 'SindicApp';
+        const firstEvent = events[0] || {};
+        const firstCase = cases[0] || {};
+        const templateDefs = es
+            ? [
+                ['bienvenida', 'Bienvenida a un primer contacto',
+                    `Hola ${person(3).split(' ')[0]},\n\nGracias por escribir a ${orgName}. Hemos recibido tu consulta y a partir de ahora te acompaña ${person(1)}. Te esperamos en la próxima asamblea de bienvenida (${firstEvent.date || 'fecha por confirmar'}) — no hace falta ser afiliada para venir.\n\nUn abrazo,\n${orgName}`],
+                ['documentos', 'Petición de documentos para un caso',
+                    `Hola ${person(3).split(' ')[0]},\n\nPara avanzar con tu caso «${firstCase.title || 'tu caso'}» necesitamos: contrato, última nómina y cualquier comunicación escrita de la empresa. Puedes traerlos a la asamblea o responder a este correo.\n\nGracias,\n${person(1)} — ${orgName}`],
+                ['convocatoria', 'Convocatoria de asamblea',
+                    `Compañeras,\n\n${orgName} convoca asamblea el ${firstEvent.date || 'próximamente'}: «${firstEvent.title || 'orden del día por confirmar'}». Vuestra presencia decide — traed dudas y casos.\n\n✊ ${orgName}`],
+                ['seguimiento', 'Seguimiento de caso sin novedades',
+                    `Hola ${person(3).split(' ')[0]},\n\nHace días que no tenemos novedades de tu caso «${firstCase.title || 'tu caso'}». ¿Ha cambiado algo? ¿Necesitas que lo tratemos en la próxima asamblea? Tu situación no está olvidada.\n\n${person(1)} — ${orgName}`]
+            ]
+            : [
+                ['bienvenida', 'Welcome to a first contact',
+                    `Hi ${person(3).split(' ')[0]},\n\nThanks for writing to ${orgName}. We have received your query and ${person(1)} will accompany you from here. Join us at the next welcome assembly (${firstEvent.date || 'date TBC'}) — you don't need to be a member to come.\n\nIn solidarity,\n${orgName}`],
+                ['documentos', 'Document request for a case',
+                    `Hi ${person(3).split(' ')[0]},\n\nTo move your case "${firstCase.title || 'your case'}" forward we need: your contract, latest payslip and any written communication from the company. Bring them to the assembly or reply to this email.\n\nThanks,\n${person(1)} — ${orgName}`],
+                ['convocatoria', 'Assembly notice',
+                    `Colleagues,\n\n${orgName} calls an assembly on ${firstEvent.date || 'a date TBC'}: "${firstEvent.title || 'agenda to be confirmed'}". Your presence decides — bring doubts and cases.\n\n✊ ${orgName}`],
+                ['seguimiento', 'Case follow-up, no news',
+                    `Hi ${person(3).split(' ')[0]},\n\nWe haven't heard about your case "${firstCase.title || 'your case'}" in a while. Has anything changed? Should we bring it to the next assembly? Your situation has not been forgotten.\n\n${person(1)} — ${orgName}`]
+            ];
+        const templates = templateDefs.map(([id, title, body]) => ({ id, title, body }));
+        return { members, cases, campaigns, finances, comms, events, docs, sources, templates };
     }
 
     function getCrmData(locale, orgId) {
@@ -4827,6 +5231,27 @@
         const data = getCrmData(locale, orgId);
         data.events.push({ type: event.type || 'asamblea', title: event.title, date: event.date });
         data.events.sort((a, b) => a.date.localeCompare(b.date));
+    }
+
+    /* 17-07-2026: plantilla de respuesta por id (para el botón «Copiar» de Comunicaciones). */
+    function crmGetTemplate(locale, orgId, templateId) {
+        const data = getCrmData(locale, orgId);
+        return (data.templates || []).find((tp) => tp.id === templateId) || null;
+    }
+
+    /* 17-07-2026: payload de exportación JSON de la organización — doctrina
+       «tus datos son tuyos»: todo lo de la org sale en un fichero abierto. */
+    function crmExportPayload(locale, orgId) {
+        const org = findCrmOrg(locale, orgId) || { id: 'sindicapp', name: 'SindicApp', sector: '' };
+        return {
+            exportedAt: new Date().toISOString(),
+            locale: localeKey(locale),
+            organisation: { id: org.id, name: org.name, sector: org.sector || '' },
+            note: locale === 'es'
+                ? 'Exportación demo de SindicApp — tus datos son tuyos.'
+                : 'SindicApp demo export — your data is yours.',
+            data: getCrmData(locale, orgId)
+        };
     }
 
     function crmMemberEstadoLabel(locale, estado) {
@@ -5003,6 +5428,18 @@
                 </div>
                 <p class="template-muted">${es ? 'Audiencia' : 'Audience'}: ${cm.audiencia}</p>
                 ${cm.estado !== 'enviada' ? `<button type="button" class="crm-btn" data-sindicato-crm-comm-send="${cm.id}">✉️ ${nextAction(cm.estado)}</button>` : ''}
+            </div>`).join('')}
+            <h4 class="crm-templates-title">📋 ${es ? 'Plantillas de respuesta' : 'Reply templates'}</h4>
+            <p class="template-muted">${es
+                ? 'Respuestas tipo para el trabajo repetitivo — mostradas rellenadas con datos demo. Copia y adapta.'
+                : 'Standard replies for the repetitive work — shown filled with demo data. Copy and adapt.'}</p>
+            ${(data.templates || []).map((tp) => `<div class="sindicato-coord-card crm-template-card">
+                <div class="crm-comm-head">
+                    <strong>${tp.title}</strong>
+                    <span class="crm-badge crm-badge-doc">${es ? 'Plantilla' : 'Template'}</span>
+                </div>
+                <p class="template-muted crm-template-body">${tp.body.replace(/\n/g, '<br>')}</p>
+                <button type="button" class="crm-btn" data-sindicato-crm-template-copy="${tp.id}">📋 ${es ? 'Copiar' : 'Copy'}</button>
             </div>`).join('')}`;
     }
 
@@ -5046,8 +5483,31 @@
             ${docs.length ? docs.map((d) => `<div class="sindicato-coord-card crm-doc-card">
                 <span class="crm-badge crm-badge-doc">${crmDocCatLabel(locale, d.cat)}</span>
                 <strong>${d.title}</strong>
-                <span class="template-muted">${es ? 'actualizado' : 'updated'} ${d.updated}</span>
-            </div>`).join('') : `<p class="template-muted">${es ? 'No hay documentos en esta categoría.' : 'No documents in this category.'}</p>`}`;
+                <span class="template-muted">${es ? 'actualizado' : 'updated'} ${d.updated}${d.by ? ` · ${d.by}` : ''}</span>
+            </div>`).join('') : `<p class="template-muted">${es ? 'No hay documentos en esta categoría.' : 'No documents in this category.'}</p>`}
+            <h4 class="crm-sources-title">📇 ${es ? 'Registro de fuentes de datos' : 'Data source register'}</h4>
+            <p class="template-muted">${es
+                ? 'Qué fuentes alimentan los datos de la organización, quién responde de cada una y su estado de integración en el sistema común.'
+                : 'Which sources feed the organisation\'s data, who answers for each one, and its integration status in the shared system.'}</p>
+            <table class="crm-table">
+                <thead><tr>
+                    <th>${es ? 'Fuente' : 'Source'}</th><th>${es ? 'Tipo' : 'Type'}</th><th>${es ? 'Responsable' : 'Owner'}</th><th>${es ? 'Estado' : 'Status'}</th>
+                </tr></thead>
+                <tbody>${(data.sources || []).map((s) => `<tr>
+                    <td><strong>${s.name}</strong></td>
+                    <td>${s.tipo}</td>
+                    <td>${s.owner}</td>
+                    <td><span class="crm-badge crm-badge-${{ integrada: 'activa', parcial: 'pendiente', pendiente: 'baja' }[s.estado] || 'borrador'}">${{
+                        integrada: es ? 'Integrada' : 'Integrated',
+                        parcial: es ? 'Parcial' : 'Partial',
+                        pendiente: es ? 'Pendiente' : 'Pending'
+                    }[s.estado] || s.estado}</span></td>
+                </tr>`).join('')}</tbody>
+            </table>
+            <button type="button" class="crm-btn" data-sindicato-crm-export>⬇️ ${es ? 'Exportar datos de la organización (JSON)' : 'Export organisation data (JSON)'}</button>
+            <p class="template-muted">${es
+                ? 'Tus datos son tuyos: todo lo de la organización se exporta en un fichero abierto, sin dependencia de la plataforma.'
+                : 'Your data is yours: everything in the organisation exports to an open file, with no platform lock-in.'}</p>`;
     }
 
     function buildCoordinationSubHtml(locale, coordSub, ctx) {
@@ -5074,7 +5534,7 @@
 
     /* Orden de artículos de la base de conocimiento (claves compartidas ES/EN).
        'sindicapp' es el artículo inicial/destacado de la wiki. */
-    const WIKI_KB_ARTICLES = ['sindicapp', 'derechos', 'denunciar', 'organizar', 'glosario'];
+    const WIKI_KB_ARTICLES = ['sindicapp', 'derechos', 'denunciar', 'organizar', 'glosario', 'ia'];
 
     function buildWikiArticleHtml(locale, id) {
         const c = t(locale);
@@ -5413,8 +5873,11 @@
         }
         if (sub === 'vivienda') return buildViviendaHtml(locale, ctx.viviendaTerritoryId || '', ctx.viviendaBuildingId || '', ctx.viviendaMunicipalityId || '');
         if (sub === 'housing') return buildHousingHtml(locale, ctx.housingSub || 'huelgometro');
+        /* 17-07-2026: `sindicatos` sigue reservado (fuera de la subnav); `autonomos`
+           y el nuevo `profesionales` estrenan contenido. */
         if (sub === 'sindicatos') return buildComingSoonHtml(locale, '🚩', 'sindicatos');
-        if (sub === 'autonomos') return buildComingSoonHtml(locale, '🧰', 'autonomos');
+        if (sub === 'autonomos') return buildAutonomosHtml(locale, ctx.autonomoId || '');
+        if (sub === 'profesionales') return buildProfesionalesHtml(locale, ctx.profesionalId || '');
         if (sub === 'workplaces') {
             if (!workplaceId) return buildWorkplacesDirectoryHtml(locale, filter);
             const wp = findWorkplace(locale, workplaceId);
@@ -5511,6 +5974,8 @@
         crmSupportCampaign,
         crmSendComm,
         crmAddEvent,
+        crmGetTemplate,
+        crmExportPayload,
         buildLocationBridgeHtml,
         buildAddCompanyFormHtml,
         LOGO_SRC: SINDICAPP_LOGO_SRC,

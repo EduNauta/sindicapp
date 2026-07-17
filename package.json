@@ -1,6 +1,6 @@
 {
   "name": "sindicapp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Infraestructura neutral para la coordinación laboral — mapa geográfico, perfiles de empresa, foros y herramientas sindicales en el navegador.",
   "type": "module",
   "private": true,

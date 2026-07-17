@@ -50,8 +50,9 @@ test('map background loads', async ({ page }) => {
 
 test('red social landing shows module stat panels', async ({ page }) => {
   await page.goto('/');
-  // Master module (13-07-2026): six clickable stat panels, one per trunk module.
-  await expect(page.locator('.sindicato-redsocial-card')).toHaveCount(6);
+  // Master module (13-07-2026): clickable stat panels, one per trunk module.
+  // 17-07-2026: eight panels — Profesionales and Autónomos joined the landing.
+  await expect(page.locator('.sindicato-redsocial-card')).toHaveCount(8);
   // Panels navigate: Consumidores opens its directory in the workspace.
   await page.locator('.sindicato-redsocial-card[data-sindicato-goto-sub="consumidores"]').click();
   await expect(page.locator('#map-text-display .sindicato-dir-card').first()).toBeVisible();

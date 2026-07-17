@@ -1562,7 +1562,6 @@
 
         /* Party + mirrors: Talk / Info / Admin in one horizontal row */
 
-        #sindicato-subnav,
         #sindicato-workplace-section-nav,
         #self-sindicato-section-nav {
             display: grid;
@@ -1575,6 +1574,34 @@
             background: var(--color-bg-soft, #f5f5f5);
             flex-direction: unset;
             flex-wrap: unset;
+        }
+
+        /* 17-07-2026: la subnav son ahora DOS cuadros apilados (.sindicato-subnav-group):
+           herramientas transversales arriba, colectivos (con Red Social a ancho completo)
+           abajo. Cada cuadro es su propio grid de 2 columnas. */
+        #sindicato-subnav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0;
+            margin-bottom: 12px;
+            border: none;
+            background: transparent;
+            flex-wrap: unset;
+        }
+
+        .sindicato-subnav-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            padding: 8px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md, 6px);
+            background: var(--color-bg-soft, #f5f5f5);
+        }
+
+        .sindicato-subnav-group .template-module-btn--wide {
+            grid-column: 1 / -1;
         }
 
         #sindicato-subnav .template-module-btn,
@@ -2939,6 +2966,18 @@
 
         .crm-event-form .crm-btn {
             margin-top: 0;
+        }
+
+        /* 17-07-2026: plantillas de respuesta (Comunicaciones) y registro de fuentes (Documentos) */
+        .crm-templates-title,
+        .crm-sources-title {
+            margin: 18px 0 4px;
+            font-size: var(--font-size-sm);
+        }
+
+        .crm-template-body {
+            line-height: 1.5;
+            font-size: var(--font-size-sm);
         }
 
         @media (max-width: 900px) {
