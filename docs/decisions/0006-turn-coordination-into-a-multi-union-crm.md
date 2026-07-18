@@ -1,6 +1,6 @@
 # 0006. Turn the Coordination section into a multi-union CRM
 
-Status: Accepted
+Status: Superseded by 0015
 Date: 2026-07-12
 
 ## Context

@@ -48,4 +48,10 @@ What follows from this — the good, the bad, and anything a future change would
 - [0009 — Refine the Empresa profile: Resumen-first tabs, "Mapa" tab, and the view toggle as company exit](0009-empresa-map-tab-and-toggle-as-exit.md)
 - [0010 — Flatten the module hierarchy: eight peer modules, no Usuario/Colectivo umbrella](0010-flatten-module-hierarchy-eight-peer-modules.md)
 - [0011 — Vivienda (housing) is a new module, distinct from Territorios](0011-vivienda-housing-module-distinct-from-territorios.md)
-- [0012 — Red Social is the master module and default landing; the forum moves to its own module](0012-red-social-master-module-forum-split.md)
+- [0012 — Red Social is the master module and default landing; the forum moves to its own module](0012-red-social-master-module-forum-split.md) *(partially superseded by 0017)*
+- [0013 — Triplicate the web to explore a rework, then unify into a single ring-based app](0013-triplicate-then-unify-into-ring-based-app.md)
+- [0014 — Keep the access rings implicit inside the modules, not as a navigation layer](0014-keep-access-rings-implicit-inside-modules.md)
+- [0015 — Dissolve the CRM module into each equipo sindical](0015-dissolve-crm-module-into-each-equipo-sindical.md) *(supersedes 0006)*
+- [0016 — "Equipo sindical" as the common entity model, with sections grouped Perfil / Acción / Gestión](0016-equipo-sindical-as-common-entity-model.md)
+- [0017 — Subnav: collectives first, tools below; Red Social only from the header title](0017-subnav-collectives-first-red-social-from-header.md) *(partially supersedes 0010 and 0012)*
+- [0018 — Add Catalan as a language layer over the `es` dataset, not a third dataset](0018-catalan-as-language-layer-over-es-dataset.md)

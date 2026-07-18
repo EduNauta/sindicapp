@@ -1,6 +1,6 @@
 # 0012. Red Social is the master module and default landing; the forum moves to its own module
 
-Status: Accepted
+Status: Partially superseded by 0017
 Date: 2026-07-13
 
 ## Context

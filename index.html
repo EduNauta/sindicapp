@@ -57,11 +57,10 @@
                             <img class="sindicapp-header-logo" src="assets/sindicapp-logo.jpg" alt="" width="32" height="32" aria-hidden="true">
                             <span class="sindicapp-header-title-text">SindicApp</span>
                         </button>
-                        <!-- B2 (doxa §4.4) — selector de idioma también en cabecera; la portada conserva el suyo -->
-                        <div class="template-language-switch template-language-switch--header" role="group" aria-label="Language selection">
-                            <button type="button" class="template-language-btn" data-locale="es" aria-pressed="true" title="Español" aria-label="Español">ES</button>
-                            <button type="button" class="template-language-btn" data-locale="ie" aria-pressed="false" title="English" aria-label="English">EN</button>
-                        </div>
+                        <!-- 17-07-2026: el selector de idioma de la cabecera se retira; el de la
+                             portada (Red Social) es el único. Ver ADR 0018. -->
+                        <!-- 17-07-2026: toggle de modo oscuro (persistido). -->
+                        <button type="button" class="sindicapp-theme-toggle" id="sindicapp-theme-toggle" title="Modo claro / oscuro" aria-label="Modo claro / oscuro">🌙</button>
                         </div>
                     </div>
                 </header>
@@ -81,7 +80,15 @@
                      (ámbitos General/Sectores/Territorios); Inquilinos (id `housing`) sigue
                      siendo distinto de Mapa (id `vivienda`, antes «Territorios»). -->
                 <div class="template-module-picker sindicapp-module-stack" id="template-module-picker" aria-label="Module selection">
-                    <nav class="template-submodule-nav template-submodule-nav--depth-1" id="sindicato-subnav" aria-label="SindicApp modules">
+                    <!-- Versión única (17-07-2026, tarde): las tres versiones se unificaron
+                         en el shell por anillos. La navegación se genera dinámicamente en
+                         #sindicato-subnav-propuesta (dos cuadros: herramientas / colectivos,
+                         con candados por rol implícitos en cada módulo). El #sindicato-subnav
+                         clásico queda oculto de forma permanente (se conserva su markup por
+                         compatibilidad de referencias). La Clásica está archivada en
+                         legacy/Sindicapp 170726.html. -->
+                    <nav class="template-submodule-nav propuesta-subnav" id="sindicato-subnav-propuesta" aria-label="SindicApp modules"></nav>
+                    <nav class="template-submodule-nav template-submodule-nav--depth-1" id="sindicato-subnav" aria-label="SindicApp modules (legacy, hidden)" hidden>
                         <div class="sindicato-subnav-group" role="group" aria-label="Herramientas">
                             <button type="button" class="template-module-btn" data-sindicato-sub="coordination">
                                 <span aria-hidden="true">📇</span> CRM
@@ -135,6 +142,9 @@
                     <div id="self-sindicato-block" class="teams-team-nav-block" hidden>
                         <p class="teams-team-nav-subtitle" id="self-sindicato-workplace-label">Tu empresa</p>
                         <p class="sindicato-sidebar-intro" id="self-sindicato-workplace-name">—</p>
+                        <!-- 17-07-2026: elegir tu empresa (antes clavada a una sola). -->
+                        <input type="search" id="self-workplace-search" class="sindicato-search-input" placeholder="Buscar por nombre o sector…" aria-label="Buscar tu empresa">
+                        <select id="self-workplace-select" class="team-picker-select geo-picker-scroll" size="4" aria-label="Elegir tu empresa"></select>
                         <nav class="template-submodule-nav template-submodule-nav--depth-1" id="self-sindicato-section-nav" aria-label="Personal workplace tools">
                             <button type="button" class="template-module-btn active" data-self-sindicato-section="overview">
                                 <span aria-hidden="true">📋</span> Resumen
@@ -153,6 +163,11 @@
                             </button>
                             <button type="button" class="template-module-btn" data-self-sindicato-section="action">
                                 <span aria-hidden="true">✊</span> Acción
+                            </button>
+                            <!-- Propuesta (17-07-2026): el módulo Usuario contiene también
+                                 «Mis casos y documentos» (anillo usuario). Solo en Propuesta. -->
+                            <button type="button" class="template-module-btn propuesta-only" data-self-sindicato-section="miscasos" hidden>
+                                <span aria-hidden="true">🗂️</span> Mis casos
                             </button>
                         </nav>
                     </div>
@@ -222,6 +237,10 @@
                             <button type="button" class="template-module-btn" data-sindicato-union-section="companies">
                                 <span aria-hidden="true">🏢</span> Empresas
                             </button>
+                            <!-- 17-07-2026: la gestión (CRM) del equipo sindical, militante-gated. -->
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm">
+                                <span aria-hidden="true">📇</span> CRM
+                            </button>
                         </nav>
                     </div>
                     <!-- Red Social (13-07-2026): módulo master. La sidebar solo lleva la intro;
@@ -243,6 +262,11 @@
                             </button>
                             <button type="button" class="template-module-btn" data-sindicato-feed-scope="territorios">
                                 <span aria-hidden="true">🗺️</span> Territorios
+                            </button>
+                            <!-- Propuesta (17-07-2026): tablón interno de afiliadas — el anillo
+                                 afiliado, implícito como 4º ámbito del Foro. Solo en Propuesta. -->
+                            <button type="button" class="template-module-btn propuesta-only" data-sindicato-feed-scope="interno" hidden>
+                                <span aria-hidden="true">🫂</span> Interno
                             </button>
                         </nav>
                         <label id="sindicato-feed-company-label" class="sindicato-feed-company-label" for="sindicato-feed-company-select" hidden>Company in this scope</label>
@@ -279,6 +303,20 @@
                             </button>
                             <button type="button" class="template-module-btn" data-sindicato-coord-sub="documentos">
                                 <span aria-hidden="true">📁</span> Documentos
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="datos">
+                                <span aria-hidden="true">🗄️</span> Bases de datos
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="estructura">
+                                <span aria-hidden="true">🧱</span> Estructura
+                            </button>
+                            <!-- Propuesta (17-07-2026): el CRM absorbe las herramientas internas
+                                 como pestañas propias — solo visibles en la versión Propuesta. -->
+                            <button type="button" class="template-module-btn propuesta-only" data-sindicato-coord-sub="intake" hidden>
+                                <span aria-hidden="true">📥</span> Intake
+                            </button>
+                            <button type="button" class="template-module-btn propuesta-only" data-sindicato-coord-sub="asambleas" hidden>
+                                <span aria-hidden="true">🗳️</span> Asambleas
                             </button>
                         </nav>
                     </div>
@@ -340,7 +378,15 @@
                          Dos funcionalidades: Huelgómetro y Alarmas por desahucios. -->
                     <div id="sindicato-housing-sidebar" class="teams-team-nav-block" hidden>
                         <p class="sindicato-sidebar-intro" id="sindicato-housing-intro">Organización de inquilinos — huelgómetro y alarmas por desahucios.</p>
-                        <nav class="template-submodule-nav sindicato-housing-subnav" id="sindicato-housing-subnav" aria-label="Housing sections">
+                        <!-- 17-07-2026: directorio de sindicatos de inquilinas en la sidebar. -->
+                        <input type="search" id="sindicato-housing-search" class="sindicato-search-input" placeholder="Buscar por nombre o territorio…" aria-label="Buscar sindicato de inquilinas">
+                        <select id="sindicato-housing-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Seleccionar sindicato de inquilinas">
+                            <option value="">Seleccionar sindicato…</option>
+                        </select>
+                        <!-- 17-07-2026: estas herramientas pasaron a ser SECCIONES del equipo
+                             sindical de inquilinas (ver #sindicato-equipo-section-nav). El
+                             subnav queda oculto de forma permanente; markup conservado. -->
+                        <nav class="template-submodule-nav sindicato-housing-subnav" id="sindicato-housing-subnav" aria-label="Housing sections" hidden>
                             <button type="button" class="template-module-btn active" data-sindicato-housing-sub="huelgometro">
                                 <span aria-hidden="true">🌡️</span> Huelgómetro
                             </button>
@@ -361,18 +407,48 @@
                     </div>
                     <!-- Consumidores y Estudiantes (13-07-2026): módulos nuevos. Sidebar mínima
                          (solo intro); directorio y perfiles viven en el fondo. -->
+                    <!-- 17-07-2026: Consumidores/Estudiantes/Profesionales ganan selector en la
+                         sidebar, mismo patrón que Trabajadores (buscador + select). -->
                     <div id="sindicato-consumidores-sidebar" class="teams-team-nav-block" hidden>
                         <p class="sindicato-sidebar-intro" id="sindicato-consumidores-intro">Coordinación de consumo — productos y servicios con denuncias, campañas y alternativas.</p>
+                        <input type="search" id="sindicato-consumidores-search" class="sindicato-search-input" placeholder="Buscar por nombre o sector…" aria-label="Buscar productos y servicios">
+                        <select id="sindicato-consumidores-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Seleccionar producto o servicio">
+                            <option value="">Seleccionar producto o servicio…</option>
+                        </select>
                     </div>
                     <div id="sindicato-estudiantes-sidebar" class="teams-team-nav-block" hidden>
                         <p class="sindicato-sidebar-intro" id="sindicato-estudiantes-intro">Centros de estudios — asociaciones, reivindicaciones y movilizaciones.</p>
+                        <input type="search" id="sindicato-estudiantes-search" class="sindicato-search-input" placeholder="Buscar por nombre o sector…" aria-label="Buscar centros de estudios">
+                        <select id="sindicato-estudiantes-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Seleccionar centro">
+                            <option value="">Seleccionar centro…</option>
+                        </select>
                     </div>
-                    <!-- Profesionales y Autónomos (17-07-2026): mismo patrón de sidebar mínima. -->
+                    <!-- Profesionales (17-07-2026): sidebar con selector; Autónomos, intro mínima. -->
                     <div id="sindicato-profesionales-sidebar" class="teams-team-nav-block" hidden>
                         <p class="sindicato-sidebar-intro" id="sindicato-profesionales-intro">Colegios profesionales — colegiados, cuotas, reivindicaciones y sindicatos de profesión.</p>
+                        <input type="search" id="sindicato-profesionales-search" class="sindicato-search-input" placeholder="Buscar por nombre o sector…" aria-label="Buscar colegios profesionales">
+                        <select id="sindicato-profesionales-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Seleccionar colegio">
+                            <option value="">Seleccionar colegio…</option>
+                        </select>
                     </div>
                     <div id="sindicato-autonomos-sidebar" class="teams-team-nav-block" hidden>
                         <p class="sindicato-sidebar-intro" id="sindicato-autonomos-intro">Autónomos — plataformas y grandes clientes, tarifas colaborativas y campañas.</p>
+                        <input type="search" id="sindicato-autonomos-search" class="sindicato-search-input" placeholder="Buscar por nombre o sector…" aria-label="Buscar equipo o plataforma">
+                        <select id="sindicato-autonomos-select" class="team-picker-select geo-picker-scroll" size="5" aria-label="Seleccionar equipo o plataforma">
+                            <option value="">Seleccionar equipo o plataforma…</option>
+                        </select>
+                    </div>
+                    <!-- Propuesta (17-07-2026): pantallas de anillo (sub `anillo`), sidebar mínima. -->
+                    <div id="sindicato-anillo-sidebar" class="teams-team-nav-block" hidden>
+                        <p class="sindicato-sidebar-intro" id="sindicato-anillo-intro">Propuesta — anillos de acceso: lo público abierto, lo sensible protegido por responsabilidad.</p>
+                    </div>
+                    <!-- 17-07-2026: secciones del equipo sindical (compartidas por Profesionales,
+                         Autónomos, Consumidores y Estudiantes), como en Trabajadores. Se muestra
+                         al seleccionar una entidad de esos módulos. -->
+                    <div id="sindicato-equipo-section-block" class="teams-team-nav-block" hidden>
+                        <!-- Contenido generado por JS: las secciones varían por tipo
+                             (Inquilinos absorbe huelgómetro/alarmas/calculadora/asambleas). -->
+                        <nav class="template-submodule-nav" id="sindicato-equipo-section-nav" aria-label="Equipo sindical sections"></nav>
                     </div>
                 </div>
 
@@ -382,6 +458,7 @@
                         <img class="portada-welcome-logo" id="portada-welcome-logo" alt="SindicApp" width="96" height="96" />
                         <p class="template-welcome" id="portada-welcome-title">Bienvenido/a a SindicApp</p>
                         <div class="template-language-switch" role="group" aria-label="Language selection">
+                            <button type="button" class="template-language-btn" data-locale="ca" aria-pressed="false" title="Català" aria-label="Català"><span class="flag-icon flag-ca" aria-hidden="true"></span>CA</button>
                             <button type="button" class="template-language-btn" data-locale="es" aria-pressed="true" title="Español" aria-label="Español"><span class="flag-icon flag-es" aria-hidden="true"></span>ES</button>
                             <button type="button" class="template-language-btn" data-locale="ie" aria-pressed="false" title="English" aria-label="English"><span class="flag-icon flag-en" aria-hidden="true"></span>EN</button>
                         </div>
@@ -1365,6 +1442,10 @@
     <script src="./js/sindicapp-locale-geo-data.js"></script>
     <script src="./js/sindicapp-locale-en-content.js"></script>
     <script src="./js/sindicapp-locale-es-content.js"></script>
+    <script src="./js/sindicapp-locale-ca-content.js"></script>
+    <!-- Capa de textos en català; ha de carregar-se ABANS de sindicapp-sindicato.js,
+         que la fusiona sobre COPY.es (ADR 0018). -->
+    <script src="./js/sindicapp-locale-ca-copy.js"></script>
     <script src="./js/sindicapp-sindicato.js"></script>
     <!-- SINDICAPP_BUNDLED_SCRIPTS_END -->
     <script src="./js/sindicapp-main.js"></script>

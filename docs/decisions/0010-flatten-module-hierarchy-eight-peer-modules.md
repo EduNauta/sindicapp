@@ -1,6 +1,6 @@
 # 0010. Flatten the module hierarchy: eight peer modules, no Usuario/Colectivo umbrella
 
-Status: Accepted
+Status: Partially superseded by 0017
 Date: 2026-07-13
 
 ## Context

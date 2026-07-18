@@ -8,6 +8,48 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 Nothing pending.
 
+## v0.1.2 — 2026-07-17 — Ring-based rework: equipos sindicales, implicit access rings, Catalan
+
+*The 17-07-2026 rework, after the Sindicat de Llogateres IT meeting (14-07) and the `SINDICAPP_FEATURE_REFERENCE` document. It reorganises the app around the union's internal face without losing the public one. Six ADRs record the decisions: [0013](../decisions/0013-triplicate-then-unify-into-ring-based-app.md) triplicate-then-unify, [0014](../decisions/0014-keep-access-rings-implicit-inside-modules.md) implicit access rings, [0015](../decisions/0015-dissolve-crm-module-into-each-equipo-sindical.md) CRM dissolved into equipos, [0016](../decisions/0016-equipo-sindical-as-common-entity-model.md) equipo sindical model, [0017](../decisions/0017-subnav-collectives-first-red-social-from-header.md) subnav reshuffle, [0018](../decisions/0018-catalan-as-language-layer-over-es-dataset.md) Catalan as a language layer.*
+
+### Changed
+
+- **The app is reorganised around access rings, implicit inside the modules** ([ADR 0014](../decisions/0014-keep-access-rings-implicit-inside-modules.md)). Roles: **Visitante · Usuario · Afiliado · Militante**, persisted, switchable from contextual chips. Locks walk through — a module above your role still opens and explains which role it needs, rather than vanishing. There is no ring-shaped navigation and no page explaining the doctrine: the design is the explanation. Reached via a three-version experiment (Clásica / Propuesta / Final) that was then **unified into a single app** ([ADR 0013](../decisions/0013-triplicate-then-unify-into-ring-based-app.md)); the version bar is gone and no feature was dropped in the merge — the Clásica-only pipeline stage controls are folded into the living case file.
+- **The CRM is no longer a module: it lives inside each equipo sindical** ([ADR 0015](../decisions/0015-dissolve-crm-module-into-each-equipo-sindical.md), supersedes 0006), militante-gated, scoped to the team you opened. Its tabs, labels, org chart and datasets are **per type**: Autónomos and Estudiantes drop Finances; Consumidores keeps only Campaigns/Comms/Calendar/Documents/Databases; the census is named for the collective (Afiliadas / Colegiadas / Inquilinas / Autónomas / Estudiantes); commissions differ per type; and cases, intake and assemblies carry sector-specific demo data with state keyed by `(locale, type)`, so activity in one type cannot leak into another.
+- **Every collective type is modelled as a directory of "equipos sindicales"** with a per-type section nav ([ADR 0016](../decisions/0016-equipo-sindical-as-common-entity-model.md)), grouped into **Perfil** (Resumen, Foro, Estructura, Empresas/Propietarios), **Acción** (Huelgómetro, Alarmas, Calculadora, Asambleas — Inquilinos today) and **Gestión** (CRM). The flat section list is derived from the groups, so grouping cannot hide a section.
+  - **Inquilinos** gains a directory it never had — one tenants' union per territory (Catalunya by default, plus Madrid, País Valencià, Euskadi, Andalucía; CATU Dublin/Cork/Galway in EN) — and its five loose tools become sections of the team. Its "Empresas" equivalent is **Propietarios**.
+  - **Autónomos** gains its self-employed unions as first-class equipos (RidersXDerechos, Conductors Units VTC, Coordinadora Freelance, Sindicat de Periodistes…), with the platforms remaining browsable as actors.
+- **Subnav reshuffled** ([ADR 0017](../decisions/0017-subnav-collectives-first-red-social-from-header.md)): the six collectives on top, the tools below (**Usuario · Mapa · Foro · Wiki · Sectores · Empresas**). **Red Social leaves the navigation** — it is the home, reached from the **SindicApp** header title, and remains the default landing.
+- **Portada reworked**: a claim line stating the platform's premise, a strip of aggregate figures (combined membership, companies mapped, open reports, territories), module panels split into **Colectivos** and **Territorio y empresas**, and the upcoming-agenda digest above the activity feed.
+- **CRM state persists** across reloads (`localStorage`), so multi-day demos keep their edits and the JSON export carries real work rather than seeds.
+- **"Asistencia IA" on the convenio tab is reframed as "Consulta guiada (demo)"**, with its bounds stated inline (official sources only, human review always, never personal case data) and a link to the new doctrine article — the `SINDICAPP_FEATURE_REFERENCE` warns against AI before the basics are mature. The AI flag in public report moderation is unchanged: that is assistance to community review, which the doctrine allows.
+
+### Added
+
+- **Catalan (`ca`) as a third locale** ([ADR 0018](../decisions/0018-catalan-as-language-layer-over-es-dataset.md)) — and, with it, a split of the "locale" concept the code had been conflating: `localeKey()` now resolves the **dataset region** (`es` | `ie`, with `ca` mapping to `es`, since Catalan and Spanish describe the same territory), while the new `copyKey()` resolves the **UI language**. Catalan copy lives in `js/sindicapp-locale-ca-copy.js` and is merged *over* Spanish, so any untranslated key falls back to Spanish and never to `undefined`; a matching nav pack `js/sindicapp-locale-ca-content.js` supplies the module and section labels. 381 of 486 copy keys are translated, including every module title and intro, the CRM and ring vocabularies, the housing tools, the portada and the wiki articles in full. Known gap, documented in the ADR: ~175 inline `es ? … : …` ternaries still build small labels outside `COPY` and can surface in the wrong language under `ca`.
+- **The internal tools the union asked for**, as ordinary CRM tabs: **Intake** (first-contact pipeline: nuevo → seguimiento → convertida → archivada, with a working "Convert to member"), **Casos** as living files (person, theme, owner, actor, update history, required-document checklist, outcome on closure, and a ⚡ banner when three or more open cases share an actor), **Asambleas** (three session types, attendance, role quadrant with uncovered posts in red, and a live speaking-turn queue with a "▶ Siguiente turno" moderator action), **Bases de datos** (the model's core tables with record counts and the cardinality that supports plurality, plus the data-source register and JSON export) and **Estructura** (living org chart: commissions → posts → people, with a role description per post).
+- **Ring-scoped spaces**: the **Usuario** module holds the personal ring whole (profile + "Mis casos y documentos" with document review status); the **Foro** gains an afiliado-gated **Interno** scope; every collective directory embeds an "Espacio interno — afiliadas".
+- **CRM depth**: a `relacion` column separate from dues status (participante · afiliada · militante · delegada · liberada · cargo); documents carrying access scope (Público / Afiliadas / Comisión / Solo caso), review status and reviewer, with an "advance review" action.
+- **Sidebar entity pickers for all six collective types** (search + select; Autónomos splits unions and platforms into two optgroups).
+- **Extranet additions**: report → playbook links; a share button copying the profile's deep link; a sector pay comparison against same-sector peers; an agenda notice on boot; **choose your company** in Usuario (no longer hard-pinned); and **the map that tells the conflict** — company pins coloured and scaled by intensity (strike support + reports).
+- **Dark mode**, a persisted header toggle applied before first paint.
+- **`docs/MODELO-DE-DATOS.md`** — the conceptual schema (Persona, Relación, Caso, Actor, Lugar, Sesión, Turno, Comisión, Cargo, Documento…) with the cardinalities that support plurality, answering the meeting's "1 persona / 1 dirección / 1 piso, programada pocha".
+- **Wiki: "IA y sindicalismo: nuestra doctrina"** — official sources only, human review always, never personal case data, basics before automation.
+- **`legacy/Sindicapp 170726.html`** — the pre-unification app archived as a genuinely self-contained page (all CSS/JS inlined, logo as a data URI); it opens from any folder.
+
+### Fixed
+
+- **The equipo section buttons were dead.** The per-type section nav moved to the sidebar but its clicks were only handled on the workspace element, so choosing a section did nothing in any of the five directory types. The nav now has its own event delegation — a requirement for any JS-rendered nav outside the workspace.
+- **Inquilinos was missing from the landing entirely**: five of the six collectives had a stat panel.
+- **Section-nav buttons rendered at the base button size** instead of the compact size used by every other section subnav, which made Inquilinos' nine options overwhelming.
+
+### Removed
+
+- The **header language switcher**: the portada's is now the only one, with three buttons (CA · ES · EN). Consistent with the home being where global choices live ([ADR 0018](../decisions/0018-catalan-as-language-layer-over-es-dataset.md)).
+- The **Clásica / Propuesta / Final** version bar, after the merge ([ADR 0013](../decisions/0013-triplicate-then-unify-into-ring-based-app.md)).
+- The **CRM** and **Red Social** buttons from the navigation — both destinations remain reachable, through each equipo and through the header title respectively.
+- Inquilinos' module-level subnav, its tools now being sections of the equipo.
+
 ## v0.1.1 — 2026-07-17 — Subnav relabel, Profesionales/Autónomos, CRM appendix
 
 ### Added

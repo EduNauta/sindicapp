@@ -33,9 +33,11 @@ Hilos con respuestas listadas, caja de responder y creación de hilo por ámbito
 *(era C5)*
 La «Asistencia IA» de convenio responde siempre la misma frase enlatada. Se acepta como marcador de la idea; variará cuando la asistencia sea real.
 
-### Catalán
+### Catalán — **hecho (17-07-2026, ADR 0018)**
 *(era C9)*
-Tercer locale `ca`. La arquitectura ya lo permite (es/ie); es sobre todo traducción. Políticamente relevante; se hará cuando el contenido se estabilice.
+Tercer locale `ca`, implementado como *capa de idioma* sobre el conjunto de datos `es` (mismo territorio), no como dataset nuevo: `localeKey()` resuelve datos, `copyKey()` resuelve idioma. 381 de 486 claves traducidas, con caída al castellano en el resto.
+
+Queda de este frente: (a) migrar a `COPY` los ~175 ternarios `es ? … : …` que construyen etiquetas cortas fuera de la tabla de textos y pueden salir en el idioma equivocado bajo `ca`; (b) traducir el *contenido* demo (títulos de casos, hilos de foro, entradas de intake), hoy en castellano; (c) completar las claves de cola larga.
 
 ### Harness de QA como herramienta del repo
 *(era C10)*
