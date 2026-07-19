@@ -1,6 +1,6 @@
 # 0018. Add Catalan as a language layer over the `es` dataset, not a third dataset
 
-Status: Accepted
+Status: Accepted (merge strategy superseded by 0023)
 Date: 2026-07-17
 
 ## Context

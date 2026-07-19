@@ -20,7 +20,15 @@
             /* 17-07-2026: tema (claro/oscuro) aplicado temprano para evitar parpadeo. */
             var THEME_KEY = 'sindicapp-theme';
             function readTheme() {
-                try { return localStorage.getItem(THEME_KEY) === 'dark' ? 'dark' : 'light'; } catch (_) { return 'light'; }
+                /* 18-07 (idea 56, report v4): sin preferencia guardada, se respeta el tema
+                   del sistema (prefers-color-scheme). El toggle manual sigue mandando. */
+                try {
+                    var stored = localStorage.getItem(THEME_KEY);
+                    if (stored === 'dark' || stored === 'light') return stored;
+                } catch (_) { /* demo */ }
+                try {
+                    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+                } catch (_) { return 'light'; }
             }
             function paintTheme(theme) {
                 if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');

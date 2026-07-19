@@ -84,7 +84,7 @@
             viviendaOpenForum: 'Open territory forum',
             viviendaAgendaTitle: 'Agenda',
             coordSections: { admin: 'Admin', wiki: 'Wiki' },
-            coordSubs: { afiliadas: 'Members', casos: 'Cases', campanas: 'Campaigns', finanzas: 'Finances', comunicaciones: 'Comms', calendario: 'Calendar', documentos: 'Documents', datos: 'Databases', estructura: 'Structure', intake: 'Intake', asambleas: 'Assemblies' },
+            coordSubs: { afiliadas: 'Members', casos: 'Cases', campanas: 'Campaigns', finanzas: 'Finances', comunicaciones: 'Comms', calendario: 'Calendar', documentos: 'Documents', datos: 'Databases', fuentes: 'Data sources', estructura: 'Structure', intake: 'Intake', asambleas: 'Assemblies' },
             crmEstructuraIntro: 'The organisation\'s living org chart — commissions, their scope, the people covering each role, and a role description for every post. Roles that are uncovered show up in red.',
             crmEstructuraScope: 'Scope',
             crmEstructuraFunciones: 'Role description',
@@ -664,6 +664,33 @@
             buildingEvictionLinkNote: 'Linked to the territory eviction alerts — same channel, same moderation.',
             tenantPledgeBtn: 'I would join collective tenant action',
             tenantPledgeCount: 'confirmations (demo)',
+            propuestaCasosConvene: 'Convene special session',
+            propuestaCasosConvened: 'Special session created — find it under Assemblies.',
+            propuestaCasosSessionExists: 'A special session for this actor is already convened.',
+            propuestaAttendAdd: 'Record attendance',
+            propuestaAgendaExport: 'Order of the day',
+            propuestaFilterPlaceholder: 'Filter…',
+            propuestaCasosDocsMissing: 'Missing for this theme',
+            propuestaCasosDocsComplete: 'Theme documentation complete',
+            notifTitle: 'Notices',
+            notifEmpty: 'Nothing pending for now.',
+            notifRoleTeaser: 'Sign in as Usuario or above to receive personal notices.',
+            notifTurns: '{n} pending turns',
+            notifDocsReview: '{n} documents awaiting review',
+            notifDocFalta: 'Still missing from your case: {d}',
+            asambleaLiveBtn: 'Assembly mode',
+            asambleaLiveNow: 'Speaking now',
+            asambleaLiveNext: 'Up next',
+            asambleaLiveNone: 'No turn in progress',
+            asambleaLiveEmpty: 'No pending turns — all caught up.',
+            asambleaLiveClose: 'Exit assembly mode',
+            crmImportCsv: 'Import CSV (demo)',
+            crmImportDone: '{n} people added to the census from the CSV',
+            crmImportEmpty: 'No usable rows found (expected headers: name, company, role…)',
+            territoryEmptyTitle: 'No structure here yet',
+            territoryEmptyBody: 'Nobody has built this territory yet — no union teams, no companies on file, no forum threads. Be the first: open the housing view or add your company from Companies.',
+            resetDemoLabel: 'Reset demo data',
+            resetDemoConfirm: 'This wipes every locally stored demo change (companies added, votes, cases, CRM…) and reloads the app. Continue?',
             moduleLoadError: 'Syndicate module failed to load.'
         },
         es: {
@@ -737,7 +764,7 @@
             viviendaOpenForum: 'Abrir foro del territorio',
             viviendaAgendaTitle: 'Agenda',
             coordSections: { admin: 'Admin', wiki: 'Wiki' },
-            coordSubs: { afiliadas: 'Afiliadas', casos: 'Casos', campanas: 'Campañas', finanzas: 'Finanzas', comunicaciones: 'Comunicaciones', calendario: 'Calendario', documentos: 'Documentos', datos: 'Bases de datos', estructura: 'Estructura', intake: 'Intake', asambleas: 'Asambleas' },
+            coordSubs: { afiliadas: 'Afiliadas', casos: 'Casos', campanas: 'Campañas', finanzas: 'Finanzas', comunicaciones: 'Comunicaciones', calendario: 'Calendario', documentos: 'Documentos', datos: 'Bases de datos', fuentes: 'Fuentes de datos', estructura: 'Estructura', intake: 'Intake', asambleas: 'Asambleas' },
             crmEstructuraIntro: 'El organigrama vivo de la organización — comisiones, su ámbito, quién cubre cada cargo y un documento de funciones para cada uno. Los cargos vacantes aparecen en rojo.',
             crmEstructuraScope: 'Ámbito',
             crmEstructuraFunciones: 'Documento de funciones',
@@ -1317,15 +1344,55 @@
             buildingEvictionLinkNote: 'Vinculado a las alertas de desahucio del territorio — mismo canal, misma moderación.',
             tenantPledgeBtn: 'Me sumaría a una acción colectiva de inquilinos',
             tenantPledgeCount: 'confirmaciones (demo)',
+            propuestaCasosConvene: 'Convocar sesión especial',
+            propuestaCasosConvened: 'Sesión especial creada — la tienes en Asambleas.',
+            propuestaCasosSessionExists: 'Ya hay una sesión especial convocada para este actor.',
+            propuestaAttendAdd: 'Registrar asistencia',
+            propuestaAgendaExport: 'Orden del día',
+            propuestaFilterPlaceholder: 'Filtrar…',
+            propuestaCasosDocsMissing: 'Faltan según el tema',
+            propuestaCasosDocsComplete: 'Documentación del tema completa',
+            notifTitle: 'Avisos',
+            notifEmpty: 'Nada pendiente por ahora.',
+            notifRoleTeaser: 'Entra como Usuario o superior para recibir avisos personales.',
+            notifTurns: '{n} turnos pendientes',
+            notifDocsReview: '{n} documentos esperan revisión',
+            notifDocFalta: 'Falta aportar a tu caso: {d}',
+            asambleaLiveBtn: 'Modo asamblea',
+            asambleaLiveNow: 'Hablando ahora',
+            asambleaLiveNext: 'A continuación',
+            asambleaLiveNone: 'No hay turno en curso',
+            asambleaLiveEmpty: 'Sin turnos pendientes — asamblea al día.',
+            asambleaLiveClose: 'Salir del modo asamblea',
+            crmImportCsv: 'Importar CSV (demo)',
+            crmImportDone: '{n} personas añadidas al censo desde el CSV',
+            crmImportEmpty: 'El CSV no tiene filas reconocibles (cabeceras: nombre, empresa, rol…)',
+            territoryEmptyTitle: 'Aún no hay estructura aquí',
+            territoryEmptyBody: 'Nadie ha levantado todavía este territorio: ni equipos, ni empresas fichadas, ni hilos de foro. Sé la primera — abre la vista de vivienda o añade tu empresa desde Empresas.',
+            resetDemoLabel: 'Reiniciar datos demo',
+            resetDemoConfirm: 'Esto borra todos los cambios demo guardados en este navegador (empresas añadidas, votos, casos, CRM…) y recarga la app. ¿Continuar?',
             moduleLoadError: 'No se pudo cargar el módulo Sindicato.'
         }
     };
 
     /* 17-07-2026 (ADR 0018): capa de textos en català, fusionada SOBRE el castellà.
-       Qualsevol clau no traduïda cau al castellà, mai a `undefined`. Els objectes
-       imbricats es tradueixen sencers o no es tradueixen. */
+       Qualsevol clau no traduïda cau al castellà, mai a `undefined`.
+       18-07 (F2 del report v4): fusió PROFUNDA — abans un objecte imbricat parcial del
+       pack CA substituïa sencer el d'ES i les sub-claus no traduïdes quedaven
+       `undefined`. Ara els objectes plans es fusionen clau a clau recursivament;
+       arrays i valors escalars se substitueixen. */
+    function deepMergeCopy(base, extra) {
+        const isPlain = (v) => v && typeof v === 'object' && !Array.isArray(v);
+        if (!isPlain(base) || !isPlain(extra)) return extra !== undefined ? extra : base;
+        const out = {};
+        Object.keys(base).forEach((k) => { out[k] = base[k]; });
+        Object.keys(extra).forEach((k) => {
+            out[k] = isPlain(base[k]) && isPlain(extra[k]) ? deepMergeCopy(base[k], extra[k]) : extra[k];
+        });
+        return out;
+    }
     if (window.SINDICAPP_COPY_CA) {
-        COPY.ca = Object.assign({}, COPY.es, window.SINDICAPP_COPY_CA);
+        COPY.ca = deepMergeCopy(COPY.es, window.SINDICAPP_COPY_CA);
     }
 
     const BASE_WORKPLACES = {
@@ -2567,7 +2634,7 @@
         if (section === 'calculadora') return head + buildHousingCalculadoraHtml(locale);
         if (section === 'asambleas') return head + buildHousingAsambleasHtml(locale);
         /* Secciones comunes a todos los equipos sindicales. */
-        if (section === 'foro' || section === 'estructura' || section === 'crm') {
+        if (section === 'foro' || section === 'estructura' || section === 'crm' || section.indexOf('crm-') === 0) {
             const c = t(locale);
             return buildEquipoProfileSectionHtml(locale, section, 'housing', {
                 backAttr: 'data-sindicato-goto-housing-union=""', backLabel: c.housingUnionBack,
@@ -2583,10 +2650,18 @@
      * sindicato, empresa, producto/servicio, centro de estudios) tiene su
      * grupo de Telegram y canales sociales. Enlaces demo, generados del slug.
      * ================================================================ */
+    /* 18-07 (F6 del report v4): los canales son demo — las cuentas generadas por slug no
+       existen, así que ya no se enlaza a ellas (un 404 de Telegram en mitad de una
+       reunión resta credibilidad). Mismo aspecto de chip, sin href; el handle generado
+       queda visible en el title como recordatorio de lo que sería. */
+    function demoSocialChipHtml(icon, label, handle, extraClass) {
+        return `<span class="sindicato-union-company-link sindicato-social-link sindicato-social-link--demo${extraClass ? ' ' + extraClass : ''}" title="${handle} · demo" aria-label="${label} (demo)"><span aria-hidden="true">${icon}</span> ${label}</span>`;
+    }
+
     function buildTelegramLinkHtml(locale, slug) {
         const c = t(locale);
         const tg = String(slug || '').replace(/[^a-z0-9]+/gi, '_');
-        return `<a class="sindicato-union-company-link sindicato-social-link sindicato-social-link--telegram" href="https://t.me/sindicapp_${tg}" target="_blank" rel="noopener"><span aria-hidden="true">✈️</span> ${c.telegramGroupLabel}</a>`;
+        return demoSocialChipHtml('✈️', c.telegramGroupLabel, `t.me/sindicapp_${tg}`, 'sindicato-social-link--telegram');
     }
 
     function buildSocialLinksHtml(locale, slug) {
@@ -2594,9 +2669,9 @@
         const dots = String(slug || '').replace(/[^a-z0-9]+/gi, '.');
         return `<div class="sindicato-union-companies sindicato-social-links">
             ${buildTelegramLinkHtml(locale, slug)}
-            <a class="sindicato-union-company-link sindicato-social-link" href="https://mastodon.social/@sindicapp_${tg}" target="_blank" rel="noopener"><span aria-hidden="true">🐘</span> Mastodon</a>
-            <a class="sindicato-union-company-link sindicato-social-link" href="https://instagram.com/sindicapp.${dots}" target="_blank" rel="noopener"><span aria-hidden="true">📷</span> Instagram</a>
-            <a class="sindicato-union-company-link sindicato-social-link" href="https://x.com/sindicapp_${tg}" target="_blank" rel="noopener"><span aria-hidden="true">✖️</span> X</a>
+            ${demoSocialChipHtml('🐘', 'Mastodon', `@sindicapp_${tg}`)}
+            ${demoSocialChipHtml('📷', 'Instagram', `sindicapp.${dots}`)}
+            ${demoSocialChipHtml('✖️', 'X', `@sindicapp_${tg}`)}
         </div>`;
     }
 
@@ -3586,9 +3661,22 @@
         }
     };
 
-    /* Turnos en memoria de sesión (interactividad de la vista de moderación). Ahora por
-       (locale, tipo): los tipos con dataset propio mantienen su runtime separado. */
-    const PROPUESTA_RUNTIME = {};
+    /* Runtime de Intake/Casos/Asambleas por (locale, tipo). Hasta 18-07 vivía solo en
+       memoria — mover un caso, convertir un intake o avanzar un turno se perdía al
+       recargar, en contradicción con el CRM_RUNTIME que sí persiste (F1 del report v4).
+       Ahora se carga y guarda en localStorage como el resto del estado demo (ADR 0003). */
+    const PROPUESTA_RUNTIME_KEY = 'sindicapp-propuesta-runtime-v1';
+    const PROPUESTA_RUNTIME = (function loadPropuestaRuntime() {
+        try {
+            const raw = localStorage.getItem(PROPUESTA_RUNTIME_KEY);
+            const parsed = raw ? JSON.parse(raw) : null;
+            return (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) ? parsed : {};
+        } catch (e) { return {}; }
+    })();
+
+    function savePropuestaRuntime() {
+        try { localStorage.setItem(PROPUESTA_RUNTIME_KEY, JSON.stringify(PROPUESTA_RUNTIME)); } catch (e) { /* demo */ }
+    }
 
     function getPropuestaData(locale, type) {
         const key = localeKey(locale);
@@ -3609,6 +3697,172 @@
         ie: ['New', 'In progress', 'Bargaining', 'Resolved']
     };
 
+    /* 18-07 (idea 47, report v4): documentos requeridos según el tema del caso. El
+       checklist de faltantes se calcula contra los docs del caso — un doc presente
+       pero con estado 'falta' cuenta como faltante. Temas sin entrada: sin checklist. */
+    const PROPUESTA_THEME_DOCS = {
+        es: {
+            'Salario': ['Contrato', 'Nóminas', 'Registro horario'],
+            'Jornada': ['Contrato', 'Cuadrante'],
+            'Disciplinario': ['Carta de sanción', 'Alegaciones'],
+            'Vivienda': ['Contrato de alquiler', 'Burofax']
+        },
+        ie: {
+            'Pay': ['Contract', 'Payslips', 'Time records'],
+            'Hours': ['Contract', 'Roster'],
+            'Disciplinary': ['Sanction letter', 'Appeal'],
+            'Housing': ['Lease', 'Notice letter']
+        }
+    };
+
+    function propuestaMissingDocs(locale, cs) {
+        const req = (PROPUESTA_THEME_DOCS[localeKey(locale)] || {})[cs.theme];
+        if (!req) return null;
+        const has = (r) => (cs.docs || []).some((d) => d.status !== 'falta'
+            && (d.name.toLowerCase().indexOf(r.toLowerCase()) !== -1 || r.toLowerCase().indexOf(d.name.toLowerCase()) !== -1));
+        return req.filter((r) => !has(r));
+    }
+
+    /* 18-07 (idea 44, report v4): del patrón detectado a la acción — convoca una sesión
+       especial con los casos abiertos del actor pre-agrupados como turnos. */
+    function propuestaCreatePatternSession(locale, actor, type) {
+        const data = getPropuestaData(locale, type);
+        const key = localeKey(locale);
+        const es = key === 'es';
+        if ((data.sessions || []).some((s) => s.patternActor === actor)) return 'exists';
+        const lastStage = (PROPUESTA_CASE_STAGES[key] || []).slice(-1)[0];
+        const openCases = (data.cases || []).filter((cs) => cs.actor === actor && cs.stage !== lastStage);
+        if (!openCases.length) return null;
+        if (!data.sessions) data.sessions = [];
+        data.sessions.push({
+            id: 'ps-pat-' + Date.now(),
+            type: 'especial',
+            patternActor: actor,
+            title: (es ? 'Sesión especial: ' : 'Special session: ') + actor + ' (' + openCases.length + (es ? ' casos' : ' cases') + ')',
+            date: es ? 'Por fijar' : 'To be scheduled',
+            place: es ? 'Local del sindicato' : 'Union hall',
+            attendance: 0,
+            roles: [{ role: es ? 'Moderación' : 'Moderation', holder: '', backup: '' }],
+            turns: openCases.map((cs) => ({ who: cs.person, kind: 'actualizacion', status: 'pendiente', caseRef: cs.title }))
+        });
+        savePropuestaRuntime();
+        return 'created';
+    }
+
+    /* 18-07 (idea 45, report v4): registro de asistencia por sesión (contador demo). */
+    function propuestaAddAttendance(locale, sessionId, type) {
+        const data = getPropuestaData(locale, type);
+        const s = (data.sessions || []).find((x) => x.id === sessionId);
+        if (!s) return;
+        s.attendance = (s.attendance || 0) + 1;
+        savePropuestaRuntime();
+    }
+
+    /* 18-07 (idea 54, report v4): avisos según rol — lo que te toca, no un feed.
+       Usuario+: documentos que faltan en tu caso y próxima agenda. Militante+:
+       turnos pendientes de las sesiones y documentos en revisión del CRM. */
+    function collectNotifications(locale, role) {
+        const c = t(locale);
+        const items = [];
+        const allow = (min) => propuestaRoleAllows(role || 'visitante', min);
+        if (!allow('usuario')) return items;
+        const data = getPropuestaData(locale, '');
+        (data.myDocs || []).filter((d) => d.status === 'falta').forEach((d) => {
+            items.push({ icon: '📄', text: String(c.notifDocFalta || '{d}').replace('{d}', d.name) });
+        });
+        getUpcomingAgendaDigest(locale, 2).forEach((ev) => {
+            items.push({ icon: '📅', text: `${ev.date} · ${ev.title}` });
+        });
+        if (allow('militante')) {
+            (data.sessions || []).forEach((s) => {
+                const pend = (s.turns || []).filter((tn) => tn.status === 'pendiente').length;
+                if (pend) items.push({ icon: '🗳️', text: String(c.notifTurns || '{n}').replace('{n}', pend) + ' — ' + s.title });
+            });
+            const crm = getCrmData(locale, 'sindicapp');
+            const rev = (crm.docs || []).filter((d) => d.revision && d.revision !== 'revisada').length;
+            if (rev) items.push({ icon: '🔍', text: String(c.notifDocsReview || '{n}').replace('{n}', rev) });
+        }
+        return items;
+    }
+
+    function getNotificationCount(locale, role) {
+        return collectNotifications(locale, role).length;
+    }
+
+    function buildNotificationsHtml(locale, role) {
+        const c = t(locale);
+        const items = collectNotifications(locale, role);
+        const canSee = propuestaRoleAllows(role || 'visitante', 'usuario');
+        const body = items.length
+            ? items.map((it) => `<p class="sindicapp-notif-item"><span aria-hidden="true">${it.icon}</span> ${it.text}</p>`).join('')
+            : `<p class="template-muted sindicapp-notif-item">${canSee ? c.notifEmpty : c.notifRoleTeaser}</p>`;
+        return `<p class="sindicapp-notif-title"><span aria-hidden="true">🔔</span> ${c.notifTitle}</p>
+            ${body}
+            <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>`;
+    }
+
+    /* 18-07 (idea 50, report v4): modo asamblea — panel de proyección a pantalla
+       completa para moderar en vivo: turno actual en grande, cola siguiente, avanzar.
+       «La mejor herramienta es la que se puede usar en medio de una asamblea.» */
+    function buildAsambleaLiveHtml(locale, sessionId, type) {
+        const data = getPropuestaData(locale, type);
+        const s = (data.sessions || []).find((x) => x.id === sessionId);
+        if (!s) return '';
+        const c = t(locale);
+        const turns = s.turns || [];
+        const current = turns.find((tn) => tn.status === 'encurso');
+        const pending = turns.filter((tn) => tn.status === 'pendiente');
+        const done = turns.filter((tn) => tn.status === 'atendida').length;
+        const cur = current
+            ? `<p class="asamblea-live-label">${c.asambleaLiveNow}</p>
+               <p class="asamblea-live-who">${current.who}</p>
+               <p class="asamblea-live-case">${(c.propuestaTurnKind[current.kind] || current.kind)} · ${current.caseRef}</p>`
+            : `<p class="asamblea-live-who asamblea-live-none">${pending.length ? c.asambleaLiveNone : c.asambleaLiveEmpty}</p>`;
+        const queue = pending.slice(0, 4).map((tn) =>
+            `<li><strong>${tn.who}</strong> <span class="template-muted">${tn.caseRef}</span></li>`
+        ).join('');
+        return `<div class="asamblea-live" role="dialog" aria-modal="true" aria-label="${c.asambleaLiveBtn}">
+            <button type="button" class="asamblea-live-close" data-asamblea-live-close aria-label="${c.asambleaLiveClose}">✕</button>
+            <p class="asamblea-live-title">${s.title} · <strong>${done}/${turns.length}</strong></p>
+            <div class="asamblea-live-current">${cur}</div>
+            ${pending.length ? `<p class="asamblea-live-label">${c.asambleaLiveNext}</p><ol class="asamblea-live-queue">${queue}</ol>` : ''}
+            ${(current || pending.length) ? `<button type="button" class="crm-btn asamblea-live-advance" data-asamblea-live-next="${type || ''}|${s.id}">▶ ${c.propuestaAsambleasNext}</button>` : ''}
+        </div>`;
+    }
+
+    /* 18-07 (idea 55, report v4): orden del día imprimible de una sesión, en markdown —
+       sustituye un documento que hoy se hace a mano antes de cada asamblea. */
+    function propuestaOrderOfDayText(locale, sessionId, type) {
+        const data = getPropuestaData(locale, type);
+        const s = (data.sessions || []).find((x) => x.id === sessionId);
+        if (!s) return null;
+        const c = t(locale);
+        const es = localeKey(locale) === 'es';
+        const lines = [];
+        lines.push('# ' + s.title);
+        lines.push('');
+        lines.push(s.date + ' · ' + s.place);
+        lines.push((c.propuestaSessionTypes[s.type] || s.type) + ' · ' + (s.attendance || 0) + ' ' + c.propuestaAttendance);
+        lines.push('');
+        lines.push('## ' + c.propuestaAsambleasRoles);
+        (s.roles || []).forEach((r) => {
+            const holder = r.holder || ('⚠️ ' + c.propuestaAsambleasRoleGap);
+            lines.push('- ' + r.role + ': ' + holder + (r.backup ? ' (' + (es ? 'suplente' : 'backup') + ': ' + r.backup + ')' : ''));
+        });
+        if ((s.turns || []).length) {
+            lines.push('');
+            lines.push('## ' + c.propuestaAsambleasTurns);
+            s.turns.forEach((tn, i) => {
+                lines.push((i + 1) + '. [' + (c.propuestaTurnStatus[tn.status] || tn.status) + '] '
+                    + tn.who + ' — ' + (c.propuestaTurnKind[tn.kind] || tn.kind) + ' · ' + tn.caseRef);
+            });
+        }
+        lines.push('');
+        lines.push('---');
+        lines.push('_SindicApp (demo) · ' + new Date().toISOString().slice(0, 10) + '_');
+        return { filename: 'orden-del-dia-' + s.id + '.md', content: lines.join('\n') };
+    }
+
     function propuestaMoveCase(locale, caseId, dir, type) {
         const key = localeKey(locale);
         const stages = PROPUESTA_CASE_STAGES[key] || [];
@@ -3621,6 +3875,7 @@
         cs.stage = stages[next];
         if (cs.stage === stages[stages.length - 1] && !cs.outcome) cs.outcome = 'favorable';
         if (cs.stage !== stages[stages.length - 1]) cs.outcome = '';
+        savePropuestaRuntime();
     }
 
     /* 17-07-2026 (idea 4, cola): botón «Convertir en afiliada» funcional en el Intake. */
@@ -3630,6 +3885,7 @@
         if (!p) return;
         p.state = 'convertida';
         p.next = '—';
+        savePropuestaRuntime();
     }
 
     function propuestaAdvanceTurn(locale, sessionId, type) {
@@ -3640,6 +3896,7 @@
         if (current) current.status = 'atendida';
         const next = session.turns.find((tn) => tn.status === 'pendiente');
         if (next) next.status = 'encurso';
+        savePropuestaRuntime();
     }
 
     function propuestaItemLabel(c, item) {
@@ -3663,7 +3920,11 @@
             const wide = it.wide ? ' template-module-btn--wide' : '';
             const lockCls = gated ? ' propuesta-item-locked' : '';
             const icon = gated ? '🔒' : it.icon;
-            return `<button type="button" class="template-module-btn${isActive ? ' active' : ''}${lockCls}${wide}" data-propuesta-goto="${it.type}:${it.id}">
+            /* 18-07 (F7): el candado no puede comunicarse solo por emoji — aria-label
+               explícito con el rol necesario para lectores de pantalla. */
+            const roleName = gated ? ((c.propuestaRoles && c.propuestaRoles[it.minRole]) || it.minRole) : '';
+            const gatedAria = gated ? ` aria-label="${label} — ${c.propuestaLockedTitle || ''} (${roleName})"` : '';
+            return `<button type="button" class="template-module-btn${isActive ? ' active' : ''}${lockCls}${wide}" data-propuesta-goto="${it.type}:${it.id}"${gatedAria}>
                 <span aria-hidden="true">${icon}</span> ${label}
             </button>`;
         };
@@ -3748,7 +4009,7 @@
         const c = t(locale);
         const roleName = c.propuestaRoles[minRole] || minRole;
         return `<div class="sindicato-panel propuesta-locked-panel">
-            <h2>🔒 ${c.propuestaLockedTitle}</h2>
+            <h2><span aria-hidden="true">🔒</span> ${c.propuestaLockedTitle}</h2>
             <p class="template-muted">${c.propuestaLockedBody.replace('{role}', roleName)}</p>
             ${buildPropuestaRoleChipsHtml(locale, currentRole || 'visitante')}
             <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
@@ -3830,6 +4091,7 @@
             return `<div class="sindicato-panel propuesta-screen">
                 <h2>📥 ${c.propuestaIntakeTitle}</h2>
                 <p class="template-muted">${c.propuestaIntakeIntro}</p>
+                <input type="search" class="sindicato-search-input" placeholder="${c.propuestaFilterPlaceholder}" aria-label="${c.propuestaFilterPlaceholder}" data-live-filter=".propuesta-intake-card">
                 <div class="crm-pipeline">${cols}</div>
                 <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
             </div>`;
@@ -3841,8 +4103,16 @@
                 actorCounts[cs.actor] = (actorCounts[cs.actor] || 0) + 1;
             });
             const pattern = Object.entries(actorCounts).find(([, n]) => n >= 3);
+            /* 18-07 (idea 44): del patrón a la acción — botón para convocar la sesión
+               especial con los casos del actor pre-agrupados. */
+            const patternSessionExists = pattern && (data.sessions || []).some((s) => s.patternActor === pattern[0]);
+            const patternAction = pattern
+                ? (patternSessionExists
+                    ? ` <span class="template-muted">· ${c.propuestaCasosSessionExists}</span>`
+                    : ` <button type="button" class="crm-mini-btn" data-propuesta-pattern-session="${tp}|${String(pattern[0]).replace(/"/g, '&quot;')}">🗳️ ${c.propuestaCasosConvene}</button>`)
+                : '';
             const patternBanner = pattern
-                ? `<div class="propuesta-pattern-banner">${c.propuestaCasosPattern.replace('{n}', pattern[1]).replace('{actor}', pattern[0])}</div>`
+                ? `<div class="propuesta-pattern-banner">${c.propuestaCasosPattern.replace('{n}', pattern[1]).replace('{actor}', pattern[0])}${patternAction}</div>`
                 : '';
             const caseCards = data.cases.map((cs) => {
                 const updates = cs.updates.map((u) =>
@@ -3876,6 +4146,14 @@
                     <ul class="propuesta-updates">${updates}</ul>
                     <h4>${c.propuestaCasosDocs}</h4>
                     <p class="propuesta-doc-chips">${docs}</p>
+                    ${(() => {
+                        /* 18-07 (idea 47): checklist de documentos requeridos por tema. */
+                        const missing = propuestaMissingDocs(locale, cs);
+                        if (missing === null) return '';
+                        return missing.length
+                            ? `<p class="propuesta-docs-missing"><span aria-hidden="true">⚠️</span> ${c.propuestaCasosDocsMissing}: <strong>${missing.join(', ')}</strong></p>`
+                            : `<p class="propuesta-docs-missing propuesta-docs-ok"><span aria-hidden="true">✅</span> ${c.propuestaCasosDocsComplete}</p>`;
+                    })()}
                     ${outcome}
                 </details>`;
             }).join('');
@@ -3883,6 +4161,7 @@
                 <h2>📂 ${c.propuestaCasosTitle}</h2>
                 <p class="template-muted">${c.propuestaCasosIntro}</p>
                 ${patternBanner}
+                <input type="search" class="sindicato-search-input" placeholder="${c.propuestaFilterPlaceholder}" aria-label="${c.propuestaFilterPlaceholder}" data-live-filter=".propuesta-case">
                 ${caseCards}
                 <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
             </div>`;
@@ -3907,11 +4186,15 @@
                 const turnBlock = (s.turns || []).length
                     ? `<h4>${c.propuestaAsambleasTurns}</h4>
                        <ol class="propuesta-turns">${turns}</ol>
-                       <button type="button" class="crm-btn" data-propuesta-turno-next="${tp}|${s.id}">${c.propuestaAsambleasNext}</button>`
+                       <button type="button" class="crm-btn" data-propuesta-turno-next="${tp}|${s.id}">${c.propuestaAsambleasNext}</button>
+                       <button type="button" class="crm-btn" data-asamblea-live-open="${tp}|${s.id}">📽️ ${c.asambleaLiveBtn}</button>`
                     : '';
                 return `<div class="sindicato-coord-card propuesta-session">
                     <p>${typeBadge} <strong>${s.title}</strong></p>
-                    <p class="template-muted">${s.date} · 📍 ${s.place} · ${s.attendance} ${c.propuestaAttendance}</p>
+                    <p class="template-muted">${s.date} · 📍 ${s.place} · ${s.attendance} ${c.propuestaAttendance}
+                        <button type="button" class="crm-mini-btn" data-propuesta-attend="${tp}|${s.id}" aria-label="${c.propuestaAttendAdd}">➕ ${c.propuestaAttendAdd}</button>
+                        <button type="button" class="crm-mini-btn" data-propuesta-agenda-export="${tp}|${s.id}">🖨️ ${c.propuestaAgendaExport}</button>
+                    </p>
                     <h4>${c.propuestaAsambleasRoles}</h4>
                     <div class="propuesta-role-grid">${roles}</div>
                     ${turnBlock}
@@ -4024,7 +4307,9 @@
             ${agenda}
             <h3>${c.redSocialActivityTitle}</h3>
             <div class="sindicato-feed">${activity}</div>
-            <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
+            <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em>
+                <button type="button" class="sindicato-reset-demo-btn" data-sindicapp-reset-demo>↺ ${c.resetDemoLabel}</button>
+            </p>
         </div>`;
     }
 
@@ -4101,6 +4386,12 @@
         /* C7 — deep link al perfil de empresa: #sindicato-empresa:<id>[:<sección>] */
         const wpMatch = h.match(/^sindicato-empresa:([^:]+)(?::([a-z]+))?$/);
         if (wpMatch) return { view: 'workplace', workplaceId: wpMatch[1], sectionId: wpMatch[2] || 'location' };
+        /* 18-07 (idea 51, report v4): rutas para el historial real del navegador —
+           módulo de primer nivel y equipo abierto (tipo:entidad:sección). */
+        const subMatch = h.match(/^sindicato-sub:([a-z]+)$/);
+        if (subMatch) return { view: 'sub', subId: subMatch[1] };
+        const eqMatch = h.match(/^sindicato-equipo:([a-z]+):([^:]+)(?::([a-z0-9-]+))?$/);
+        if (eqMatch) return { view: 'equipo', type: eqMatch[1], entityId: eqMatch[2], sectionId: eqMatch[3] || '' };
         return null;
     }
 
@@ -4991,14 +5282,18 @@
        tipo: fila de pestañas (las que encajan en el tipo) + panel del CRM contextualizado
        al equipo. Militante-gated. `orgId` es el equipo si existe en el CRM; si no, cae a
        SindicApp pero se muestra el nombre del equipo. */
-    function buildEquipoCrmHtml(locale, orgId, type, displayName, ctx) {
+    function buildEquipoCrmHtml(locale, orgId, type, displayName, ctx, opts) {
         const role = (ctx && ctx.propuestaRole) || 'visitante';
         if (!propuestaRoleAllows(role, 'militante')) return buildPropuestaLockedHtml(locale, 'militante', role);
         const c = t(locale);
         const tabs = getCrmTabsForType(type);
         let tab = (ctx && ctx.equipoCrmTab) || tabs[0];
         if (tabs.indexOf(tab) === -1) tab = tabs[0];
-        const tabRow = tabs.map((id) => {
+        /* Decreto 18-07: con las pestañas desparramadas en la sidebar, la fila de chips
+           interna es redundante y se oculta (opts.hideTabs). Se conserva para el camino
+           legacy 'crm' (p. ej. deep links antiguos). */
+        const hideTabs = opts && opts.hideTabs;
+        const tabRow = hideTabs ? '' : tabs.map((id) => {
             const label = (id === 'afiliadas' && c.crmCensusByType && c.crmCensusByType[type])
                 ? c.crmCensusByType[type]
                 : (c.coordSubs[id] || id);
@@ -5009,7 +5304,7 @@
             propuestaRole: role, equipoName: displayName, equipoCrmTab: tab
         });
         return `<div class="equipo-crm">
-            <div class="crm-chip-row equipo-crm-tabs" role="group" aria-label="${c.gestionContextLabel}">${tabRow}</div>
+            ${hideTabs ? '' : `<div class="crm-chip-row equipo-crm-tabs" role="group" aria-label="${c.gestionContextLabel}">${tabRow}</div>`}
             ${panel}
         </div>`;
     }
@@ -5033,7 +5328,14 @@
     };
 
     function getEquipoSectionGroupsForType(type) {
-        return EQUIPO_SECTION_GROUPS[type] || EQUIPO_SECTION_GROUPS.default;
+        const base = EQUIPO_SECTION_GROUPS[type] || EQUIPO_SECTION_GROUPS.default;
+        /* Decreto 18-07 (Edu): el CRM se desparrama — cada pestaña es un botón propio de
+           la sidebar, todas al mismo nivel dentro de GESTIÓN. Quedan muchos botones a
+           propósito: primero verlo todo en un plano, reordenar vendrá después. */
+        return base.map((g) => (g.id !== 'gestion' ? g : {
+            id: 'gestion',
+            sections: getCrmTabsForType(type).map((tabId) => 'crm-' + tabId)
+        }));
     }
 
     function getEquipoSectionsForType(type) {
@@ -5045,9 +5347,23 @@
         return (c.equipoGroups && c.equipoGroups[groupId]) || groupId;
     }
 
-    function equipoSectionMeta(locale, id) {
+    /* Iconos de las secciones-CRM desparramadas en la sidebar (decreto 18-07). */
+    const CRM_SECTION_ICONS = {
+        afiliadas: '🧾', intake: '📥', casos: '📂', asambleas: '🗳️', campanas: '📣',
+        finanzas: '💶', comunicaciones: '✉️', calendario: '📅', documentos: '📄',
+        estructura: '🧬', datos: '🗄️', fuentes: '📇'
+    };
+
+    function equipoSectionMeta(locale, id, type) {
         const c = t(locale);
         const hs = c.housingSubs || {};
+        if (id.indexOf('crm-') === 0) {
+            const tabId = id.slice(4);
+            const label = (tabId === 'afiliadas' && c.crmCensusByType && c.crmCensusByType[type])
+                ? c.crmCensusByType[type]
+                : ((c.coordSubs && c.coordSubs[tabId]) || tabId);
+            return { icon: CRM_SECTION_ICONS[tabId] || '📇', label };
+        }
         return {
             resumen: { icon: '📋', label: c.equipoSectionResumen || 'Resumen' },
             foro: { icon: '💬', label: (c.subs && c.subs.foro) || 'Foro' },
@@ -5065,7 +5381,7 @@
     function buildEquipoSectionNavHtml(locale, type, active) {
         return getEquipoSectionGroupsForType(type).map((g) => {
             const buttons = g.sections.map((id) => {
-                const m = equipoSectionMeta(locale, id);
+                const m = equipoSectionMeta(locale, id, type);
                 return `<button type="button" class="template-module-btn${id === active ? ' active' : ''}" data-equipo-section="${id}">
                     <span aria-hidden="true">${m.icon}</span> ${m.label}
                 </button>`;
@@ -5084,8 +5400,10 @@
         const c = t(locale);
         const head = `<p><button type="button" class="sindicato-back-btn" ${entity.backAttr}>← ${entity.backLabel}</button></p>
             <h2>${entity.heading}</h2>`;
-        if (section === 'crm') {
-            return `<div class="sindicato-panel">${head}${buildEquipoCrmHtml(locale, entity.orgId || '', type, entity.name, view)}</div>`;
+        if (section === 'crm' || section.indexOf('crm-') === 0) {
+            const v = section === 'crm' ? view
+                : Object.assign({}, view, { equipoCrmTab: section.slice(4) });
+            return `<div class="sindicato-panel">${head}${buildEquipoCrmHtml(locale, entity.orgId || '', type, entity.name, v, { hideTabs: section !== 'crm' })}</div>`;
         }
         if (section === 'estructura') {
             return `<div class="sindicato-panel">${head}
@@ -5117,7 +5435,11 @@
         if (section === 'forum') return buildUnionForumHtml(locale, union);
         if (section === 'structure') return buildUnionStructureHtml(locale, union);
         if (section === 'companies') return buildUnionCompaniesHtml(locale, union);
-        if (section === 'crm') return buildEquipoCrmHtml(locale, union.id, 'unions', union.name, ctx);
+        if (section === 'crm' || section.indexOf('crm-') === 0) {
+            const v = section === 'crm' ? ctx
+                : Object.assign({}, ctx, { equipoCrmTab: section.slice(4) });
+            return buildEquipoCrmHtml(locale, union.id, 'unions', union.name, v, { hideTabs: section !== 'crm' });
+        }
         return buildUnionOverviewHtml(locale, union);
     }
 
@@ -6247,6 +6569,21 @@
         const mapBack = opts.showMapBack && opts.mapTerritoryId
             ? `<p><button type="button" class="sindicato-back-btn" data-sindicato-map-clear-territory>← ${c.mapClearTerritory}</button></p>`
             : '';
+        /* 18-07 (F8 del report v4): las comarcas/municipios sin datos merecen un estado
+           vacío con invitación, no un perfil en blanco. */
+        if (!terr.workplaces.length && !terr.unions.length && !terr.forumPosts.length && !housingAlerts.length) {
+            return `<div class="sindicato-panel sindicato-territory-dossier">
+                ${mapBack}
+                <h2>${c.mapTerritoryDossier} — ${terr.parentName} / ${terr.name}</h2>
+                <div class="sindicato-empty-state">
+                    <p class="sindicato-empty-state-icon" aria-hidden="true">🌱</p>
+                    <h3>${c.territoryEmptyTitle}</h3>
+                    <p class="template-muted">${c.territoryEmptyBody}</p>
+                    <p><button type="button" class="sindicato-cta-btn" data-sindicato-goto-vivienda="${terr.id}">${c.territoryHousingLink}</button></p>
+                </div>
+                <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
+            </div>`;
+        }
         return `<div class="sindicato-panel sindicato-territory-dossier">
             ${mapBack}
             <h2>${c.mapTerritoryDossier} — ${terr.parentName} / ${terr.name}</h2>
@@ -6606,6 +6943,30 @@
         return CRM_RUNTIME[key][org];
     }
 
+    /* 18-07 (idea 38 mock-up, report v4): import de CSV al censo — «no tiráis vuestros
+       excels: los traéis». Las filas entran como participantes pendientes; el mapeo de
+       columnas lo hace el handler (cabeceras nombre/empresa/rol, con sinónimos). */
+    function crmImportMembers(locale, orgId, rows) {
+        const data = getCrmData(locale, orgId);
+        const es = localeKey(locale) === 'es';
+        let n = 0;
+        (rows || []).forEach((r) => {
+            if (!r || !r.name) return;
+            data.members.push({
+                name: r.name,
+                workplace: r.workplace || '—',
+                rol: r.rol || (es ? 'Importada (CSV)' : 'Imported (CSV)'),
+                relacion: 'participante',
+                estado: 'pendiente',
+                cuota: '0',
+                alta: new Date().toISOString().slice(0, 10)
+            });
+            n++;
+        });
+        if (n) persistCrmRuntime(locale);
+        return n;
+    }
+
     function crmMoveCase(locale, orgId, caseId, dir) {
         const data = getCrmData(locale, orgId);
         const item = data.cases.find((cs) => cs.id === caseId);
@@ -6756,6 +7117,7 @@
                 aria-label="${es ? 'Buscar afiliadas' : 'Search members'}" data-sindicato-crm-member-search>
             <div class="crm-chip-row" role="group" aria-label="${es ? 'Filtrar por estado' : 'Filter by status'}">
                 ${filters.map((f) => `<button type="button" class="crm-chip${f === active ? ' active' : ''}" data-sindicato-crm-member-filter="${f}">${filterLabel(f)}</button>`).join('')}
+                <label class="crm-chip crm-import-label">⬆️ ${c.crmImportCsv}<input type="file" accept=".csv,text/csv" data-crm-import-csv="${orgId}" hidden></label>
             </div>
             <table class="crm-table">
                 <thead><tr>
@@ -6919,14 +7281,14 @@
                 return `<div class="sindicato-coord-card crm-doc-card">
                 <span class="crm-badge crm-badge-doc">${crmDocCatLabel(locale, d.cat)}</span>
                 <strong>${d.title}</strong>
-                <span class="crm-doc-access">${d.ambito ? `<span class="crm-badge crm-badge-ambito">🔒 ${ambitoLabel}</span>` : ''}${d.revision ? `<span class="crm-badge crm-badge-${revCls}">${revLabel}</span>` : ''}</span>
+                <span class="crm-doc-access">${d.ambito ? `<span class="crm-badge crm-badge-ambito"><span aria-hidden="true">🔒</span> ${ambitoLabel}</span>` : ''}${d.revision ? `<span class="crm-badge crm-badge-${revCls}">${revLabel}</span>` : ''}</span>
                 <span class="template-muted">${es ? 'actualizado' : 'updated'} ${d.updated}${d.by ? ` · ${d.by}` : ''}${d.revisor ? ` · ${es ? 'revisa' : 'reviewer'}: ${d.revisor}` : ''}</span>
                 ${canAdvance ? `<button type="button" class="crm-mini-btn crm-doc-review-btn" data-sindicato-crm-doc-review="${d.id}">${es ? '➜ Avanzar revisión' : '➜ Advance review'}</button>` : ''}
             </div>`;
             }).join('') : `<p class="template-muted">${es ? 'No hay documentos en esta categoría.' : 'No documents in this category.'}</p>`}
             <p class="template-muted crm-doc-access-note">${es
-                ? 'Cada documento lleva su ámbito de acceso (quién puede verlo) y su estado de revisión. Las bases de datos y las fuentes viven en la pestaña Bases de datos.'
-                : 'Each document carries its access scope (who may see it) and its review status. Databases and sources live in the Databases tab.'}</p>`;
+                ? 'Cada documento lleva su ámbito de acceso (quién puede verlo) y su estado de revisión. Las tablas viven en Bases de datos y el registro de fuentes en Fuentes de datos.'
+                : 'Each document carries its access scope (who may see it) and its review status. Tables live under Databases and the source registry under Data sources.'}</p>`;
     }
 
     /* 17-07-2026 (idea 19 + petición reunión): pestaña «Bases de datos» del CRM.
@@ -6968,10 +7330,27 @@
                     <td class="template-muted">${tb.card}</td>
                 </tr>`).join('')}</tbody>
             </table>
+            <p class="template-muted">${es
+                ? 'El registro de fuentes que alimentan estas tablas vive ahora en su propia pestaña: Fuentes de datos.'
+                : 'The registry of sources feeding these tables now lives in its own tab: Data sources.'}</p>
+            <button type="button" class="crm-btn" data-sindicato-crm-export>⬇️ ${es ? 'Exportar datos de la organización (JSON)' : 'Export organisation data (JSON)'}</button>
+            <p class="template-muted">${es
+                ? 'Tus datos son tuyos: todo lo de la organización se exporta en un fichero abierto, sin dependencia de la plataforma.'
+                : 'Your data is yours: everything in the organisation exports to an open file, with no platform lock-in.'}</p>`;
+    }
+
+    /* 18-07 (decreto Edu): «Fuentes de datos» separada como funcionalidad propia del
+       CRM — antes era una sección dentro de Bases de datos. Petición literal de la
+       reunión SdLl 14-07: «hay que crear un listado de fuentes de datos». */
+    function buildCrmFuentesHtml(locale, orgId) {
+        const c = t(locale);
+        const es = locale === 'es';
+        const data = getCrmData(locale, orgId);
+        return `
             <h4 class="crm-sources-title">📇 ${c.crmDatosSourcesTitle}</h4>
             <p class="template-muted">${es
-                ? 'Qué fuentes alimentan estas tablas, quién responde de cada una y su estado de integración en el sistema común.'
-                : 'Which sources feed these tables, who answers for each one, and its integration status in the shared system.'}</p>
+                ? 'Qué fuentes alimentan los datos de la organización, quién responde de cada una y su estado de integración en el sistema común (BD principal, encuestas, excels heredados, calendario…).'
+                : 'Which sources feed the organisation’s data, who answers for each one, and its integration status in the shared system (main DB, surveys, legacy spreadsheets, calendar…).'}</p>
             <table class="crm-table">
                 <thead><tr>
                     <th>${es ? 'Fuente' : 'Source'}</th><th>${es ? 'Tipo' : 'Type'}</th><th>${es ? 'Responsable' : 'Owner'}</th><th>${es ? 'Estado' : 'Status'}</th>
@@ -6987,10 +7366,9 @@
                     }[s.estado] || s.estado}</span></td>
                 </tr>`).join('')}</tbody>
             </table>
-            <button type="button" class="crm-btn" data-sindicato-crm-export>⬇️ ${es ? 'Exportar datos de la organización (JSON)' : 'Export organisation data (JSON)'}</button>
             <p class="template-muted">${es
-                ? 'Tus datos son tuyos: todo lo de la organización se exporta en un fichero abierto, sin dependencia de la plataforma.'
-                : 'Your data is yours: everything in the organisation exports to an open file, with no platform lock-in.'}</p>`;
+                ? 'Integrar una fuente no es copiarla: es decidir qué tabla del modelo la absorbe y quién deja de mantener la copia vieja.'
+                : 'Integrating a source is not copying it: it is deciding which table of the model absorbs it and who stops maintaining the old copy.'}</p>`;
     }
 
     /* 17-07-2026 (idea 16 + petición reunión SdLl): pestaña «Estructura» del CRM —
@@ -7150,14 +7528,16 @@
        - Consumidores: es coordinación de campañas, no una unión de afiliadas con casos y
          asambleas → solo Campañas, Comunicaciones, Calendario, Documentos, Bases de datos.
        - Trabajadores, Inquilinos y Profesionales conservan el juego completo. */
-    const CRM_ALL_TABS = ['afiliadas', 'intake', 'casos', 'asambleas', 'campanas', 'finanzas', 'comunicaciones', 'calendario', 'documentos', 'estructura', 'datos'];
+    /* 18-07 (decreto Edu): «Fuentes de datos» deja de vivir dentro de Bases de datos y
+       pasa a ser funcionalidad propia (botón propio en la sidebar del equipo). */
+    const CRM_ALL_TABS = ['afiliadas', 'intake', 'casos', 'asambleas', 'campanas', 'finanzas', 'comunicaciones', 'calendario', 'documentos', 'estructura', 'datos', 'fuentes'];
     const CRM_TABS_BY_TYPE = {
         unions: CRM_ALL_TABS,
         housing: CRM_ALL_TABS,
         profesionales: CRM_ALL_TABS,
-        autonomos: ['afiliadas', 'intake', 'casos', 'asambleas', 'campanas', 'comunicaciones', 'calendario', 'documentos', 'estructura', 'datos'],
-        estudiantes: ['afiliadas', 'intake', 'casos', 'asambleas', 'campanas', 'comunicaciones', 'calendario', 'documentos', 'estructura', 'datos'],
-        consumidores: ['campanas', 'comunicaciones', 'calendario', 'documentos', 'datos']
+        autonomos: ['afiliadas', 'intake', 'casos', 'asambleas', 'campanas', 'comunicaciones', 'calendario', 'documentos', 'estructura', 'datos', 'fuentes'],
+        estudiantes: ['afiliadas', 'intake', 'casos', 'asambleas', 'campanas', 'comunicaciones', 'calendario', 'documentos', 'estructura', 'datos', 'fuentes'],
+        consumidores: ['campanas', 'comunicaciones', 'calendario', 'documentos', 'datos', 'fuentes']
     };
     function getCrmTabsForType(type) {
         return CRM_TABS_BY_TYPE[type] || CRM_ALL_TABS;
@@ -7193,6 +7573,7 @@
             calendario: () => buildCrmCalendarioHtml(locale, orgId),
             documentos: () => buildCrmDocumentosHtml(locale, orgId, view),
             datos: () => buildCrmDatosHtml(locale, orgId, view),
+            fuentes: () => buildCrmFuentesHtml(locale, orgId),
             estructura: () => buildCrmEstructuraHtml(locale, orgId, view.crmContextModule)
         };
         /* Descomposición del CRM (17-07): banner de contexto según el módulo de colectivo
@@ -7683,6 +8064,13 @@
         getAutonomoPlatforms,
         propuestaAdvanceTurn,
         propuestaMoveCase,
+        propuestaCreatePatternSession,
+        propuestaAddAttendance,
+        propuestaOrderOfDayText,
+        buildAsambleaLiveHtml,
+        crmImportMembers,
+        buildNotificationsHtml,
+        getNotificationCount,
         propuestaConvertIntake,
         propuestaRoleAllows,
         /* Directorios con selector en sidebar (17-07-2026) */

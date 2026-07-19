@@ -59,9 +59,12 @@
                         </button>
                         <!-- 17-07-2026: el selector de idioma de la cabecera se retira; el de la
                              portada (Red Social) es el único. Ver ADR 0018. -->
+                        <!-- 18-07-2026 (idea 54): campana de avisos según rol. -->
+                        <button type="button" class="sindicapp-theme-toggle sindicapp-notif-toggle" id="sindicapp-notif-toggle" title="Avisos" aria-label="Avisos" aria-expanded="false">🔔<span class="sindicapp-notif-badge" id="sindicapp-notif-badge" hidden></span></button>
                         <!-- 17-07-2026: toggle de modo oscuro (persistido). -->
                         <button type="button" class="sindicapp-theme-toggle" id="sindicapp-theme-toggle" title="Modo claro / oscuro" aria-label="Modo claro / oscuro">🌙</button>
                         </div>
+                        <div class="sindicapp-notif-panel" id="sindicapp-notif-panel" role="region" aria-label="Avisos" hidden></div>
                     </div>
                 </header>
 
@@ -83,59 +86,10 @@
                     <!-- Versión única (17-07-2026, tarde): las tres versiones se unificaron
                          en el shell por anillos. La navegación se genera dinámicamente en
                          #sindicato-subnav-propuesta (dos cuadros: herramientas / colectivos,
-                         con candados por rol implícitos en cada módulo). El #sindicato-subnav
-                         clásico queda oculto de forma permanente (se conserva su markup por
-                         compatibilidad de referencias). La Clásica está archivada en
-                         legacy/Sindicapp 170726.html. -->
+                         con candados por rol implícitos en cada módulo). La Clásica está
+                         archivada en legacy/Sindicapp 170726.html. El #sindicato-subnav
+                         legacy (oculto permanente) se purgó el 18-07 (F5 del report v4). -->
                     <nav class="template-submodule-nav propuesta-subnav" id="sindicato-subnav-propuesta" aria-label="SindicApp modules"></nav>
-                    <nav class="template-submodule-nav template-submodule-nav--depth-1" id="sindicato-subnav" aria-label="SindicApp modules (legacy, hidden)" hidden>
-                        <div class="sindicato-subnav-group" role="group" aria-label="Herramientas">
-                            <button type="button" class="template-module-btn" data-sindicato-sub="coordination">
-                                <span aria-hidden="true">📇</span> CRM
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="usuario">
-                                <span aria-hidden="true">👤</span> Perfil
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="foro">
-                                <span aria-hidden="true">🗣️</span> Foro
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="wiki">
-                                <span aria-hidden="true">📖</span> Wiki
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="vivienda">
-                                <span aria-hidden="true">🏘️</span> Mapa
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="sectores">
-                                <span aria-hidden="true">🏭</span> Sectores
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="workplaces">
-                                <span aria-hidden="true">🏢</span> Empresas
-                            </button>
-                        </div>
-                        <div class="sindicato-subnav-group sindicato-subnav-group--colectivos" role="group" aria-label="Colectivos">
-                            <button type="button" class="template-module-btn template-module-btn--wide" data-sindicato-sub="feed">
-                                <span aria-hidden="true">💬</span> Red Social
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="unions">
-                                <span aria-hidden="true">🏛️</span> Trabajadores
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="profesionales">
-                                <span aria-hidden="true">🩺</span> Profesionales
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="housing">
-                                <span aria-hidden="true">🏠</span> Inquilinos
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="autonomos">
-                                <span aria-hidden="true">🧰</span> Autónomos
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="consumidores">
-                                <span aria-hidden="true">🛒</span> Consumidores
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-sub="estudiantes">
-                                <span aria-hidden="true">🎓</span> Estudiantes
-                            </button>
-                        </div>
-                    </nav>
                 </div>
 
                 <div class="template-nav-tree" id="self-nav-tree" hidden aria-label="User account navigation">
@@ -237,9 +191,45 @@
                             <button type="button" class="template-module-btn" data-sindicato-union-section="companies">
                                 <span aria-hidden="true">🏢</span> Empresas
                             </button>
-                            <!-- 17-07-2026: la gestión (CRM) del equipo sindical, militante-gated. -->
-                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm">
-                                <span aria-hidden="true">📇</span> CRM
+                            <!-- 18-07-2026 (decreto): el CRM desparramado — cada funcionalidad
+                                 es un botón propio al mismo nivel, militante-gated. Reordenar
+                                 vendrá después. Labels re-localizados en arranque via coordSubs. -->
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-afiliadas">
+                                <span aria-hidden="true">🧾</span> Afiliadas
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-intake">
+                                <span aria-hidden="true">📥</span> Intake
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-casos">
+                                <span aria-hidden="true">📂</span> Casos
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-asambleas">
+                                <span aria-hidden="true">🗳️</span> Asambleas
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-campanas">
+                                <span aria-hidden="true">📣</span> Campañas
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-finanzas">
+                                <span aria-hidden="true">💶</span> Finanzas
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-comunicaciones">
+                                <span aria-hidden="true">✉️</span> Comunicaciones
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-calendario">
+                                <span aria-hidden="true">📅</span> Calendario
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-documentos">
+                                <span aria-hidden="true">📄</span> Documentos
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-estructura">
+                                <span aria-hidden="true">🧬</span> Estructura
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-datos">
+                                <span aria-hidden="true">🗄️</span> Bases de datos
+                            </button>
+                            <!-- 18-07 (decreto): Fuentes de datos separada de Bases de datos. -->
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-fuentes">
+                                <span aria-hidden="true">📇</span> Fuentes de datos
                             </button>
                         </nav>
                     </div>
@@ -306,6 +296,9 @@
                             </button>
                             <button type="button" class="template-module-btn" data-sindicato-coord-sub="datos">
                                 <span aria-hidden="true">🗄️</span> Bases de datos
+                            </button>
+                            <button type="button" class="template-module-btn" data-sindicato-coord-sub="fuentes">
+                                <span aria-hidden="true">📇</span> Fuentes de datos
                             </button>
                             <button type="button" class="template-module-btn" data-sindicato-coord-sub="estructura">
                                 <span aria-hidden="true">🧱</span> Estructura

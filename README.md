@@ -23,12 +23,7 @@ SindicApp es un **prototipo funcional** de plataforma de coordinación trabajado
 
 No sustituye a los sindicatos existentes (CCOO, UGT, SIPTU, etc.): actúa como **infraestructura neutral** que los complementa — directorio de empresas, mapa territorial, foros por sector y territorio, y espacios de coordinación verificada.
 
-La interfaz principal se organiza en dos módulos:
-
-| Módulo | Rol |
-|--------|-----|
-| **Usuario** | Tu empresa: ubicación en el mapa, denuncias, salarios, convenio y acción desde la perspectiva personal |
-| **Sindicato** | Vista colectiva: mapa de empresas, directorio sindical, sectores, foro, territorios, wiki y CRM multi-organización |
+Desde el rework del 17-07-2026 (ADRs 0013–0017) la web es **una sola versión**: un shell por **anillos de acceso** (Visitante · Usuario · Afiliado · Militante) implícitos dentro de los módulos — aparecen como candados contextuales, nunca como páginas de doctrina. La subnav lleva **doce botones en dos cuadros**: arriba los seis **colectivos** (Trabajadores, Profesionales, Inquilinos, Autónomos, Consumidores, Estudiantes), debajo las seis **herramientas transversales** (Perfil, Mapa, Foro, Wiki, Sectores, Empresas). Dos destinos no tienen botón a propósito: la **Red Social** es la landing y se llega clicando el título SindicApp de la cabecera, y el **CRM** ya no es un módulo — vive dentro de cada equipo sindical, con todas sus funcionalidades desparramadas como botones al mismo nivel en la sidebar del equipo (decreto 18-07).
 
 Al abrir la web, el **mapa OpenStreetMap** (Leaflet) carga de forma automática como fondo interactivo. El panel lateral permite alternar entre barra de navegación y mapa a pantalla completa.
 
@@ -46,14 +41,14 @@ Al abrir la web, el **mapa OpenStreetMap** (Leaflet) carga de forma automática 
 ### Módulo Sindicato
 
 - **Empresas** — vistas Mapa (pins de empresa) y Lista (directorio con búsqueda); alta manual de empresas (demo en `localStorage`)
-- **Sindicatos** — directorio neutral con datos de implantación (delegados, empresas con presencia, convenios firmados)
+- **Trabajadores** — directorio sindical neutral con datos de implantación (delegados, empresas con presencia, convenios firmados) y perfil por equipo (Resumen, Foro, Estructura, Empresas + gestión)
 - **Sectores** — árbol sector → subsector → foro y empresas del ramo
 - **Red Social** — módulo master y landing por defecto (ver ADR 0012): portada de la red con panel de stats por módulo (Sindicatos, Territorios, Sectores, Empresas, Consumidores, Estudiantes) + actividad reciente; la portada clásica (logo, bienvenida, selector de idioma) vive fusionada en su barra lateral
 - **Foro** — tableros general, por sector y por territorio; los árboles de subforos se eligen en el fondo, no en la barra lateral (módulo distinto de «Red Social», que antes llevaba este foro)
-- **Territorios** — vistas Mapa (selector sobre las fronteras geojson: clic en comarca/provincia → Info → su perfil) y Lista (provincia → comarca → municipio, las 42 comarcas catalanas): empresas, vivienda (alertas de desahucio, agenda, edificios), foro y redes del territorio (demo)
-- **CRM** — gestión para cualquier organización (SindicApp o cualquier sindicato del directorio): afiliadas, casos, campañas, finanzas, comunicaciones, calendario y documentos (demo en memoria de sesión)
-- **Wiki** — índice y normas internas
-- **Vivienda** — módulo nuevo y distinto de Territorios (ver ADR 0011), con cinco pestañas: Huelgómetro (recuento nacional de inquilinos comprometidos con una huelga de alquileres, umbral 1.000.000, botón de compromiso), Alarmas (todos los desahucios de todos los territorios en un tablón, con «me apunto al acompañamiento» por alerta), Tenedores (campañas de negociación colectiva por gran tenedor), Calculadora (tu renta vs índice de referencia demo) y Asambleas (asambleas locales con su grupo de Telegram)
+- **Mapa** (antes «Territorios») — vistas Mapa (selector sobre las fronteras geojson: clic en comarca/provincia → Info → su perfil) y Lista (provincia → comarca → municipio, las 42 comarcas catalanas): empresas, vivienda (alertas de desahucio, agenda, edificios), foro y redes del territorio (demo)
+- **CRM por equipo** (ADR 0015) — la gestión vive dentro de cada equipo sindical, militante-gated y contextualizada al tipo de colectivo: afiliadas/censo, intake, casos vivos, asambleas con turnos, campañas, finanzas, comunicaciones, calendario, documentos, estructura y bases de datos; **persiste en `localStorage`** y sus funcionalidades son botones al mismo nivel en la sidebar del equipo
+- **Wiki** — base de conocimiento (guías, derechos, glosario), normas y páginas wiki por entidad
+- **Inquilinos** (antes «Vivienda») — equipo sindical por territorio, distinto de Mapa (ver ADR 0011): absorbe Huelgómetro (recuento nacional de inquilinos comprometidos con una huelga de alquileres, umbral 1.000.000, botón de compromiso), Alarmas (tablón de desahucios con «me apunto al acompañamiento»), Calculadora (tu renta vs índice de referencia demo), Asambleas y Propietarios
 - **Consumidores** — coordinación de consumo: productos y servicios con denuncias, campañas de presión, alternativas justas y enlace a la empresa del mapa
 - **Estudiantes** — centros de estudios con colectivos estudiantiles, reivindicaciones, movilizaciones y salto al perfil de su territorio
 - **Redes por entidad** — cada territorio, sector, sindicato, empresa, producto/servicio y centro de estudios lleva su grupo de Telegram y canales sociales (enlaces demo)
@@ -76,9 +71,10 @@ Cada empresa incluye secciones de demostración:
 
 ### Otros
 
-- Interfaz **bilingüe** (ES / EN) con persistencia de idioma
+- Interfaz **trilingüe** (ES / EN / CA — el catalán como capa de idioma sobre el dataset español, ADR 0018) con persistencia de idioma; el selector vive en la portada
+- **Modo oscuro** con toggle persistido; sin preferencia guardada respeta `prefers-color-scheme`
 - Diseño **responsive** (sidebar / mapa en móvil)
-- Datos de demo en **localStorage** del navegador (sin backend)
+- Datos de demo en **localStorage** del navegador (sin backend), con botón «Reiniciar datos demo» en la portada de la Red Social
 
 ---
 
@@ -148,6 +144,8 @@ sindicapp/
 │   ├── sindicapp-locale-geo-data.js        # Árbol territorial ES + IE
 │   ├── sindicapp-locale-en-content.js      # Locale pack Irlanda (EN)
 │   ├── sindicapp-locale-es-content.js      # Locale pack España (ES)
+│   ├── sindicapp-locale-ca-content.js      # Nav pack Catalunya (CA) — ADR 0018
+│   ├── sindicapp-locale-ca-copy.js         # Capa de textos en catalán (sobre COPY.es)
 │   ├── sindicapp-sindicato.js              # Módulo Sindicato
 │   └── sindicapp-main.js                   # Aplicación principal (runSindicApp)
 ├── package.json                            # Scripts npm + dependencia de Vite
@@ -167,7 +165,7 @@ sindicapp/
 | **ES** | Catalunya / España | Zona Barcelona–Lleida |
 | **IE** | Irlanda | Centro de la isla |
 
-Cambia idioma con los botones **ES** / **EN** en la cabecera. La preferencia se guarda en `localStorage`.
+Cambia idioma con los botones **ES** / **CA** / **EN** de la portada (Red Social). La preferencia se guarda en `localStorage`. El locale CA usa el dataset de España con la interfaz en catalán (ADR 0018).
 
 ---
 
@@ -180,7 +178,8 @@ SindicApp es un **prototipo embrionario**. Muchas funciones son interfaces de de
 - [x] Perfiles de empresa geolocalizados
 - [x] Foros, sectores, sindicatos y perfiles de territorio (UI + demo)
 - [x] Denuncias anónimas y moderación (simulada)
-- [x] Bilingüe ES / EN
+- [x] Trilingüe ES / EN / CA (catalán parcial, cae al castellano)
+- [x] Anillos de acceso implícitos + CRM por equipo persistido (demo)
 - [ ] Backend, autenticación real y base de datos
 - [ ] Notificaciones push y PWA
 - [ ] Proveedores de mapa adicionales

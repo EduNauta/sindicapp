@@ -54,4 +54,9 @@ What follows from this — the good, the bad, and anything a future change would
 - [0015 — Dissolve the CRM module into each equipo sindical](0015-dissolve-crm-module-into-each-equipo-sindical.md) *(supersedes 0006)*
 - [0016 — "Equipo sindical" as the common entity model, with sections grouped Perfil / Acción / Gestión](0016-equipo-sindical-as-common-entity-model.md)
 - [0017 — Subnav: collectives first, tools below; Red Social only from the header title](0017-subnav-collectives-first-red-social-from-header.md) *(partially supersedes 0010 and 0012)*
-- [0018 — Add Catalan as a language layer over the `es` dataset, not a third dataset](0018-catalan-as-language-layer-over-es-dataset.md)
+- [0018 — Add Catalan as a language layer over the `es` dataset, not a third dataset](0018-catalan-as-language-layer-over-es-dataset.md) *(merge strategy amended by 0023)*
+- [0019 — Spread every CRM capability flat into the team sidebar](0019-spread-crm-capabilities-flat-in-team-sidebar.md)
+- [0020 — Split Fuentes de datos out of Bases de datos as its own CRM capability](0020-split-fuentes-de-datos-from-bases-de-datos.md)
+- [0021 — Park all post-mock-up work until the prototype freezes](0021-park-post-mockup-work-until-prototype-freezes.md)
+- [0022 — Real browser history via hash routes and pushState](0022-browser-history-via-hash-routes-pushstate.md)
+- [0023 — Deep-merge the Catalan copy layer over Spanish](0023-deep-merge-catalan-copy-layer.md) *(amends 0018)*

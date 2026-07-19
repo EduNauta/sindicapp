@@ -39,10 +39,8 @@
             const sindicatoAutonomosSelect = document.getElementById('sindicato-autonomos-select');
             const sindicatoHousingSearch = document.getElementById('sindicato-housing-search');
             const sindicatoHousingSelect = document.getElementById('sindicato-housing-select');
-            /* Web triplicada (17-07-2026): barra de versiones + nav propia de la Propuesta */
-            const sindicappVersionBar = document.getElementById('sindicapp-version-bar');
-            const sindicappVersionHint = document.getElementById('sindicapp-version-hint');
-            const sindicatoSubnavClassic = document.getElementById('sindicato-subnav');
+            /* Nav de la Propuesta (única desde 17-07; barra de versiones y subnav clásica
+               purgadas el 18-07 — F5 del report v4). */
             const sindicatoSubnavPropuesta = document.getElementById('sindicato-subnav-propuesta');
             const sindicatoAnilloSidebar = document.getElementById('sindicato-anillo-sidebar');
             /* 17-07-2026: nav de secciones del equipo sindical (Profesionales/Autónomos/
@@ -382,8 +380,6 @@
                 /* Panel stub de Sindicato retirado (12-07-2026) — ya no hay título que sincronizar. */
                 const sindNavTree = document.getElementById('sindicato-nav-tree');
                 if (sindNavTree && ui.sindicatoNavAria) sindNavTree.setAttribute('aria-label', ui.sindicatoNavAria);
-                const sindSubnav = document.getElementById('sindicato-subnav');
-                if (sindSubnav && ui.sindicatoViewsAria) sindSubnav.setAttribute('aria-label', ui.sindicatoViewsAria);
                 if (activeModule === SINDICATO_MODULE) refreshSindicatoSidebarLabels();
                 refreshSelfNavLabels();
             }
@@ -626,7 +622,6 @@
                 if (autonomosIntroEl && c.autonomosIntro) autonomosIntroEl.textContent = c.autonomosIntro;
                 const anilloIntroEl = document.getElementById('sindicato-anillo-intro');
                 if (anilloIntroEl && c.propuestaInicioIntro) anilloIntroEl.textContent = c.propuestaInicioIntro;
-                syncVersionBar();
                 if (sindicatoFeedCompanyLabel && c.feedCompanyFilter) {
                     sindicatoFeedCompanyLabel.textContent = c.feedCompanyFilter;
                 }
@@ -653,7 +648,10 @@
                 if (viviendaMunicipalityLabel && (c.viviendaMunicipalityShort || c.viviendaMunicipalityLabel)) viviendaMunicipalityLabel.textContent = c.viviendaMunicipalityShort || c.viviendaMunicipalityLabel;
                 sindicatoUnionSectionButtons.forEach((btn) => {
                     const id = btn.getAttribute('data-sindicato-union-section');
-                    const label = (c.unionSections && c.unionSections[id]) || id;
+                    /* Secciones crm-* (decreto 18-07): label desde coordSubs del CRM. */
+                    const label = (c.unionSections && c.unionSections[id])
+                        || (id.indexOf('crm-') === 0 && c.coordSubs && c.coordSubs[id.slice(4)])
+                        || id;
                     const icon = btn.querySelector('[aria-hidden="true"]');
                     if (icon) btn.innerHTML = `${icon.outerHTML} ${label}`;
                 });
@@ -1041,10 +1039,43 @@
                     if (!wp) return;
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                     setSindicatoWorkplace(route.workplaceId, route.sectionId);
+                    return;
+                }
+                /* 18-07 (idea 51): back del navegador entre módulos de primer nivel. */
+                if (route.view === 'sub') {
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (activeSindicatoSub !== route.subId) setSindicatoSub(route.subId);
+                    return;
+                }
+                /* 18-07 (idea 51): back del navegador con un equipo sindical abierto. */
+                if (route.view === 'equipo') {
+                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                    if (route.type === 'unions') {
+                        if (activeSindicatoSub !== 'unions') setSindicatoSub('unions');
+                        setSindicatoUnion(route.entityId, route.sectionId || 'overview');
+                        return;
+                    }
+                    const equipoSetters = {
+                        profesionales: (id) => { activeSindicatoProfesional = id; },
+                        autonomos: (id) => { activeSindicatoAutonomo = id; },
+                        consumidores: (id) => { activeSindicatoConsumidor = id; },
+                        estudiantes: (id) => { activeSindicatoEstudiantesCentro = id; },
+                        housing: (id) => { activeSindicatoHousingUnion = id; }
+                    };
+                    const setEntity = equipoSetters[route.type];
+                    if (!setEntity) return;
+                    if (activeSindicatoSub !== route.type) setSindicatoSub(route.type);
+                    setEntity(route.entityId);
+                    activeEquipoSection = route.sectionId || 'resumen';
+                    applySindicatoViewSync();
                 }
             }
 
-            /* C7 — reflejar la vista actual en la URL (replaceState: no dispara hashchange) */
+            /* C7 — reflejar la vista actual en la URL.
+               18-07 (idea 51): ahora con pushState — cada navegación real crea una entrada
+               de historial y el back del navegador funciona entre módulos y equipos (el
+               hashchange resultante la re-aplica vía applySindicatoHashRoute). Durante el
+               boot y sin hash previo se usa replaceState para no ensuciar el historial. */
             function reflectSindicatoHash() {
                 if (activeModule !== SINDICATO_MODULE) return;
                 let next = '';
@@ -1053,10 +1084,29 @@
                 } else if (activeSindicatoSub === 'vivienda' && activeSindicatoViviendaView === 'lista'
                     && activeSindicatoViviendaTerritory) {
                     next = '#sindicato-territorio:' + activeSindicatoViviendaTerritory;
+                } else if (activeSindicatoSub === 'foro' && activeSindicatoForumThread) {
+                    next = '#sindicato-forum:' + activeSindicatoForumThread;
+                } else if (activeSindicatoSub === 'unions' && activeSindicatoUnion) {
+                    next = '#sindicato-equipo:unions:' + activeSindicatoUnion + ':' + activeSindicatoUnionSection;
+                } else if (activeSindicatoSub === 'profesionales' && activeSindicatoProfesional) {
+                    next = '#sindicato-equipo:profesionales:' + activeSindicatoProfesional + ':' + activeEquipoSection;
+                } else if (activeSindicatoSub === 'autonomos' && activeSindicatoAutonomo) {
+                    next = '#sindicato-equipo:autonomos:' + activeSindicatoAutonomo + ':' + activeEquipoSection;
+                } else if (activeSindicatoSub === 'consumidores' && activeSindicatoConsumidor) {
+                    next = '#sindicato-equipo:consumidores:' + activeSindicatoConsumidor + ':' + activeEquipoSection;
+                } else if (activeSindicatoSub === 'estudiantes' && activeSindicatoEstudiantesCentro) {
+                    next = '#sindicato-equipo:estudiantes:' + activeSindicatoEstudiantesCentro + ':' + activeEquipoSection;
+                } else if (activeSindicatoSub === 'housing' && activeSindicatoHousingUnion) {
+                    next = '#sindicato-equipo:housing:' + activeSindicatoHousingUnion + ':' + activeEquipoSection;
+                } else if (activeSindicatoSub) {
+                    next = '#sindicato-sub:' + activeSindicatoSub;
                 }
                 if (next && location.hash !== next) {
-                    history.replaceState(null, '', location.pathname + location.search + next);
-                } else if (!next && /^#sindicato-(empresa|territorio):/.test(location.hash)) {
+                    const url = location.pathname + location.search + next;
+                    const booting = document.body && document.body.classList.contains('sindicapp-booting');
+                    if (!location.hash || booting) history.replaceState(null, '', url);
+                    else history.pushState(null, '', url);
+                } else if (!next && /^#sindicato-(empresa|territorio|equipo|sub|forum):/.test(location.hash)) {
                     history.replaceState(null, '', location.pathname + location.search);
                 }
             }
@@ -1253,6 +1303,11 @@
                 }
                 updateModuleBodyLabel();
                 syncMapWorkspacePlaceholder();
+                /* 18-07 (idea 51): toda sincronización de vista refleja la URL; los
+                   duplicados no pasan nada (guardado por hash idéntico). */
+                reflectSindicatoHash();
+                /* 18-07 (idea 54): el badge de avisos se mantiene al día en cada sync. */
+                refreshNotifBadge();
             }
 
             function setSindicatoSub(subId) {
@@ -1635,7 +1690,9 @@
             }
 
             function setSindicatoUnionSection(sectionId) {
-                const allowed = ['overview', 'forum', 'structure', 'companies', 'crm'];
+                /* Decreto 18-07: las pestañas del CRM son secciones de sidebar (crm-*). */
+                const crmSections = (window.SINDICAPP_SINDICATO?.getCrmTabsForType('unions') || []).map((id) => 'crm-' + id);
+                const allowed = ['overview', 'forum', 'structure', 'companies', 'crm'].concat(crmSections);
                 activeSindicatoUnionSection = allowed.includes(sectionId) ? sectionId : 'overview';
                 sindicatoUnionSectionButtons.forEach((btn) => {
                     const id = btn.getAttribute('data-sindicato-union-section');
@@ -1879,6 +1936,7 @@
                     activeEquipoSection = allowed.indexOf(sec) !== -1 ? sec : 'resumen';
                     updateModuleNavTrees();
                     syncTextWorkspace();
+                    reflectSindicatoHash();
                     return;
                 }
 
@@ -1904,6 +1962,84 @@
                     e.preventDefault();
                     activeEquipoCrmTab = equipoCrmTabBtn.getAttribute('data-equipo-crm-tab') || 'afiliadas';
                     syncTextWorkspace();
+                    return;
+                }
+
+                /* 18-07 (idea 44): convocar sesión especial desde el banner de patrón. */
+                const patternSessionBtn = e.target.closest?.('[data-propuesta-pattern-session]');
+                if (patternSessionBtn) {
+                    e.preventDefault();
+                    const raw = patternSessionBtn.getAttribute('data-propuesta-pattern-session') || '';
+                    const i = raw.indexOf('|');
+                    const res = window.SINDICAPP_SINDICATO.propuestaCreatePatternSession(activeLocale, raw.slice(i + 1), raw.slice(0, i));
+                    const pc = getSindicatoCopy();
+                    if (res === 'created') notify(pc.propuestaCasosConvened || 'OK');
+                    else if (res === 'exists') notify(pc.propuestaCasosSessionExists || '—');
+                    syncTextWorkspace();
+                    return;
+                }
+
+                /* 18-07 (idea 45): registrar asistencia en una sesión. */
+                const attendBtn = e.target.closest?.('[data-propuesta-attend]');
+                if (attendBtn) {
+                    e.preventDefault();
+                    const raw = attendBtn.getAttribute('data-propuesta-attend') || '';
+                    const i = raw.indexOf('|');
+                    window.SINDICAPP_SINDICATO.propuestaAddAttendance(activeLocale, raw.slice(i + 1), raw.slice(0, i));
+                    syncTextWorkspace();
+                    return;
+                }
+
+                /* 18-07 (idea 50): abrir el modo asamblea (overlay de proyección). */
+                const liveOpenBtn = e.target.closest?.('[data-asamblea-live-open]');
+                if (liveOpenBtn) {
+                    e.preventDefault();
+                    const raw = liveOpenBtn.getAttribute('data-asamblea-live-open') || '';
+                    const i = raw.indexOf('|');
+                    renderAsambleaLive(raw.slice(0, i), raw.slice(i + 1));
+                    return;
+                }
+
+                /* 18-07 (idea 55): descargar el orden del día de una sesión (markdown). */
+                const agendaExportBtn = e.target.closest?.('[data-propuesta-agenda-export]');
+                if (agendaExportBtn) {
+                    e.preventDefault();
+                    const raw = agendaExportBtn.getAttribute('data-propuesta-agenda-export') || '';
+                    const i = raw.indexOf('|');
+                    const od = window.SINDICAPP_SINDICATO.propuestaOrderOfDayText(activeLocale, raw.slice(i + 1), raw.slice(0, i));
+                    if (od) {
+                        try {
+                            const blob = new Blob([od.content], { type: 'text/markdown' });
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = od.filename;
+                            document.body.appendChild(a);
+                            a.click();
+                            a.remove();
+                            setTimeout(() => URL.revokeObjectURL(url), 1000);
+                        } catch (err) { /* demo */ }
+                    }
+                    return;
+                }
+
+                /* 18-07 (idea 57, report v4): reiniciar los datos demo del navegador —
+                   pensado para enseñar la app en reuniones partiendo de cero. */
+                const resetDemoBtn = e.target.closest?.('[data-sindicapp-reset-demo]');
+                if (resetDemoBtn) {
+                    e.preventDefault();
+                    const rc = getSindicatoCopy();
+                    if (window.confirm((rc && rc.resetDemoConfirm) || 'Reset demo data?')) {
+                        try {
+                            const doomed = [];
+                            for (let i = 0; i < localStorage.length; i++) {
+                                const k = localStorage.key(i);
+                                if (k && (k.indexOf('sindicapp-') === 0 || k.indexOf('cartagrama_') === 0)) doomed.push(k);
+                            }
+                            doomed.forEach((k) => localStorage.removeItem(k));
+                        } catch (err) { /* demo */ }
+                        window.location.reload();
+                    }
                     return;
                 }
 
@@ -2770,6 +2906,7 @@
 
             function syncTextWorkspace() {
                 if (!mapTextDisplay) return;
+                refreshNotifBadge();
                 mapTextDisplay.innerHTML = '';
                 if (activeModule === 'self' && activeSelfSub === 'sindicato') {
                     if (isSelfSindicatoLocationWorkspace()) {
@@ -2934,7 +3071,10 @@
                     } else if (activeSindicatoSub === 'unions' && activeSindicatoUnion && window.SINDICAPP_SINDICATO) {
                         const union = window.SINDICAPP_SINDICATO.findUnion(activeLocale, activeSindicatoUnion);
                         const unionSections = c.unionSections || {};
-                        const sec = unionSections[activeSindicatoUnionSection] || activeSindicatoUnionSection;
+                        const sec = unionSections[activeSindicatoUnionSection]
+                            || (activeSindicatoUnionSection.indexOf('crm-') === 0
+                                && (c.coordSubs || {})[activeSindicatoUnionSection.slice(4)])
+                            || activeSindicatoUnionSection;
                         if (union) title = `${union.name} — ${sec}`;
                     }
                 } else if (activeModule === 'self') {
@@ -3052,22 +3192,75 @@
                Clásica y Final comparten el código existente (son idénticas por ahora);
                la Propuesta sustituye el shell de navegación por anillos de acceso con
                un simulador de rol. */
-            function sindicappCopy() {
-                return window.SINDICAPP_SINDICATO?.COPY?.[activeLocale === 'es' ? 'es' : 'ie'] || {};
+            /* 18-07 (idea 50): modo asamblea — overlay de proyección, fuera del flujo de
+               re-render del workspace (vive en <body>, con listener propio). */
+            function renderAsambleaLive(type, sessionId) {
+                let host = document.getElementById('sindicapp-asamblea-live');
+                if (!host) {
+                    host = document.createElement('div');
+                    host.id = 'sindicapp-asamblea-live';
+                    host.addEventListener('click', (e) => {
+                        const closeBtn = e.target.closest('[data-asamblea-live-close]');
+                        if (closeBtn) { host.remove(); return; }
+                        const nextBtn = e.target.closest('[data-asamblea-live-next]');
+                        if (nextBtn) {
+                            const raw = nextBtn.getAttribute('data-asamblea-live-next') || '';
+                            const i = raw.indexOf('|');
+                            window.SINDICAPP_SINDICATO.propuestaAdvanceTurn(activeLocale, raw.slice(i + 1), raw.slice(0, i));
+                            renderAsambleaLive(raw.slice(0, i), raw.slice(i + 1));
+                            syncTextWorkspace();
+                        }
+                    });
+                    document.body.appendChild(host);
+                }
+                const html = window.SINDICAPP_SINDICATO
+                    ? window.SINDICAPP_SINDICATO.buildAsambleaLiveHtml(activeLocale, sessionId, type)
+                    : '';
+                if (!html) { host.remove(); return; }
+                host.innerHTML = html;
+                const adv = host.querySelector('.asamblea-live-advance');
+                if (adv) adv.focus();
             }
 
-            function syncVersionBar() {
-                const c = sindicappCopy();
-                if (sindicappVersionBar) {
-                    sindicappVersionBar.querySelectorAll('[data-sindicapp-version]').forEach((btn) => {
-                        const v = btn.getAttribute('data-sindicapp-version');
-                        if (c.versionBar && c.versionBar[v]) btn.textContent = c.versionBar[v];
-                        btn.classList.toggle('active', v === activeWebVersion);
-                    });
-                }
-                if (sindicappVersionHint) {
-                    sindicappVersionHint.textContent = (c.versionHints && c.versionHints[activeWebVersion]) || '';
-                }
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') document.getElementById('sindicapp-asamblea-live')?.remove();
+            });
+
+            /* 18-07 (idea 54): campana de avisos según rol en la cabecera. El badge se
+               apaga al abrir el panel y vuelve si aparecen avisos nuevos. */
+            const notifToggle = document.getElementById('sindicapp-notif-toggle');
+            const notifPanel = document.getElementById('sindicapp-notif-panel');
+            const notifBadge = document.getElementById('sindicapp-notif-badge');
+            let notifSeenCount = -1;
+            function refreshNotifBadge() {
+                if (!notifBadge || !window.SINDICAPP_SINDICATO?.getNotificationCount) return;
+                const n = window.SINDICAPP_SINDICATO.getNotificationCount(activeLocale, activePropuestaRole);
+                notifBadge.textContent = String(n);
+                notifBadge.hidden = !n || n === notifSeenCount;
+            }
+            if (notifToggle && notifPanel) {
+                notifToggle.addEventListener('click', () => {
+                    const opening = notifPanel.hidden;
+                    if (opening && window.SINDICAPP_SINDICATO?.buildNotificationsHtml) {
+                        notifPanel.innerHTML = window.SINDICAPP_SINDICATO.buildNotificationsHtml(activeLocale, activePropuestaRole);
+                        notifSeenCount = window.SINDICAPP_SINDICATO.getNotificationCount(activeLocale, activePropuestaRole);
+                    }
+                    notifPanel.hidden = !opening;
+                    notifToggle.setAttribute('aria-expanded', String(opening));
+                    refreshNotifBadge();
+                });
+                document.addEventListener('click', (e) => {
+                    if (!notifPanel.hidden
+                        && !e.target.closest?.('#sindicapp-notif-panel')
+                        && !e.target.closest?.('#sindicapp-notif-toggle')) {
+                        notifPanel.hidden = true;
+                        notifToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            function sindicappCopy() {
+                return window.SINDICAPP_SINDICATO?.COPY?.[activeLocale === 'es' ? 'es' : 'ie'] || {};
             }
 
             /* 17-07-2026 (descomposición CRM, fase 2): muestra solo las pestañas del CRM que
@@ -3090,7 +3283,6 @@
 
             function syncPropuestaNav() {
                 const onPropuesta = activeWebVersion === 'propuesta';
-                if (sindicatoSubnavClassic) sindicatoSubnavClassic.hidden = onPropuesta;
                 if (sindicatoSubnavPropuesta) {
                     sindicatoSubnavPropuesta.hidden = !onPropuesta;
                     if (onPropuesta && window.SINDICAPP_SINDICATO) {
@@ -3105,35 +3297,10 @@
                    Los tabs del CRM (data-sindicato-coord-sub) se excluyen: su visibilidad
                    la gobierna syncCrmTabsForContext según el tipo de colectivo. */
                 document.querySelectorAll('.propuesta-only:not([data-sindicato-coord-sub])').forEach((el) => { el.hidden = !onPropuesta; });
-                syncVersionBar();
             }
 
-            function setWebVersion(version) {
-                if (!['clasica', 'propuesta', 'final'].includes(version) || version === activeWebVersion) return;
-                activeWebVersion = version;
-                try { localStorage.setItem('sindicapp-web-version', version); } catch (e) { /* demo */ }
-                if (version === 'propuesta') {
-                    /* Aterriza en la landing (Red Social) — la Propuesta no se explica a sí
-                       misma: los anillos se descubren dentro de los módulos. */
-                    if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                    setSindicatoSub('feed');
-                } else {
-                    /* Los espacios de anillo de la Propuesta no existen en Clásica/Final. */
-                    if (['intake', 'asambleas'].includes(activeSindicatoCoordSub)) activeSindicatoCoordSub = 'afiliadas';
-                    if (activeSindicatoFeedScope === 'interno') activeSindicatoFeedScope = 'general';
-                    if (activeSelfSindicatoSection === 'miscasos') activeSelfSindicatoSection = 'overview';
-                    if (activeSindicatoSub === 'anillo') setSindicatoSub('feed');
-                }
-                syncPropuestaNav();
-                applySindicatoViewSync();
-            }
-
-            if (sindicappVersionBar) {
-                sindicappVersionBar.addEventListener('click', (e) => {
-                    const btn = e.target.closest('[data-sindicapp-version]');
-                    if (btn) setWebVersion(btn.getAttribute('data-sindicapp-version'));
-                });
-            }
+            /* setWebVersion + barra de versiones purgadas el 18-07 (F5 del report v4):
+               la versión es única ('propuesta') desde la unificación del 17-07. */
 
             if (sindicatoSubnavPropuesta) {
                 sindicatoSubnavPropuesta.addEventListener('click', (e) => {
@@ -3420,8 +3587,56 @@
             if (mapTextDisplay) {
                 mapTextDisplay.addEventListener('click', handleSindicatoWorkspaceClick);
                 mapTextDisplay.addEventListener('submit', handleSindicatoWorkspaceClick);
+                /* 18-07 (idea 38 mock-up): import de CSV al censo del CRM. */
+                mapTextDisplay.addEventListener('change', (e) => {
+                    const inp = e.target.closest?.('[data-crm-import-csv]');
+                    if (!inp || !inp.files || !inp.files[0] || !window.SINDICAPP_SINDICATO) return;
+                    const orgId = inp.getAttribute('data-crm-import-csv') || 'sindicapp';
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        const rc = getSindicatoCopy();
+                        try {
+                            const lines = String(reader.result || '').split(/\r?\n/).filter((l) => l.trim());
+                            const sep = lines.length && lines[0].includes(';') && !lines[0].includes(',') ? ';' : ',';
+                            const headers = lines.length ? lines[0].split(sep).map((h) => h.trim().toLowerCase()) : [];
+                            const col = (names) => headers.findIndex((h) => names.some((n) => h.includes(n)));
+                            const iName = col(['nombre', 'name', 'nom']);
+                            const iWp = col(['empresa', 'company', 'workplace', 'centro', 'centre']);
+                            const iRol = col(['rol', 'role', 'relaci']);
+                            if (lines.length < 2 || iName === -1) {
+                                notify(rc.crmImportEmpty || 'CSV?');
+                                return;
+                            }
+                            const rows = lines.slice(1).map((l) => {
+                                const p = l.split(sep);
+                                return {
+                                    name: (p[iName] || '').trim(),
+                                    workplace: iWp !== -1 ? (p[iWp] || '').trim() : '',
+                                    rol: iRol !== -1 ? (p[iRol] || '').trim() : ''
+                                };
+                            }).filter((r) => r.name);
+                            const n = window.SINDICAPP_SINDICATO.crmImportMembers(activeLocale, orgId, rows);
+                            notify(String(rc.crmImportDone || '{n}').replace('{n}', n));
+                            syncTextWorkspace();
+                        } catch (err) { /* demo */ }
+                    };
+                    reader.readAsText(inp.files[0]);
+                });
                 /* CRM — la búsqueda de afiliadas actualiza solo el tbody para no perder el foco */
                 mapTextDisplay.addEventListener('input', (e) => {
+                    /* 18-07 (idea 49): filtro vivo genérico — oculta en el DOM los elementos
+                       que no casan, sin re-render (el foco no se pierde). El selector de lo
+                       filtrable viene en data-live-filter. */
+                    const live = e.target.closest?.('[data-live-filter]');
+                    if (live) {
+                        const sel = live.getAttribute('data-live-filter');
+                        const scope = live.closest('.sindicato-panel') || mapTextDisplay;
+                        const q = live.value.trim().toLowerCase();
+                        scope.querySelectorAll(sel).forEach((el) => {
+                            el.hidden = !!q && el.textContent.toLowerCase().indexOf(q) === -1;
+                        });
+                        return;
+                    }
                     const search = e.target.closest?.('[data-sindicato-crm-member-search]');
                     if (!search || !window.SINDICAPP_SINDICATO) return;
                     sindicatoCrmMemberQuery = search.value;

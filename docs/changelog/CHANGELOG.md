@@ -8,6 +8,44 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 Nothing pending.
 
+## v0.1.3 — 2026-07-19 — CRM spread flat, assembly tooling, browser history, notices
+
+*The 18/19-07-2026 batches, driven by `REPORT-MEJORAS-180726-v4.md` (which replaces v3 as the living roadmap). Two decrees reshape the CRM surface: every capability spread flat into the team sidebar, and Fuentes de datos split out as its own capability. Around them, the self-contained fixes (F1, F2, F4–F8) and ideas 38 (mock-up), 44–47, 49, 50, 51, 54–57. Work requiring real implementation is formally parked. Five ADRs record the decisions: [0019](../decisions/0019-spread-crm-capabilities-flat-in-team-sidebar.md) CRM spread flat, [0020](../decisions/0020-split-fuentes-de-datos-from-bases-de-datos.md) Fuentes split, [0021](../decisions/0021-park-post-mockup-work-until-prototype-freezes.md) post-mock-up moratorium, [0022](../decisions/0022-browser-history-via-hash-routes-pushstate.md) browser history via hash routes, [0023](../decisions/0023-deep-merge-catalan-copy-layer.md) deep-merged Catalan (amends 0018).*
+
+### Fixed
+
+- **Inquilinos routed `crm-*` sidebar sections to Resumen** — the housing section router only accepted the literal `crm` id, so the freshly spread CRM buttons appeared to do nothing in that module. Now every type routes `crm-*` correctly.
+
+### Changed
+
+- **CRM spread flat into the team sidebar** (decree 18-07). Every CRM capability — census, intake, cases, assemblies, campaigns, finances, comms, calendar, documents, structure, databases — is now its own button at the same level inside the **Gestión** group of the equipo sidebar, for all six collective types (Trabajadores's static sidebar included). The internal chip row disappears for these sections; the single "CRM" entry is gone. Deliberately many buttons: first spread everything on one plane, reordering comes later. The legacy `crm` section id still renders (old links keep working).
+- **Intake / living cases / assemblies now persist** (`sindicapp-propuesta-runtime-v1`). `PROPUESTA_RUNTIME` was memory-only, so moving a case stage, converting an intake or advancing a speaking turn silently reverted on reload — inconsistent with the CRM state that does persist (F1).
+- **Catalan copy is now deep-merged over Spanish** (F2). The previous shallow merge meant any partially translated nested object replaced the Spanish one wholesale, leaving untranslated sub-keys `undefined` instead of falling back.
+- **Social channel chips no longer link to non-existent accounts** (F6). Telegram/Mastodon/Instagram/X are demo handles generated from slugs; they now render as unlinked chips (same look, handle in the tooltip) instead of 404-ing mid-demo.
+- **Dark theme follows `prefers-color-scheme`** when no stored preference exists; the manual toggle still wins (idea 56).
+- **`--color-text-light` darkened (light) / lightened (dark)** for AA contrast on small text (F7).
+- **README updated to the post-rework reality** (F4): ring shell, twelve buttons, per-equipo CRM, trilingual, dark mode.
+
+### Added
+
+- **Empty state for territories without structure** (F8): comarcas/municipios with no teams, companies, threads or alerts now show an invitation ("Aún no hay estructura aquí") instead of a bare profile.
+- **"Reiniciar datos demo" button** on the Red Social portada (idea 57): confirm → wipe all `sindicapp-*`/`cartagrama_*` localStorage keys → reload. Built for showing the app in meetings from a clean slate.
+- **Accessible locks** (F7): gated nav items carry an explicit `aria-label` with the required role; lock emojis are `aria-hidden` with text equivalents.
+- **Pattern → special session** (idea 44): the ≥3-cases-per-actor banner now carries a **"Convocar sesión especial"** button that creates a special session with the actor's open cases pre-grouped as pending turns (persisted, duplicate-guarded); the banner then reports the session as convened.
+- **Attendance recording** (idea 45): every session card gets a "Registrar asistencia" counter button, persisted with the rest of the assembly state. Turn kinds (first presentation vs update, idea 46) already existed and stay as-is.
+- **Required documents per theme** (idea 47): case files show a per-theme checklist — missing documents (including ones present but marked "falta") are listed in red, complete themes in green. Demo map covers Salario/Jornada/Disciplinario/Vivienda (Pay/Hours/Disciplinary/Housing).
+- **Live filters on operational lists** (idea 49): Casos and Intake get a filter box that hides non-matching cards in the DOM without re-rendering (focus is never lost). The census already had search + status filters.
+- **Order-of-the-day export** (idea 55): each session can download a markdown order of the day — type, attendance, role quadrant with uncovered roles flagged, numbered speaking turns with kind and case reference.
+- **Fuentes de datos split into its own CRM capability** (decree 18-07): the data-source registry leaves the Bases de datos tab and becomes its own sidebar button (`crm-fuentes`) in every collective type, plus its own tab in the legacy coordination view. Bases de datos keeps the tables and the JSON export, and points to the new tab.
+- **Assembly mode** (idea 50): every session with turns gets a **📽️ Modo asamblea** button opening a full-screen projection overlay — current speaker in huge type, next-up queue, advance-turn button, Esc/✕ to exit. Built for moderating with the app projected in the union hall; the underlying workspace stays in sync.
+- **CSV import into the census** (idea 38, mock-up variant): an "Importar CSV (demo)" button in Afiliadas reads a local CSV, maps columns by header synonyms (nombre/name, empresa/company/workplace, rol/relación), and adds rows as pending participants — persisted with the CRM. "You don't throw your spreadsheets away — you bring them."
+- **Browser back now works** (idea 51): navigation between top-level modules and into open teams creates real history entries. Two new deep-link routes — `#sindicato-sub:<id>` and `#sindicato-equipo:<type>:<entity>[:<section>]` — join the existing empresa/territorio/forum ones; `reflectSindicatoHash` switched from replaceState to pushState (replace during boot), and every view sync reflects the URL, so back/forward re-apply routes via the existing hashchange path. Any screen, including a team's CRM section, is now shareable by URL.
+- **Notifications bell** (idea 54): a 🔔 in the header with a role-aware notices panel — what concerns *you*, not a feed. Usuario+: documents missing from your own case, next agenda items. Militante+: pending speaking turns per session, CRM documents awaiting review. Badge count updates on every sync, clears when the panel is opened, and returns when new notices appear. Visitante sees an invitation instead of data.
+
+### Removed
+
+- **Dead three-version-experiment code** (F5): the permanently hidden legacy `#sindicato-subnav` markup, `setWebVersion` + version-bar handler and the no-op `sindicapp-web-version` localStorage write. `activeWebVersion` remains a documented constant.
+
 ## v0.1.2 — 2026-07-17 — Ring-based rework: equipos sindicales, implicit access rings, Catalan
 
 *The 17-07-2026 rework, after the Sindicat de Llogateres IT meeting (14-07) and the `SINDICAPP_FEATURE_REFERENCE` document. It reorganises the app around the union's internal face without losing the public one. Six ADRs record the decisions: [0013](../decisions/0013-triplicate-then-unify-into-ring-based-app.md) triplicate-then-unify, [0014](../decisions/0014-keep-access-rings-implicit-inside-modules.md) implicit access rings, [0015](../decisions/0015-dissolve-crm-module-into-each-equipo-sindical.md) CRM dissolved into equipos, [0016](../decisions/0016-equipo-sindical-as-common-entity-model.md) equipo sindical model, [0017](../decisions/0017-subnav-collectives-first-red-social-from-header.md) subnav reshuffle, [0018](../decisions/0018-catalan-as-language-layer-over-es-dataset.md) Catalan as a language layer.*
