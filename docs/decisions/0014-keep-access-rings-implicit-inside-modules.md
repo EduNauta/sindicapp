@@ -1,6 +1,6 @@
 # 0014. Keep the access rings implicit inside the modules, not as a navigation layer
 
-Status: Accepted
+Status: Accepted (ring ladder superseded by 0024; the implicitness doctrine survives)
 Date: 2026-07-17
 
 ## Context

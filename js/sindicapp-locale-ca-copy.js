@@ -205,7 +205,7 @@
                     location: 'Mapa', overview: 'Resum', reports: 'Denúncies',
                     wages: 'Sous', convenio: 'Conveni', action: 'Acció', miscasos: 'Els meus casos'
                 },
-                subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Treballadores', sindicatos: 'Sindicats', autonomos: 'Autònomes', profesionales: 'Professionals', vivienda: 'Mapa', map: 'Mapa', feed: 'Xarxa Social', foro: 'Fòrum', sectores: 'Sectors', workplaces: 'Empreses', housing: 'Llogateres', consumidores: 'Consumidores', estudiantes: 'Estudiants', usuario: 'Perfil', anillo: 'Proposta' },
+                subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Treballadores', sindicatos: 'Sindicats', autonomos: 'Autònomes', profesionales: 'Professionals', vivienda: 'Mapa', map: 'Mapa', feed: 'Xarxa Social', foro: 'Fòrum', sectores: 'Sectors', workplaces: 'Empreses', housing: 'Llogateres', consumidores: 'Consumidores', estudiantes: 'Estudiants', usuario: 'Perfil' },
                 redSocialTitle: 'Xarxa social',
                 redSocialIntro: 'Portada de la xarxa — tots els mòduls d\'un cop d\'ull. Obre un panell per entrar-hi.',
                 redSocialIntroSidebar: 'Portada de la xarxa — estadístiques de cada mòdul i activitat recent al fons.',
@@ -290,6 +290,9 @@
                 propuestaRingNeeds: 'requereix {role}',
                 propuestaLockNotice: 'Necessites el rol «{role}» per entrar-hi — la plataforma protegeix per defecte.',
                 propuestaLockedTitle: 'Aquest espai està protegit',
+                /* 20-07-2026 (ADR 0025): capçaleres de l'acordió de la nav propuesta. */
+                navGroupSindicatos: 'Sindicats',
+                navGroupFuncionalidades: 'Funcionalitats',
                 propuestaLockedBody: 'Amb el teu rol actual no pots veure aquest anell. No és un error: és el disseny — l\'accés segueix la responsabilitat. Canvia el rol a «{role}» per previsualitzar-lo.',
                 propuestaInternalTitle: 'Espai intern — afiliades',
                 propuestaInternalIntro: 'Tauler només per a afiliades d\'aquest col·lectiu: estratègia, actes, coordinació. El que es diu aquí es queda a l\'anell.',

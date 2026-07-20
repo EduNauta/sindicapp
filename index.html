@@ -59,12 +59,23 @@
                         </button>
                         <!-- 17-07-2026: el selector de idioma de la cabecera se retira; el de la
                              portada (Red Social) es el único. Ver ADR 0018. -->
-                        <!-- 18-07-2026 (idea 54): campana de avisos según rol. -->
-                        <button type="button" class="sindicapp-theme-toggle sindicapp-notif-toggle" id="sindicapp-notif-toggle" title="Avisos" aria-label="Avisos" aria-expanded="false">🔔<span class="sindicapp-notif-badge" id="sindicapp-notif-badge" hidden></span></button>
-                        <!-- 17-07-2026: toggle de modo oscuro (persistido). -->
-                        <button type="button" class="sindicapp-theme-toggle" id="sindicapp-theme-toggle" title="Modo claro / oscuro" aria-label="Modo claro / oscuro">🌙</button>
+                        <!-- 20-07-2026 (fix cabecera): el chrome de la derecha pasa a COLUMNA —
+                             fila 1 la búsqueda global (idea 52), fila 2 la campana y el tema.
+                             Antes iban los tres en la misma fila y la búsqueda tapaba el título.
+                             El panel de resultados (#sindicapp-search-panel) queda alineado bajo
+                             el input (posicionado respecto de .sindicapp-header-grid). -->
+                        <div class="sindicapp-header-chrome" id="sindicapp-header-chrome">
+                            <input type="search" class="sindicapp-global-search" id="sindicapp-global-search" placeholder="Buscar en SindicApp…" aria-label="Buscar en SindicApp…" autocomplete="off">
+                            <div class="sindicapp-header-chrome-btns">
+                                <!-- 18-07-2026 (idea 54): campana de avisos según rol. -->
+                                <button type="button" class="sindicapp-theme-toggle sindicapp-notif-toggle" id="sindicapp-notif-toggle" title="Avisos" aria-label="Avisos" aria-expanded="false">🔔<span class="sindicapp-notif-badge" id="sindicapp-notif-badge" hidden></span></button>
+                                <!-- 17-07-2026: toggle de modo oscuro (persistido). -->
+                                <button type="button" class="sindicapp-theme-toggle" id="sindicapp-theme-toggle" title="Modo claro / oscuro" aria-label="Modo claro / oscuro">🌙</button>
+                            </div>
+                        </div>
                         </div>
                         <div class="sindicapp-notif-panel" id="sindicapp-notif-panel" role="region" aria-label="Avisos" hidden></div>
+                        <div class="sindicapp-notif-panel sindicapp-search-panel" id="sindicapp-search-panel" role="region" aria-label="Resultados de búsqueda" hidden></div>
                     </div>
                 </header>
 
@@ -192,25 +203,32 @@
                                 <span aria-hidden="true">🏢</span> Empresas
                             </button>
                             <!-- 18-07-2026 (decreto): el CRM desparramado — cada funcionalidad
-                                 es un botón propio al mismo nivel, militante-gated. Reordenar
-                                 vendrá después. Labels re-localizados en arranque via coordSubs. -->
-                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-afiliadas">
-                                <span aria-hidden="true">🧾</span> Afiliadas
-                            </button>
+                                 es un botón propio al mismo nivel, militante-gated. Labels
+                                 re-localizados en arranque via coordSubs. -->
+                            <!-- 20-07-2026 tarde (idea 70, report v5): sub-etiquetas NO
+                                 clicables que ordenan la gestión — Captar / Acompañar /
+                                 Impulsar / Administrar. Los botones se reordenan bajo su
+                                 etiqueta; textos re-localizados via COPY.crmNavGroups. -->
+                            <p class="equipo-section-sublabel" data-crm-nav-sublabel="captar">Captar</p>
                             <button type="button" class="template-module-btn" data-sindicato-union-section="crm-intake">
                                 <span aria-hidden="true">📥</span> Intake
                             </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-afiliadas">
+                                <span aria-hidden="true">🧾</span> Afiliadas
+                            </button>
+                            <p class="equipo-section-sublabel" data-crm-nav-sublabel="acompanar">Acompañar</p>
                             <button type="button" class="template-module-btn" data-sindicato-union-section="crm-casos">
                                 <span aria-hidden="true">📂</span> Casos
                             </button>
                             <button type="button" class="template-module-btn" data-sindicato-union-section="crm-asambleas">
                                 <span aria-hidden="true">🗳️</span> Asambleas
                             </button>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-documentos">
+                                <span aria-hidden="true">📄</span> Documentos
+                            </button>
+                            <p class="equipo-section-sublabel" data-crm-nav-sublabel="impulsar">Impulsar</p>
                             <button type="button" class="template-module-btn" data-sindicato-union-section="crm-campanas">
                                 <span aria-hidden="true">📣</span> Campañas
-                            </button>
-                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-finanzas">
-                                <span aria-hidden="true">💶</span> Finanzas
                             </button>
                             <button type="button" class="template-module-btn" data-sindicato-union-section="crm-comunicaciones">
                                 <span aria-hidden="true">✉️</span> Comunicaciones
@@ -218,8 +236,9 @@
                             <button type="button" class="template-module-btn" data-sindicato-union-section="crm-calendario">
                                 <span aria-hidden="true">📅</span> Calendario
                             </button>
-                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-documentos">
-                                <span aria-hidden="true">📄</span> Documentos
+                            <p class="equipo-section-sublabel" data-crm-nav-sublabel="administrar">Administrar</p>
+                            <button type="button" class="template-module-btn" data-sindicato-union-section="crm-finanzas">
+                                <span aria-hidden="true">💶</span> Finanzas
                             </button>
                             <button type="button" class="template-module-btn" data-sindicato-union-section="crm-estructura">
                                 <span aria-hidden="true">🧬</span> Estructura
@@ -431,10 +450,8 @@
                             <option value="">Seleccionar equipo o plataforma…</option>
                         </select>
                     </div>
-                    <!-- Propuesta (17-07-2026): pantallas de anillo (sub `anillo`), sidebar mínima. -->
-                    <div id="sindicato-anillo-sidebar" class="teams-team-nav-block" hidden>
-                        <p class="sindicato-sidebar-intro" id="sindicato-anillo-intro">Propuesta — anillos de acceso: lo público abierto, lo sensible protegido por responsabilidad.</p>
-                    </div>
+                    <!-- 20-07-2026 tarde (idea 68 parcial): la sidebar del sub `anillo` se
+                         purgó con la pantalla «inicio» y PROPUESTA_RINGS (ADR 0024). -->
                     <!-- 17-07-2026: secciones del equipo sindical (compartidas por Profesionales,
                          Autónomos, Consumidores y Estudiantes), como en Trabajadores. Se muestra
                          al seleccionar una entidad de esos módulos. -->
@@ -1439,6 +1456,12 @@
     <!-- Capa de textos en català; ha de carregar-se ABANS de sindicapp-sindicato.js,
          que la fusiona sobre COPY.es (ADR 0018). -->
     <script src="./js/sindicapp-locale-ca-copy.js"></script>
+    <!-- 20-07-2026 tarde (idea 71, report v5): sindicapp-sindicato.js troceado en tres
+         scripts clásicos (ADR 0002, sin módulos ES), cargados en ORDEN: primero los
+         textos (COPY ie/es), luego los literales de datos demo, y al final la lógica
+         + export de window.SINDICAPP_SINDICATO. Comportamiento idéntico al monolito. -->
+    <script src="./js/sindicapp-sindicato-copy.js"></script>
+    <script src="./js/sindicapp-sindicato-data.js"></script>
     <script src="./js/sindicapp-sindicato.js"></script>
     <!-- SINDICAPP_BUNDLED_SCRIPTS_END -->
     <script src="./js/sindicapp-main.js"></script>

@@ -42,7 +42,8 @@
             /* Nav de la Propuesta (única desde 17-07; barra de versiones y subnav clásica
                purgadas el 18-07 — F5 del report v4). */
             const sindicatoSubnavPropuesta = document.getElementById('sindicato-subnav-propuesta');
-            const sindicatoAnilloSidebar = document.getElementById('sindicato-anillo-sidebar');
+            /* 20-07 tarde (idea 68 parcial): la sidebar del sub `anillo` se purgó con
+               la pantalla «inicio» y PROPUESTA_RINGS (ADR 0024). */
             /* 17-07-2026: nav de secciones del equipo sindical (Profesionales/Autónomos/
                Consumidores/Estudiantes), compartida. */
             const sindicatoEquipoSectionBlock = document.getElementById('sindicato-equipo-section-block');
@@ -89,15 +90,24 @@
             const SINDICATO_MODULE = 'sindicato';
             let activeLocale = 'es';
 
+            /* F3 (20-07-2026): resolución de DATASET ('es'|'ie') delegada en
+               SINDICAPP_SINDICATO.localeKey — 'ca' cae al dataset 'es' (ADR 0018).
+               Fallback local por si el módulo sindicato no cargó. */
+            function datasetKey(locale) {
+                const loc = locale || activeLocale;
+                const lk = window.SINDICAPP_SINDICATO?.localeKey;
+                return lk ? lk(loc) : (loc === 'ie' ? 'ie' : 'es');
+            }
+
             function getLocalePack() {
                 if (activeLocale === 'ca' && window.SINDICAPP_CA) return window.SINDICAPP_CA;
-                return activeLocale === 'es' ? window.SINDICAPP_ES : window.SINDICAPP_IE;
+                return datasetKey() === 'es' ? window.SINDICAPP_ES : window.SINDICAPP_IE;
             }
 
             function getLocaleUi(locale) {
                 const loc = locale || activeLocale;
                 const pack = (loc === 'ca' && window.SINDICAPP_CA) ? window.SINDICAPP_CA
-                    : (loc === 'es' ? window.SINDICAPP_ES : window.SINDICAPP_IE);
+                    : (datasetKey(loc) === 'es' ? window.SINDICAPP_ES : window.SINDICAPP_IE);
                 if (pack && pack.localeUi) return pack.localeUi;
                 return {};
             }
@@ -174,11 +184,61 @@
             const activeWebVersion = 'propuesta';
             let activePropuestaRole = (function () {
                 try {
-                    const r = localStorage.getItem('sindicapp-propuesta-role');
-                    return ['visitante', 'usuario', 'afiliado', 'militante'].includes(r) ? r : 'visitante';
+                    let r = localStorage.getItem('sindicapp-propuesta-role');
+                    /* 20-07-2026 (ADR 0024): 'militante' desaparece como rol de relación —
+                       el estado persistido pre-migración se convierte en 'afiliado' (el
+                       acceso interno lo dan ahora los cargos). */
+                    if (r === 'militante') {
+                        r = 'afiliado';
+                        try { localStorage.setItem('sindicapp-propuesta-role', r); } catch (e2) { /* demo */ }
+                    }
+                    return ['visitante', 'usuario', 'afiliado'].includes(r) ? r : 'visitante';
                 } catch (e) { return 'visitante'; }
             })();
-            let activeSindicatoAnilloScreen = 'inicio';
+            /* 20-07-2026 (ideas 42+43, ADR 0024): cargo demo ocupado — persiste en
+               'sindicapp-propuesta-cargo' (el reset demo borra sindicapp-*, cubierto).
+               20-07 tarde (idea 63): el formato pasa a JSON {cargoId, orgId} para los
+               cargos de equipo ('team:…') y ad hoc ('adhoc:…'); el formato string
+               antiguo (arquetipos) se sigue aceptando — retro-compat sin migración. */
+            const isValidCargoId = (cg) => ['ninguno', 'coordinacion', 'accion', 'comunicacion', 'datos'].includes(cg)
+                || String(cg || '').indexOf('team:') === 0 || String(cg || '').indexOf('adhoc:') === 0;
+            let activePropuestaCargoOrg = '';
+            let activePropuestaCargo = (function () {
+                try {
+                    const raw = localStorage.getItem('sindicapp-propuesta-cargo');
+                    if (raw && raw.charAt(0) === '{') {
+                        const st = JSON.parse(raw);
+                        if (st && isValidCargoId(st.cargoId)) {
+                            activePropuestaCargoOrg = String(st.orgId || '');
+                            return st.cargoId;
+                        }
+                        return 'ninguno';
+                    }
+                    return isValidCargoId(raw) ? raw : 'ninguno';
+                } catch (e) { return 'ninguno'; }
+            })();
+            /* Persistencia del cargo ocupado en el formato nuevo {cargoId, orgId}. */
+            function persistPropuestaCargo() {
+                try {
+                    localStorage.setItem('sindicapp-propuesta-cargo',
+                        JSON.stringify({ cargoId: activePropuestaCargo, orgId: activePropuestaCargoOrg }));
+                } catch (err) { /* demo */ }
+            }
+            /* 20-07-2026 (ADR 0025): grupo abierto del acordeón de la nav propuesta —
+               'sindicatos' (colectivos) o 'funcionalidades' (herramientas). Solo uno
+               abierto a la vez; persiste (el reset demo borra sindicapp-*, cubierto). */
+            let activePropuestaNavGroup = (function () {
+                try {
+                    const g = localStorage.getItem('sindicapp-nav-group');
+                    return ['sindicatos', 'funcionalidades'].includes(g) ? g : 'sindicatos';
+                } catch (e) { return 'sindicatos'; }
+            })();
+            /* 20-07-2026 (ADR 0025): último sub pintado en la nav — para auto-expandir
+               el grupo SOLO cuando el sub activo cambia, no en cada re-render (si no,
+               abrir el otro grupo con la cabecera se desharía al instante). */
+            let lastPropuestaNavSub = null;
+            /* 20-07 tarde (idea 68 parcial): activeSindicatoAnilloScreen purgado — el
+               sub `anillo` ya no existe como ruta. */
             /* Descomposición del CRM (17-07): desde qué módulo de colectivo se entró a la
                gestión (para el banner de contexto y las peculiaridades por tipo). */
             let activeCrmContextModule = '';
@@ -296,7 +356,7 @@
 
             function setActiveLocale(locale, options = {}) {
                 /* 17-07-2026: tres locales — 'ca' es idioma sobre el dataset 'es' (ADR 0018). */
-                const next = (locale === 'es' || locale === 'ca') ? locale : 'ie';
+                const next = ['es', 'ca'].includes(locale) ? locale : 'ie';
                 if (next === activeLocale && !options.force) return;
                 activeLocale = next;
                 applyLocaleToDocument();
@@ -414,7 +474,7 @@
                 return {};
             }
 
-            function userWorkplaceStorageKey() { return `sindicapp-user-workplace-${activeLocale === 'es' ? 'es' : 'ie'}`; }
+            function userWorkplaceStorageKey() { return `sindicapp-user-workplace-${datasetKey()}`; }
 
             function getUserWorkplaceId() {
                 /* 17-07-2026: preferencia elegida por la persona (persistida), luego el
@@ -507,7 +567,8 @@
                 }
                 /* Propuesta: «Mis casos y documentos» vive dentro del módulo Usuario. */
                 if (activeWebVersion === 'propuesta' && activeSelfSindicatoSection === 'miscasos') {
-                    mapTextDisplay.innerHTML = window.SINDICAPP_SINDICATO.buildPropuestaScreenHtml(activeLocale, 'miscasos', activePropuestaRole);
+                    /* 20-07 (idea 43): el simulador «ver como» vive dentro de esta pantalla. */
+                    mapTextDisplay.innerHTML = window.SINDICAPP_SINDICATO.buildPropuestaScreenHtml(activeLocale, 'miscasos', activePropuestaRole, '', activePropuestaCargo);
                     return;
                 }
                 const wpId = getUserWorkplaceId();
@@ -620,8 +681,6 @@
                 if (profesionalesIntroEl && c.profesionalesIntro) profesionalesIntroEl.textContent = c.profesionalesIntro;
                 const autonomosIntroEl = document.getElementById('sindicato-autonomos-intro');
                 if (autonomosIntroEl && c.autonomosIntro) autonomosIntroEl.textContent = c.autonomosIntro;
-                const anilloIntroEl = document.getElementById('sindicato-anillo-intro');
-                if (anilloIntroEl && c.propuestaInicioIntro) anilloIntroEl.textContent = c.propuestaInicioIntro;
                 if (sindicatoFeedCompanyLabel && c.feedCompanyFilter) {
                     sindicatoFeedCompanyLabel.textContent = c.feedCompanyFilter;
                 }
@@ -653,7 +712,33 @@
                         || (id.indexOf('crm-') === 0 && c.coordSubs && c.coordSubs[id.slice(4)])
                         || id;
                     const icon = btn.querySelector('[aria-hidden="true"]');
-                    if (icon) btn.innerHTML = `${icon.outerHTML} ${label}`;
+                    /* 20-07 (ADR 0024): candado informativo en los crm-* que el cargo
+                       actual no concede — se marca pero SIGUE siendo clicable (el panel
+                       explica quién lo lleva; doctrina ADR 0014). El emoji original se
+                       guarda en data-base-icon para poder restaurarlo al desbloquear. */
+                    const S = window.SINDICAPP_SINDICATO;
+                    const locked = id.indexOf('crm-') === 0 && S && S.cargoAllows
+                        && !(S.propuestaRoleAllows(activePropuestaRole, 'afiliado')
+                            && S.cargoAllows(activePropuestaCargo, id));
+                    btn.classList.toggle('propuesta-item-locked', Boolean(locked));
+                    if (icon) {
+                        if (!btn.dataset.baseIcon) btn.dataset.baseIcon = icon.textContent;
+                        icon.textContent = locked ? '🔒' : btn.dataset.baseIcon;
+                        btn.innerHTML = `${icon.outerHTML} ${label}`;
+                    }
+                    if (locked) {
+                        const holder = S.cargoForCapability ? S.cargoForCapability(id) : 'coordinacion';
+                        const holderName = (c.propuestaCargos && c.propuestaCargos[holder]) || holder;
+                        btn.setAttribute('aria-label', `${label} — ${c.propuestaCargoLockedTitle || ''} (${holderName})`);
+                    } else {
+                        btn.removeAttribute('aria-label');
+                    }
+                });
+                /* 20-07 tarde (idea 70): sub-etiquetas del grupo Gestión en la sidebar
+                   estática de Trabajadores — texto localizado via COPY.crmNavGroups. */
+                document.querySelectorAll('[data-crm-nav-sublabel]').forEach((el) => {
+                    const id = el.getAttribute('data-crm-nav-sublabel');
+                    if (c.crmNavGroups && c.crmNavGroups[id]) el.textContent = c.crmNavGroups[id];
                 });
                 if (sindicatoWorkplaceSearch && c.searchPlaceholder) {
                     sindicatoWorkplaceSearch.placeholder = c.searchPlaceholder;
@@ -666,6 +751,12 @@
                 [sindicatoProfesionalesSearch, sindicatoConsumidoresSearch, sindicatoEstudiantesSearch].forEach((inp) => {
                     if (inp && c.searchPlaceholder) inp.placeholder = c.searchPlaceholder;
                 });
+                /* 20-07 (idea 52): placeholder/aria localizados de la búsqueda global. */
+                const globalSearchEl = document.getElementById('sindicapp-global-search');
+                if (globalSearchEl && c.searchGlobalPlaceholder) {
+                    globalSearchEl.placeholder = c.searchGlobalPlaceholder;
+                    globalSearchEl.setAttribute('aria-label', c.searchGlobalPlaceholder);
+                }
                 sindicatoSubButtons.forEach((btn) => {
                     const id = btn.getAttribute('data-sindicato-sub');
                     const label = (c.subs && c.subs[id]) || id;
@@ -955,7 +1046,7 @@
 
             function buildSindicatoWorkspaceHtml() {
                 if (!window.SINDICAPP_SINDICATO) {
-                    const errCopy = window.SINDICAPP_SINDICATO?.COPY?.[activeLocale === 'es' ? 'es' : 'ie']?.moduleLoadError;
+                    const errCopy = window.SINDICAPP_SINDICATO?.t?.(activeLocale)?.moduleLoadError;
                     return `<div class="sindicato-panel"><p class="template-muted">${errCopy || 'Syndicate module failed to load.'}</p></div>`;
                 }
                 return window.SINDICAPP_SINDICATO.buildWorkspaceHtml(
@@ -987,8 +1078,9 @@
                         estudianteCentroId: activeSindicatoEstudiantesCentro,
                         profesionalId: activeSindicatoProfesional,
                         autonomoId: activeSindicatoAutonomo,
-                        anilloScreen: activeSindicatoAnilloScreen,
                         propuestaRole: activePropuestaRole,
+                        /* 20-07 (ADR 0024): el cargo viaja en el ctx igual que el rol. */
+                        propuestaCargo: activePropuestaCargo,
                         webVersion: activeWebVersion,
                         crmContextModule: activeCrmContextModule,
                         equipoCrmTab: activeEquipoCrmTab,
@@ -1167,7 +1259,7 @@
                     || activeSindicatoSub === 'wiki' || activeSindicatoSub === 'housing'
                     || activeSindicatoSub === 'consumidores' || activeSindicatoSub === 'estudiantes'
                     || activeSindicatoSub === 'sindicatos' || activeSindicatoSub === 'autonomos'
-                    || activeSindicatoSub === 'profesionales' || activeSindicatoSub === 'anillo') return true;
+                    || activeSindicatoSub === 'profesionales') return true;
                 if (activeSindicatoSub === 'vivienda') return activeSindicatoViviendaView === 'lista';
                 if (activeSindicatoSub === 'workplaces' && !activeSindicatoWorkplace) {
                     return activeSindicatoWorkplacesView === 'lista';
@@ -1179,7 +1271,7 @@
 
             function ensureSindicatoDefaultBoundaryLayer() {
                 const layer = window.SINDICAPP_SINDICATO?.getDefaultBoundaryLayerForLocale(activeLocale)
-                    || (activeLocale === 'es' ? 'catComarques' : 'irelandCounties');
+                    || (datasetKey() === 'es' ? 'catComarques' : 'irelandCounties');
                 const btn = document.querySelector(`.boundary-controls .border-eye-btn[data-layer="${layer}"]`);
                 if (btn && btn.classList.contains('eye-off')) {
                     btn.click();
@@ -1320,7 +1412,9 @@
                 /* 13-07-2026: «feed» = Red Social (master); «foro», «consumidores» y
                    «estudiantes» son subs propios. El estado del foro (ámbitos) cuelga
                    ahora de «foro», no de «feed». */
-                const allowed = ['coordination', 'wiki', 'unions', 'vivienda', 'feed', 'foro', 'sectores', 'workplaces', 'housing', 'consumidores', 'estudiantes', 'sindicatos', 'autonomos', 'profesionales', 'anillo'];
+                /* 20-07 tarde (idea 68 parcial): 'anillo' sale de la allowlist — la
+                   pantalla se purgó (ADR 0024); los enlaces viejos caen a la portada. */
+                const allowed = ['coordination', 'wiki', 'unions', 'vivienda', 'feed', 'foro', 'sectores', 'workplaces', 'housing', 'consumidores', 'estudiantes', 'sindicatos', 'autonomos', 'profesionales'];
                 if (subId === '' || subId == null) {
                     activeSindicatoSub = '';
                     activeSindicatoWorkplace = '';
@@ -1378,9 +1472,6 @@
                 }
                 if (activeSindicatoSub !== 'autonomos') {
                     activeSindicatoAutonomo = '';
-                }
-                if (activeSindicatoSub !== 'anillo') {
-                    activeSindicatoAnilloScreen = 'inicio';
                 }
                 if (activeSindicatoSub !== 'coordination') {
                     activeSindicatoCoordSub = 'afiliadas';
@@ -1528,7 +1619,8 @@
             }
 
             function setSindicatoWikiSub(subId) {
-                const allowed = ['index', 'sindicapp', 'derechos', 'denunciar', 'organizar', 'glosario', 'normas', 'ia'];
+                /* 20-07 (ADR 0024): «accesos» — teoría de quién ve qué. */
+                const allowed = ['index', 'sindicapp', 'derechos', 'denunciar', 'organizar', 'glosario', 'normas', 'ia', 'accesos'];
                 if (activeSindicatoSub !== 'wiki') {
                     if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                     setSindicatoSub('wiki');
@@ -1919,8 +2011,45 @@
                     activePropuestaRole = propuestaWorkspaceRoleBtn.getAttribute('data-propuesta-role') || 'visitante';
                     try { localStorage.setItem('sindicapp-propuesta-role', activePropuestaRole); } catch (err) { /* demo */ }
                     syncPropuestaNav();
+                    /* 20-07 (ADR 0024): los candados de cargo de las sidebars dependen
+                       también de la relación — refrescar etiquetas. */
+                    refreshSindicatoSidebarLabels();
                     applySindicatoViewSync();
                     if (activeModule === 'self') syncSelfSindicatoWorkspace();
+                    return;
+                }
+
+                /* 20-07-2026 (ideas 42+43, ADR 0024): chips de cargo demo — ocupar un
+                   cargo concede sus capacidades; el organigrama es la ACL.
+                   20-07 tarde (ideas 63+66): también cargos de equipo/ad hoc, con
+                   rastro persistido de ocupar/soltar (recordCargoTrail). */
+                const propuestaCargoBtn = e.target.closest?.('[data-propuesta-cargo]');
+                if (propuestaCargoBtn) {
+                    e.preventDefault();
+                    const S = window.SINDICAPP_SINDICATO;
+                    const prevCargo = activePropuestaCargo;
+                    activePropuestaCargo = propuestaCargoBtn.getAttribute('data-propuesta-cargo') || 'ninguno';
+                    /* El orgId viaja embebido en los ids ad hoc ('adhoc:<ds>:<org>:<ts>');
+                       para arquetipos y cargos de seed no hace falta. */
+                    activePropuestaCargoOrg = activePropuestaCargo.indexOf('adhoc:') === 0
+                        ? (activePropuestaCargo.split(':')[2] || '')
+                        : '';
+                    persistPropuestaCargo();
+                    const cCargo = getSindicatoCopy();
+                    const cargoName = (S && S.cargoDisplayName)
+                        ? S.cargoDisplayName(activeLocale, activePropuestaCargo)
+                        : ((cCargo.propuestaCargos && cCargo.propuestaCargos[activePropuestaCargo]) || activePropuestaCargo);
+                    /* Idea 66: rastro — soltar el anterior, ocupar el nuevo. */
+                    if (S && S.recordCargoTrail && prevCargo !== activePropuestaCargo) {
+                        if (prevCargo && prevCargo !== 'ninguno') {
+                            S.recordCargoTrail('deja', S.cargoDisplayName ? S.cargoDisplayName(activeLocale, prevCargo) : prevCargo);
+                        }
+                        if (activePropuestaCargo !== 'ninguno') S.recordCargoTrail('ocupa', cargoName);
+                    }
+                    notify(String(cCargo.propuestaCargoAssigned || '{cargo}').replace('{cargo}', cargoName));
+                    refreshSindicatoSidebarLabels();
+                    applySindicatoViewSync();
+                    if (activeModule === 'self') syncTextWorkspace();
                     return;
                 }
 
@@ -1986,6 +2115,45 @@
                     const raw = attendBtn.getAttribute('data-propuesta-attend') || '';
                     const i = raw.indexOf('|');
                     window.SINDICAPP_SINDICATO.propuestaAddAttendance(activeLocale, raw.slice(i + 1), raw.slice(0, i));
+                    syncTextWorkspace();
+                    return;
+                }
+
+                /* 20-07 tarde (idea 65): toggle demo «sesión en curso» — con la sesión
+                   activa, las suplentes del cuadrante muestran el badge «hereda». */
+                const sessionLiveBtn = e.target.closest?.('[data-propuesta-session-live]');
+                if (sessionLiveBtn) {
+                    e.preventDefault();
+                    const raw = sessionLiveBtn.getAttribute('data-propuesta-session-live') || '';
+                    const i = raw.indexOf('|');
+                    window.SINDICAPP_SINDICATO.propuestaToggleSessionLive(activeLocale, raw.slice(i + 1), raw.slice(0, i));
+                    syncTextWorkspace();
+                    return;
+                }
+
+                /* 20-07 tarde (idea 64): crear un cargo ad hoc desde el formulario de
+                   crm-estructura — validación mínima, persistencia en el runtime del
+                   equipo, rastro (idea 66) y aviso. */
+                const adhocCreateBtn = e.target.closest?.('[data-crm-adhoc-create]');
+                if (adhocCreateBtn) {
+                    e.preventDefault();
+                    const form = adhocCreateBtn.closest('[data-crm-adhoc-form]');
+                    const rc = getSindicatoCopy();
+                    if (!form || !window.SINDICAPP_SINDICATO?.crmCreateAdhocCargo) return;
+                    const nombre = (form.querySelector('[data-crm-adhoc-name]')?.value || '').trim();
+                    const capacidades = [...form.querySelectorAll('[data-crm-adhoc-cap]:checked')].map((el) => el.value);
+                    const ambito = (form.querySelector('[data-crm-adhoc-ambito]')?.value || '').trim();
+                    const caduca = (form.querySelector('[data-crm-adhoc-caduca]')?.value || '').trim();
+                    const created = (nombre && capacidades.length && caduca)
+                        ? window.SINDICAPP_SINDICATO.crmCreateAdhocCargo(activeLocale,
+                            adhocCreateBtn.getAttribute('data-crm-adhoc-create') || '',
+                            { nombre, capacidades, ambito, caduca })
+                        : null;
+                    if (!created) {
+                        notify(rc.crmAdhocInvalid || '—', 'warn');
+                        return;
+                    }
+                    notify(String(rc.crmAdhocCreated || '{c}').replace('{c}', created.nombre));
                     syncTextWorkspace();
                     return;
                 }
@@ -2485,7 +2653,7 @@
                     const proratedMin = annualMin * (hours / 40);
                     const diff = annualSalary - proratedMin;
                     const pct = proratedMin > 0 ? (diff / proratedMin) * 100 : 0;
-                    const fmt = (n) => Math.abs(n).toLocaleString(activeLocale === 'es' ? 'es-ES' : 'en-IE', { maximumFractionDigits: 0 });
+                    const fmt = (n) => Math.abs(n).toLocaleString(datasetKey() === 'es' ? 'es-ES' : 'en-IE', { maximumFractionDigits: 0 });
                     const sign = diff >= 0 ? '+' : '−';
                     const ok = diff >= 0;
                     out.hidden = false;
@@ -2610,9 +2778,6 @@
                 if (sindicatoAutonomosSidebar) {
                     sindicatoAutonomosSidebar.hidden = !onSindicato || activeSindicatoSub !== 'autonomos';
                 }
-                if (sindicatoAnilloSidebar) {
-                    sindicatoAnilloSidebar.hidden = !onSindicato || activeSindicatoSub !== 'anillo';
-                }
                 /* Nav de secciones del equipo: visible al tener una entidad abierta en uno
                    de los 4 tipos generalizados. */
                 if (sindicatoEquipoSectionBlock) {
@@ -2626,8 +2791,11 @@
                        (absorbe huelgómetro, alarmas, calculadora, asambleas) y llama
                        «Propietarios» a lo que en Trabajadores es «Empresas». */
                     if (entityOpen && sindicatoEquipoSectionNav && window.SINDICAPP_SINDICATO) {
+                        /* 20-07 (ADR 0024): el rol y el cargo viajan para pintar los
+                           candados informativos de la Gestión. */
                         sindicatoEquipoSectionNav.innerHTML = window.SINDICAPP_SINDICATO.buildEquipoSectionNavHtml(
-                            activeLocale, activeSindicatoSub, activeEquipoSection
+                            activeLocale, activeSindicatoSub, activeEquipoSection,
+                            { propuestaRole: activePropuestaRole, propuestaCargo: activePropuestaCargo }
                         );
                     }
                 }
@@ -2900,7 +3068,8 @@
             }
 
             function sindicatoNotice(key) {
-                const pack = window.SINDICAPP_SINDICATO?.COPY?.[activeLocale === 'es' ? 'es' : 'ie'];
+                /* F3: la copy es del IDIOMA (t maneja 'ca' con fallback al castellano), no del dataset. */
+                const pack = window.SINDICAPP_SINDICATO?.t?.(activeLocale);
                 return pack?.notices?.[key] || '';
             }
 
@@ -2938,6 +3107,14 @@
                 }
                 if (!window.SINDICAPP_ES) {
                     missing.push('sindicapp-locale-es-content.js');
+                }
+                /* 20-07 tarde (idea 71): el módulo Sindicato viene ahora en tres
+                   scripts — copy, datos y lógica — cargados en orden antes que este. */
+                if (!window.SINDICAPP_SINDICATO_COPY) {
+                    missing.push('sindicapp-sindicato-copy.js');
+                }
+                if (!window.SINDICAPP_SINDICATO_DATA) {
+                    missing.push('sindicapp-sindicato-data.js');
                 }
                 return missing;
             }
@@ -3223,7 +3400,9 @@
             }
 
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') document.getElementById('sindicapp-asamblea-live')?.remove();
+                if (e.key === 'Escape') {
+                    document.getElementById('sindicapp-asamblea-live')?.remove();
+                }
             });
 
             /* 18-07 (idea 54): campana de avisos según rol en la cabecera. El badge se
@@ -3234,7 +3413,8 @@
             let notifSeenCount = -1;
             function refreshNotifBadge() {
                 if (!notifBadge || !window.SINDICAPP_SINDICATO?.getNotificationCount) return;
-                const n = window.SINDICAPP_SINDICATO.getNotificationCount(activeLocale, activePropuestaRole);
+                /* 20-07 (ADR 0024): los avisos internos dependen del cargo, no de «militante». */
+                const n = window.SINDICAPP_SINDICATO.getNotificationCount(activeLocale, activePropuestaRole, activePropuestaCargo);
                 notifBadge.textContent = String(n);
                 notifBadge.hidden = !n || n === notifSeenCount;
             }
@@ -3242,8 +3422,8 @@
                 notifToggle.addEventListener('click', () => {
                     const opening = notifPanel.hidden;
                     if (opening && window.SINDICAPP_SINDICATO?.buildNotificationsHtml) {
-                        notifPanel.innerHTML = window.SINDICAPP_SINDICATO.buildNotificationsHtml(activeLocale, activePropuestaRole);
-                        notifSeenCount = window.SINDICAPP_SINDICATO.getNotificationCount(activeLocale, activePropuestaRole);
+                        notifPanel.innerHTML = window.SINDICAPP_SINDICATO.buildNotificationsHtml(activeLocale, activePropuestaRole, activePropuestaCargo);
+                        notifSeenCount = window.SINDICAPP_SINDICATO.getNotificationCount(activeLocale, activePropuestaRole, activePropuestaCargo);
                     }
                     notifPanel.hidden = !opening;
                     notifToggle.setAttribute('aria-expanded', String(opening));
@@ -3259,8 +3439,86 @@
                 });
             }
 
+            /* 20-07-2026 (idea 52, ADR 0024): búsqueda global en cabecera — entidades
+               públicas por nombre, con dropdown al estilo del panel de avisos. La
+               navegación reutiliza lo existente: hashes de empresa/territorio/equipo
+               y el salto de wiki (misma lógica que data-sindicato-wiki-jump). */
+            const globalSearchInput = document.getElementById('sindicapp-global-search');
+            const globalSearchPanel = document.getElementById('sindicapp-search-panel');
+            let globalSearchTimer = null;
+            function closeGlobalSearch(clearInput) {
+                if (globalSearchPanel) {
+                    globalSearchPanel.hidden = true;
+                    globalSearchPanel.innerHTML = '';
+                }
+                if (clearInput && globalSearchInput) globalSearchInput.value = '';
+            }
+            function renderGlobalSearchResults() {
+                if (!globalSearchInput || !globalSearchPanel || !window.SINDICAPP_SINDICATO?.searchEntities) return;
+                const q = globalSearchInput.value.trim();
+                if (!q) { closeGlobalSearch(false); return; }
+                const c = sindicappCopy();
+                const results = window.SINDICAPP_SINDICATO.searchEntities(activeLocale, q);
+                globalSearchPanel.innerHTML = results.length
+                    ? results.map((r) =>
+                        `<button type="button" class="sindicapp-search-result" data-sindicapp-search-goto="${r.kind}:${r.id}">
+                            <span aria-hidden="true">${r.icon}</span> <strong>${r.name}</strong>${r.hint ? ` <span class="template-muted">· ${r.hint}</span>` : ''}
+                        </button>`).join('')
+                    : `<p class="template-muted sindicapp-notif-item">${c.searchNoResults || '—'}</p>`;
+                globalSearchPanel.hidden = false;
+            }
+            if (globalSearchInput && globalSearchPanel) {
+                globalSearchInput.addEventListener('input', () => {
+                    /* Debounce simple: el dataset es pequeño, 150 ms bastan. */
+                    clearTimeout(globalSearchTimer);
+                    globalSearchTimer = setTimeout(renderGlobalSearchResults, 150);
+                });
+                globalSearchInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') closeGlobalSearch(true);
+                });
+                globalSearchPanel.addEventListener('click', (e) => {
+                    const btn = e.target.closest('[data-sindicapp-search-goto]');
+                    if (!btn) return;
+                    e.preventDefault();
+                    const raw = btn.getAttribute('data-sindicapp-search-goto') || '';
+                    const sep = raw.indexOf(':');
+                    if (sep === -1) return;
+                    const kind = raw.slice(0, sep);
+                    const id = raw.slice(sep + 1);
+                    if (kind === 'workplace') {
+                        location.hash = '#sindicato-empresa:' + id;
+                    } else if (kind === 'territory') {
+                        location.hash = '#sindicato-territorio:' + id;
+                    } else if (kind === 'union') {
+                        location.hash = '#sindicato-equipo:unions:' + id;
+                    } else if (kind === 'housing' || kind === 'profesionales' || kind === 'autonomos'
+                        || kind === 'consumidores' || kind === 'estudiantes') {
+                        location.hash = '#sindicato-equipo:' + kind + ':' + id;
+                    } else if (kind === 'wiki') {
+                        /* Mismo camino que data-sindicato-wiki-jump. */
+                        if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
+                        if (activeSindicatoSub !== 'wiki') setSindicatoSub('wiki');
+                        setSindicatoWikiSub(id);
+                    }
+                    closeGlobalSearch(true);
+                });
+                document.addEventListener('click', (e) => {
+                    if (!globalSearchPanel.hidden
+                        && !e.target.closest?.('#sindicapp-search-panel')
+                        && !e.target.closest?.('#sindicapp-global-search')) {
+                        closeGlobalSearch(false);
+                    }
+                });
+            }
+
+            /* 20-07-2026: el onboarding de primera visita (idea 53) se RETIRÓ por decisión
+               de Edu — a la moratoria (ADR 0021) hasta la fase producto. El flag
+               'sindicapp-onboarded-v1' deja de leerse y escribirse. */
+
             function sindicappCopy() {
-                return window.SINDICAPP_SINDICATO?.COPY?.[activeLocale === 'es' ? 'es' : 'ie'] || {};
+                /* F3: devuelve la copy del IDIOMA activo vía t() — bajo 'ca' llega el
+                   merge profundo catalán-sobre-castellano (ADR 0023), nunca el inglés. */
+                return window.SINDICAPP_SINDICATO?.t?.(activeLocale) || {};
             }
 
             /* 17-07-2026 (descomposición CRM, fase 2): muestra solo las pestañas del CRM que
@@ -3281,14 +3539,36 @@
                 }
             }
 
+            /* 20-07-2026 (ADR 0025): grupo del acordeón al que pertenece un sub —
+               delega en el módulo Sindicato, que es quien conoce los dos cuadros. */
+            function navGroupForSub(sub) {
+                return window.SINDICAPP_SINDICATO?.navGroupForSub?.(sub) || '';
+            }
+
             function syncPropuestaNav() {
                 const onPropuesta = activeWebVersion === 'propuesta';
                 if (sindicatoSubnavPropuesta) {
                     sindicatoSubnavPropuesta.hidden = !onPropuesta;
                     if (onPropuesta && window.SINDICAPP_SINDICATO) {
                         const currentSub = activeModule === 'self' ? 'self' : activeSindicatoSub;
+                        /* 20-07-2026 (ADR 0025): auto-expansión del acordeón — si el sub
+                           activo cambió por CUALQUIER vía (click de nav, búsqueda global,
+                           hash/History: todas acaban re-sincronizando aquí),
+                           el grupo al que pertenece se abre solo. Así navegar por hash a
+                           un sub de un grupo cerrado funciona y lo expande. */
+                        if (currentSub !== lastPropuestaNavSub) {
+                            lastPropuestaNavSub = currentSub;
+                            const grp = navGroupForSub(currentSub);
+                            if (grp && grp !== activePropuestaNavGroup) {
+                                activePropuestaNavGroup = grp;
+                                try { localStorage.setItem('sindicapp-nav-group', grp); } catch (err) { /* demo */ }
+                            }
+                        }
+                        /* 20-07 tarde (idea 68 parcial): buildPropuestaNavHtml perdió el
+                           4º parámetro `activeScreen` (solo servía al sub `anillo`) —
+                           el grupo del acordeón pasa a ser el 4º argumento. */
                         sindicatoSubnavPropuesta.innerHTML = window.SINDICAPP_SINDICATO.buildPropuestaNavHtml(
-                            activeLocale, activePropuestaRole, currentSub, activeSindicatoAnilloScreen
+                            activeLocale, activePropuestaRole, currentSub, activePropuestaNavGroup
                         );
                     }
                 }
@@ -3320,6 +3600,19 @@
                         notify((c.propuestaLockNotice || '').replace('{role}', roleName), 'warn');
                         return;
                     }
+                    /* 20-07-2026 (ADR 0025): cabeceras del acordeón — clicar la del grupo
+                       cerrado lo abre y cierra el otro; clicar la del abierto no lo
+                       colapsa (siempre hay exactamente un grupo abierto). */
+                    const navGroupBtn = e.target.closest('[data-propuesta-navgroup]');
+                    if (navGroupBtn) {
+                        const grp = navGroupBtn.getAttribute('data-propuesta-navgroup');
+                        if ((grp === 'sindicatos' || grp === 'funcionalidades') && grp !== activePropuestaNavGroup) {
+                            activePropuestaNavGroup = grp;
+                            try { localStorage.setItem('sindicapp-nav-group', grp); } catch (err) { /* demo */ }
+                            syncPropuestaNav();
+                        }
+                        return;
+                    }
                     const gotoBtn = e.target.closest('[data-propuesta-goto]');
                     if (gotoBtn) {
                         const raw = gotoBtn.getAttribute('data-propuesta-goto') || '';
@@ -3327,6 +3620,8 @@
                         if (sep === -1) return;
                         const kind = raw.slice(0, sep);
                         const id = raw.slice(sep + 1);
+                        /* 20-07 tarde (idea 68 parcial): solo queda el kind 'sub' — el
+                           kind de pantalla de anillo se purgó con el sub `anillo`. */
                         if (kind === 'sub') {
                             if (id === 'usuario') {
                                 if (activeModule !== 'self') setActiveModule('self');
@@ -3334,11 +3629,6 @@
                                 if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
                                 setSindicatoSub(id);
                             }
-                        } else {
-                            if (activeModule !== SINDICATO_MODULE) setActiveModule(SINDICATO_MODULE);
-                            if (activeSindicatoSub !== 'anillo') setSindicatoSub('anillo');
-                            activeSindicatoAnilloScreen = id;
-                            applySindicatoViewSync();
                         }
                         syncPropuestaNav();
                     }
@@ -3825,6 +4115,7 @@
                 syncSindicAppHeaderLogo();
                 syncPortadaWelcome();
                 maybeShowAgendaNotice();
+                /* 20-07: el onboarding de primera visita (idea 53) se retiró — moratoria. */
             }
 
             /* 17-07-2026: aviso de agenda al arrancar — la próxima fecha relevante

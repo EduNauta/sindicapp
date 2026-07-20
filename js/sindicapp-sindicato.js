@@ -12,1368 +12,7 @@
 
     const SINDICAPP_LOGO_SRC = 'assets/sindicapp-logo.jpg'; /* B3 — logo extraído del markup a fichero */
 
-    const COPY = {
-        ie: {
-            manifestTitle: 'Neutral infrastructure for workplace coordination',
-            manifestBody: 'Syndicate is a geography-first platform: every company gets a profile on the map. Workers, unions, and communities share the same tools — reports, wage transparency, collective agreement guidance, and strike coordination — without replacing existing union structures.',
-            welcomeTitle: 'Welcome to SindicApp',
-            welcomeLead: 'Neutral infrastructure for workplace coordination. Pick a section in the sidebar to begin.',
-            welcomeHint: 'CRM, wiki, unions, housing, map, forum, sectors, and companies — all on one geography-first platform.',
-            mapTitle: 'Company map',
-            mapIntro: 'Each pin is an auto-generated company profile. Click a pin on the map to open its profile.',
-            mapHint: 'Toggle Borders layers to explore company pins by territory.',
-            workplacesTitle: 'Company directory',
-            unionsTitle: 'Union directory',
-            feedTitle: 'Forum',
-            feedIntro: 'Open board for SindicApp — delegate coordination, convenio disputes, strike readiness, and territory alerts.',
-            feedIntroSidebar: 'Three forum scopes — one button per row. General board, sector forums, and territory forums.',
-            feedSubs: { general: 'General', sectores: 'Sectors', territorios: 'Territories', interno: 'Internal' },
-            feedPickScope: 'Pick a subsector or territory in the sidebar to open its forum in the workspace.',
-            feedScopeGeneral: 'General forum',
-            feedScopeSector: 'Sector forum',
-            feedScopeTerritory: 'Territory forum',
-            feedCompanyFilter: 'Company in this scope',
-            selectFeedCompany: 'All companies in scope…',
-            sectoresTitle: 'Economic sectors',
-            sectoresIntro: 'Sector dossier — unions on site, companies, and sector forum for the branch.',
-            sectoresSectorIntro: 'Sector overview — all sub-branches, unions on site, companies, and sector forum.',
-            sectoresPick: 'Pick a sector, subsector, or sub-subsector in the sidebar.',
-            sectoresUnions: 'Unions present',
-            sectoresWorkplaces: 'Companies in sector',
-            sectoresForum: 'Sector forum',
-            sectoresForumPosts: 'Recent posts',
-            sectoresGotoForumBtn: 'Open sector forum',
-            sectoresConvenioTitle: 'Applicable agreement',
-            sectoresConvenioIntro: 'Reference collective agreement for this sector (demo directory).',
-            sectoresEmptyUnions: 'No unions registered in this sector yet.',
-            sectoresEmptyWorkplaces: 'No companies registered in this sector yet.',
-            sectoresIntroSidebar: 'Sector tree (sector → subsector → sub-subsector). Expand branches with ▼. All open by default.',
-            coordinationTitle: 'CRM',
-            coordinationIntro: 'Union CRM — members, cases, campaigns and finances for any organisation.',
-            coordinationIntroSidebar: 'Union CRM — pick an organisation and manage members, cases, campaigns and finances.',
-            crmOrgLabel: 'Organisation',
-            wikiTitle: 'Wiki',
-            wikiIntroSidebar: 'Internal wiki — index and platform rules.',
-            wikiIndexBlurb: 'Knowledge base — platform rules and how coordination works.',
-            wikiNormasBody: 'Moderation queue, verified accounts, anonymous reports, and escalation to coordination council.',
-            viviendaTitle: 'Territory',
-            viviendaIntro: 'Territory profile — companies, housing, forum and social channels.',
-            viviendaIntroSidebar: 'Each territory has a profile — companies, housing, forum and social channels.',
-            viviendaEmpty: 'Pick a county and district in the sidebar to open the territory profile.',
-            viviendaPickTerritory: 'Select a district in the sidebar.',
-            viviendaForumTitle: 'Territory forum',
-            viviendaHousingTitle: 'Housing',
-            viviendaAlertsTitle: 'Eviction alerts',
-            viviendaNoAlerts: 'No scheduled evictions in this territory (demo).',
-            viviendaParentLabel: 'Select county',
-            viviendaTerritoryLabel: 'Select district',
-            viviendaMunicipalityLabel: 'Select municipality',
-            viviendaMunicipalityAll: 'Whole district',
-            viewToggle: { map: 'Map', lista: 'List' },
-            viviendaMunicipalityNote: 'Municipality profile — coming soon (demo structure).',
-            viviendaLinksTitle: 'Social & channels',
-            viviendaLinksIntro: 'Territory channels — Telegram, fediverse and social media (demo links).',
-            viviendaParentShort: 'County',
-            viviendaTerritoryShort: 'District',
-            viviendaMunicipalityShort: 'Municipality',
-            viviendaStatWorkplaces: 'companies',
-            viviendaStatAlerts: 'alerts',
-            viviendaStatBuildings: 'buildings',
-            viviendaStatThreads: 'threads',
-            viviendaOpenMap: 'View on map',
-            viviendaOpenForum: 'Open territory forum',
-            viviendaAgendaTitle: 'Agenda',
-            coordSections: { admin: 'Admin', wiki: 'Wiki' },
-            coordSubs: { afiliadas: 'Members', casos: 'Cases', campanas: 'Campaigns', finanzas: 'Finances', comunicaciones: 'Comms', calendario: 'Calendar', documentos: 'Documents', datos: 'Databases', fuentes: 'Data sources', estructura: 'Structure', intake: 'Intake', asambleas: 'Assemblies' },
-            crmEstructuraIntro: 'The organisation\'s living org chart — commissions, their scope, the people covering each role, and a role description for every post. Roles that are uncovered show up in red.',
-            crmEstructuraScope: 'Scope',
-            crmEstructuraFunciones: 'Role description',
-            crmEstructuraVacante: 'Vacant',
-            crmEstructuraMembers: 'people',
-            shareBtn: '🔗 Copy link',
-            shareCopied: 'Link copied to the clipboard.',
-            reportPlaybookTitle: 'Know your rights before you report',
-            wageCompareTitle: 'Sector pay comparison',
-            wageCompareIntro: 'How this company\'s pay bands compare with others in the same sector (demo data).',
-            wageCompareThisCompany: 'this company',
-            agendaAlertPrefix: '📅 Coming up:',
-            crmDatosIntro: 'The organisation\'s databases — the shared source of truth. Designed to hold plurality from the start: a person can have several addresses over time, a case can affect several people, a building several owners.',
-            crmDatosTablesTitle: 'Core tables',
-            crmDatosSourcesTitle: 'Data source register',
-            crmDatosRecords: 'records',
-            crmDocAmbitos: { publico: 'Public', afiliadas: 'Members', comision: 'Commission', caso: 'Case-only' },
-            crmDocRevision: { pendiente: 'Review pending', revision: 'In review', revisada: 'Reviewed' },
-            crmDocAccessTitle: 'Access & review',
-            wikiSubs: { index: 'Index', sindicapp: 'SindicApp', derechos: 'Rights', denunciar: 'Reporting', organizar: 'Organising', glosario: 'Glossary', normas: 'Rules' },
-            wikiIntro: 'Shared knowledge base — start with SindicApp itself, then labour rights, how to report, how to organise, plus platform rules. The wiki is transversal: every company, sector, union and territory also has its own wiki page.',
-            wikiEntitySummaryTitle: 'Summary',
-            wikiEntityNotesTitle: 'History &amp; notes',
-            wikiEntityLinksTitle: 'Links',
-            wikiOpenProfile: 'Open profile',
-            wikiOpenForum: 'Open forum',
-            wikiEntityNotes: {
-                workplace: 'Shared record for this company — disputes won and lost, applicable agreement, delegates and organising milestones. Demo content; verified workers can expand it.',
-                sector: 'Sector knowledge — reference agreements, recurring grievances, and how organising tends to work across these companies. Demo content.',
-                union: 'Union page — how to join, internal structure, historic wins and resources for members. Demo content.',
-                territory: 'Territory knowledge — local labour and housing background, contacts and resources. Demo content.'
-            },
-            wikiKbTitle: 'Knowledge base',
-            wikiPlatformTitle: 'Platform',
-            wikiTransversalTitle: 'Across the platform',
-            wikiTransversalIntro: 'Open any company, sector, union or territory profile — each one has a 📖 Wiki section linking back here.',
-            wikiEmbedTitle: 'Wiki',
-            wikiEmbedCta: 'Open the wiki',
-            wikiArticles: {
-                sindicapp: {
-                    title: 'About SindicApp',
-                    summary: 'What this platform is, where it came from, and who built it.',
-                    body: '<p>SindicApp is neutral infrastructure for worker coordination — a geography-first platform where every company has an automatic profile on the map, and from there you reach anonymous reports, pay transparency, the collective agreement, collective action and forums.</p>'
-                        + '<p>It is explicitly <strong>not</strong> a replacement for existing unions. It is complementary plumbing: a company directory, a territorial map, sector and territory forums, and verified coordination spaces that any organisation can use.</p>'
-                        + '<h3>History</h3>'
-                        + '<p>SindicApp was created by <strong>Edu Nauta</strong> as an independent, open prototype. It began as a single self-contained web page exploring one idea: that if you put every workplace on a shared map, coordination becomes visible and reachable instead of scattered across private chats.</p>'
-                        + '<p>From that first sketch it grew, module by module — company profiles, reports and pay transparency, sector and territory forums, a union directory, a multi-union CRM, and this transversal wiki. It is built as a static web app with no backend: the code runs entirely in the browser, so anyone can open it, read it and fork it. The project stays deliberately neutral and non-commercial — a common tool, not a product.</p>'
-                        + '<div class="sindicato-coord-card"><strong>Principles</strong><p>Geography-first · neutral and complementary to unions · anonymity for workers, verification for weight · open and forkable.</p></div>'
-                },
-                derechos: {
-                    title: 'Basic rights at work',
-                    summary: 'Minimum standards: pay, working time, rest and the right to organise.',
-                    body: '<p>These are the floor that no contract can go below. If your employer offers less, that is a breach — not a favour withdrawn.</p>'
-                        + '<div class="sindicato-coord-card"><strong>Pay</strong><p>You are owed at least the statutory or collective-agreement minimum for every hour worked, including overtime and premiums.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Working time &amp; rest</strong><p>Maximum weekly hours, daily and weekly rest, and paid annual leave are set by law and the applicable agreement.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Right to organise</strong><p>Joining a union, electing delegates and meeting colleagues is protected. Retaliation for it is unlawful.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Safety</strong><p>You can refuse work that puts your health at serious, imminent risk and report unsafe conditions.</p></div>'
-                },
-                denunciar: {
-                    title: 'How to file a report',
-                    summary: 'From draft to moderation — how anonymous reports travel on SindicApp.',
-                    body: '<p>Reports feed a company\'s public record while protecting the person filing them.</p>'
-                        + '<ol class="sindicato-wiki-steps"><li>Open the company profile → <strong>Reports</strong>, or use your own workplace in <strong>User</strong>.</li>'
-                        + '<li>Pick a type (unpaid overtime, safety, harassment…) and describe what happened. No real name is required.</li>'
-                        + '<li>An AI pass plus community moderation reviews it before it becomes public.</li>'
-                        + '<li>Approved reports raise the company\'s counters; sensitive cases can escalate to the coordination council.</li></ol>'
-                        + '<p class="template-muted">Verified worker accounts carry more weight, but anyone can contribute.</p>'
-                },
-                organizar: {
-                    title: 'Organising a workplace section',
-                    summary: 'Going from a private chat to a recognised section, step by step.',
-                    body: '<p>Organising is a sequence, not a leap. Each step lowers the risk of the next.</p>'
-                        + '<ol class="sindicato-wiki-steps"><li><strong>Map it.</strong> List who works there, shifts and grievances shared by many.</li>'
-                        + '<li><strong>Build a core.</strong> Find three to five trusted colleagues before going wide.</li>'
-                        + '<li><strong>Pick an issue.</strong> Start with a concrete, winnable demand.</li>'
-                        + '<li><strong>Go to a union.</strong> Use the <strong>Unions</strong> directory to find one active in your sector.</li>'
-                        + '<li><strong>Elect delegates.</strong> Formalise representation and open a private worker room.</li></ol>'
-                        + '<p class="template-muted">The private room in each company profile is for exactly this — management accounts are blocked.</p>'
-                },
-                glosario: {
-                    title: 'Glossary',
-                    summary: 'Key terms used across SindicApp.',
-                    body: '<dl class="sindicato-wiki-glossary">'
-                        + '<dt>Collective agreement (convenio)</dt><dd>The negotiated rulebook — pay scales, hours, leave — that applies to a sector or company.</dd>'
-                        + '<dt>Delegate</dt><dd>An elected worker who represents colleagues before management and the union.</dd>'
-                        + '<dt>Union section</dt><dd>A union\'s organised presence inside one company.</dd>'
-                        + '<dt>Strike fund</dt><dd>Money set aside to support members during industrial action.</dd>'
-                        + '<dt>Verified worker</dt><dd>An account confirmed as an on-site employee, giving reports and votes more weight.</dd>'
-                        + '</dl>'
-                },
-                ia: {
-                    title: 'AI and unionism: our doctrine',
-                    summary: 'Where AI fits on a union platform — and where it does not.',
-                    body: '<p>Automation is attractive, but on a union platform it can damage exactly what makes organising possible: privacy, trust and accountability. SindicApp\'s position:</p>'
-                        + '<div class="sindicato-coord-card"><strong>Official sources only</strong><p>Any assistant works exclusively over official, public texts — collective agreements, legislation, union-approved guides. Never over rumour or scraped opinion.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Human review, always</strong><p>No automated output triggers action or publication on its own. Community and organiser review comes first.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Never personal case data</strong><p>Intake, cases, assemblies and documents — the internal side of union work — are designed <em>without</em> AI. Sensitive personal data is not assistant fuel.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Basics first</strong><p>Before automating anything: clear permissions, stable data practices and human workflows that already make sense.</p></div>'
-                        + '<p class="template-muted">This is why the agreement tab offers a bounded «guided lookup (demo)» and why AI only <em>assists</em> the community moderation of public reports.</p>'
-                }
-            },
-            wikiEmbedBlurbs: {
-                workplace: 'Company wiki — applicable agreement, history of disputes, and how to organise here.',
-                sector: 'Sector wiki — reference agreements, common grievances and organising notes for the sector.',
-                union: 'Union wiki — how to join, internal structure and member resources.',
-                territory: 'Territory wiki — local resources, contacts and housing/labour background.'
-            },
-            crmAfiliadasIntro: 'Member census — search, filter by status, and open each record.',
-            crmCasosIntro: 'Case pipeline — move each conflict through its stages with ◀ ▶.',
-            crmCampanasIntro: 'Active campaigns — progress towards each goal.',
-            crmFinanzasIntro: 'Dues, strike fund and ledger for the selected organisation.',
-            crmComunicacionesIntro: 'Bulletins and notices — drafts, scheduled and sent.',
-            crmCalendarioIntro: 'Assemblies, bargaining tables and training — add events below.',
-            crmDocumentosIntro: 'Document library — filter by category.',
-            sector: 'Sector',
-            workers: 'Verified workers',
-            reports: 'Open reports',
-            unionsPresent: 'Unions on site',
-            strikeMeterTitle: 'Strike-o-meter',
-            strikeSupport: 'Strike support',
-            addWorkplace: 'Add company',
-            addWorkplaceTitle: 'Register a missing employer',
-            addWorkplaceHint: 'Creates a new pin on the map. Demo: saved in this browser only.',
-            searchPlaceholder: 'Search by name or sector…',
-            selectWorkplace: 'Select company…',
-            sections: {
-                location: 'Map',
-                overview: 'Overview',
-                reports: 'Reports',
-                wages: 'Wages',
-                convenio: 'Convenio',
-                action: 'Action',
-                miscasos: 'My cases'
-            },
-            subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Workers', sindicatos: 'Unions', autonomos: 'Self-employed', profesionales: 'Professionals', vivienda: 'Map', map: 'Map', feed: 'Social Network', foro: 'Forum', sectores: 'Sectors', workplaces: 'Companies', housing: 'Tenants', consumidores: 'Consumers', estudiantes: 'Students', usuario: 'Profile', anillo: 'Proposal' },
-            /* Red Social (13-07-2026) — módulo master: landing + panel de stats por módulo + actividad. */
-            redSocialTitle: 'Social network',
-            redSocialIntro: 'Home of the network — every module at a glance. Open a panel to dive in.',
-            redSocialIntroSidebar: 'Network home — per-module stats and the latest activity live in the workspace.',
-            redSocialActivityTitle: 'Latest activity',
-            redSocialClaim: 'Every workplace, home, campus and platform on one map — so that what is scattered can find itself and act together.',
-            redSocialColectivosTitle: 'Collectives',
-            redSocialHerramientasTitle: 'Territory & workplaces',
-            redSocialTotalMembers: 'combined membership',
-            redSocialTotalCompanies: 'companies mapped',
-            redSocialTotalReports: 'open reports',
-            redSocialTotalTerritories: 'territories',
-            redSocialStatLabels: {
-                unions: ['unions in directory', 'combined members'],
-                profesionales: ['professional bodies', 'unions present'],
-                housing: ['tenants\' unions', 'organised buildings'],
-                autonomos: ['platforms & clients', 'active campaigns'],
-                vivienda: ['territory profiles', 'eviction alerts'],
-                sectores: ['sector branches', 'subsector forums'],
-                workplaces: ['companies on the map', 'open reports'],
-                consumidores: ['products & services', 'active campaigns'],
-                estudiantes: ['study centres', 'student groups']
-            },
-            /* Redes y canales (13-07-2026) — grupo de Telegram y RRSS por entidad. */
-            socialLinksTitle: 'Social & channels',
-            socialLinksIntro: 'Official group and channels for this profile (demo links).',
-            telegramGroupLabel: 'Telegram group',
-            /* Foro (13-07-2026) — módulo propio; los árboles de subforos van al fondo. */
-            foroPickSectorTitle: 'Sector subforums',
-            foroPickSectorIntro: 'Pick a branch of the sector tree to open its forum.',
-            foroPickTerritoryTitle: 'Territory subforums',
-            foroPickTerritoryIntro: 'Pick a territory to open its forum — every county and district has one.',
-            foroBackToTree: 'All subforums',
-            /* Consumidores (13-07-2026) */
-            consumidoresTitle: 'Consumer coordination',
-            consumidoresIntro: 'Products and services with a public record — consumer reports, pressure campaigns and fair alternatives. The company-map logic, seen from the till.',
-            consumidoresDirectoryHint: 'Open a product or service to see its record.',
-            consumidoresStatComplaints: 'consumer reports',
-            consumidoresStatCampaigns: 'active campaigns',
-            consumidoresStatSupport: 'avg. campaign support',
-            consumidoresCampaignsTitle: 'Pressure campaigns',
-            consumidoresAlternativesTitle: 'Fair alternatives',
-            consumidoresTipsTitle: 'Know your rights',
-            consumidoresRelatedCompany: 'Company profile on the map',
-            consumidoresBack: 'Back to directory',
-            consumidoresTypeProduct: 'Product',
-            consumidoresTypeService: 'Service',
-            /* Estudiantes (13-07-2026) */
-            estudiantesTitle: 'Study centres',
-            estudiantesIntro: 'Universities, secondary schools and vocational training — each centre gets a profile with student groups, grievances and mobilisations. Geography-first, applied to education.',
-            estudiantesDirectoryHint: 'Open a centre to see its profile.',
-            estudiantesStatStudents: 'students',
-            estudiantesStatGroups: 'student groups',
-            estudiantesStatIssues: 'open grievances',
-            estudiantesGroupsTitle: 'Student groups & unions',
-            estudiantesIssuesTitle: 'Grievances & demands',
-            estudiantesMobilizationsTitle: 'Mobilisations',
-            estudiantesBack: 'Back to centres',
-            /* Profesionales (17-07-2026) */
-            profesionalesTitle: 'Professional bodies',
-            profesionalesIntro: 'Doctors, lawyers, architects, nurses — every professional body gets a profile with membership, fees, grievances and the profession\'s unions. Collegiate work, organised.',
-            profesionalesDirectoryHint: 'Open a body to see its profile.',
-            profesionalesStatMembers: 'registered members',
-            profesionalesStatFee: 'annual fee',
-            profesionalesStatIssues: 'open grievances',
-            profesionalesUnionsTitle: 'Professional unions present',
-            profesionalesIssuesTitle: 'Grievances & demands',
-            profesionalesMobilizationsTitle: 'Mobilisations',
-            profesionalesBack: 'Back to directory',
-            /* Autónomos (17-07-2026) */
-            autonomosTitle: 'Self-employed coordination',
-            autonomosIntro: 'Platforms and big clients that set the terms for freelance work — each one gets a profile with collaborative rates, pressure campaigns and the associations organising there.',
-            autonomosDirectoryHint: 'Open a platform or client to see its record.',
-            autonomosStatFreelancers: 'freelancers active',
-            autonomosStatCampaigns: 'active campaigns',
-            autonomosStatRates: 'rates shared',
-            autonomosRatesTitle: 'Collaborative rates',
-            autonomosRatesHint: 'Rates shared anonymously by freelancers — ✓ marks confirmations.',
-            autonomosCampaignsTitle: 'Pressure campaigns',
-            autonomosAssociationsTitle: 'Associations present',
-            autonomosUnionsListTitle: 'Self-employed unions & associations',
-            autonomosUnionMembers: 'members',
-            autonomosUnionPlatforms: 'platforms organised',
-            autonomosUnionIssues: 'Demands',
-            autonomosBack: 'Back to directory',
-            /* Web triplicada (17-07-2026): clásica / propuesta / final */
-            versionBar: { clasica: 'Classic', propuesta: 'Proposal', final: 'Final' },
-            versionBarLabel: 'Web version',
-            versionHints: {
-                clasica: 'The web as it exists today.',
-                propuesta: 'Full rework around access rings — the draft of the future.',
-                final: 'Identical to Classic for now. The best of the Proposal will be merged here.'
-            },
-            /* Propuesta — shell de anillos con simulador de rol */
-            propuestaViewAs: '👁 View as',
-            propuestaRoles: { visitante: 'Visitor', usuario: 'User', afiliado: 'Member', militante: 'Militant' },
-            propuestaRings: {
-                r0: { title: 'Ring 0 · Visitor', desc: 'Open to anyone — the map and the digital street.' },
-                r1: { title: 'Ring 1 · User', desc: 'Your file, your cases, your documents.' },
-                r2: { title: 'Ring 2 · Member', desc: 'The internal life of your organisation.' },
-                r3: { title: 'Ring 3 · Militant', desc: 'Organisers\' tools — scoped access.' }
-            },
-            propuestaRingNeeds: 'requires {role}',
-            propuestaLockNotice: 'You need the "{role}" role to enter — the Proposal protects by default.',
-            propuestaLockedTitle: 'This space is protected',
-            propuestaLockedBody: 'With your current role you cannot see this ring. That is not an error — it is the design: access follows responsibility. Switch "View as" to "{role}" to preview it.',
-            propuestaItems: {
-                inicio: 'About the Proposal', perfil: 'User', miscasos: 'My cases & documents',
-                forointerno: 'Internal life', intake: 'Intake', casos: 'Cases', asambleas: 'Assemblies & turns', crm: 'Full CRM'
-            },
-            propuestaInternalTitle: 'Internal space — members',
-            propuestaInternalIntro: 'Members-only board for this collective: strategy, minutes, coordination. What is said here stays in the ring.',
-            gestionEntryTitle: 'Management (CRM)',
-            gestionEntryCta: 'Open management',
-            gestionEntryLockedIntro: 'The management workspace of this collective — census, cases, assemblies, finances, documents. Only militants of the organisation reach it.',
-            gestionContextLabel: 'Management',
-            equipoSectionResumen: 'Overview',
-            equipoForoIntro: 'The team\'s forum and channels — coordination that stays and can be searched.',
-            equipoEmpresasTitle: 'Presence',
-            equipoSectionEstructura: 'Structure',
-            equipoSectionPropietarios: 'Landlords',
-            equipoGroups: { perfil: 'Profile', accion: 'Action', gestion: 'Management' },
-            housingDirectoryTitle: 'Tenants\' unions',
-            housingDirectoryIntro: 'There is no single tenants\' union: each territory organises its own. Open one to reach its assemblies, its landlords, its rent-strike meter and its management.',
-            housingUnionMembers: 'members',
-            housingUnionBuildings: 'organised buildings',
-            housingUnionIssues: 'Demands',
-            housingUnionBack: 'Back to tenants\' unions',
-            crmCensusByType: { unions: 'Members', profesionales: 'Registered', housing: 'Tenants', autonomos: 'Freelancers', estudiantes: 'Students' },
-            crmModuleNotes: {
-                unions: 'Labour organising: cases tied to workplaces and collective agreements, workplace sections and delegates.',
-                profesionales: 'Professional bodies: registration, fees, and grievances routed through the profession\'s unions.',
-                housing: 'Tenant organising: cases tied to buildings and landlords, block assemblies and rent strikes.',
-                autonomos: 'Self-employed: platforms and big clients as actors, collaborative rates, no single employer.',
-                consumidores: 'Consumer coordination: pressure campaigns and fair alternatives rather than member cases.',
-                estudiantes: 'Student organising: grievances by centre, mobilisations and student unions.'
-            },
-            propuestaInicioTitle: 'The Proposal — a ring-based SindicApp',
-            propuestaInicioIntro: 'Same platform, reorganised around one principle: access follows responsibility. Everything public stays public; everything sensitive lives in rings that open as your relationship with the organisation deepens.',
-            propuestaInicioRole: 'You are browsing as',
-            propuestaInicioTry: 'The rings do not organise the interface — they live implicitly inside the modules. Switch roles in the sidebar and watch locks appear and disappear on the same familiar boxes.',
-            propuestaInicioR3Note: 'With the Militant role, the CRM absorbs the internal tools the union asked for: intake, living case files, and assemblies with speaking turns — as regular CRM tabs.',
-            propuestaMisCasosTitle: 'My cases & documents',
-            propuestaMisCasosIntro: 'Self-service window: your own cases, your documents and their review status — and nothing that belongs to anyone else.',
-            propuestaMisCasosCases: 'My cases',
-            propuestaMisCasosDocs: 'My documents',
-            propuestaDocStatus: { ok: 'Reviewed', falta: 'Missing', revision: 'In review' },
-            propuestaForoInternoTitle: 'Internal life',
-            propuestaForoInternoIntro: 'Members-only: the internal forum and the ordinary assemblies. What is said here stays inside the ring.',
-            propuestaForoInternoThreads: 'Internal forum',
-            propuestaForoInternoSessions: 'Upcoming member assemblies',
-            propuestaIntakeTitle: 'Intake — first contacts',
-            propuestaIntakeIntro: 'People are not members from day one. Intake keeps first contacts visible — channel, territory, theme, next step — until they convert or archive.',
-            propuestaIntakeStates: { nuevo: 'New contact', seguimiento: 'Following up', convertida: 'Converted', archivada: 'Archived' },
-            propuestaIntakeConvert: 'Convert to member',
-            propuestaIntakeNext: 'Next step',
-            propuestaCasosTitle: 'Cases — living files',
-            propuestaCasosIntro: 'A case is not a form: it has a person, a theme, an owner, a history of updates, required documents and an outcome.',
-            propuestaCasosHistory: 'Update history',
-            propuestaCasosDocs: 'Required documents',
-            propuestaCasosActor: 'Actor',
-            propuestaCasosPattern: '⚡ Possible collective conflict: {n} open cases against {actor} — group into a special session?',
-            propuestaCasosOutcome: 'Outcome',
-            propuestaCasosPlaybook: 'Playbook',
-            propuestaAsambleasTitle: 'Assemblies & speaking turns',
-            propuestaAsambleasIntro: 'Three session types — ordinary, welcome, special — with attendance, a role quadrant and a live queue of speaking turns designed for a moderator\'s phone.',
-            propuestaSessionTypes: { ordinaria: 'Ordinary', bienvenida: 'Welcome', especial: 'Special' },
-            propuestaAsambleasRoles: 'Role quadrant',
-            propuestaAsambleasRoleGap: 'UNCOVERED',
-            propuestaAsambleasTurns: 'Speaking turns',
-            propuestaAsambleasNext: '▶ Next turn',
-            propuestaTurnStatus: { pendiente: 'Waiting', encurso: 'Speaking', atendida: 'Done' },
-            propuestaTurnKind: { primera: 'first time', actualizacion: 'update' },
-            propuestaAttendance: 'attending',
-            housingSubs: { huelgometro: 'Strike-o-meter', alarmas: 'Eviction alerts', tenedores: 'Big landlords', calculadora: 'Rent check', asambleas: 'Assemblies' },
-            housingIntro: 'Tenant organising — strike-o-meter, eviction alerts, big-landlord campaigns, a rent checker and local assemblies.',
-            /* Vivienda ampliado (13-07-2026): tenedores, calculadora, asambleas, acompañamiento */
-            housingEscortBtn: '🤝 Join the escort picket',
-            housingEscortCount: 'pledged to show up',
-            housingTenedoresTitle: 'Big landlords',
-            housingTenedoresIntro: 'Funds, REITs and banks that own housing at scale — building-by-building collective bargaining, "We\'re staying" style.',
-            housingTenedoresBuildings: 'organised buildings',
-            housingTenedoresUnits: 'homes',
-            housingTenedoresProgress: 'collective negotiation progress',
-            housingTenedoresUnionCta: 'Organised with the tenants\' union',
-            housingCalcTitle: 'Rent check',
-            housingCalcIntro: 'Compare your rent with the reference index for your area (demo index).',
-            housingCalcTerritory: 'Area',
-            housingCalcM2: 'Home size (m²)',
-            housingCalcRent: 'Your monthly rent (€)',
-            housingCalcBtn: 'Check my rent',
-            housingCalcReference: 'Reference rent for this home',
-            housingCalcOver: 'above the reference index',
-            housingCalcUnder: 'below the reference index',
-            housingCalcAdvice: 'If you are paying above the index, your local assembly and the tenants\' union can help you negotiate it down.',
-            housingCalcInvalid: 'Enter a size and a rent to run the check.',
-            housingAsambleasTitle: 'Local assemblies',
-            housingAsambleasIntro: 'Tenant assemblies by area — open meetings, each with its own Telegram group.',
-            housingAsambleasMembers: 'members',
-            housingAsambleasMeets: 'Meets',
-            housingAsambleasTerritoryBtn: 'Territory profile',
-            housingHuelgometroTitle: 'Strike-o-meter',
-            housingHuelgometroIntro: 'National tally of tenants pledged to a rent strike. At 1,000,000 confirmed pledges, the call goes out.',
-            housingThresholdLabel: 'tenants pledged (goal: 1,000,000)',
-            housingPledgeBtn: 'I pledge to join the rent strike',
-            housingAlarmasTitle: 'Eviction alerts',
-            housingAlarmasIntro: 'All scheduled evictions and at-risk cases across every territory, in one feed.',
-            badges: { verified: 'Verified workers', ai: 'AI assist', neutral: 'Neutral platform' },
-            reportTypes: {
-                overtime: 'Unpaid overtime',
-                blackWages: 'Off-the-books pay',
-                lowPay: 'Below convenio',
-                abuse: 'Abusive management'
-            },
-            locationBridgeTitle: 'Map ↔ company bridge',
-            locationBridgeBody: 'The pin is highlighted on the map above. Use the section buttons to open reports, wages, convenio, or action — or pick another company on the map.',
-            locationCoords: 'Coordinates',
-            locationOpenOverview: 'Open overview',
-            locationOpenReports: 'View reports',
-            reportFormTitle: 'Submit anonymous report',
-            reportFormDetail: 'Describe the issue (optional)',
-            reportFormSubmit: 'Submit for moderation',
-            reportFormAiNote: 'AI pre-screen flags duplicates and obvious bad-faith entries before human review.',
-            moderationTitle: 'Moderation queue',
-            moderationPending: 'Pending',
-            moderationApproved: 'Approved',
-            moderationRejected: 'Rejected',
-            moderationApprove: 'Approve',
-            moderationReject: 'Reject',
-            moderationEmpty: 'No reports in this state.',
-            privateForumTitle: 'Private worker room',
-            privateForum: 'Union-hosted private room — filters management and topos. Verification required to join.',
-            privateForumRules: 'Hosted by on-site union delegate. No real names required. Management accounts blocked.',
-            presenceTitle: 'Presence',
-            presenceDelegates: 'Workplace delegates',
-            presenceAgreements: 'Agreements signed',
-            presenceSectors: 'Main sectors',
-            members: 'Members on platform',
-            companiesOnSite: 'Companies with presence',
-            selectUnion: 'Select union…',
-            selectProfesional: 'Select professional body…',
-            selectAutonomo: 'Select team or platform…',
-            selectHousingUnion: 'Select tenants\' union…',
-            autonomosPlatformsTitle: 'Platforms & big clients',
-            selectConsumidor: 'Select product or service…',
-            selectCentro: 'Select study centre…',
-            unionsPick: 'Pick a union or click any union name across the platform.',
-            unionSearchPlaceholder: 'Search by union or sector…',
-            unionBack: 'Back to unions',
-            unionRelatedTitle: 'Other unions in this sector',
-            unionsStatCount: 'Unions in directory',
-            unionsStatMembers: 'Combined membership',
-            unionsStatDelegates: 'Combined workplace delegates',
-            unionFoundedLabel: 'Founded',
-            unionWebsiteLabel: 'Official website',
-            unionMilestonesTitle: 'Milestones & wins',
-            unionHousingCompaniesNote: 'This union organises tenants building by building, not by employer — so it will not show up in a company presence list.',
-            unionSections: {
-                overview: 'Overview',
-                forum: 'Forum',
-                structure: 'Structure',
-                companies: 'Companies'
-            },
-            unionForumIntro: 'Union forum — coordination threads, delegate updates, and sector alerts.',
-            unionStructureIntro: 'Organisational structure — branches, delegates, and liaison roles on SindicApp.',
-            unionOverviewIntro: 'Union profile on the neutral SindicApp directory.',
-            unionOpenForum: 'Open forum',
-            unionOpenStructure: 'View structure',
-            convenioAskAi: 'Guided lookup (demo) on the agreement',
-            convenioAskPlaceholder: 'Paste a clause or describe your doubt…',
-            convenioAskBtn: 'Explain in plain language',
-            convenioAiSample: 'Guided lookup (demo): This clause limits overtime to 80h/year unless collectively agreed. Grounded only in the official agreement text — human review comes before any action. If your contract says otherwise, flag it with a report.',
-            demoNote: 'Demo data for SindicApp. Production would use verified accounts, legal review, and union partnerships.',
-            forumBack: 'Back to general forum',
-            forumThreadMissing: 'Thread not found.',
-            territoryDossierIntro: 'Territory dossier — unions on site, companies, housing forum, and territorial alerts.',
-            territoryWorkplaces: 'Companies in territory',
-            territoryHousingLink: 'Open territory profile',
-            viviendaWorkplacesTitle: 'Companies in territory',
-            viviendaWorkplacesIntro: 'Employers in this territory — labour and housing struggles often overlap here.',
-            fieldSubsector: 'Subsector (branch)',
-            fieldTerritory: 'Territory',
-            selectSubsector: 'Pick subsector…',
-            selectTerritory: 'Pick territory…',
-            addWorkplaceStep2: 'Step 2 — classify on the geography tree',
-            strikeVoteYes: 'I would join a lawful strike',
-            strikeVoteNo: 'Not ready yet',
-            strikeVoteThanks: 'Vote recorded (demo — stored in this browser).',
-            convenioBranchTitle: 'Branch clauses (from collective agreement library)',
-            mapTerritoryDossier: 'Territory dossier',
-            mapClearTerritory: 'Show all territories',
-            aiConvenioHint: 'Guided lookup (demo) explains clauses in plain language — official sources only, human review always, never personal case data.',
-            aiContractHint: 'Upload a contract for community review plus AI summary of risky clauses (demo).',
-            fieldName: 'Company name',
-            fieldSector: 'Sector',
-            fieldAddress: 'Address',
-            fieldLat: 'Latitude',
-            fieldLng: 'Longitude',
-            workplacesIntro: 'Search companies on the map or pick one to open its profile.',
-            unionsIntro: 'Neutral directory — SIPTU, Unite, sector unions, and more. Presence data (delegates, companies, agreements) comes from verifiable records, not community scoring.',
-            reportsIntro: 'Anonymous public reports. Community + AI review before publication.',
-            wagesIntro: 'Crowd-sourced anonymous org chart and pay bands.',
-            wageConvenioRange: 'Range from collective agreement:',
-            actionIntro: 'Strike readiness, confirmation lists, and secure chat.',
-            strikeThreshold: 'threshold',
-            actionPollActive: 'Active poll — 12 days left',
-            actionPrivateList: 'Private confirmation list',
-            actionCoordChat: 'Coordination chat (union-hosted)',
-            officerLabel: 'Officer',
-            /* B4 (R1) — buscador de convenio + FAQ estructurado */
-            finderTitle: 'Which agreement applies to me?',
-            finderIntro: 'Pick your sector to find the collective agreement that likely covers you (demo directory).',
-            finderSector: 'Sector',
-            finderSubmit: 'Find my agreement',
-            finderNoResult: 'No demo entry for that sector yet.',
-            finderScope: 'Scope',
-            finderVigencia: 'In force',
-            finderSource: 'Check the official registry',
-            finderDisclaimer: 'Demo directory — always confirm against the official registry or with a union rep.',
-            faqItems: [
-                { q: 'Can they change my roster without notice?', a: 'Most agreements require minimum notice for roster changes (often 5–7 days). Check the working-time chapter of your agreement; changes without notice can be challenged.' },
-                { q: 'Do I get paid more for night or Sunday work?', a: 'Sectoral agreements usually set premiums for night (e.g. +25%) and Sunday/holiday work. If your payslip shows no premium, compare it against the agreement tables.' },
-                { q: 'How much annual leave am I owed?', a: 'The statutory minimum is 4 working weeks; many agreements improve it. Leave cannot be replaced by pay except at the end of the employment relationship.' },
-                { q: 'What if my contract contradicts the agreement?', a: 'The agreement is a floor, not a ceiling: a contract clause below the agreement minimum is void. The agreement condition applies automatically.' },
-                { q: 'Who can I talk to confidentially?', a: 'Union delegates are bound to confidentiality, and this platform lets you compare situations anonymously before taking any step.' }
-            ],
-            faqOvertimeQ: 'How many overtime hours per month?',
-            faqOvertimeA: 'Sectoral agreement caps at 80h/year unless collectively agreed.',
-            faqContractQ: 'Upload my contract',
-            noMatch: 'No companies match your search.',
-            wageRoleBase: 'Base operative',
-            wageRoleMid: 'Mid role',
-            wageRoleLead: 'Team lead',
-            /* C2 — aportar sueldo */
-            wageContribsTitle: 'Community contributions (this browser)',
-            wageFormTitle: 'Add your salary',
-            wageFormHint: 'Anonymous — stored only in this browser (demo). No names, no accounts.',
-            wageFormRole: 'Role',
-            wageFormAmount: 'Gross amount (€)',
-            wageFormPeriod: 'Period',
-            wageFormMonthly: 'Per month',
-            wageFormHourly: 'Per hour',
-            wageFormSubmit: 'Add anonymously',
-            wagePerHour: '/ hr',
-            wagePerMonth: '/ month',
-            officialChannelsTitle: 'Official channels',
-            officialChannelsIntro: 'A public report here informs your co-workers; an official complaint obliges the authorities to act. This platform signposts the channels with real legal force.',
-            officialChannels: [
-                { name: 'Workplace Relations Commission (WRC)', url: 'https://www.workplacerelations.ie', desc: 'Formal complaints and inspections on pay, working time and employment rights — its decisions are legally enforceable.' },
-                { name: 'Protected Disclosures Act channel (internal)', url: '', desc: 'Internal reporting channel required by the Protected Disclosures Act; gives whistleblowers statutory protection against penalisation.' },
-                { name: 'Data Protection Commission', url: 'https://www.dataprotection.ie', desc: 'Supervisory authority for personal-data issues at work (CCTV, monitoring, HR files) — its rulings are binding.' }
-            ],
-            registryTitle: 'Registry data',
-            registryLegalForm: 'Legal form',
-            registryFounded: 'Incorporated',
-            registryAdmins: 'Directors',
-            registryLastAccounts: 'Latest filed accounts',
-            registryRevenue: 'Revenue',
-            registryResult: 'Net result',
-            registryEbitda: 'EBITDA (approx.)',
-            registrySource: 'Source: CRO / Companies Registration Office — demo data',
-            registryTagline: "Know your company's accounts before you negotiate.",
-            calcTitle: 'Agreement calculator',
-            calcIntro: 'Check your pay against the demo salary table of the applicable agreement.',
-            calcCategory: 'Professional category (ERO/JLC demo table)',
-            calcSelectCategory: 'Select category…',
-            calcHours: 'Weekly hours',
-            calcSalary: 'Gross salary (€)',
-            calcPeriod: 'Salary period',
-            calcPeriodMonthly: 'Monthly (×12 — assumes 12 equal payments)',
-            calcPeriodAnnual: 'Annual',
-            calcSubmit: 'Compare with agreement minimum',
-            calcAbove: 'At or above the agreement minimum.',
-            calcBelow: 'Below the agreement minimum — you can claim the difference.',
-            calcMinLabel: 'Agreement minimum (prorated to your hours)',
-            calcDiffLabel: 'Difference',
-            calcDisclaimer: 'Orientative result based on a demo salary table — not legal advice. Check the full agreement text or ask a union representative.',
-            /* C4 — feedback de acciones (toasts) */
-            notices: {
-                reportQueued: 'Report sent to the moderation queue.',
-                strikeVoteSaved: 'Vote recorded (demo — saved in this browser).',
-                agendaEventAdded: 'Event added to the agenda.',
-                endorsementRequested: 'Endorsement request sent.',
-                endorsementMissingUnion: 'Choose a guarantor union first.',
-                companyAdded: 'Company profile created.',
-                companyFormInvalid: 'Name and address are required.',
-                wageSubmitted: 'Salary contribution saved. Thank you.',
-                pledgeSaved: 'Pledge recorded (demo).',
-                crmTemplateCopied: 'Template copied to clipboard.',
-                crmExported: 'Organisation data exported as JSON.'
-            },
-            /* R4 — Agenda: la capa temporal */
-            agendaTitle: 'Action agenda',
-            agendaUpcomingTitle: 'Upcoming dates',
-            agendaViviendaTitle: 'Territory housing agenda',
-            agendaEmpty: 'No upcoming events (demo).',
-            agendaTypes: { assembly: 'Assembly', vote: 'Vote', deadline: 'Deadline', strike: 'Strike', negotiation: 'Negotiation' },
-            agendaAddTitle: 'Add event (demo)',
-            agendaFieldType: 'Type',
-            agendaFieldDate: 'Date',
-            agendaFieldTitle: 'Title',
-            agendaAddSubmit: 'Add to agenda',
-            agendaAddHint: 'Demo: saved in this browser only.',
-            /* R5 — Verificación como arquitectura */
-            verificationTitle: 'Verification',
-            verificationCurrent: 'Current level',
-            trustLevels: { anon: 'Anonymous', person: 'Verified person', worker: 'Verified worker' },
-            trustLevelDesc: {
-                anon: 'Default level — no identity data. Enough to read and to file anonymous reports.',
-                person: 'A real person is confirmed behind the account — still pseudonymous on the platform.',
-                worker: 'A union vouches that this person works where they say they work.'
-            },
-            verificationDoctrine: 'Unions act as identity guarantors: any union can endorse a worker, and none owns the platform. The endorsement protects this space against company astroturfing without exposing anyone’s name.',
-            verifyRequestBtn: 'Request union endorsement',
-            verifySelectUnion: 'Select guarantor union',
-            verifyPending: 'Pending endorsement from',
-            verifyConfirmBtn: 'The union confirms (demo)',
-            verifyDone: 'Verified worker — endorsed by',
-            /* R7 — Perfiles automáticos de edificio */
-            buildingsTitle: 'Buildings',
-            buildingsIntro: 'Every building gets an automatic profile — condition reports, rent transparency, tenancy rights, and collective action.',
-            buildingUnits: 'homes',
-            buildingOwnerLabel: 'Owner',
-            buildingLargeHolder: 'Large landlord',
-            buildingYearLabel: 'Built',
-            buildingBack: 'Back to buildings',
-            buildingStateTitle: 'Condition',
-            buildingStateIntro: 'Anonymous building-condition reports from residents.',
-            buildingStateModNote: 'Reports pass community moderation before publication, like company reports.',
-            buildingStateEmpty: 'No published reports for this building yet (demo).',
-            buildingRentsTitle: 'Rents',
-            buildingRentM2: 'Zone price per m²',
-            buildingRentTypical: 'Typical rent in the zone',
-            buildingRentIndexNote: 'Reference: RTB Rent Index for the area — check it before signing or renewing.',
-            buildingContractTitle: 'Tenancy & rights',
-            buildingContractFaq: [
-                { q: 'Is the tenancy registered?', a: 'Landlords must register every tenancy with the Residential Tenancies Board (RTB). An unregistered tenancy still protects the tenant.' },
-                { q: 'How much can rent rise?', a: 'In Rent Pressure Zones increases are capped (2% per year or inflation, whichever is lower). Check whether the building is in an RPZ.' },
-                { q: 'What notice must I get?', a: 'Notice periods scale with tenancy duration — from 90 days after 6 months up to 224 days after 8 years. A notice without valid grounds can be challenged at the RTB.' }
-            ],
-            buildingActionTitle: 'Action',
-            buildingEvictionLinkNote: 'Linked to the territory eviction alerts — same channel, same moderation.',
-            tenantPledgeBtn: 'I would join collective tenant action',
-            tenantPledgeCount: 'confirmations (demo)',
-            propuestaCasosConvene: 'Convene special session',
-            propuestaCasosConvened: 'Special session created — find it under Assemblies.',
-            propuestaCasosSessionExists: 'A special session for this actor is already convened.',
-            propuestaAttendAdd: 'Record attendance',
-            propuestaAgendaExport: 'Order of the day',
-            propuestaFilterPlaceholder: 'Filter…',
-            propuestaCasosDocsMissing: 'Missing for this theme',
-            propuestaCasosDocsComplete: 'Theme documentation complete',
-            notifTitle: 'Notices',
-            notifEmpty: 'Nothing pending for now.',
-            notifRoleTeaser: 'Sign in as Usuario or above to receive personal notices.',
-            notifTurns: '{n} pending turns',
-            notifDocsReview: '{n} documents awaiting review',
-            notifDocFalta: 'Still missing from your case: {d}',
-            asambleaLiveBtn: 'Assembly mode',
-            asambleaLiveNow: 'Speaking now',
-            asambleaLiveNext: 'Up next',
-            asambleaLiveNone: 'No turn in progress',
-            asambleaLiveEmpty: 'No pending turns — all caught up.',
-            asambleaLiveClose: 'Exit assembly mode',
-            crmImportCsv: 'Import CSV (demo)',
-            crmImportDone: '{n} people added to the census from the CSV',
-            crmImportEmpty: 'No usable rows found (expected headers: name, company, role…)',
-            territoryEmptyTitle: 'No structure here yet',
-            territoryEmptyBody: 'Nobody has built this territory yet — no union teams, no companies on file, no forum threads. Be the first: open the housing view or add your company from Companies.',
-            resetDemoLabel: 'Reset demo data',
-            resetDemoConfirm: 'This wipes every locally stored demo change (companies added, votes, cases, CRM…) and reloads the app. Continue?',
-            moduleLoadError: 'Syndicate module failed to load.'
-        },
-        es: {
-            manifestTitle: 'Infraestructura neutral para coordinación laboral',
-            manifestBody: 'Sindicato es una plataforma basada en la geografía: cada empresa tiene perfil en el mapa. Trabajadores, sindicatos y comunidades comparten herramientas — denuncias, transparencia salarial, guía de convenio y coordinación de huelga — sin sustituir a los sindicatos existentes.',
-            welcomeTitle: 'Bienvenido/a a SindicApp',
-            welcomeLead: 'Infraestructura neutral para coordinación laboral. Elige una sección en la barra lateral para empezar.',
-            welcomeHint: 'CRM, wiki, sindicatos, vivienda, mapa, foro, sectores y empresas — todo en una plataforma basada en la geografía.',
-            mapTitle: 'Mapa de empresas',
-            mapIntro: 'Cada pin es un perfil automático de empresa. Pulsa un pin del mapa para abrir su perfil.',
-            mapHint: 'Activa capas en Borders para explorar los pins por territorio.',
-            workplacesTitle: 'Directorio de empresas',
-            unionsTitle: 'Directorio sindical',
-            feedTitle: 'Foro',
-            feedIntro: 'Tablón abierto de SindicApp — coordinación de delegadas, conflictos de convenio, preparación de huelga y alertas territoriales.',
-            feedIntroSidebar: 'Tres ámbitos de foro — un botón por fila. Foro general, foros sectoriales y foros territoriales.',
-            feedSubs: { general: 'General', sectores: 'Sectores', territorios: 'Territorios', interno: 'Interno' },
-            feedPickScope: 'Elige un subsector o territorio en la barra lateral para abrir su foro en el espacio de fondo.',
-            feedScopeGeneral: 'Foro general',
-            feedScopeSector: 'Foro sectorial',
-            feedScopeTerritory: 'Foro territorial',
-            feedCompanyFilter: 'Empresa en este ámbito',
-            selectFeedCompany: 'Todas las empresas del ámbito…',
-            sectoresTitle: 'Sectores económicos',
-            sectoresIntro: 'Dossier del subsector — sindicatos presentes, empresas y foro de la rama.',
-            sectoresSectorIntro: 'Vista del sector — todas las ramas, sindicatos presentes, empresas y foro sectorial.',
-            sectoresPick: 'Elige sector, subsector o sub-subsector en la barra lateral.',
-            sectoresUnions: 'Sindicatos presentes',
-            sectoresWorkplaces: 'Empresas del sector',
-            sectoresForum: 'Foro sectorial',
-            sectoresForumPosts: 'Publicaciones recientes',
-            sectoresGotoForumBtn: 'Abrir foro del sector',
-            sectoresConvenioTitle: 'Convenio aplicable',
-            sectoresConvenioIntro: 'Convenio colectivo de referencia para este sector (directorio demo).',
-            sectoresEmptyUnions: 'Aún no hay sindicatos registrados en este sector.',
-            sectoresEmptyWorkplaces: 'Aún no hay empresas registradas en este sector.',
-            sectoresIntroSidebar: 'Árbol sectorial (sector → subsector → sub-subsector). Despliega ramas con ▼. Todo abierto de momento.',
-            coordinationTitle: 'CRM',
-            coordinationIntro: 'CRM sindical — afiliadas, casos, campañas y finanzas para cualquier organización.',
-            coordinationIntroSidebar: 'CRM sindical — elige organización y gestiona afiliadas, casos, campañas y finanzas.',
-            crmOrgLabel: 'Organización',
-            wikiTitle: 'Wiki',
-            wikiIntroSidebar: 'Wiki interna — índice y normas de plataforma.',
-            wikiIndexBlurb: 'Base de conocimiento — normas de plataforma y cómo funciona la coordinación.',
-            wikiNormasBody: 'Cola de denuncias, cuentas verificadas, informes anónimos y escalado al consejo de coordinación.',
-            viviendaTitle: 'Territorio',
-            viviendaIntro: 'Perfil del territorio — empresas, vivienda, foro y redes.',
-            viviendaIntroSidebar: 'Cada territorio tiene su perfil — empresas, vivienda, foro y redes.',
-            viviendaEmpty: 'Elige provincia y comarca en la barra lateral para abrir el perfil del territorio.',
-            viviendaPickTerritory: 'Selecciona una comarca en la barra lateral.',
-            viviendaForumTitle: 'Foro del territorio',
-            viviendaHousingTitle: 'Vivienda',
-            viviendaAlertsTitle: 'Alertas de desahucio',
-            viviendaNoAlerts: 'Sin desahucios programados en este territorio (demo).',
-            viviendaParentLabel: 'Selecciona provincia',
-            viviendaTerritoryLabel: 'Selecciona comarca',
-            viviendaMunicipalityLabel: 'Selecciona municipio',
-            viviendaMunicipalityAll: 'Toda la comarca',
-            viewToggle: { map: 'Mapa', lista: 'Lista' },
-            viviendaMunicipalityNote: 'Perfil de municipio — próximamente (estructura demo).',
-            viviendaLinksTitle: 'Redes y canales',
-            viviendaLinksIntro: 'Canales del territorio — Telegram, fediverso y RRSS (enlaces demo).',
-            viviendaParentShort: 'Provincia',
-            viviendaTerritoryShort: 'Comarca',
-            viviendaMunicipalityShort: 'Municipio',
-            viviendaStatWorkplaces: 'empresas',
-            viviendaStatAlerts: 'alertas',
-            viviendaStatBuildings: 'edificios',
-            viviendaStatThreads: 'hilos',
-            viviendaOpenMap: 'Ver en el mapa',
-            viviendaOpenForum: 'Abrir foro del territorio',
-            viviendaAgendaTitle: 'Agenda',
-            coordSections: { admin: 'Admin', wiki: 'Wiki' },
-            coordSubs: { afiliadas: 'Afiliadas', casos: 'Casos', campanas: 'Campañas', finanzas: 'Finanzas', comunicaciones: 'Comunicaciones', calendario: 'Calendario', documentos: 'Documentos', datos: 'Bases de datos', fuentes: 'Fuentes de datos', estructura: 'Estructura', intake: 'Intake', asambleas: 'Asambleas' },
-            crmEstructuraIntro: 'El organigrama vivo de la organización — comisiones, su ámbito, quién cubre cada cargo y un documento de funciones para cada uno. Los cargos vacantes aparecen en rojo.',
-            crmEstructuraScope: 'Ámbito',
-            crmEstructuraFunciones: 'Documento de funciones',
-            crmEstructuraVacante: 'Vacante',
-            crmEstructuraMembers: 'personas',
-            shareBtn: '🔗 Copiar enlace',
-            shareCopied: 'Enlace copiado al portapapeles.',
-            reportPlaybookTitle: 'Conoce tus derechos antes de denunciar',
-            wageCompareTitle: 'Comparativa salarial del sector',
-            wageCompareIntro: 'Cómo se comparan las bandas de esta empresa con otras del mismo sector (datos demo).',
-            wageCompareThisCompany: 'esta empresa',
-            agendaAlertPrefix: '📅 Se acerca:',
-            crmDatosIntro: 'Las bases de datos de la organización — la fuente de verdad compartida. Pensadas para soportar pluralidad desde el principio: una persona puede tener varias direcciones a lo largo del tiempo, un caso afectar a varias personas, un edificio varios propietarios.',
-            crmDatosTablesTitle: 'Tablas principales',
-            crmDatosSourcesTitle: 'Registro de fuentes de datos',
-            crmDatosRecords: 'registros',
-            crmDocAmbitos: { publico: 'Público', afiliadas: 'Afiliadas', comision: 'Comisión', caso: 'Solo caso' },
-            crmDocRevision: { pendiente: 'Revisión pendiente', revision: 'En revisión', revisada: 'Revisada' },
-            crmDocAccessTitle: 'Acceso y revisión',
-            crmAfiliadasIntro: 'Censo de afiliación — busca, filtra por estado y abre cada ficha.',
-            crmCasosIntro: 'Pipeline de casos — mueve cada conflicto por sus etapas con ◀ ▶.',
-            crmCampanasIntro: 'Campañas activas — progreso hacia cada objetivo.',
-            crmFinanzasIntro: 'Cuotas, fondo de huelga y libro de movimientos de la organización elegida.',
-            crmComunicacionesIntro: 'Boletines y avisos — borradores, programadas y enviadas.',
-            crmCalendarioIntro: 'Asambleas, mesas de negociación y formación — añade eventos abajo.',
-            crmDocumentosIntro: 'Biblioteca de documentos — filtra por categoría.',
-            wikiSubs: { index: 'Índice', sindicapp: 'SindicApp', derechos: 'Derechos', denunciar: 'Denunciar', organizar: 'Organizar', glosario: 'Glosario', normas: 'Normas' },
-            wikiIntro: 'Base de conocimiento compartida — empieza por SindicApp, luego derechos laborales, cómo denunciar, cómo organizarse y normas de plataforma. La wiki es transversal: cada empresa, sector, sindicato y territorio tiene además su propia página wiki.',
-            wikiEntitySummaryTitle: 'Resumen',
-            wikiEntityNotesTitle: 'Historia y notas',
-            wikiEntityLinksTitle: 'Enlaces',
-            wikiOpenProfile: 'Abrir perfil',
-            wikiOpenForum: 'Abrir foro',
-            wikiEntityNotes: {
-                workplace: 'Registro compartido de esta empresa — conflictos ganados y perdidos, convenio aplicable, delegadas e hitos de organización. Contenido demo; las trabajadoras verificadas pueden ampliarlo.',
-                sector: 'Conocimiento del sector — convenios de referencia, agravios recurrentes y cómo suele funcionar la organización en estas empresas. Contenido demo.',
-                union: 'Página del sindicato — cómo afiliarse, estructura interna, victorias históricas y recursos para afiliadas. Contenido demo.',
-                territory: 'Conocimiento del territorio — contexto laboral y de vivienda local, contactos y recursos. Contenido demo.'
-            },
-            wikiKbTitle: 'Base de conocimiento',
-            wikiPlatformTitle: 'Plataforma',
-            wikiTransversalTitle: 'A lo largo de la plataforma',
-            wikiTransversalIntro: 'Abre cualquier perfil de empresa, sector, sindicato o territorio — todos tienen una sección 📖 Wiki que enlaza aquí.',
-            wikiEmbedTitle: 'Wiki',
-            wikiEmbedCta: 'Abrir la wiki',
-            wikiArticles: {
-                sindicapp: {
-                    title: 'Sobre SindicApp',
-                    summary: 'Qué es esta plataforma, de dónde viene y quién la creó.',
-                    body: '<p>SindicApp es infraestructura neutral para la coordinación trabajadora — una plataforma basada en la geografía donde cada empresa tiene un perfil automático en el mapa, y desde ahí se accede a denuncias anónimas, transparencia salarial, convenio, acción colectiva y foros.</p>'
-                        + '<p>Explícitamente <strong>no</strong> sustituye a los sindicatos existentes. Es fontanería complementaria: un directorio de empresas, un mapa territorial, foros de sector y territorio, y espacios de coordinación verificados que cualquier organización puede usar.</p>'
-                        + '<h3>Historia</h3>'
-                        + '<p>SindicApp la creó <strong>Edu Nauta</strong> como prototipo independiente y abierto. Empezó como una sola página web autocontenida explorando una idea: que si pones cada centro de trabajo en un mapa compartido, la coordinación se vuelve visible y alcanzable en vez de dispersarse por chats privados.</p>'
-                        + '<p>Desde aquel primer boceto fue creciendo, módulo a módulo — perfiles de empresa, denuncias y transparencia salarial, foros de sector y territorio, un directorio de sindicatos, un CRM multi-sindicato y esta wiki transversal. Está construida como una web estática sin backend: el código corre entero en el navegador, así que cualquiera puede abrirla, leerla y bifurcarla. El proyecto se mantiene deliberadamente neutral y no comercial — una herramienta común, no un producto.</p>'
-                        + '<div class="sindicato-coord-card"><strong>Principios</strong><p>La geografía primero · neutral y complementaria a los sindicatos · anonimato para la trabajadora, verificación para el peso · abierta y bifurcable.</p></div>'
-                },
-                derechos: {
-                    title: 'Derechos básicos en el trabajo',
-                    summary: 'Mínimos irrenunciables: salario, jornada, descanso y derecho a organizarse.',
-                    body: '<p>Son el suelo que ningún contrato puede rebajar. Si tu empresa ofrece menos, es un incumplimiento — no un favor que te retiran.</p>'
-                        + '<div class="sindicato-coord-card"><strong>Salario</strong><p>Te corresponde al menos el mínimo legal o de convenio por cada hora trabajada, incluidas horas extra y pluses.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Jornada y descanso</strong><p>La jornada máxima semanal, los descansos diario y semanal y las vacaciones pagadas los fijan la ley y el convenio aplicable.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Derecho a organizarse</strong><p>Afiliarse a un sindicato, elegir delegadas y reunirse con compañeras está protegido. Represaliar por ello es ilegal.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Seguridad</strong><p>Puedes negarte a un trabajo con riesgo grave e inminente para tu salud y denunciar condiciones inseguras.</p></div>'
-                },
-                denunciar: {
-                    title: 'Cómo poner una denuncia',
-                    summary: 'Del borrador a la moderación — el recorrido de una denuncia anónima en SindicApp.',
-                    body: '<p>Las denuncias alimentan el historial público de una empresa protegiendo a quien las pone.</p>'
-                        + '<ol class="sindicato-wiki-steps"><li>Abre el perfil de la empresa → <strong>Denuncias</strong>, o usa tu propia empresa en <strong>Usuario</strong>.</li>'
-                        + '<li>Elige un tipo (horas extra sin pagar, seguridad, acoso…) y describe lo ocurrido. No hace falta nombre real.</li>'
-                        + '<li>Una pasada de IA más moderación comunitaria la revisan antes de hacerse pública.</li>'
-                        + '<li>Las denuncias aprobadas suben los contadores de la empresa; los casos sensibles escalan al consejo de coordinación.</li></ol>'
-                        + '<p class="template-muted">Las cuentas de trabajadora verificada pesan más, pero cualquiera puede aportar.</p>'
-                },
-                organizar: {
-                    title: 'Organizar una sección sindical',
-                    summary: 'De un chat privado a una sección reconocida, paso a paso.',
-                    body: '<p>Organizarse es una secuencia, no un salto. Cada paso reduce el riesgo del siguiente.</p>'
-                        + '<ol class="sindicato-wiki-steps"><li><strong>Mapea.</strong> Anota quién trabaja, los turnos y los agravios compartidos por muchas.</li>'
-                        + '<li><strong>Forma un núcleo.</strong> Encuentra de tres a cinco compañeras de confianza antes de abrirlo.</li>'
-                        + '<li><strong>Elige un tema.</strong> Empieza por una demanda concreta y ganable.</li>'
-                        + '<li><strong>Acude a un sindicato.</strong> Usa el directorio de <strong>Sindicatos</strong> para encontrar uno activo en tu sector.</li>'
-                        + '<li><strong>Elige delegadas.</strong> Formaliza la representación y abre una sala privada de trabajadoras.</li></ol>'
-                        + '<p class="template-muted">La sala privada de cada perfil de empresa es justo para esto — las cuentas de dirección quedan bloqueadas.</p>'
-                },
-                glosario: {
-                    title: 'Glosario',
-                    summary: 'Términos clave usados en SindicApp.',
-                    body: '<dl class="sindicato-wiki-glossary">'
-                        + '<dt>Convenio colectivo</dt><dd>El reglamento negociado — tablas salariales, jornada, permisos — que se aplica a un sector o empresa.</dd>'
-                        + '<dt>Delegada</dt><dd>Trabajadora elegida que representa a sus compañeras ante la dirección y el sindicato.</dd>'
-                        + '<dt>Sección sindical</dt><dd>La presencia organizada de un sindicato dentro de una empresa.</dd>'
-                        + '<dt>Caja de resistencia</dt><dd>Fondo reservado para sostener a las afiliadas durante una acción sindical.</dd>'
-                        + '<dt>Trabajadora verificada</dt><dd>Cuenta confirmada como empleada en el centro, que da más peso a denuncias y votos.</dd>'
-                        + '</dl>'
-                },
-                ia: {
-                    title: 'IA y sindicalismo: nuestra doctrina',
-                    summary: 'Dónde cabe la IA en una plataforma sindical — y dónde no.',
-                    body: '<p>La automatización es atractiva, pero en una plataforma sindical puede dañar justo lo que hace posible organizarse: privacidad, confianza y responsabilidad. La posición de SindicApp:</p>'
-                        + '<div class="sindicato-coord-card"><strong>Solo fuentes oficiales</strong><p>Cualquier asistente trabaja exclusivamente sobre textos oficiales y públicos — convenios, legislación, guías aprobadas por sindicatos. Nunca sobre rumor ni opinión raspada.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Revisión humana, siempre</strong><p>Ninguna salida automática dispara por sí sola una acción o publicación. Primero pasa la revisión comunitaria y organizadora.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Nunca datos personales de casos</strong><p>Intake, casos, asambleas y documentos — la cara interna del trabajo sindical — se diseñan <em>sin</em> IA. Los datos sensibles no son combustible de asistentes.</p></div>'
-                        + '<div class="sindicato-coord-card"><strong>Primero las bases</strong><p>Antes de automatizar nada: permisos claros, prácticas de datos estables y flujos humanos que ya funcionan.</p></div>'
-                        + '<p class="template-muted">Por eso la pestaña de convenio ofrece una «consulta guiada (demo)» acotada y la IA solo <em>asiste</em> a la moderación comunitaria de denuncias públicas.</p>'
-                }
-            },
-            wikiEmbedBlurbs: {
-                workplace: 'Wiki de la empresa — convenio aplicable, historial de conflictos y cómo organizarse aquí.',
-                sector: 'Wiki del sector — convenios de referencia, agravios comunes y notas de organización del sector.',
-                union: 'Wiki del sindicato — cómo afiliarse, estructura interna y recursos para afiliadas.',
-                territory: 'Wiki del territorio — recursos locales, contactos y contexto de vivienda/trabajo.'
-            },
-            sector: 'Sector',
-            workers: 'Trabajadores verificados',
-            reports: 'Denuncias abiertas',
-            unionsPresent: 'Sindicatos presentes',
-            strikeMeterTitle: 'Huelgómetro',
-            strikeSupport: 'Apoyo a huelga',
-            addWorkplace: 'Añadir empresa',
-            addWorkplaceTitle: 'Registrar empleador que falta',
-            addWorkplaceHint: 'Crea un nuevo pin en el mapa. Demo: se guarda solo en este navegador.',
-            searchPlaceholder: 'Buscar por nombre o sector…',
-            selectWorkplace: 'Seleccionar empresa…',
-            sections: {
-                location: 'Mapa',
-                overview: 'Resumen',
-                reports: 'Denuncias',
-                wages: 'Sueldos',
-                convenio: 'Convenio',
-                action: 'Acción',
-                miscasos: 'Mis casos'
-            },
-            subs: { coordination: 'CRM', wiki: 'Wiki', unions: 'Trabajadores', sindicatos: 'Sindicatos', autonomos: 'Autónomos', profesionales: 'Profesionales', vivienda: 'Mapa', map: 'Mapa', feed: 'Red Social', foro: 'Foro', sectores: 'Sectores', workplaces: 'Empresas', housing: 'Inquilinos', consumidores: 'Consumidores', estudiantes: 'Estudiantes', usuario: 'Perfil', anillo: 'Propuesta' },
-            /* Red Social (13-07-2026) — módulo master: landing + panel de stats por módulo + actividad. */
-            redSocialTitle: 'Red social',
-            redSocialIntro: 'Portada de la red — todos los módulos de un vistazo. Abre un panel para entrar.',
-            redSocialIntroSidebar: 'Portada de la red — stats de cada módulo y actividad reciente en el fondo.',
-            redSocialActivityTitle: 'Actividad reciente',
-            redSocialClaim: 'Cada empresa, cada casa, cada campus y cada plataforma en un mismo mapa — para que lo que está disperso pueda encontrarse y actuar junto.',
-            redSocialColectivosTitle: 'Colectivos',
-            redSocialHerramientasTitle: 'Territorio y empresas',
-            redSocialTotalMembers: 'afiliación combinada',
-            redSocialTotalCompanies: 'empresas en el mapa',
-            redSocialTotalReports: 'denuncias abiertas',
-            redSocialTotalTerritories: 'territorios',
-            redSocialStatLabels: {
-                unions: ['sindicatos en el directorio', 'afiliación combinada'],
-                profesionales: ['colegios profesionales', 'sindicatos de profesión'],
-                housing: ['sindicatos de inquilinas', 'fincas organizadas'],
-                autonomos: ['plataformas y clientes', 'campañas activas'],
-                vivienda: ['perfiles de territorio', 'alertas de desahucio'],
-                sectores: ['ramas sectoriales', 'foros de subsector'],
-                workplaces: ['empresas en el mapa', 'denuncias abiertas'],
-                consumidores: ['productos y servicios', 'campañas activas'],
-                estudiantes: ['centros de estudios', 'colectivos estudiantiles']
-            },
-            /* Redes y canales (13-07-2026) — grupo de Telegram y RRSS por entidad. */
-            socialLinksTitle: 'Redes y canales',
-            socialLinksIntro: 'Grupo y canales oficiales de este perfil (enlaces demo).',
-            telegramGroupLabel: 'Grupo de Telegram',
-            /* Foro (13-07-2026) — módulo propio; los árboles de subforos van al fondo. */
-            foroPickSectorTitle: 'Subforos por sector',
-            foroPickSectorIntro: 'Elige una rama del árbol sectorial para abrir su foro.',
-            foroPickTerritoryTitle: 'Subforos por territorio',
-            foroPickTerritoryIntro: 'Elige un territorio para abrir su foro — cada provincia y comarca tiene el suyo.',
-            foroBackToTree: 'Todos los subforos',
-            /* Consumidores (13-07-2026) */
-            consumidoresTitle: 'Coordinación de consumo',
-            consumidoresIntro: 'Productos y servicios con registro público — denuncias de consumo, campañas de presión y alternativas justas. La lógica del mapa de empresas, vista desde la caja.',
-            consumidoresDirectoryHint: 'Abre un producto o servicio para ver su registro.',
-            consumidoresStatComplaints: 'denuncias de consumo',
-            consumidoresStatCampaigns: 'campañas activas',
-            consumidoresStatSupport: 'apoyo medio de campaña',
-            consumidoresCampaignsTitle: 'Campañas de presión',
-            consumidoresAlternativesTitle: 'Alternativas justas',
-            consumidoresTipsTitle: 'Conoce tus derechos',
-            consumidoresRelatedCompany: 'Perfil de empresa en el mapa',
-            consumidoresBack: 'Volver al directorio',
-            consumidoresTypeProduct: 'Producto',
-            consumidoresTypeService: 'Servicio',
-            /* Estudiantes (13-07-2026) */
-            estudiantesTitle: 'Centros de estudios',
-            estudiantesIntro: 'Universidades, institutos y FP — cada centro tiene su perfil con colectivos estudiantiles, reivindicaciones y movilizaciones. La lógica geografía-primero, aplicada a la educación.',
-            estudiantesDirectoryHint: 'Abre un centro para ver su perfil.',
-            estudiantesStatStudents: 'estudiantes',
-            estudiantesStatGroups: 'colectivos',
-            estudiantesStatIssues: 'reivindicaciones abiertas',
-            estudiantesGroupsTitle: 'Colectivos y sindicatos de estudiantes',
-            estudiantesIssuesTitle: 'Quejas y reivindicaciones',
-            estudiantesMobilizationsTitle: 'Movilizaciones',
-            estudiantesBack: 'Volver a centros',
-            /* Profesionales (17-07-2026) */
-            profesionalesTitle: 'Colegios profesionales',
-            profesionalesIntro: 'Médicos, abogados, arquitectos, enfermería — cada colegio profesional tiene su perfil con colegiación, cuotas, reivindicaciones y los sindicatos de la profesión. El trabajo colegiado, organizado.',
-            profesionalesDirectoryHint: 'Abre un colegio para ver su perfil.',
-            profesionalesStatMembers: 'colegiadas',
-            profesionalesStatFee: 'cuota anual',
-            profesionalesStatIssues: 'reivindicaciones abiertas',
-            profesionalesUnionsTitle: 'Sindicatos de profesión presentes',
-            profesionalesIssuesTitle: 'Quejas y reivindicaciones',
-            profesionalesMobilizationsTitle: 'Movilizaciones',
-            profesionalesBack: 'Volver al directorio',
-            /* Autónomos (17-07-2026) */
-            autonomosTitle: 'Coordinación de autónomos',
-            autonomosIntro: 'Plataformas y grandes clientes que fijan las condiciones del trabajo autónomo — cada uno con su perfil: tarifas colaborativas, campañas de presión y las asociaciones que se organizan ahí.',
-            autonomosDirectoryHint: 'Abre una plataforma o cliente para ver su registro.',
-            autonomosStatFreelancers: 'autónomas activas',
-            autonomosStatCampaigns: 'campañas activas',
-            autonomosStatRates: 'tarifas compartidas',
-            autonomosRatesTitle: 'Tarifas colaborativas',
-            autonomosRatesHint: 'Tarifas compartidas anónimamente por autónomas — ✓ marca confirmaciones.',
-            autonomosCampaignsTitle: 'Campañas de presión',
-            autonomosAssociationsTitle: 'Asociaciones presentes',
-            autonomosUnionsListTitle: 'Sindicatos y asociaciones de autónomas',
-            autonomosUnionMembers: 'afiliadas',
-            autonomosUnionPlatforms: 'plataformas organizadas',
-            autonomosUnionIssues: 'Reivindicaciones',
-            autonomosBack: 'Volver al directorio',
-            /* Web triplicada (17-07-2026): clásica / propuesta / final */
-            versionBar: { clasica: 'Clásica', propuesta: 'Propuesta', final: 'Final' },
-            versionBarLabel: 'Versión de la web',
-            versionHints: {
-                clasica: 'La web tal y como existe hoy.',
-                propuesta: 'Rework completo en torno a anillos de acceso — el borrador de futuro.',
-                final: 'De momento, idéntica a la Clásica. Aquí se integrará lo mejor de la Propuesta.'
-            },
-            /* Propuesta — shell de anillos con simulador de rol */
-            propuestaViewAs: '👁 Ver como',
-            propuestaRoles: { visitante: 'Visitante', usuario: 'Usuario', afiliado: 'Afiliado', militante: 'Militante' },
-            propuestaRings: {
-                r0: { title: 'Anillo 0 · Visitante', desc: 'Abierto a cualquiera — el mapa y la calle digital.' },
-                r1: { title: 'Anillo 1 · Usuario', desc: 'Tu ficha, tus casos, tus documentos.' },
-                r2: { title: 'Anillo 2 · Afiliado', desc: 'La vida interna de tu organización.' },
-                r3: { title: 'Anillo 3 · Militante', desc: 'Herramientas de quien organiza — acceso acotado.' }
-            },
-            propuestaRingNeeds: 'requiere {role}',
-            propuestaLockNotice: 'Necesitas el rol «{role}» para entrar — la Propuesta protege por defecto.',
-            propuestaLockedTitle: 'Este espacio está protegido',
-            propuestaLockedBody: 'Con tu rol actual no puedes ver este anillo. No es un error: es el diseño — el acceso sigue la responsabilidad. Cambia «Ver como» a «{role}» para previsualizarlo.',
-            propuestaItems: {
-                inicio: 'Sobre la Propuesta', perfil: 'Usuario', miscasos: 'Mis casos y documentos',
-                forointerno: 'Vida interna', intake: 'Intake', casos: 'Casos', asambleas: 'Asambleas y turnos', crm: 'CRM completo'
-            },
-            propuestaInternalTitle: 'Espacio interno — afiliadas',
-            propuestaInternalIntro: 'Tablón solo para afiliadas de este colectivo: estrategia, actas, coordinación. Lo que se dice aquí se queda en el anillo.',
-            gestionEntryTitle: 'Gestión (CRM)',
-            gestionEntryCta: 'Abrir la gestión',
-            gestionEntryLockedIntro: 'El espacio de gestión de este colectivo — censo, casos, asambleas, finanzas, documentos. Solo lo alcanzan las militantes de la organización.',
-            gestionContextLabel: 'Gestión',
-            equipoSectionResumen: 'Resumen',
-            equipoForoIntro: 'El foro y los canales del equipo — coordinación que queda y se puede buscar.',
-            equipoEmpresasTitle: 'Presencia',
-            equipoSectionEstructura: 'Estructura',
-            equipoSectionPropietarios: 'Propietarios',
-            equipoGroups: { perfil: 'Perfil', accion: 'Acción', gestion: 'Gestión' },
-            housingDirectoryTitle: 'Sindicatos de inquilinas',
-            housingDirectoryIntro: 'No hay un único sindicato de inquilinas: cada territorio organiza el suyo. Abre uno para llegar a sus asambleas, sus propietarios, su huelgómetro y su gestión.',
-            housingUnionMembers: 'afiliadas',
-            housingUnionBuildings: 'fincas organizadas',
-            housingUnionIssues: 'Reivindicaciones',
-            housingUnionBack: 'Volver a sindicatos de inquilinas',
-            crmCensusByType: { unions: 'Afiliadas', profesionales: 'Colegiadas', housing: 'Inquilinas', autonomos: 'Autónomas', estudiantes: 'Estudiantes' },
-            crmModuleNotes: {
-                unions: 'Organización laboral: casos ligados a empresas y convenios, secciones sindicales y delegadas.',
-                profesionales: 'Colegios profesionales: colegiación, cuotas y reivindicaciones a través de los sindicatos de profesión.',
-                housing: 'Organización de inquilinas: casos ligados a edificios y tenedores, asambleas de bloque y huelgas de alquileres.',
-                autonomos: 'Autónomas: plataformas y grandes clientes como actores, tarifas colaborativas, sin un único empleador.',
-                consumidores: 'Coordinación de consumo: campañas de presión y alternativas justas más que casos de afiliadas.',
-                estudiantes: 'Organización estudiantil: reivindicaciones por centro, movilizaciones y sindicatos de estudiantes.'
-            },
-            propuestaInicioTitle: 'La Propuesta — un SindicApp por anillos',
-            propuestaInicioIntro: 'La misma plataforma, reorganizada en torno a un principio: el acceso sigue la responsabilidad. Lo público sigue siendo público; lo sensible vive en anillos que se abren según se profundiza tu relación con la organización.',
-            propuestaInicioRole: 'Estás navegando como',
-            propuestaInicioTry: 'Los anillos no organizan la interfaz: van implícitos dentro de los módulos. Cambia de rol en la barra lateral y observa cómo aparecen y desaparecen candados sobre los mismos cuadros de siempre.',
-            propuestaInicioR3Note: 'Con el rol Militante, el CRM absorbe las herramientas internas que pedía el sindicato: intake, fichas de caso vivas y asambleas con turnos de palabra — como pestañas normales del CRM.',
-            propuestaMisCasosTitle: 'Mis casos y documentos',
-            propuestaMisCasosIntro: 'Ventana de autoservicio: tus casos, tus documentos y su estado de revisión — y nada que pertenezca a otra persona.',
-            propuestaMisCasosCases: 'Mis casos',
-            propuestaMisCasosDocs: 'Mis documentos',
-            propuestaDocStatus: { ok: 'Revisado', falta: 'Falta', revision: 'En revisión' },
-            propuestaForoInternoTitle: 'Vida interna',
-            propuestaForoInternoIntro: 'Solo afiliadas: el foro interno y las asambleas ordinarias. Lo que se dice aquí se queda en el anillo.',
-            propuestaForoInternoThreads: 'Foro interno',
-            propuestaForoInternoSessions: 'Próximas asambleas de afiliadas',
-            propuestaIntakeTitle: 'Intake — primeros contactos',
-            propuestaIntakeIntro: 'Nadie es afiliada desde el primer día. El intake mantiene visibles los primeros contactos — canal, territorio, tema, próximo paso — hasta que se convierten o se archivan.',
-            propuestaIntakeStates: { nuevo: 'Contacto nuevo', seguimiento: 'En seguimiento', convertida: 'Convertida', archivada: 'Archivada' },
-            propuestaIntakeConvert: 'Convertir en afiliada',
-            propuestaIntakeNext: 'Próximo paso',
-            propuestaCasosTitle: 'Casos — fichas vivas',
-            propuestaCasosIntro: 'Un caso no es un formulario: tiene persona, tema, responsable, historial de actualizaciones, documentos requeridos y resultado.',
-            propuestaCasosHistory: 'Historial de actualizaciones',
-            propuestaCasosDocs: 'Documentos requeridos',
-            propuestaCasosActor: 'Actor',
-            propuestaCasosPattern: '⚡ Posible conflicto colectivo: {n} casos abiertos contra {actor} — ¿agrupar en sesión especial?',
-            propuestaCasosOutcome: 'Resultado',
-            propuestaCasosPlaybook: 'Playbook',
-            propuestaAsambleasTitle: 'Asambleas y turnos de palabra',
-            propuestaAsambleasIntro: 'Tres tipos de sesión — ordinaria, bienvenida, especial — con asistencia, cuadrante de roles y una cola de turnos de palabra en vivo pensada para el móvil de quien modera.',
-            propuestaSessionTypes: { ordinaria: 'Ordinaria', bienvenida: 'Bienvenida', especial: 'Especial' },
-            propuestaAsambleasRoles: 'Cuadrante de roles',
-            propuestaAsambleasRoleGap: 'SIN CUBRIR',
-            propuestaAsambleasTurns: 'Turnos de palabra',
-            propuestaAsambleasNext: '▶ Siguiente turno',
-            propuestaTurnStatus: { pendiente: 'En espera', encurso: 'Hablando', atendida: 'Atendida' },
-            propuestaTurnKind: { primera: 'primera vez', actualizacion: 'actualización' },
-            propuestaAttendance: 'asistentes',
-            housingSubs: { huelgometro: 'Huelgómetro', alarmas: 'Alarmas', tenedores: 'Tenedores', calculadora: 'Calculadora', asambleas: 'Asambleas' },
-            housingIntro: 'Organización de inquilinos — huelgómetro, alarmas por desahucios, campañas por gran tenedor, calculadora de alquiler y asambleas locales.',
-            /* Vivienda ampliado (13-07-2026): tenedores, calculadora, asambleas, acompañamiento */
-            housingEscortBtn: '🤝 Me apunto al acompañamiento',
-            housingEscortCount: 'apuntadas al piquete',
-            housingTenedoresTitle: 'Grandes tenedores',
-            housingTenedoresIntro: 'Fondos, socimis y banca con vivienda a escala — negociación colectiva finca a finca, al estilo «Nos Quedamos».',
-            housingTenedoresBuildings: 'fincas organizadas',
-            housingTenedoresUnits: 'viviendas',
-            housingTenedoresProgress: 'progreso de negociación colectiva',
-            housingTenedoresUnionCta: 'Organizado con el sindicato de inquilinas',
-            housingCalcTitle: 'Calculadora de alquiler',
-            housingCalcIntro: 'Compara tu renta con el índice de referencia de tu zona (índice demo).',
-            housingCalcTerritory: 'Zona',
-            housingCalcM2: 'Superficie (m²)',
-            housingCalcRent: 'Tu alquiler mensual (€)',
-            housingCalcBtn: 'Comprobar mi alquiler',
-            housingCalcReference: 'Renta de referencia para esta vivienda',
-            housingCalcOver: 'por encima del índice de referencia',
-            housingCalcUnder: 'por debajo del índice de referencia',
-            housingCalcAdvice: 'Si pagas por encima del índice, tu asamblea local y el sindicato de inquilinas pueden ayudarte a negociarlo a la baja.',
-            housingCalcInvalid: 'Introduce superficie y renta para hacer la comprobación.',
-            housingAsambleasTitle: 'Asambleas locales',
-            housingAsambleasIntro: 'Asambleas de inquilinas por zona — reuniones abiertas, cada una con su grupo de Telegram.',
-            housingAsambleasMembers: 'miembros',
-            housingAsambleasMeets: 'Se reúne',
-            housingAsambleasTerritoryBtn: 'Perfil del territorio',
-            housingHuelgometroTitle: 'Huelgómetro',
-            housingHuelgometroIntro: 'Recuento nacional de inquilinos comprometidos con una huelga de alquileres. Al llegar a 1.000.000 de compromisos confirmados, se convoca.',
-            housingThresholdLabel: 'inquilinos comprometidos (meta: 1.000.000)',
-            housingPledgeBtn: 'Me comprometo con la huelga de alquileres',
-            housingAlarmasTitle: 'Alarmas por desahucios',
-            housingAlarmasIntro: 'Todos los desahucios programados y casos en riesgo de cada territorio, en un solo tablón.',
-            badges: { verified: 'Trabajadores verificados', ai: 'Asistencia IA', neutral: 'Plataforma neutral' },
-            reportTypes: {
-                overtime: 'Horas extra no pagadas',
-                blackWages: 'Sueldo en negro',
-                lowPay: 'Por debajo del convenio',
-                abuse: 'Acoso o abuso'
-            },
-            locationBridgeTitle: 'Puente mapa ↔ empresa',
-            locationBridgeBody: 'El pin está resaltado en el mapa de arriba. Usa los botones de sección para denuncias, sueldos, convenio o acción — o elige otra empresa en el mapa.',
-            locationCoords: 'Coordenadas',
-            locationOpenOverview: 'Abrir resumen',
-            locationOpenReports: 'Ver denuncias',
-            reportFormTitle: 'Enviar denuncia anónima',
-            reportFormDetail: 'Describe el problema (opcional)',
-            reportFormSubmit: 'Enviar a moderación',
-            reportFormAiNote: 'La pre-revisión IA filtra duplicados y entradas de mala fe antes de la revisión humana.',
-            moderationTitle: 'Cola de moderación',
-            moderationPending: 'Pendiente',
-            moderationApproved: 'Aprobada',
-            moderationRejected: 'Rechazada',
-            moderationApprove: 'Aprobar',
-            moderationReject: 'Rechazar',
-            moderationEmpty: 'No hay denuncias en este estado.',
-            privateForumTitle: 'Sala privada de trabajadores',
-            privateForum: 'Sala privada con sindicato anfitrión — filtra dirección y topas. Verificación necesaria para entrar.',
-            privateForumRules: 'Moderada por delegada sindical. Sin nombre real obligatorio. Cuentas de dirección bloqueadas.',
-            presenceTitle: 'Implantación',
-            presenceDelegates: 'Delegados/as en empresa',
-            presenceAgreements: 'Convenios firmados',
-            presenceSectors: 'Sectores principales',
-            members: 'Miembros en la plataforma',
-            companiesOnSite: 'Empresas con presencia',
-            selectUnion: 'Seleccionar sindicato…',
-            selectProfesional: 'Seleccionar colegio…',
-            selectAutonomo: 'Seleccionar equipo o plataforma…',
-            selectHousingUnion: 'Seleccionar sindicato de inquilinas…',
-            autonomosPlatformsTitle: 'Plataformas y grandes clientes',
-            selectConsumidor: 'Seleccionar producto o servicio…',
-            selectCentro: 'Seleccionar centro…',
-            unionsPick: 'Elige un sindicato o pulsa cualquier nombre de sindicato en la plataforma.',
-            unionSearchPlaceholder: 'Buscar por sindicato o sector…',
-            unionBack: 'Volver a sindicatos',
-            unionRelatedTitle: 'Otros sindicatos en este sector',
-            unionsStatCount: 'Sindicatos en el directorio',
-            unionsStatMembers: 'Afiliación conjunta',
-            unionsStatDelegates: 'Delegadas en empresa (conjunto)',
-            unionFoundedLabel: 'Fundado en',
-            unionWebsiteLabel: 'Sitio web oficial',
-            unionMilestonesTitle: 'Hitos y victorias',
-            unionHousingCompaniesNote: 'Este sindicato organiza fincas y comunidades de inquilinas, no empresas — por eso no aparece en la lista de empresas con presencia sindical.',
-            unionSections: {
-                overview: 'Resumen',
-                forum: 'Foro',
-                structure: 'Estructura',
-                companies: 'Empresas'
-            },
-            unionForumIntro: 'Foro del sindicato — hilos de coordinación, avisos de delegadas y alertas sectoriales.',
-            unionStructureIntro: 'Estructura organizativa — comités, delegadas y roles de enlace en SindicApp.',
-            unionOverviewIntro: 'Perfil del sindicato en el directorio neutral SindicApp.',
-            unionOpenForum: 'Abrir foro',
-            unionOpenStructure: 'Ver estructura',
-            convenioAskAi: 'Consulta guiada (demo) sobre el convenio',
-            convenioAskPlaceholder: 'Pega una cláusula o describe tu duda…',
-            convenioAskBtn: 'Explicar en lenguaje llano',
-            convenioAiSample: 'Consulta guiada (demo): Esta cláusula limita las horas extra a 80 h/año salvo pacto. Basada solo en el texto oficial del convenio — antes de actuar, revisión humana. Si tu contrato dice otra cosa, denúncialo.',
-            demoNote: 'Datos demo de SindicApp. En producción: cuentas verificadas, revisión legal y acuerdos con sindicatos.',
-            forumBack: 'Volver al foro general',
-            forumThreadMissing: 'Hilo no encontrado.',
-            territoryDossierIntro: 'Dossier territorial — sindicatos presentes, empresas, foro de vivienda y alertas del territorio.',
-            territoryWorkplaces: 'Empresas del territorio',
-            territoryHousingLink: 'Abrir perfil del territorio',
-            viviendaWorkplacesTitle: 'Empresas del territorio',
-            viviendaWorkplacesIntro: 'Empleadores en este territorio — aquí suelen cruzarse luchas laborales y de vivienda.',
-            fieldSubsector: 'Subsector (rama)',
-            fieldTerritory: 'Territorio',
-            selectSubsector: 'Elige subsector…',
-            selectTerritory: 'Elige territorio…',
-            addWorkplaceStep2: 'Paso 2 — clasificar en el árbol geográfico',
-            strikeVoteYes: 'Me sumaría a una huelga legal',
-            strikeVoteNo: 'Aún no estoy preparada/o',
-            strikeVoteThanks: 'Voto registrado (demo — guardado en este navegador).',
-            convenioBranchTitle: 'Cláusulas de rama (biblioteca de convenio)',
-            mapTerritoryDossier: 'Dossier territorial',
-            mapClearTerritory: 'Ver todos los territorios',
-            aiConvenioHint: 'La consulta guiada (demo) explica cláusulas en lenguaje llano — solo fuentes oficiales, revisión humana siempre, nunca datos personales de casos.',
-            aiContractHint: 'Sube un contrato para revisión comunitaria y resumen IA de cláusulas de riesgo (demo).',
-            fieldName: 'Nombre de empresa',
-            fieldSector: 'Sector',
-            fieldAddress: 'Dirección',
-            fieldLat: 'Latitud',
-            fieldLng: 'Longitud',
-            workplacesIntro: 'Busca empresas en el mapa o elige una para abrir su perfil.',
-            unionsIntro: 'Directorio neutral — CCOO, UGT, sindicatos sectoriales y más. Los datos de implantación (delegados, empresas, convenios) proceden de registros verificables, no de puntuaciones.',
-            reportsIntro: 'Denuncias públicas anónimas. Revisión comunitaria + IA antes de publicar.',
-            wagesIntro: 'Organigrama anónimo y bandas salariales aportadas por la comunidad.',
-            wageConvenioRange: 'Rango según convenio:',
-            actionIntro: 'Preparación de huelga, listas de confirmación y chat seguro.',
-            strikeThreshold: 'umbral',
-            actionPollActive: 'Sondeo activo — 12 días restantes',
-            actionPrivateList: 'Lista de confirmación privada',
-            actionCoordChat: 'Chat de coordinación (sindicato anfitrión)',
-            officerLabel: 'Liberado/a',
-            /* B4 (R1) — buscador de convenio + FAQ estructurado */
-            finderTitle: '¿Qué convenio me aplica?',
-            finderIntro: 'Elige tu sector para localizar el convenio colectivo que probablemente te cubre (directorio demo).',
-            finderSector: 'Sector',
-            finderSubmit: 'Buscar mi convenio',
-            finderNoResult: 'Aún no hay entrada demo para ese sector.',
-            finderScope: 'Ámbito',
-            finderVigencia: 'Vigencia',
-            finderSource: 'Consultar el registro oficial',
-            finderDisclaimer: 'Directorio demo — confirma siempre en el registro oficial (BOE / autonómico) o con una delegada sindical.',
-            faqItems: [
-                { q: '¿Pueden cambiarme el turno sin avisar?', a: 'La mayoría de convenios exigen preaviso mínimo para cambios de cuadrante (a menudo 5–7 días). Revisa el capítulo de jornada de tu convenio; los cambios sin preaviso son impugnables.' },
-                { q: '¿Me pagan más por trabajar de noche o en domingo?', a: 'Los convenios sectoriales suelen fijar pluses de nocturnidad (p. ej. +25%) y de domingo/festivo. Si tu nómina no refleja ningún plus, compárala con las tablas del convenio.' },
-                { q: '¿Cuántos días de vacaciones me corresponden?', a: 'El mínimo legal son 30 días naturales (o 22 laborables); muchos convenios lo mejoran. Las vacaciones no se pueden sustituir por dinero salvo al terminar el contrato.' },
-                { q: '¿Y si mi contrato contradice el convenio?', a: 'El convenio es suelo, no techo: una cláusula de contrato por debajo del mínimo de convenio es nula. La condición del convenio se aplica automáticamente.' },
-                { q: '¿Con quién puedo hablar de forma confidencial?', a: 'Las delegadas sindicales tienen deber de sigilo, y esta plataforma permite comparar situaciones de forma anónima antes de dar ningún paso.' }
-            ],
-            faqOvertimeQ: '¿Cuántas horas extra al mes?',
-            faqOvertimeA: 'Según el convenio sectorial, máximo 80 h/año salvo pacto.',
-            faqContractQ: 'Subir mi contrato',
-            noMatch: 'Ninguna empresa coincide con la búsqueda.',
-            wageRoleBase: 'Operario/a base',
-            wageRoleMid: 'Puesto intermedio',
-            wageRoleLead: 'Mando intermedio',
-            /* C2 — aportar sueldo */
-            wageContribsTitle: 'Aportaciones de la comunidad (este navegador)',
-            wageFormTitle: 'Aporta tu sueldo',
-            wageFormHint: 'Anónimo — se guarda solo en este navegador (demo). Sin nombres, sin cuentas.',
-            wageFormRole: 'Puesto',
-            wageFormAmount: 'Importe bruto (€)',
-            wageFormPeriod: 'Periodo',
-            wageFormMonthly: 'Al mes',
-            wageFormHourly: 'A la hora',
-            wageFormSubmit: 'Aportar anónimamente',
-            wagePerHour: '/ hora',
-            wagePerMonth: '/ mes',
-            officialChannelsTitle: 'Cauces oficiales',
-            officialChannelsIntro: 'Una denuncia pública aquí informa a la plantilla; una denuncia oficial obliga a la Administración a actuar. Esta plataforma señaliza los cauces con fuerza legal real.',
-            officialChannels: [
-                { name: 'Inspección de Trabajo y Seguridad Social (ITSS)', url: 'https://www.mites.gob.es/itss/web/', desc: 'Denuncia formal con capacidad de inspección y sanción — jornada, salarios, seguridad y salud. Obliga a la Administración a actuar.' },
-                { name: 'Canal interno de denuncias de la empresa', url: '', desc: 'Obligatorio por la Ley 2/2023 en empresas de 50 o más personas; protege legalmente a quien informa frente a represalias.' },
-                { name: 'Agencia Española de Protección de Datos (AEPD)', url: 'https://www.aepd.es', desc: 'Autoridad de control para vulneraciones de datos personales en el trabajo (videovigilancia, geolocalización, ficheros de RRHH) — sus resoluciones son vinculantes.' }
-            ],
-            registryTitle: 'Datos registrales',
-            registryLegalForm: 'Forma jurídica',
-            registryFounded: 'Constitución',
-            registryAdmins: 'Administradores',
-            registryLastAccounts: 'Último depósito de cuentas',
-            registryRevenue: 'Ingresos',
-            registryResult: 'Resultado',
-            registryEbitda: 'EBITDA (aprox.)',
-            registrySource: 'Fuente: BORME / Registro Mercantil — datos de demostración',
-            registryTagline: 'Conoce las cuentas de tu empresa antes de negociar.',
-            calcTitle: 'Calculadora de convenio',
-            calcIntro: 'Comprueba tu salario frente a la tabla salarial demo del convenio aplicable.',
-            calcCategory: 'Categoría profesional (tabla demo del convenio)',
-            calcSelectCategory: 'Selecciona categoría…',
-            calcHours: 'Jornada semanal (horas)',
-            calcSalary: 'Salario bruto (€)',
-            calcPeriod: 'Periodo del salario',
-            calcPeriodMonthly: 'Mensual (×12 — se asumen 12 pagas)',
-            calcPeriodAnnual: 'Anual',
-            calcSubmit: 'Comparar con el mínimo de convenio',
-            calcAbove: 'Por encima del mínimo de convenio.',
-            calcBelow: 'Por debajo del mínimo de convenio — puedes reclamar la diferencia.',
-            calcMinLabel: 'Mínimo de convenio (prorrateado a tu jornada)',
-            calcDiffLabel: 'Diferencia',
-            calcDisclaimer: 'Resultado orientativo basado en una tabla salarial de demostración — no es asesoramiento legal. Consulta el texto íntegro del convenio o a tu delegado/a.',
-            /* R4 — Agenda: la capa temporal */
-            /* C4 — feedback de acciones (toasts) */
-            notices: {
-                reportQueued: 'Denuncia enviada a la cola de moderación.',
-                strikeVoteSaved: 'Voto registrado (demo — guardado en este navegador).',
-                agendaEventAdded: 'Evento añadido a la agenda.',
-                endorsementRequested: 'Solicitud de aval enviada.',
-                endorsementMissingUnion: 'Elige primero un sindicato garante.',
-                companyAdded: 'Perfil de empresa creado.',
-                companyFormInvalid: 'Nombre y dirección son obligatorios.',
-                wageSubmitted: 'Aportación salarial guardada. Gracias.',
-                pledgeSaved: 'Confirmación registrada (demo).',
-                crmTemplateCopied: 'Plantilla copiada al portapapeles.',
-                crmExported: 'Datos de la organización exportados en JSON.'
-            },
-            agendaTitle: 'Agenda de acción',
-            agendaUpcomingTitle: 'Próximas fechas',
-            agendaViviendaTitle: 'Agenda de vivienda del territorio',
-            agendaEmpty: 'Sin eventos próximos (demo).',
-            agendaTypes: { assembly: 'Asamblea', vote: 'Votación', deadline: 'Plazo', strike: 'Huelga', negotiation: 'Negociación' },
-            agendaAddTitle: 'Añadir evento (demo)',
-            agendaFieldType: 'Tipo',
-            agendaFieldDate: 'Fecha',
-            agendaFieldTitle: 'Título',
-            agendaAddSubmit: 'Añadir a la agenda',
-            agendaAddHint: 'Demo: se guarda solo en este navegador.',
-            /* R5 — Verificación como arquitectura */
-            verificationTitle: 'Verificación',
-            verificationCurrent: 'Nivel actual',
-            trustLevels: { anon: 'Anónimo', person: 'Persona verificada', worker: 'Trabajador verificado' },
-            trustLevelDesc: {
-                anon: 'Nivel por defecto — sin datos de identidad. Suficiente para leer y para denunciar de forma anónima.',
-                person: 'Se confirma que hay una persona real tras la cuenta — sigue siendo seudónima en la plataforma.',
-                worker: 'Un sindicato avala que esta persona trabaja donde dice trabajar.'
-            },
-            verificationDoctrine: 'Los sindicatos actúan como garantes de identidad: cualquier sindicato puede avalar a un trabajador y ninguno es dueño de la plataforma. El aval protege este espacio del astroturfing empresarial sin exponer el nombre de nadie.',
-            verifyRequestBtn: 'Solicitar aval sindical',
-            verifySelectUnion: 'Selecciona sindicato garante',
-            verifyPending: 'Pendiente de aval de',
-            verifyConfirmBtn: 'El sindicato confirma (demo)',
-            verifyDone: 'Trabajador verificado — avalado por',
-            /* R7 — Perfiles automáticos de edificio */
-            buildingsTitle: 'Edificios',
-            buildingsIntro: 'Cada edificio recibe un perfil automático — estado, transparencia de rentas, derechos de contrato y acción colectiva.',
-            buildingUnits: 'viviendas',
-            buildingOwnerLabel: 'Propietario',
-            buildingLargeHolder: 'Gran tenedor',
-            buildingYearLabel: 'Construcción',
-            buildingBack: 'Volver a edificios',
-            buildingStateTitle: 'Estado',
-            buildingStateIntro: 'Denuncias anónimas del estado del edificio, aportadas por la vecindad.',
-            buildingStateModNote: 'Las denuncias pasan moderación comunitaria antes de publicarse, como las denuncias de empresa.',
-            buildingStateEmpty: 'Aún no hay denuncias publicadas de este edificio (demo).',
-            buildingRentsTitle: 'Rentas',
-            buildingRentM2: 'Precio de zona por m²',
-            buildingRentTypical: 'Alquiler típico de la zona',
-            buildingRentIndexNote: 'Referencia: índice de referencia de precios de alquiler para la zona — consúltalo antes de firmar o renovar.',
-            buildingContractTitle: 'Contrato y derechos',
-            buildingContractFaq: [
-                { q: '¿Cuánto dura mi contrato?', a: 'Con la LAU, prórroga obligatoria hasta 5 años (7 si el arrendador es persona jurídica), aunque el contrato firme un plazo menor.' },
-                { q: '¿Qué fianza pueden pedirme?', a: 'Una mensualidad de fianza legal, más garantías adicionales limitadas. Debe depositarse en el organismo autonómico (INCASÒL en Catalunya).' },
-                { q: '¿Cuánto puede subir el alquiler?', a: 'Durante el contrato, solo la actualización pactada dentro del límite legal. En zonas tensionadas, el índice de referencia limita el precio de los nuevos contratos.' }
-            ],
-            buildingActionTitle: 'Acción',
-            buildingEvictionLinkNote: 'Vinculado a las alertas de desahucio del territorio — mismo canal, misma moderación.',
-            tenantPledgeBtn: 'Me sumaría a una acción colectiva de inquilinos',
-            tenantPledgeCount: 'confirmaciones (demo)',
-            propuestaCasosConvene: 'Convocar sesión especial',
-            propuestaCasosConvened: 'Sesión especial creada — la tienes en Asambleas.',
-            propuestaCasosSessionExists: 'Ya hay una sesión especial convocada para este actor.',
-            propuestaAttendAdd: 'Registrar asistencia',
-            propuestaAgendaExport: 'Orden del día',
-            propuestaFilterPlaceholder: 'Filtrar…',
-            propuestaCasosDocsMissing: 'Faltan según el tema',
-            propuestaCasosDocsComplete: 'Documentación del tema completa',
-            notifTitle: 'Avisos',
-            notifEmpty: 'Nada pendiente por ahora.',
-            notifRoleTeaser: 'Entra como Usuario o superior para recibir avisos personales.',
-            notifTurns: '{n} turnos pendientes',
-            notifDocsReview: '{n} documentos esperan revisión',
-            notifDocFalta: 'Falta aportar a tu caso: {d}',
-            asambleaLiveBtn: 'Modo asamblea',
-            asambleaLiveNow: 'Hablando ahora',
-            asambleaLiveNext: 'A continuación',
-            asambleaLiveNone: 'No hay turno en curso',
-            asambleaLiveEmpty: 'Sin turnos pendientes — asamblea al día.',
-            asambleaLiveClose: 'Salir del modo asamblea',
-            crmImportCsv: 'Importar CSV (demo)',
-            crmImportDone: '{n} personas añadidas al censo desde el CSV',
-            crmImportEmpty: 'El CSV no tiene filas reconocibles (cabeceras: nombre, empresa, rol…)',
-            territoryEmptyTitle: 'Aún no hay estructura aquí',
-            territoryEmptyBody: 'Nadie ha levantado todavía este territorio: ni equipos, ni empresas fichadas, ni hilos de foro. Sé la primera — abre la vista de vivienda o añade tu empresa desde Empresas.',
-            resetDemoLabel: 'Reiniciar datos demo',
-            resetDemoConfirm: 'Esto borra todos los cambios demo guardados en este navegador (empresas añadidas, votos, casos, CRM…) y recarga la app. ¿Continuar?',
-            moduleLoadError: 'No se pudo cargar el módulo Sindicato.'
-        }
-    };
+    const COPY = window.SINDICAPP_SINDICATO_COPY; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-copy.js */
 
     /* 17-07-2026 (ADR 0018): capa de textos en català, fusionada SOBRE el castellà.
        Qualsevol clau no traduïda cau al castellà, mai a `undefined`.
@@ -1395,213 +34,25 @@
         COPY.ca = deepMergeCopy(COPY.es, window.SINDICAPP_COPY_CA);
     }
 
-    const BASE_WORKPLACES = {
-        ie: [
-            { id: 'docklands-logistics', name: 'Dublin Docklands Logistics', sector: 'Logistics', subsectorId: 'logistics-warehousing', territoryId: 'dublin-docklands', address: 'North Wall Quay, Dublin 1', lat: 53.3482, lng: -6.2298, workers: 142, reports: 7, unions: ['SIPTU', 'Unite'], strikeSupport: 34, convenio: 'Road haulage & logistics SNA 2024', wageRange: '€14.20 – €19.80 / hr' },
-            { id: 'temple-bar-hospitality', name: 'Temple Bar Hospitality Group', sector: 'Hospitality', subsectorId: 'hospitality-pubs', territoryId: 'dublin-city-centre', address: 'Fleet St, Dublin 2', lat: 53.3454, lng: -6.2642, workers: 89, reports: 12, unions: ['Unite'], strikeSupport: 58, convenio: 'Hotel & restaurant JLC', wageRange: '€12.70 – €16.50 / hr' },
-            { id: 'st-james-medical', name: "St James's Medical Services", sector: 'Healthcare', subsectorId: 'healthcare-inpatient', territoryId: 'dublin-south', address: 'James St, Dublin 8', lat: 53.3415, lng: -6.2948, workers: 210, reports: 4, unions: ['INMO', 'SIPTU'], strikeSupport: 22, convenio: 'Health & social care sectoral', wageRange: '€32k – €48k / yr' },
-            { id: 'silicon-docks-tech', name: 'Silicon Docks Tech Ltd', sector: 'Technology', subsectorId: 'technology-software', territoryId: 'dublin-docklands', address: 'Grand Canal Dock, Dublin 4', lat: 53.3428, lng: -6.2281, workers: 64, reports: 9, unions: ['FSU', 'Unite'], strikeSupport: 41, convenio: 'ICT services agreement', wageRange: '€38k – €72k / yr' },
-            { id: 'grafton-retail', name: 'Grafton Retail Co-op', sector: 'Retail', subsectorId: 'retail-grocery', territoryId: 'dublin-city-centre', address: 'Grafton St, Dublin 2', lat: 53.3412, lng: -6.2598, workers: 37, reports: 5, unions: ['Mandate'], strikeSupport: 19, convenio: 'Retail grocery SNA', wageRange: '€13.50 – €17.20 / hr' },
-            { id: 'cork-harbour-logistics', name: 'Cork Harbour Logistics', sector: 'Logistics', subsectorId: 'logistics-haulage', territoryId: 'cork-harbour', address: 'Tivoli, Cork', lat: 51.8985, lng: -8.4378, workers: 118, reports: 6, unions: ['SIPTU'], strikeSupport: 38, convenio: 'Road haulage & logistics SNA 2024', wageRange: '€14.00 – €18.90 / hr' },
-            { id: 'patrick-street-pub', name: 'Patrick Street Pub Group', sector: 'Hospitality', subsectorId: 'hospitality-restaurants', territoryId: 'cork-city', address: 'Patrick St, Cork', lat: 51.8983, lng: -8.4731, workers: 52, reports: 9, unions: ['Unite'], strikeSupport: 49, convenio: 'Hotel & restaurant JLC', wageRange: '€12.50 – €15.80 / hr' },
-            { id: 'cork-clinic', name: 'Cork Outpatient Clinic', sector: 'Healthcare', subsectorId: 'healthcare-outpatient', territoryId: 'cork-west', address: 'Wilton, Cork', lat: 51.8842, lng: -8.5123, workers: 88, reports: 3, unions: ['INMO'], strikeSupport: 24, convenio: 'Health & social care sectoral', wageRange: '€30k – €44k / yr' },
-            { id: 'galway-medtech', name: 'Galway MedTech Ltd', sector: 'Technology', subsectorId: 'technology-consulting', territoryId: 'galway-city', address: 'Parkmore, Galway', lat: 53.2918, lng: -9.0218, workers: 71, reports: 5, unions: ['FSU', 'Unite'], strikeSupport: 33, convenio: 'ICT services agreement', wageRange: '€36k – €65k / yr' },
-            { id: 'salthill-hotel', name: 'Salthill Hotel Collective', sector: 'Hospitality', subsectorId: 'hospitality-catering', territoryId: 'galway-coast', address: 'Salthill, Galway', lat: 53.2612, lng: -9.0867, workers: 44, reports: 7, unions: ['Unite'], strikeSupport: 42, convenio: 'Hotel & restaurant JLC', wageRange: '€12.40 – €16.10 / hr' },
-            { id: 'limerick-distribution', name: 'Limerick Distribution Hub', sector: 'Logistics', subsectorId: 'logistics-last-mile', territoryId: 'limerick-dock', address: 'Dock Rd, Limerick', lat: 52.6638, lng: -8.6267, workers: 96, reports: 4, unions: ['SIPTU', 'Unite'], strikeSupport: 29, convenio: 'Road haulage & logistics SNA 2024', wageRange: '€13.90 – €18.20 / hr' },
-            { id: 'castletroy-retail', name: 'Castletroy Retail Park', sector: 'Retail', subsectorId: 'retail-department', territoryId: 'limerick-east', address: 'Castletroy, Limerick', lat: 52.6734, lng: -8.5621, workers: 58, reports: 6, unions: ['Mandate'], strikeSupport: 21, convenio: 'Retail grocery SNA', wageRange: '€13.20 – €16.80 / hr' },
-            { id: 'waterford-hospital', name: 'Waterford Regional Hospital (contract)', sector: 'Healthcare', subsectorId: 'healthcare-emergency', territoryId: 'waterford-city', address: 'Dunmore Rd, Waterford', lat: 52.2461, lng: -7.1389, workers: 165, reports: 5, unions: ['INMO', 'SIPTU'], strikeSupport: 27, convenio: 'Health & social care sectoral', wageRange: '€31k – €46k / yr' },
-            { id: 'tramore-local-shop', name: 'Tramore Local Shop', sector: 'Retail', subsectorId: 'retail-local', territoryId: 'waterford-coast', address: 'Tramore, Waterford', lat: 52.1612, lng: -7.1498, workers: 19, reports: 2, unions: ['Mandate'], strikeSupport: 14, convenio: 'Retail grocery SNA', wageRange: '€12.90 – €15.50 / hr' },
-            { id: 'enniscorthy-it', name: 'Enniscorthy IT Support', sector: 'Technology', subsectorId: 'technology-ops', territoryId: 'waterford-inland', address: 'Enniscorthy, Wexford', lat: 52.5008, lng: -6.5661, workers: 31, reports: 3, unions: ['FSU'], strikeSupport: 18, convenio: 'ICT services agreement', wageRange: '€28k – €48k / yr' }
-        ],
-        es: [
-            { id: 'boqueria-hostaleria', name: 'Mercat Central Hostaleria SL', sector: 'Hostelería', subsectorId: 'hosteleria-restauracion', territoryId: 'barcelona-ciutat', address: 'Carrer de la Boqueria, Barcelona', lat: 41.3818, lng: 2.1719, workers: 76, reports: 11, unions: ['CCOO', 'UGT'], strikeSupport: 47, convenio: 'Hostelería de Barcelona 2024', wageRange: '1.180 – 1.650 € / mes' },
-            { id: 'zona-franca-logistica', name: 'Polígon Nord Logística', sector: 'Logística', subsectorId: 'logistica-almacen', territoryId: 'barcelona-ponent', address: 'Zona Franca, Barcelona', lat: 41.3521, lng: 2.1384, workers: 198, reports: 8, unions: ['CCOO', 'CGT'], strikeSupport: 52, convenio: 'Transporte y logística Cataluña', wageRange: '1.350 – 1.920 € / mes' },
-            { id: 'clinica-sant-pere', name: 'Clínica Privada Sant Pere', sector: 'Sanidad privada', subsectorId: 'sanidad-privada-consultas', territoryId: 'barcelona-ciutat', address: 'Carrer Sant Pere, Barcelona', lat: 41.3889, lng: 2.1765, workers: 124, reports: 6, unions: ['CCOO', 'SAT'], strikeSupport: 31, convenio: 'Sanidad privada Cataluña', wageRange: '1.600 – 2.400 € / mes' },
-            { id: 'techpark-solutions', name: 'TechPark Solutions', sector: 'Tecnología', subsectorId: 'tecnologia-desarrollo', territoryId: 'barcelona-litoral', address: '22@, Poblenou, Barcelona', lat: 41.4032, lng: 2.1954, workers: 55, reports: 10, unions: ['UGT', 'CGT'], strikeSupport: 44, convenio: 'Consultoría y servicios IT', wageRange: '24k – 42k € / año' },
-            { id: 'supermercat-diari', name: 'Supermercat Diari', sector: 'Comercio', subsectorId: 'comercio-alimentacion', territoryId: 'barcelona-ciutat', address: 'Eixample, Barcelona', lat: 41.3932, lng: 2.1641, workers: 42, reports: 4, unions: ['CCOO'], strikeSupport: 15, convenio: 'Comercio alimentación Cataluña', wageRange: '1.200 – 1.480 € / mes' },
-            { id: 'hostal-girona-centre', name: 'Hostal Girona Centre', sector: 'Hostelería', subsectorId: 'hosteleria-bares', territoryId: 'girona-comarca', address: 'Plaça del Vi, Girona', lat: 41.9831, lng: 2.8249, workers: 34, reports: 5, unions: ['CCOO', 'UGT'], strikeSupport: 39, convenio: 'Hostelería Girona 2024', wageRange: '1.150 – 1.520 € / mes' },
-            { id: 'logistica-costa-brava', name: 'Logística Costa Brava', sector: 'Logística', subsectorId: 'logistica-ultima-milla', territoryId: 'girona-costa', address: 'Polígon Blanes, Girona', lat: 41.6754, lng: 2.7901, workers: 67, reports: 4, unions: ['CCOO'], strikeSupport: 36, convenio: 'Transporte y logística Cataluña', wageRange: '1.320 – 1.780 € / mes' },
-            { id: 'centre-ripoll', name: 'Centre Mèdic Ripoll', sector: 'Sanidad privada', subsectorId: 'sanidad-privada-urgencias', territoryId: 'girona-interior', address: 'Ripoll, Girona', lat: 42.2012, lng: 2.1903, workers: 48, reports: 3, unions: ['SAT', 'CCOO'], strikeSupport: 28, convenio: 'Sanidad privada Cataluña', wageRange: '1.550 – 2.200 € / mes' },
-            { id: 'super-lleida', name: 'Supermercat Ponent', sector: 'Comercio', subsectorId: 'comercio-gran-superficie', territoryId: 'lleida-segria', address: 'Carrer Major, Lleida', lat: 41.6176, lng: 0.6200, workers: 89, reports: 5, unions: ['CCOO', 'UGT'], strikeSupport: 22, convenio: 'Comercio alimentación Cataluña', wageRange: '1.220 – 1.510 € / mes' },
-            { id: 'transport-ponent', name: 'Transport Ponent SL', sector: 'Logística', subsectorId: 'logistica-transporte', territoryId: 'lleida-noguera', address: 'Balaguer, Lleida', lat: 41.7912, lng: 0.8103, workers: 112, reports: 6, unions: ['CCOO', 'CGT'], strikeSupport: 41, convenio: 'Transporte y logística Cataluña', wageRange: '1.340 – 1.880 € / mes' },
-            { id: 'hotel-seu-urgell', name: 'Hotel La Seu Catering', sector: 'Hostelería', subsectorId: 'hosteleria-catering', territoryId: 'lleida-alt-urgell', address: 'La Seu d\'Urgell, Lleida', lat: 42.3581, lng: 1.4621, workers: 29, reports: 2, unions: ['UGT'], strikeSupport: 33, convenio: 'Hostelería Pirineo 2024', wageRange: '1.140 – 1.490 € / mes' },
-            { id: 'hospital-tarragona', name: 'Hospital Privat Tarragona', sector: 'Sanidad privada', subsectorId: 'sanidad-privada-hospitalizacion', territoryId: 'tarragona-camp', address: 'Tarragona', lat: 41.1189, lng: 1.2445, workers: 156, reports: 7, unions: ['CCOO', 'SAT'], strikeSupport: 35, convenio: 'Sanidad privada Cataluña', wageRange: '1.650 – 2.500 € / mes' },
-            { id: 'port-ebre-logistics', name: 'Port Ebre Logística', sector: 'Logística', subsectorId: 'logistica-transporte', territoryId: 'tarragona-ebre', address: 'Tortosa, Tarragona', lat: 40.8126, lng: 0.5210, workers: 74, reports: 4, unions: ['CCOO'], strikeSupport: 30, convenio: 'Transporte y logística Cataluña', wageRange: '1.310 – 1.820 € / mes' },
-            { id: 'priorat-vinyes', name: 'Cooperativa Priorat', sector: 'Comercio', subsectorId: 'comercio-barrio', territoryId: 'tarragona-priorat', address: 'Falset, Tarragona', lat: 41.1432, lng: 0.6621, workers: 22, reports: 1, unions: ['USOC'], strikeSupport: 19, convenio: 'Comercio alimentación Cataluña', wageRange: '1.180 – 1.420 € / mes' },
-            { id: 'manresa-metal', name: 'Manresa Metal IT', sector: 'Tecnología', subsectorId: 'tecnologia-soporte', territoryId: 'central-bages', address: 'Manresa, Barcelona', lat: 41.7298, lng: 1.8290, workers: 41, reports: 4, unions: ['UGT', 'CCOO'], strikeSupport: 37, convenio: 'Consultoría y servicios IT', wageRange: '22k – 38k € / año' },
-            { id: 'vic-consulting', name: 'Vic Consulting Tech', sector: 'Tecnología', subsectorId: 'tecnologia-consultoria', territoryId: 'central-osona', address: 'Vic, Barcelona', lat: 41.9301, lng: 2.2540, workers: 38, reports: 3, unions: ['CGT'], strikeSupport: 32, convenio: 'Consultoría y servicios IT', wageRange: '23k – 40k € / año' },
-            { id: 'igualada-textil', name: 'Igualada Textil Comerç', sector: 'Comercio', subsectorId: 'comercio-barrio', territoryId: 'central-anoia', address: 'Igualada, Barcelona', lat: 41.5789, lng: 1.6172, workers: 27, reports: 2, unions: ['CCOO'], strikeSupport: 17, convenio: 'Comercio alimentación Cataluña', wageRange: '1.190 – 1.450 € / mes' }
-        ]
-    };
+    const BASE_WORKPLACES = window.SINDICAPP_SINDICATO_DATA.BASE_WORKPLACES; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     /* Union metadata (founded/website/about) reflects real organisations and was verified
        via web search on 2026-07-12 — sources noted in docs/changelog. Membership/delegate
        counts for the pre-existing demo unions (siptu/unite/inmo/mandate/fsu/ccoo/ugt/cgt/
        csc/usoc/sat) are illustrative and unchanged; llogateres and iac are new entries with
        real recent figures. */
-    const UNIONS = {
-        ie: [
-            { id: 'siptu', name: 'SIPTU', sector: 'General', delegates: 240, agreements: 36, mainSectors: 'General, logistics, healthcare', members: 18400, liberado: 'Niamh O\'Connell',
-                founded: 1990, website: 'https://www.siptu.ie/',
-                about: 'Ireland\'s largest trade union, formed in 1990 by the merger of the Irish Transport and General Workers\' Union (ITGWU) and the Federated Workers\' Union of Ireland (FWUI).' },
-            { id: 'unite', name: 'Unite the Union', sector: 'General', delegates: 130, agreements: 21, mainSectors: 'General, hospitality', members: 9200, liberado: 'James Murphy',
-                founded: 2007, website: 'https://unitetheunionireland.org/',
-                about: 'Formed in 2007 by the merger of Amicus and the Transport and General Workers\' Union (TGWU), Unite organises across Ireland and Britain in manufacturing, transport and hospitality.' },
-            { id: 'inmo', name: 'INMO', sector: 'Nursing', delegates: 85, agreements: 12, mainSectors: 'Nursing & midwifery', members: 4100, liberado: '—',
-                founded: 1919, website: 'https://www.inmo.ie/',
-                about: 'Ireland\'s professional trade union for nurses and midwives, founded in 1919 by a small group who met in Dublin to discuss working conditions.' },
-            { id: 'mandate', name: 'Mandate', sector: 'Retail & bar', delegates: 60, agreements: 14, mainSectors: 'Retail & bar', members: 2800, liberado: 'Sarah Lynch',
-                founded: 1994, website: 'https://mandate.ie/',
-                about: 'Formed in 1994 by the merger of two retail-sector unions (IDATU and INUVGATA), Mandate organises workers in retail, bar and administrative roles.' },
-            { id: 'fsu', name: 'FSU', sector: 'Finance & tech', delegates: 25, agreements: 6, mainSectors: 'Finance & tech', members: 1500, liberado: '—',
-                founded: 1918, website: 'https://www.fsunion.org/',
-                about: 'Founded in 1918 as the Irish Bank Officials Association (IBOA), it rebranded as the Financial Services Union in 2016 to reflect its wider finance-sector membership.' }
-        ],
-        es: [
-            /* Sindicat de Llogateres — sindicato de inquilinas real (no laboral), añadido a
-               petición expresa 12-07-2026, con datos verificados en sindicatdellogateres.org
-               y Viquipèdia. Primera entrada de la lista. */
-            { id: 'llogateres', name: 'Sindicat de Llogateres', sector: 'Vivienda de alquiler', type: 'housing',
-                delegates: 20, agreements: 3, mainSectors: 'Inquilinato en Catalunya', members: 5880, liberado: '—',
-                founded: 2017, website: 'https://sindicatdellogateres.org/',
-                about: 'Sindicato horizontal, asambleario y apartidista de personas inquilinas, presentado en el Casinet d\'Hostafrancs de Barcelona el 12 de mayo de 2017. Organiza secciones por barrio, municipio y por gran tenedor (Blackstone, La Caixa…) para negociar colectivamente contratos y frenar subidas de alquiler con la estrategia "Nos Quedamos". Se financia únicamente con las cuotas de afiliación.',
-                buildingsOrganized: 80,
-                presenceLabels: { delegates: 'Secciones territoriales', companies: 'Fincas organizadas', agreements: 'Grandes reformas legales', sectors: 'Ámbito' },
-                milestones: [
-                    { year: 2017, text: 'Presentación pública en el Casinet d\'Hostafrancs ante 1.000 personas (12 de mayo).' },
-                    { year: 2018, text: 'Lanzamiento de "Nos Quedamos", la estrategia de negociación colectiva por finca.' },
-                    { year: 2019, text: 'Primera reforma legislativa conseguida: contratos de 5-7 años y honorarios de agencia a cargo del propietario.' },
-                    { year: 2020, text: 'Aprobación de la Llei 11/2020 de contención de rentas en Catalunya.' },
-                    { year: 2023, text: 'Ley estatal por el Derecho a la Vivienda: fin de los honorarios de agencia para las inquilinas.' },
-                    { year: 2025, text: 'Más de 5.880 personas afiliadas y 80 fincas organizadas en toda Catalunya.' }
-                ] },
-            { id: 'ccoo', name: 'CCOO', sector: 'General', delegates: 420, agreements: 58, mainSectors: 'General, industria, servicios', members: 42000, liberado: 'Marina Soler',
-                founded: 1976, website: 'https://es.ccoo.cat/',
-                about: 'Uno de los dos sindicatos mayoritarios del Estado español, con origen en las comisiones obreras clandestinas de los años 60 y constituido como confederación sindical en la Asamblea de Barcelona de 1976.' },
-            { id: 'ugt', name: 'UGT', sector: 'General', delegates: 360, agreements: 51, mainSectors: 'General, transporte, comercio', members: 31000, liberado: 'Pere Vidal',
-                founded: 1888, website: 'https://www.ugt.cat/',
-                about: 'Sindicato histórico de tradición socialista, fundado en Barcelona en 1888 por Pablo Iglesias Posse. Junto con CCOO, es una de las dos organizaciones sindicales mayoritarias en Catalunya.' },
-            { id: 'cgt', name: 'CGT', sector: 'General', delegates: 95, agreements: 9, mainSectors: 'General, logística, tecnología', members: 8500, liberado: 'Laia Ferrer',
-                founded: 1989, website: 'https://cgtcatalunya.cat/',
-                about: 'Sindicato de tradición anarcosindicalista, adoptó el nombre CGT en 1989 tras la escisión de la CNT. Tercera fuerza por delegadas en Catalunya, con fuerte implantación en transporte, educación, banca y correos.' },
-            { id: 'csc', name: 'Intersindical CSC', sector: 'Catalunya', delegates: 70, agreements: 8, mainSectors: 'Intersectorial (Catalunya)', members: 4200, liberado: '—',
-                founded: 1990, website: 'https://www.intersindical-csc.cat/',
-                about: 'Sindicato independentista catalán, miembro de la Federación Sindical Mundial. Impulsa un marco de relaciones laborales propio para Catalunya.' },
-            { id: 'usoc', name: 'USOC', sector: 'Servicios', delegates: 32, agreements: 5, mainSectors: 'Servicios', members: 2100, liberado: 'Jordi Mas',
-                founded: 1966, website: 'https://usoc.cat/',
-                about: 'Federación catalana de la Unió Sindical Obrera, nacida en 1966 de una generación de trabajadores de posguerra, con vocación de sindicalismo autónomo y plural.' },
-            /* IAC — confederación sindical real, añadida 12-07-2026 junto con Llogateres.
-               Datos verificados vía Viquipèdia / prensa (Público, cronicaglobal). */
-            { id: 'iac', name: 'IAC (Intersindical Alternativa de Catalunya)', sector: 'Sector público', delegates: 7, agreements: 2, mainSectors: 'Enseñanza, función pública, sector públic', members: 14000, liberado: '—',
-                founded: 1997, website: 'https://iac.cat/',
-                about: 'Confederación de sindicatos sectoriales combativos y asamblearios, constituida en 1997. Cuarta fuerza sindical en afiliación en Catalunya y primera en representación en enseñanza y en la Administración de la Generalitat.',
-                presenceLabels: { delegates: 'Sindicatos confederados', agreements: 'Ámbitos con 1ª fuerza sindical' } },
-            { id: 'sat', name: 'SAT (sectorial)', sector: 'Sanidad', delegates: 28, agreements: 4, mainSectors: 'Sanidad privada', members: 1800, liberado: '—' }
-        ]
-    };
+    const UNIONS = window.SINDICAPP_SINDICATO_DATA.UNIONS; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
-    const FEED = {
-        ie: [
-            { id: 'f1', type: 'report', workplaceId: 'temple-bar-hospitality', section: 'reports', workplace: 'Temple Bar Hospitality Group', text: '3 new anonymous reports: unpaid closing shifts, tip pooling by management.', time: '2h ago', hot: true },
-            { id: 'f2', type: 'wage', workplaceId: 'docklands-logistics', section: 'wages', workplace: 'Dublin Docklands Logistics', text: 'Night-shift pallet rate updated in crowd-sourced wage chart — €16.10 median.', time: '5h ago', hot: false },
-            { id: 'f3', type: 'strike', workplaceId: 'silicon-docks-tech', section: 'action', workplace: 'Silicon Docks Tech Ltd', text: 'Strike readiness poll at 41% — needs 55% to schedule action window.', time: '8h ago', hot: true },
-            { id: 'f4', type: 'convenio', workplaceId: 'grafton-retail', section: 'convenio', workplace: 'Grafton Retail Co-op', text: 'Guided lookup answered: Sunday premium clause applies after 6 months tenure.', time: '1d ago', hot: false },
-            { id: 'f5', type: 'union', unionId: 'inmo', workplaceId: 'st-james-medical', section: 'forum', workplace: "St James's Medical Services", text: 'INMO posted liberado contact and FAQ on roster-change rights.', time: '1d ago', hot: false }
-        ],
-        es: [
-            { id: 'f1', type: 'report', workplaceId: 'boqueria-hostaleria', section: 'reports', workplace: 'Mercat Central Hostaleria SL', text: '4 denuncias nuevas: turnos partidos sin compensación, propinas retenidas.', time: 'hace 2h', hot: true },
-            { id: 'f2', type: 'wage', workplaceId: 'zona-franca-logistica', section: 'wages', workplace: 'Polígon Nord Logística', text: 'Actualizado organigrama anónimo — carretillero 1.720 € media mensual.', time: 'hace 4h', hot: false },
-            { id: 'f3', type: 'strike', workplaceId: 'techpark-solutions', section: 'action', workplace: 'TechPark Solutions', text: 'Sondeo de huelga al 44% — umbral de convocatoria en 55%.', time: 'hace 6h', hot: true },
-            { id: 'f4', type: 'convenio', workplaceId: 'supermercat-diari', section: 'convenio', workplace: 'Supermercat Diari', text: 'Consulta guiada: el plus de festivo del convenio aplica desde el primer mes.', time: 'hace 1d', hot: false },
-            { id: 'f5', type: 'union', unionId: 'ccoo', workplaceId: 'clinica-sant-pere', section: 'forum', workplace: 'Clínica Privada Sant Pere', text: 'CCOO publicó contacto de delegada y alerta sobre cambios de turno.', time: 'hace 1d', hot: false }
-        ]
-    };
+    const FEED = window.SINDICAPP_SINDICATO_DATA.FEED; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
-    const REPORTS_BY_WORKPLACE = {
-        'docklands-logistics': [{ type: 'overtime', count: 3, severity: 'high' }, { type: 'lowPay', count: 2, severity: 'medium' }, { type: 'abuse', count: 2, severity: 'medium' }],
-        'temple-bar-hospitality': [{ type: 'overtime', count: 5, severity: 'high' }, { type: 'blackWages', count: 4, severity: 'high' }, { type: 'abuse', count: 3, severity: 'high' }],
-        'st-james-medical': [{ type: 'overtime', count: 2, severity: 'medium' }, { type: 'lowPay', count: 1, severity: 'low' }, { type: 'abuse', count: 1, severity: 'medium' }],
-        'silicon-docks-tech': [{ type: 'overtime', count: 4, severity: 'high' }, { type: 'lowPay', count: 3, severity: 'medium' }, { type: 'abuse', count: 2, severity: 'medium' }],
-        'grafton-retail': [{ type: 'overtime', count: 2, severity: 'medium' }, { type: 'lowPay', count: 2, severity: 'medium' }, { type: 'abuse', count: 1, severity: 'low' }],
-        'boqueria-hostaleria': [{ type: 'overtime', count: 4, severity: 'high' }, { type: 'blackWages', count: 3, severity: 'high' }, { type: 'abuse', count: 4, severity: 'high' }],
-        'zona-franca-logistica': [{ type: 'overtime', count: 3, severity: 'high' }, { type: 'lowPay', count: 3, severity: 'medium' }, { type: 'abuse', count: 2, severity: 'medium' }],
-        'clinica-sant-pere': [{ type: 'overtime', count: 2, severity: 'medium' }, { type: 'lowPay', count: 2, severity: 'medium' }, { type: 'abuse', count: 2, severity: 'medium' }],
-        'techpark-solutions': [{ type: 'overtime', count: 5, severity: 'high' }, { type: 'lowPay', count: 3, severity: 'medium' }, { type: 'abuse', count: 2, severity: 'high' }],
-        'supermercat-diari': [{ type: 'overtime', count: 1, severity: 'low' }, { type: 'lowPay', count: 2, severity: 'medium' }, { type: 'abuse', count: 1, severity: 'low' }]
-    };
+    const REPORTS_BY_WORKPLACE = window.SINDICAPP_SINDICATO_DATA.REPORTS_BY_WORKPLACE; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
-    const WAGE_CHART = {
-        'docklands-logistics': [{ role: 'Warehouse operative', wage: '€15.40/hr', votes: 28 }, { role: 'Forklift driver', wage: '€17.20/hr', votes: 19 }, { role: 'Shift supervisor', wage: '€19.80/hr', votes: 8 }],
-        'boqueria-hostaleria': [{ role: 'Camarero/a', wage: '1.280 €', votes: 22 }, { role: 'Cocinero/a', wage: '1.450 €', votes: 14 }, { role: 'Encargado/a', wage: '1.620 €', votes: 6 }]
-    };
+    const WAGE_CHART = window.SINDICAPP_SINDICATO_DATA.WAGE_CHART; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     /* R3 — Datos registrales (BORME / Registro Mercantil · CRO). Demo data keyed by workplace id. */
-    const REGISTRO_BY_WORKPLACE = {
-        'docklands-logistics': { legalForm: 'Private company limited by shares (LTD)', founded: 2004, admins: 'K. Brennan, M. Doyle', lastAccounts: '2025', revenue: '€21.4m', result: '€1.3m', ebitda: '€2.6m' },
-        'temple-bar-hospitality': { legalForm: 'Private company limited by shares (LTD)', founded: 2011, admins: 'F. Kavanagh', lastAccounts: '2025', revenue: '€9.8m', result: '€0.6m', ebitda: '€1.4m' },
-        'st-james-medical': { legalForm: 'Designated Activity Company (DAC)', founded: 1998, admins: 'E. Whelan, P. Nolan', lastAccounts: '2025', revenue: '€24.6m', result: '€1.1m', ebitda: '€2.9m' },
-        'silicon-docks-tech': { legalForm: 'Private company limited by shares (LTD)', founded: 2015, admins: 'A. Byrne, S. Patel', lastAccounts: '2025', revenue: '€12.7m', result: '€1.8m', ebitda: '€2.4m' },
-        'grafton-retail': { legalForm: 'Co-operative society', founded: 1987, admins: 'Management committee (7 members)', lastAccounts: '2025', revenue: '€5.2m', result: '€0.2m', ebitda: '€0.5m' },
-        'cork-harbour-logistics': { legalForm: 'Private company limited by shares (LTD)', founded: 2001, admins: 'D. O\'Leary', lastAccounts: '2025', revenue: '€17.9m', result: '€0.9m', ebitda: '€2.1m' },
-        'patrick-street-pub': { legalForm: 'Private company limited by shares (LTD)', founded: 2009, admins: 'C. Barrett, N. Hayes', lastAccounts: '2025', revenue: '€5.6m', result: '€0.3m', ebitda: '€0.8m' },
-        'cork-clinic': { legalForm: 'Designated Activity Company (DAC)', founded: 2006, admins: 'M. Fitzgerald', lastAccounts: '2025', revenue: '€10.3m', result: '€0.5m', ebitda: '€1.3m' },
-        'galway-medtech': { legalForm: 'Private company limited by shares (LTD)', founded: 2013, admins: 'R. Conneely, L. Chen', lastAccounts: '2025', revenue: '€14.2m', result: '€1.5m', ebitda: '€2.2m' },
-        'salthill-hotel': { legalForm: 'Private company limited by shares (LTD)', founded: 2010, admins: 'T. Flaherty', lastAccounts: '2025', revenue: '€4.7m', result: '€0.2m', ebitda: '€0.7m' },
-        'limerick-distribution': { legalForm: 'Private company limited by shares (LTD)', founded: 2003, admins: 'J. Ryan, B. Collins', lastAccounts: '2025', revenue: '€14.8m', result: '€0.7m', ebitda: '€1.7m' },
-        'castletroy-retail': { legalForm: 'Private company limited by shares (LTD)', founded: 1996, admins: 'G. Moloney', lastAccounts: '2025', revenue: '€8.9m', result: '€0.4m', ebitda: '€0.9m' },
-        'waterford-hospital': { legalForm: 'Designated Activity Company (DAC)', founded: 2000, admins: 'S. Power, H. Walsh', lastAccounts: '2025', revenue: '€19.5m', result: '€0.8m', ebitda: '€2.3m' },
-        'tramore-local-shop': { legalForm: 'Private company limited by shares (LTD)', founded: 1992, admins: 'P. Murphy', lastAccounts: '2024', revenue: '€1.6m', result: '€0.1m', ebitda: '€0.2m' },
-        'enniscorthy-it': { legalForm: 'Private company limited by shares (LTD)', founded: 2016, admins: 'O. Redmond', lastAccounts: '2025', revenue: '€3.4m', result: '€0.3m', ebitda: '€0.5m' },
-        'boqueria-hostaleria': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2008, admins: 'N. Camps, R. Ferré', lastAccounts: '2025', revenue: '6,8 M€', result: '0,4 M€', ebitda: '0,9 M€' },
-        'zona-franca-logistica': { legalForm: 'Sociedad Anónima (S.A.)', founded: 1999, admins: 'Consejo de administración (5 miembros)', lastAccounts: '2025', revenue: '28,3 M€', result: '1,4 M€', ebitda: '3,2 M€' },
-        'clinica-sant-pere': { legalForm: 'Sociedad Anónima (S.A.)', founded: 1995, admins: 'M. Roca, J. Español', lastAccounts: '2025', revenue: '14,9 M€', result: '0,7 M€', ebitda: '1,8 M€' },
-        'techpark-solutions': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2014, admins: 'A. Puig, D. Kaur', lastAccounts: '2025', revenue: '9,6 M€', result: '1,1 M€', ebitda: '1,6 M€' },
-        'supermercat-diari': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2005, admins: 'F. Vila', lastAccounts: '2025', revenue: '7,2 M€', result: '0,2 M€', ebitda: '0,5 M€' },
-        'hostal-girona-centre': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2012, admins: 'C. Bosch', lastAccounts: '2025', revenue: '2,9 M€', result: '0,1 M€', ebitda: '0,4 M€' },
-        'logistica-costa-brava': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2007, admins: 'E. Serrat, P. Font', lastAccounts: '2025', revenue: '9,4 M€', result: '0,5 M€', ebitda: '1,1 M€' },
-        'centre-ripoll': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2010, admins: 'L. Casals', lastAccounts: '2025', revenue: '5,3 M€', result: '0,3 M€', ebitda: '0,7 M€' },
-        'super-lleida': { legalForm: 'Sociedad Anónima (S.A.)', founded: 1993, admins: 'G. Torres, M. Pané', lastAccounts: '2025', revenue: '13,6 M€', result: '0,5 M€', ebitda: '1,2 M€' },
-        'transport-ponent': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2002, admins: 'X. Solé', lastAccounts: '2025', revenue: '16,1 M€', result: '0,8 M€', ebitda: '1,9 M€' },
-        'hotel-seu-urgell': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2015, admins: 'I. Ribó', lastAccounts: '2024', revenue: '2,3 M€', result: '0,1 M€', ebitda: '0,3 M€' },
-        'hospital-tarragona': { legalForm: 'Sociedad Anónima (S.A.)', founded: 1997, admins: 'A. Queralt, S. Mestre', lastAccounts: '2025', revenue: '18,7 M€', result: '0,9 M€', ebitda: '2,4 M€' },
-        'port-ebre-logistics': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2006, admins: 'J. Curto', lastAccounts: '2025', revenue: '10,2 M€', result: '0,5 M€', ebitda: '1,2 M€' },
-        'priorat-vinyes': { legalForm: 'Sociedad Cooperativa', founded: 1984, admins: 'Consejo rector (6 miembros)', lastAccounts: '2024', revenue: '1,8 M€', result: '0,1 M€', ebitda: '0,2 M€' },
-        'manresa-metal': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2011, admins: 'R. Comas, T. Oliva', lastAccounts: '2025', revenue: '5,1 M€', result: '0,4 M€', ebitda: '0,7 M€' },
-        'vic-consulting': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2013, admins: 'M. Erra', lastAccounts: '2025', revenue: '4,6 M€', result: '0,4 M€', ebitda: '0,6 M€' },
-        'igualada-textil': { legalForm: 'Sociedad Limitada (S.L.)', founded: 2001, admins: 'N. Claramunt', lastAccounts: '2024', revenue: '2,4 M€', result: '0,1 M€', ebitda: '0,3 M€' }
-    };
+    const REGISTRO_BY_WORKPLACE = window.SINDICAPP_SINDICATO_DATA.REGISTRO_BY_WORKPLACE; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
-    const CONVENIO_CLAUSES = {
-        es: {
-            'hosteleria-restauracion': [
-                { title: 'Jornada y turnos partidos', body: 'Máximo 2 turnos partidos/semana salvo pacto escrito. Compensación mínima 30 min entre tramos en restauración Barcelona.' },
-                { title: 'Plus nocturnidad', body: '22:00–06:00: plus del 25% sobre hora ordinaria según convenio hostelería Barcelona 2024.' }
-            ],
-            'logistica-almacen': [
-                { title: 'Carretillero', body: 'Certificación vigente obligatoria. Empresa debe facilitar renovación en horario laboral.' },
-                { title: 'Horas extra', body: 'Tope 80 h/año salvo acuerdo. Registro horario inalterable — denunciar manipulación.' }
-            ],
-            'sanidad-privada-consultas': [
-                { title: 'Cambio de turno', body: 'Preaviso mínimo 5 días. Cambio unilateral sin compensación es impugnable.' }
-            ],
-            default: [
-                { title: 'Horas extraordinarias', body: 'Tope anual 80 h salvo pacto colectivo. Deben constar en nómina con recargo legal.' }
-            ]
-        },
-        ie: {
-            'hospitality-restaurants': [
-                { title: 'Split shifts', body: 'Maximum 2 split shifts per week unless collectively agreed. Minimum 30 min paid gap between segments.' },
-                { title: 'Night premium', body: '22:00–06:00: 25% premium on ordinary rate under Hotel & Restaurant JLC.' }
-            ],
-            'logistics-warehousing': [
-                { title: 'Forklift certification', body: 'Valid licence required. Employer must allow renewal during paid hours.' },
-                { title: 'Overtime cap', body: '80 hours/year unless agreed. Time records must not be altered — report tampering.' }
-            ],
-            default: [
-                { title: 'Overtime', body: 'Annual cap 80 hours unless collectively agreed. Must appear on payslip with legal premium.' }
-            ]
-        }
-    };
+    const CONVENIO_CLAUSES = window.SINDICAPP_SINDICATO_DATA.CONVENIO_CLAUSES; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     function getConvenioClausesForWorkplace(locale, wp) {
         const key = localeKey(locale);
@@ -1613,131 +64,11 @@
     /* R1 — Tablas salariales demo por locale Y por sector para la calculadora de convenio
        (mínimo anual a jornada completa de 40 h). Fase 3 C1: antes había una única tabla de
        hostelería que se mostraba también en empresas de logística, sanidad, etc. */
-    const CONVENIO_SALARY_TABLES = {
-        es: {
-            'Hostelería': {
-                label: 'Convenio de hostelería — tabla demo (salario mínimo anual, jornada completa)',
-                categories: [
-                    { id: 'es-hos-1', name: 'Nivel I — Jefe/a de cocina o de sala', annualMin: 24800 },
-                    { id: 'es-hos-2', name: 'Nivel II — Cocinero/a, recepcionista', annualMin: 21900 },
-                    { id: 'es-hos-3', name: 'Nivel III — Camarero/a, dependiente/a', annualMin: 19400 },
-                    { id: 'es-hos-4', name: 'Nivel IV — Ayudante de cocina o sala', annualMin: 17800 },
-                    { id: 'es-hos-5', name: 'Nivel V — Auxiliar, limpieza', annualMin: 16900 }
-                ]
-            },
-            'Logística': {
-                label: 'Convenio de transporte y logística — tabla demo (salario mínimo anual, jornada completa)',
-                categories: [
-                    { id: 'es-log-1', name: 'Grupo I — Jefe/a de tráfico o almacén', annualMin: 26400 },
-                    { id: 'es-log-2', name: 'Grupo II — Mando intermedio, encargado/a de turno', annualMin: 23000 },
-                    { id: 'es-log-3', name: 'Grupo III — Carretillero/a, conductor/a', annualMin: 20200 },
-                    { id: 'es-log-4', name: 'Grupo IV — Operario/a de almacén, picking', annualMin: 18100 },
-                    { id: 'es-log-5', name: 'Grupo V — Peón, auxiliar de carga', annualMin: 17000 }
-                ]
-            },
-            'Sanidad privada': {
-                label: 'Convenio de sanidad privada — tabla demo (salario mínimo anual, jornada completa)',
-                categories: [
-                    { id: 'es-san-1', name: 'Grupo I — Facultativo/a', annualMin: 32600 },
-                    { id: 'es-san-2', name: 'Grupo II — Enfermería, fisioterapia', annualMin: 25800 },
-                    { id: 'es-san-3', name: 'Grupo III — Técnico/a sanitario', annualMin: 21400 },
-                    { id: 'es-san-4', name: 'Grupo IV — Auxiliar de enfermería', annualMin: 18600 },
-                    { id: 'es-san-5', name: 'Grupo V — Celador/a, limpieza sanitaria', annualMin: 17200 }
-                ]
-            },
-            'Tecnología': {
-                label: 'Convenio de consultoría y TIC — tabla demo (salario mínimo anual, jornada completa)',
-                categories: [
-                    { id: 'es-tec-1', name: 'Área 1 — Jefatura de proyecto', annualMin: 33900 },
-                    { id: 'es-tec-2', name: 'Área 2 — Analista, desarrollador/a senior', annualMin: 27600 },
-                    { id: 'es-tec-3', name: 'Área 3 — Programador/a', annualMin: 22300 },
-                    { id: 'es-tec-4', name: 'Área 4 — Técnico/a de soporte', annualMin: 19500 },
-                    { id: 'es-tec-5', name: 'Área 5 — Operador/a, tareas auxiliares', annualMin: 17600 }
-                ]
-            },
-            'Comercio': {
-                label: 'Convenio de comercio — tabla demo (salario mínimo anual, jornada completa)',
-                categories: [
-                    { id: 'es-com-1', name: 'Grupo I — Encargado/a de establecimiento', annualMin: 23800 },
-                    { id: 'es-com-2', name: 'Grupo II — Responsable de sección', annualMin: 21200 },
-                    { id: 'es-com-3', name: 'Grupo III — Dependiente/a, cajero/a', annualMin: 18900 },
-                    { id: 'es-com-4', name: 'Grupo IV — Reponedor/a, mozo/a de almacén', annualMin: 17500 },
-                    { id: 'es-com-5', name: 'Grupo V — Ayudante, personal auxiliar', annualMin: 16800 }
-                ]
-            }
-        },
-        ie: {
-            'Logistics': {
-                label: 'Logistics & distribution — demo table (annual minimum, full-time)',
-                categories: [
-                    { id: 'ie-log-1', name: 'Warehouse / transport manager', annualMin: 36400 },
-                    { id: 'ie-log-2', name: 'Shift supervisor', annualMin: 31900 },
-                    { id: 'ie-log-3', name: 'Forklift driver', annualMin: 28700 },
-                    { id: 'ie-log-4', name: 'Warehouse operative', annualMin: 26100 },
-                    { id: 'ie-log-5', name: 'General operative (entry)', annualMin: 24300 }
-                ]
-            },
-            'Hospitality': {
-                label: 'Hospitality — demo table (annual minimum, full-time)',
-                categories: [
-                    { id: 'ie-hosp-1', name: 'Head chef / floor manager', annualMin: 33200 },
-                    { id: 'ie-hosp-2', name: 'Chef de partie / receptionist', annualMin: 28100 },
-                    { id: 'ie-hosp-3', name: 'Waiter / bartender', annualMin: 25200 },
-                    { id: 'ie-hosp-4', name: 'Kitchen assistant', annualMin: 23900 },
-                    { id: 'ie-hosp-5', name: 'Accommodation assistant', annualMin: 23400 }
-                ]
-            },
-            'Healthcare': {
-                label: 'Private healthcare — demo table (annual minimum, full-time)',
-                categories: [
-                    { id: 'ie-hc-1', name: 'Clinical nurse manager', annualMin: 41200 },
-                    { id: 'ie-hc-2', name: 'Staff nurse', annualMin: 34500 },
-                    { id: 'ie-hc-3', name: 'Healthcare technician', annualMin: 29300 },
-                    { id: 'ie-hc-4', name: 'Healthcare assistant', annualMin: 26400 },
-                    { id: 'ie-hc-5', name: 'Support / cleaning staff', annualMin: 24100 }
-                ]
-            },
-            'Technology': {
-                label: 'Tech & IT services — demo table (annual minimum, full-time)',
-                categories: [
-                    { id: 'ie-tech-1', name: 'Project lead', annualMin: 48600 },
-                    { id: 'ie-tech-2', name: 'Senior developer / analyst', annualMin: 41800 },
-                    { id: 'ie-tech-3', name: 'Developer', annualMin: 34200 },
-                    { id: 'ie-tech-4', name: 'IT support technician', annualMin: 28900 },
-                    { id: 'ie-tech-5', name: 'Operations assistant', annualMin: 25700 }
-                ]
-            },
-            'Retail': {
-                label: 'Retail ERO/JLC — demo table (annual minimum, full-time)',
-                categories: [
-                    { id: 'ie-ret-1', name: 'Department manager', annualMin: 35600 },
-                    { id: 'ie-ret-2', name: 'Supervisor', annualMin: 31800 },
-                    { id: 'ie-ret-3', name: 'Senior sales assistant / keyholder', annualMin: 29100 },
-                    { id: 'ie-ret-4', name: 'Sales assistant (2+ years)', annualMin: 27300 },
-                    { id: 'ie-ret-5', name: 'Sales assistant (entry)', annualMin: 25400 }
-                ]
-            }
-        }
-    };
+    const CONVENIO_SALARY_TABLES = window.SINDICAPP_SINDICATO_DATA.CONVENIO_SALARY_TABLES; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     /* B4 (R1) — directorio demo de convenios por sector: «encuentra tu convenio».
        En producción esto sería una búsqueda real sobre el registro del BOE / autonómicos. */
-    const CONVENIO_DIRECTORY = {
-        es: {
-            'Hostelería': { name: 'Convenio colectivo de hostelería de Cataluña', scope: 'Autonómico (Cataluña)', vigencia: '2024–2026', source: 'https://www.boe.es/buscar/convenios.php' },
-            'Logística': { name: 'Convenio de transporte de mercancías y logística de Barcelona', scope: 'Provincial (Barcelona)', vigencia: '2024–2025', source: 'https://www.boe.es/buscar/convenios.php' },
-            'Sanidad privada': { name: 'Convenio de sanidad privada de Cataluña', scope: 'Autonómico (Cataluña)', vigencia: '2023–2026', source: 'https://www.boe.es/buscar/convenios.php' },
-            'Tecnología': { name: 'XVIII Convenio estatal de consultoría y TIC', scope: 'Estatal', vigencia: '2023–2026', source: 'https://www.boe.es/buscar/convenios.php' },
-            'Comercio': { name: 'Convenio de comercio en general de Cataluña', scope: 'Autonómico (Cataluña)', vigencia: '2024–2026', source: 'https://www.boe.es/buscar/convenios.php' }
-        },
-        ie: {
-            'Logistics': { name: 'Road haulage & distribution SNA', scope: 'Sectoral (national)', vigencia: '2024–2026', source: 'https://www.workplacerelations.ie/en/what_you_should_know/hours-and-wages/' },
-            'Hospitality': { name: 'Hotel & restaurant JLC framework', scope: 'Sectoral (national)', vigencia: '2024–2025', source: 'https://www.workplacerelations.ie/en/what_you_should_know/hours-and-wages/' },
-            'Healthcare': { name: 'Health & social care sectoral agreement', scope: 'Sectoral (national)', vigencia: '2023–2026', source: 'https://www.workplacerelations.ie/en/what_you_should_know/hours-and-wages/' },
-            'Technology': { name: 'ICT services agreement (company-level norm)', scope: 'Company-level', vigencia: '2024–2026', source: 'https://www.workplacerelations.ie/en/what_you_should_know/hours-and-wages/' },
-            'Retail': { name: 'Retail grocery SNA / ERO', scope: 'Sectoral (national)', vigencia: '2024–2026', source: 'https://www.workplacerelations.ie/en/what_you_should_know/hours-and-wages/' }
-        }
-    };
+    const CONVENIO_DIRECTORY = window.SINDICAPP_SINDICATO_DATA.CONVENIO_DIRECTORY; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     function getConvenioDirectory(locale) {
         return CONVENIO_DIRECTORY[localeKey(locale)] || CONVENIO_DIRECTORY.ie;
@@ -1780,7 +111,7 @@
     }
 
     function formatEuroAmount(locale, value) {
-        return Number(value || 0).toLocaleString(locale === 'es' ? 'es-ES' : 'en-IE', { maximumFractionDigits: 0 });
+        return Number(value || 0).toLocaleString(localeKey(locale) === 'es' ? 'es-ES' : 'en-IE', { maximumFractionDigits: 0 });
     }
 
     /* ============================================================
@@ -1788,105 +119,9 @@
        Eventos demo por empresa y por territorio; los eventos añadidos
        por el usuario se guardan en localStorage (agendaEvents).
        ============================================================ */
-    const AGENDA_BY_WORKPLACE = {
-        /* ie */
-        'docklands-logistics': [
-            { date: '2026-07-17', type: 'assembly', title: 'Shift-floor assembly — night rates' },
-            { date: '2026-08-05', type: 'negotiation', title: 'Logistics SNA talks — session 2' },
-            { date: '2026-09-18', type: 'deadline', title: 'Deadline — roster consultation submissions' }
-        ],
-        'temple-bar-hospitality': [
-            { date: '2026-07-22', type: 'assembly', title: 'Staff assembly — tip pooling' },
-            { date: '2026-08-12', type: 'vote', title: 'Ballot on protective notice response' },
-            { date: '2026-10-02', type: 'strike', title: 'Strike day (if ballot passes threshold)' }
-        ],
-        'st-james-medical': [
-            { date: '2026-07-29', type: 'assembly', title: 'Ward assembly — safe staffing ratios' },
-            { date: '2026-09-10', type: 'negotiation', title: 'Meeting with management — roster changes' }
-        ],
-        'silicon-docks-tech': [
-            { date: '2026-08-06', type: 'vote', title: 'Vote — right-to-disconnect clause' },
-            { date: '2026-08-25', type: 'deadline', title: 'Remote-work agreement sign-off deadline' }
-        ],
-        'grafton-retail': [
-            { date: '2026-07-20', type: 'assembly', title: 'Members assembly — Sunday premium' },
-            { date: '2026-10-08', type: 'negotiation', title: 'Annual pay review — first session' }
-        ],
-        'cork-harbour-logistics': [
-            { date: '2026-08-19', type: 'assembly', title: 'Depot assembly — summer cover plan' },
-            { date: '2026-09-24', type: 'vote', title: 'Vote on mobilisation calendar' }
-        ],
-        'patrick-street-pub': [
-            { date: '2026-09-02', type: 'negotiation', title: 'JLC talks — split-shift compensation' },
-            { date: '2026-09-29', type: 'deadline', title: 'Deadline — works council nominations' }
-        ],
-        'limerick-distribution': [
-            { date: '2026-08-11', type: 'assembly', title: 'Warehouse assembly — heat protocol' },
-            { date: '2026-10-14', type: 'deadline', title: 'Deadline — union election registration' }
-        ],
-        /* es */
-        'boqueria-hostaleria': [
-            { date: '2026-07-16', type: 'assembly', title: 'Asamblea de plantilla — turnos partidos' },
-            { date: '2026-07-28', type: 'negotiation', title: 'Mesa del convenio de hostelería — 2ª sesión' },
-            { date: '2026-09-04', type: 'deadline', title: 'Fin de plazo de alegaciones al calendario laboral' }
-        ],
-        'zona-franca-logistica': [
-            { date: '2026-07-21', type: 'vote', title: 'Votación de huelga — cierre del sondeo' },
-            { date: '2026-07-24', type: 'assembly', title: 'Asamblea informativa previa a la votación' },
-            { date: '2026-10-01', type: 'strike', title: 'Jornada de huelga (si el sondeo supera el umbral)' }
-        ],
-        'clinica-sant-pere': [
-            { date: '2026-07-30', type: 'assembly', title: 'Asamblea — ratios de enfermería' },
-            { date: '2026-09-15', type: 'negotiation', title: 'Reunión con dirección — cambios de turno' }
-        ],
-        'techpark-solutions': [
-            { date: '2026-08-03', type: 'vote', title: 'Votación — cláusula de desconexión digital' },
-            { date: '2026-08-20', type: 'deadline', title: 'Plazo de firma del acuerdo de teletrabajo' }
-        ],
-        'supermercat-diari': [
-            { date: '2026-07-19', type: 'assembly', title: 'Asamblea — horarios de domingo' },
-            { date: '2026-10-13', type: 'negotiation', title: 'Revisión salarial anual — primera reunión' }
-        ],
-        'hospital-tarragona': [
-            { date: '2026-08-27', type: 'assembly', title: 'Asamblea de plantas — plan de verano' },
-            { date: '2026-09-22', type: 'deadline', title: 'Fin de plazo — bolsa de sustituciones' }
-        ],
-        'transport-ponent': [
-            { date: '2026-09-09', type: 'negotiation', title: 'Mesa de transporte — tablas salariales' },
-            { date: '2026-09-30', type: 'vote', title: 'Votación del calendario de movilizaciones' }
-        ],
-        'super-lleida': [
-            { date: '2026-08-14', type: 'assembly', title: 'Asamblea — descansos en caja' },
-            { date: '2026-10-06', type: 'deadline', title: 'Plazo de inscripción — elecciones sindicales' }
-        ]
-    };
+    const AGENDA_BY_WORKPLACE = window.SINDICAPP_SINDICATO_DATA.AGENDA_BY_WORKPLACE; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
-    const AGENDA_BY_TERRITORY = {
-        es: {
-            'barcelona-ciutat': [
-                { date: '2026-07-18', type: 'assembly', title: 'Asamblea de vecinos — bloque Balmes 120' },
-                { date: '2026-09-01', type: 'deadline', title: 'Fin de moratoria — revisar lanzamientos previstos' }
-            ],
-            'barcelona-litoral': [
-                { date: '2026-08-09', type: 'assembly', title: 'Asamblea PAH Litoral — calendario de otoño' }
-            ],
-            'girona-comarca': [
-                { date: '2026-09-17', type: 'negotiation', title: 'Negociación con gran tenedor — pisos turísticos' }
-            ]
-        },
-        ie: {
-            'dublin-docklands': [
-                { date: '2026-07-25', type: 'assembly', title: 'Tenant assembly — Mayor Street block' },
-                { date: '2026-09-08', type: 'deadline', title: 'RPZ review submissions close' }
-            ],
-            'cork-city': [
-                { date: '2026-08-15', type: 'assembly', title: 'Tenant union Cork — open assembly' }
-            ],
-            'galway-city': [
-                { date: '2026-09-21', type: 'negotiation', title: 'Negotiation with receiver — Eyre Square flats' }
-            ]
-        }
-    };
+    const AGENDA_BY_TERRITORY = window.SINDICAPP_SINDICATO_DATA.AGENDA_BY_TERRITORY; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     const AGENDA_EVENT_TYPES = ['assembly', 'vote', 'deadline', 'strike', 'negotiation'];
 
@@ -1898,7 +133,7 @@
     function formatAgendaDate(locale, iso) {
         const d = new Date(`${iso}T12:00:00`);
         if (Number.isNaN(d.getTime())) return iso;
-        return d.toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-IE', { day: 'numeric', month: 'short', year: 'numeric' });
+        return d.toLocaleDateString(localeKey(locale) === 'es' ? 'es-ES' : 'en-IE', { day: 'numeric', month: 'short', year: 'numeric' });
     }
 
     function isUpcomingAgendaEvent(ev) {
@@ -1989,34 +224,7 @@
        (anónimo → persona verificada → trabajador verificado) con
        sindicatos como garantes de identidad. Flujo demo en localStorage.
        ============================================================ */
-    const FORUM_THREAD_TRUST = {
-        ie: {
-            'faq-delegate': 'worker',
-            'convenio-hospitality': 'worker',
-            'split-shift': 'anon',
-            'rent-docklands': 'person',
-            'hr-retaliation': 'anon',
-            'pay-scales': 'worker',
-            'nurse-ratios': 'worker',
-            'remote-policy': 'person',
-            'minutes-template': 'worker',
-            'anonymous-report': 'person',
-            'strike-fund': 'worker'
-        },
-        es: {
-            'faq-delegado': 'worker',
-            'convenio-hosteleria': 'worker',
-            'turno-partido': 'anon',
-            'desahucio-balmes': 'person',
-            'filtracion-rrhh': 'anon',
-            'tablas-salariales': 'worker',
-            'ratios-sanidad': 'worker',
-            'teletrabajo-22': 'person',
-            'modelo-acta': 'worker',
-            'denuncia-anonima': 'person',
-            'fondo-huelga': 'worker'
-        }
-    };
+    const FORUM_THREAD_TRUST = window.SINDICAPP_SINDICATO_DATA.FORUM_THREAD_TRUST; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     function forumThreadTrust(locale, slug) {
         return FORUM_THREAD_TRUST[localeKey(locale)]?.[slug] || 'person';
@@ -2098,104 +306,13 @@
        territorio (edificios, estado, rentas) + lista de confirmación
        de acción colectiva de inquilinos en localStorage.
        ============================================================ */
-    const BUILDINGS_BY_TERRITORY = {
-        es: {
-            'barcelona-ciutat': [
-                { id: 'bcn-balmes-120', address: 'Carrer de Balmes 120', units: 24, owner: 'Vertex Patrimonial SOCIMI', largeHolder: true, year: 1931 },
-                { id: 'bcn-consell-245', address: 'Carrer del Consell de Cent 245', units: 18, owner: 'Comunidad de propietarios', largeHolder: false, year: 1905 },
-                { id: 'bcn-marina-88', address: 'Carrer de la Marina 88', units: 32, owner: 'Fons Residencial Iberia SL', largeHolder: true, year: 1978 },
-                { id: 'bcn-gran-via-411', address: 'Gran Via de les Corts Catalanes 411', units: 28, owner: 'Inversiones Laietana SA', largeHolder: true, year: 1964 },
-                { id: 'bcn-verdi-52', address: 'Carrer de Verdi 52 (Gràcia)', units: 10, owner: 'Propietario particular', largeHolder: false, year: 1922 }
-            ],
-            'barcelona-litoral': [
-                { id: 'lit-rambla-poblenou-95', address: 'Rambla del Poblenou 95', units: 16, owner: 'Comunidad de propietarios', largeHolder: false, year: 1971 },
-                { id: 'lit-pere-iv-140', address: 'Carrer de Pere IV 140', units: 22, owner: 'Blau Litoral Gestió SL', largeHolder: true, year: 1985 },
-                { id: 'lit-maresme-310', address: 'Carrer del Maresme 310', units: 40, owner: 'Fons Residencial Iberia SL', largeHolder: true, year: 1992 },
-                { id: 'lit-badalona-mar-12', address: 'Carrer del Mar 12, Badalona', units: 8, owner: 'Propietario particular', largeHolder: false, year: 1954 }
-            ],
-            'girona-comarca': [
-                { id: 'gir-placa-vi-3', address: 'Plaça del Vi 3, Girona', units: 6, owner: 'Torrent Capital SL (fondo)', largeHolder: true, year: 1890 },
-                { id: 'gir-santa-clara-44', address: 'Carrer de Santa Clara 44, Girona', units: 12, owner: 'Propietario particular', largeHolder: false, year: 1935 },
-                { id: 'gir-migdia-77', address: 'Carrer Migdia 77, Girona', units: 20, owner: 'Habitatge Gironí SA', largeHolder: true, year: 1989 },
-                { id: 'gir-salt-major-15', address: 'Carrer Major 15, Salt', units: 14, owner: 'Comunidad de propietarios', largeHolder: false, year: 1968 }
-            ]
-        },
-        ie: {
-            'dublin-docklands': [
-                { id: 'dub-mayor-12', address: '12 Mayor Street Lower', units: 36, owner: 'Liffey Point Residential Fund', largeHolder: true, year: 2007 },
-                { id: 'dub-sheriff-84', address: '84 Sheriff Street Upper', units: 20, owner: 'Private landlord', largeHolder: false, year: 1998 },
-                { id: 'dub-castleforbes-3', address: '3 Castleforbes Road', units: 48, owner: 'Anchorage REIT', largeHolder: true, year: 2016 },
-                { id: 'dub-eastwall-27', address: '27 East Wall Road', units: 9, owner: 'Private landlord', largeHolder: false, year: 1936 },
-                { id: 'dub-northwall-56', address: '56 North Wall Quay', units: 30, owner: 'Docklands Living Ltd', largeHolder: true, year: 2011 }
-            ],
-            'cork-city': [
-                { id: 'cork-patrick-45', address: '45 Patrick Street', units: 12, owner: 'Lee Valley Properties Ltd', largeHolder: true, year: 1902 },
-                { id: 'cork-macurtain-18', address: '18 MacCurtain Street', units: 8, owner: 'Private landlord', largeHolder: false, year: 1911 },
-                { id: 'cork-blackpool-60', address: '60 Great William O\'Brien Street, Blackpool', units: 16, owner: 'Shandon Residential Fund', largeHolder: true, year: 1995 },
-                { id: 'cork-douglas-9', address: '9 Douglas Street', units: 6, owner: 'Private landlord', largeHolder: false, year: 1927 }
-            ],
-            'galway-city': [
-                { id: 'gal-eyre-8', address: '8 Eyre Square', units: 10, owner: 'Corrib Asset Management (receivership)', largeHolder: true, year: 1898 },
-                { id: 'gal-dominick-33', address: '33 Lower Dominick Street', units: 7, owner: 'Private landlord', largeHolder: false, year: 1904 },
-                { id: 'gal-headford-120', address: '120 Headford Road', units: 42, owner: 'Atlantic Quarter REIT', largeHolder: true, year: 2019 },
-                { id: 'gal-salthill-5', address: '5 Upper Salthill Road', units: 12, owner: 'Private landlord', largeHolder: false, year: 1975 }
-            ]
-        }
-    };
+    const BUILDINGS_BY_TERRITORY = window.SINDICAPP_SINDICATO_DATA.BUILDINGS_BY_TERRITORY; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
-    const BUILDING_CONDITION_REPORTS = {
-        'bcn-balmes-120': [
-            { issue: 'Humedades en escalera y bajos', count: 4, severity: 'high' },
-            { issue: 'Ascensor averiado desde marzo', count: 6, severity: 'high' },
-            { issue: 'Calefacción central sin revisión', count: 2, severity: 'medium' }
-        ],
-        'bcn-marina-88': [
-            { issue: 'Grietas en fachada interior', count: 3, severity: 'medium' },
-            { issue: 'Portero automático fuera de servicio', count: 2, severity: 'low' }
-        ],
-        'bcn-gran-via-411': [
-            { issue: 'Bajante comunitaria con fugas', count: 3, severity: 'medium' }
-        ],
-        'gir-placa-vi-3': [
-            { issue: 'Instalación eléctrica antigua', count: 2, severity: 'medium' }
-        ],
-        'dub-mayor-12': [
-            { issue: 'Mould in stairwell and ground-floor flats', count: 4, severity: 'high' },
-            { issue: 'Lift out of order since March', count: 5, severity: 'high' }
-        ],
-        'dub-castleforbes-3': [
-            { issue: 'Ventilation faults in inner units', count: 3, severity: 'medium' }
-        ],
-        'cork-patrick-45': [
-            { issue: 'Damp in rear bedrooms', count: 3, severity: 'medium' },
-            { issue: 'Fire door does not close', count: 2, severity: 'high' }
-        ],
-        'gal-eyre-8': [
-            { issue: 'Windows in poor repair', count: 2, severity: 'medium' }
-        ]
-    };
+    const BUILDING_CONDITION_REPORTS = window.SINDICAPP_SINDICATO_DATA.BUILDING_CONDITION_REPORTS; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
-    const RENT_BANDS_BY_TERRITORY = {
-        es: {
-            'barcelona-ciutat': { m2: '15,1 €/m²', typical: '1.060 €/mes (70 m²)' },
-            'barcelona-litoral': { m2: '13,4 €/m²', typical: '940 €/mes (70 m²)' },
-            'girona-comarca': { m2: '10,2 €/m²', typical: '710 €/mes (70 m²)' }
-        },
-        ie: {
-            'dublin-docklands': { m2: '€27.90 / m²', typical: '€2,050 / month (two-bed)' },
-            'cork-city': { m2: '€18.60 / m²', typical: '€1,480 / month (two-bed)' },
-            'galway-city': { m2: '€19.10 / m²', typical: '€1,520 / month (two-bed)' }
-        }
-    };
+    const RENT_BANDS_BY_TERRITORY = window.SINDICAPP_SINDICATO_DATA.RENT_BANDS_BY_TERRITORY; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
-    const TENANT_PLEDGE_BASE = {
-        'bcn-balmes-120': 14,
-        'bcn-marina-88': 6,
-        'gir-placa-vi-3': 3,
-        'dub-mayor-12': 11,
-        'cork-patrick-45': 5,
-        'gal-eyre-8': 4
-    };
+    const TENANT_PLEDGE_BASE = window.SINDICAPP_SINDICATO_DATA.TENANT_PLEDGE_BASE; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     function getBuildingsForTerritory(locale, territoryId) {
         return BUILDINGS_BY_TERRITORY[localeKey(locale)]?.[territoryId] || [];
@@ -2268,7 +385,7 @@
     /** R7 — perfil de edificio: Estado · Rentas · Contrato y derechos · Acción. */
     function buildBuildingProfileHtml(locale, building, terr) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const condition = BUILDING_CONDITION_REPORTS[building.id] || [];
         const conditionRows = condition.length ? condition.map((r) => `
             <div class="sindicato-report-row ${severityClass(r.severity)}">
@@ -2287,7 +404,7 @@
         const alerts = getViviendaAlerts(locale, terr.id);
         const alertsHtml = alerts.length
             ? alerts.map((alert) => {
-                const statusLabel = alert.status === 'scheduled' ? (es ? 'Programado' : 'Scheduled') : (es ? 'Riesgo' : 'At risk');
+                const statusLabel = alert.status === 'scheduled' ? c.alertStatusScheduled : c.alertStatusRisk;
                 return `<div class="sindicato-coord-card sindicato-alert-card"><strong>${alert.date} — ${statusLabel}</strong><p>${alert.address}</p></div>`;
             }).join('')
             : `<p class="template-muted">${c.viviendaNoAlerts}</p>`;
@@ -2328,7 +445,7 @@
      * ================================================================ */
     function buildHousingHuelgometroHtml(locale) {
         const c = t(locale);
-        const localeTag = locale === 'es' ? 'es-ES' : 'en-IE';
+        const localeTag = localeKey(locale) === 'es' ? 'es-ES' : 'en-IE';
         const count = getHousingStrikePledgeCount(locale);
         const pct = Math.max(0, Math.min(100, Math.round((count / HOUSING_STRIKE_THRESHOLD) * 100)));
         return `<div class="sindicato-panel">
@@ -2341,20 +458,20 @@
             <form class="sindicato-tenant-pledge" data-sindicato-housing-pledge>
                 <button type="submit" class="sindicato-cta-btn sindicato-cta-btn-active">${c.housingPledgeBtn}</button>
             </form>
-            <p>${buildTelegramLinkHtml(locale, locale === 'es' ? 'vivienda' : 'housing')}</p>
+            <p>${buildTelegramLinkHtml(locale, localeKey(locale) === 'es' ? 'vivienda' : 'housing')}</p>
             <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
         </div>`;
     }
 
     function buildHousingAlarmasHtml(locale) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const alerts = getAllViviendaAlerts(locale);
         const alertsHtml = alerts.length
             ? alerts.map((alert) => {
                 const statusLabel = alert.status === 'scheduled'
-                    ? (es ? 'Programado' : 'Scheduled')
-                    : (es ? 'Riesgo' : 'At risk');
+                    ? c.alertStatusScheduled
+                    : c.alertStatusRisk;
                 /* Acompañamiento (13-07-2026): piquete de acompañamiento por alerta,
                    con contador demo + apuntados de este navegador. */
                 const escortKey = getHousingEscortKey(alert);
@@ -2381,40 +498,12 @@
      * Vivienda ampliado (13-07-2026) — grandes tenedores, calculadora de
      * alquiler, asambleas locales y acompañamiento a desahucios.
      * ================================================================ */
-    const LARGE_HOLDERS = {
-        es: [
-            { id: 'fondo-blackrock-habitatge', icon: '🏦', name: 'Blackstone / Testa', type: 'Fondo de inversión', buildings: 34, units: 2140, progress: 62, status: 'Mesa de negociación abierta — 3ª ronda' },
-            { id: 'inmocaixa-habitatge', icon: '🏛️', name: 'InmoCaixa', type: 'Banca', buildings: 21, units: 1380, progress: 48, status: 'Campaña «Nos Quedamos» activa en 6 fincas' },
-            { id: 'cerberus-socimi', icon: '🏢', name: 'Cerberus / Divarian', type: 'Socimi', buildings: 12, units: 760, progress: 27, status: 'Censo de inquilinas en marcha' },
-            { id: 'azora-residencial', icon: '🏢', name: 'Azora Residencial', type: 'Socimi', buildings: 8, units: 520, progress: 15, status: 'Primeras asambleas por finca' }
-        ],
-        ie: [
-            { id: 'ires-reit', icon: '🏢', name: 'I-RES REIT', type: 'REIT', buildings: 18, units: 1210, progress: 44, status: 'Rent-review negotiation open in 4 blocks' },
-            { id: 'kennedy-wilson', icon: '🏦', name: 'Kennedy Wilson', type: 'Investment fund', buildings: 11, units: 830, progress: 31, status: 'Tenant census under way' },
-            { id: 'greystar-dublin', icon: '🏢', name: 'Greystar', type: 'Investment fund', buildings: 6, units: 470, progress: 12, status: 'First block assemblies' }
-        ]
-    };
+    const LARGE_HOLDERS = window.SINDICAPP_SINDICATO_DATA.LARGE_HOLDERS; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
-    const TENANT_ASSEMBLIES = {
-        es: [
-            { id: 'assemblea-barcelones', name: 'Assemblea del Barcelonès', territoryId: 'barcelona-ciutat', members: 240, meets: 'martes, 19:00 — Ateneu L\'Harmonia' },
-            { id: 'assemblea-poblenou', name: 'Assemblea Litoral / Poblenou', territoryId: 'barcelona-litoral', members: 95, meets: 'jueves, 19:30 — Casal de barri' },
-            { id: 'assemblea-girones', name: 'Assemblea del Gironès', territoryId: 'girona-comarca', members: 60, meets: 'miércoles, 19:00 — Espai social' },
-            { id: 'assemblea-segria', name: 'Assemblea del Segrià', territoryId: 'lleida-segria', members: 38, meets: '1º sábado de mes, 11:00 — Casal popular' },
-            { id: 'assemblea-camp-tarragona', name: 'Assemblea del Camp de Tarragona', territoryId: 'tarragona-camp', members: 42, meets: 'lunes, 19:00 — Local veïnal' }
-        ],
-        ie: [
-            { id: 'assembly-docklands', name: 'Docklands Tenants Assembly', territoryId: 'dublin-docklands', members: 110, meets: 'Tuesdays, 7pm — community hall' },
-            { id: 'assembly-cork-city', name: 'Cork City Tenants Assembly', territoryId: 'cork-city', members: 55, meets: 'Wednesdays, 7pm — social centre' },
-            { id: 'assembly-galway', name: 'Galway Tenants Assembly', territoryId: 'galway-city', members: 40, meets: 'First Saturday, 11am — arts centre' }
-        ]
-    };
+    const TENANT_ASSEMBLIES = window.SINDICAPP_SINDICATO_DATA.TENANT_ASSEMBLIES; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     /* Índice de referencia demo (€/m² mes) — mismas zonas que RENT_BANDS_BY_TERRITORY. */
-    const RENT_INDEX = {
-        es: { 'barcelona-ciutat': 15.1, 'barcelona-litoral': 13.4, 'girona-comarca': 10.2, 'lleida-segria': 7.8, 'tarragona-camp': 8.9 },
-        ie: { 'dublin-docklands': 27.9, 'dublin-city-centre': 26.4, 'cork-city': 18.6, 'galway-city': 19.1, 'limerick-east': 15.2 }
-    };
+    const RENT_INDEX = window.SINDICAPP_SINDICATO_DATA.RENT_INDEX; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     function getHousingEscortKey(alert) {
         return slugify(`${alert.territoryId}-${alert.date}-${alert.address}`);
@@ -2440,14 +529,14 @@
     function buildHousingTenedoresHtml(locale) {
         const c = t(locale);
         const holders = LARGE_HOLDERS[localeKey(locale)] || [];
-        const llogateres = locale === 'es' ? findUnion(locale, 'llogateres') : null;
+        const llogateres = localeKey(locale) === 'es' ? findUnion(locale, 'llogateres') : null;
         const cards = holders.map((h) => `
             <div class="sindicato-coord-card sindicato-holder-card">
                 <div class="sindicato-holder-head">
                     <strong>${h.icon} ${h.name}</strong>
                     <span class="template-muted">${h.type}</span>
                 </div>
-                <p class="template-muted"><strong>${h.buildings}</strong> ${c.housingTenedoresBuildings} · <strong>${h.units.toLocaleString(locale === 'es' ? 'es-ES' : 'en-IE')}</strong> ${c.housingTenedoresUnits}</p>
+                <p class="template-muted"><strong>${h.buildings}</strong> ${c.housingTenedoresBuildings} · <strong>${h.units.toLocaleString(localeKey(locale) === 'es' ? 'es-ES' : 'en-IE')}</strong> ${c.housingTenedoresUnits}</p>
                 <div class="sindicato-strike-track sindicato-campaign-track"><div class="sindicato-strike-fill" style="width:${h.progress}%"></div></div>
                 <p class="template-muted">${h.progress}% ${c.housingTenedoresProgress}</p>
                 <p>${h.status}</p>
@@ -2481,7 +570,7 @@
         if (!index || !(size > 0) || !(paid > 0)) {
             return `<p class="template-muted">${c.housingCalcInvalid}</p>`;
         }
-        const localeTag = locale === 'es' ? 'es-ES' : 'en-IE';
+        const localeTag = localeKey(locale) === 'es' ? 'es-ES' : 'en-IE';
         const reference = size * index;
         const diffPct = Math.round(((paid - reference) / reference) * 100);
         const over = diffPct > 0;
@@ -2497,7 +586,7 @@
         const c = t(locale);
         const territories = getHousingCalcTerritories(locale);
         const options = territories.map((terr) =>
-            `<option value="${terr.id}">${terr.name} — ${terr.index.toLocaleString(locale === 'es' ? 'es-ES' : 'en-IE')} €/m²</option>`
+            `<option value="${terr.id}">${terr.name} — ${terr.index.toLocaleString(localeKey(locale) === 'es' ? 'es-ES' : 'en-IE')} €/m²</option>`
         ).join('');
         return `<div class="sindicato-panel">
             <h2>🧮 ${c.housingCalcTitle}</h2>
@@ -2545,20 +634,7 @@
        (Catalunya por defecto). Las funcionalidades del módulo (huelgómetro, alarmas,
        calculadora, asambleas) pasan a ser SECCIONES del equipo, junto a Resumen, Foro,
        Estructura, Propietarios (el equivalente a «Empresas» aquí) y CRM. */
-    const HOUSING_UNIONS = {
-        es: [
-            { id: 'hu-catalunya', icon: '🏠', name: 'Sindicat de Llogateres i Llogaters', region: 'Catalunya', members: 6500, buildings: 120, issues: ['Huelga de alquileres', 'Fin de los contratos de temporada', 'Regulación real de los precios'] },
-            { id: 'hu-madrid', icon: '🏠', name: 'Sindicato de Inquilinas de Madrid', region: 'Comunidad de Madrid', members: 3800, buildings: 74, issues: ['Bloques en lucha frente a fondos', 'Contra las subidas abusivas'] },
-            { id: 'hu-valencia', icon: '🏠', name: 'Sindicat de Llogateres del País Valencià', region: 'País Valencià', members: 1500, buildings: 31, issues: ['Turistificación y expulsión de vecinas'] },
-            { id: 'hu-euskadi', icon: '🏠', name: 'Etxebizitza Sindikatua', region: 'Euskadi', members: 900, buildings: 18, issues: ['Vivienda pública de alquiler asequible'] },
-            { id: 'hu-andalucia', icon: '🏠', name: 'Sindicato de Inquilinas de Andalucía', region: 'Andalucía', members: 1100, buildings: 22, issues: ['Contra los desahucios de grandes tenedores'] }
-        ],
-        ie: [
-            { id: 'hu-dublin', icon: '🏠', name: 'CATU Dublin', region: 'Dublin', members: 2200, buildings: 48, issues: ['Rent freeze', 'End no-fault evictions'] },
-            { id: 'hu-cork', icon: '🏠', name: 'CATU Cork', region: 'Cork', members: 800, buildings: 19, issues: ['Affordable public housing'] },
-            { id: 'hu-galway', icon: '🏠', name: 'CATU Galway', region: 'Galway', members: 400, buildings: 9, issues: ['Student and worker housing crisis'] }
-        ]
-    };
+    const HOUSING_UNIONS = window.SINDICAPP_SINDICATO_DATA.HOUSING_UNIONS; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     function getHousingUnions(locale) {
         return HOUSING_UNIONS[localeKey(locale)] || [];
@@ -2576,7 +652,7 @@
 
     function buildHousingDirectoryHtml(locale, view) {
         const c = t(locale);
-        const localeTag = locale === 'es' ? 'es-ES' : 'en-IE';
+        const localeTag = localeKey(locale) === 'es' ? 'es-ES' : 'en-IE';
         const cards = getHousingUnions(locale).map((u) => `
             <button type="button" class="sindicato-redsocial-card sindicato-dir-card" data-sindicato-goto-housing-union="${u.id}">
                 <span class="sindicato-redsocial-card-icon" aria-hidden="true">${u.icon}</span>
@@ -2605,7 +681,7 @@
 
     function buildHousingUnionResumenHtml(locale, union, view) {
         const c = t(locale);
-        const localeTag = locale === 'es' ? 'es-ES' : 'en-IE';
+        const localeTag = localeKey(locale) === 'es' ? 'es-ES' : 'en-IE';
         const issues = union.issues.map((i) => `<div class="sindicato-coord-card"><strong>${i}</strong></div>`).join('');
         return `<div class="sindicato-panel">
             ${buildHousingUnionHeadHtml(locale, union)}
@@ -2687,62 +763,7 @@
      * Módulo Consumidores (13-07-2026) — productos y servicios con registro
      * público: denuncias de consumo, campañas de presión y alternativas.
      * ================================================================ */
-    const CONSUMER_ITEMS = {
-        es: [
-            { id: 'cesta-basica', icon: '🧺', name: 'Cesta básica de supermercado', type: 'producto', sector: 'Comercio', complaints: 38,
-                campaigns: [
-                    { title: 'Precios espejo — aceite, leche y huevos', support: 64 },
-                    { title: 'Etiquetado de origen real en marca blanca', support: 41 }
-                ],
-                alternatives: ['Cooperativas de consumo de barrio', 'Mercados municipales y venta directa del campo'],
-                tips: 'El precio por unidad de medida (€/kg, €/L) es obligatorio en el lineal: compara siempre por unidad, no por envase.',
-                relatedWorkplaceId: 'supermercat-diari' },
-            { id: 'tarifa-electrica', icon: '⚡', name: 'Tarifa eléctrica doméstica', type: 'servicio', sector: 'Energía', complaints: 52,
-                campaigns: [{ title: 'Bajada colectiva a PVPC — revisión de contratos', support: 57 }],
-                alternatives: ['Cooperativas energéticas ciudadanas', 'Comunidades energéticas locales de autoconsumo'],
-                tips: 'Cambiar de comercializadora es gratuito y no puede cortarte el suministro durante el cambio.' },
-            { id: 'telefonia-internet', icon: '📶', name: 'Telefonía e internet', type: 'servicio', sector: 'Telecomunicaciones', complaints: 47,
-                campaigns: [{ title: 'Fin de las permanencias encadenadas', support: 72 }],
-                alternatives: ['Operadoras locales y cooperativas de telecomunicaciones'],
-                tips: 'Las subidas de tarifa te dan derecho a salir sin penalización aunque tengas permanencia.' },
-            { id: 'banca-comisiones', icon: '🏦', name: 'Comisiones bancarias', type: 'servicio', sector: 'Banca', complaints: 61,
-                campaigns: [{ title: 'Cuenta básica gratuita para rentas bajas', support: 68 }],
-                alternatives: ['Banca ética y cooperativas de crédito'],
-                tips: 'La cuenta de pago básica está regulada: máximo legal de comisión y gratuita para colectivos vulnerables.' },
-            { id: 'apps-reparto', icon: '🛵', name: 'Apps de reparto a domicilio', type: 'servicio', sector: 'Logística', complaints: 29,
-                campaigns: [{ title: 'Propina íntegra para el repartidor', support: 81 }],
-                alternatives: ['Pedido directo al local — llama al restaurante', 'Cooperativas de reparto en bici'],
-                tips: 'La ley rider presume laboralidad: si la app fija precio y ruta, quien reparte es plantilla, no autónomo.',
-                relatedWorkplaceId: 'zona-franca-logistica' }
-        ],
-        ie: [
-            { id: 'grocery-basket', icon: '🧺', name: 'Grocery basket', type: 'producto', sector: 'Retail', complaints: 31,
-                campaigns: [
-                    { title: 'Mirror pricing — bread, milk and butter', support: 59 },
-                    { title: 'Honest unit pricing on multibuys', support: 44 }
-                ],
-                alternatives: ['Local food co-ops', 'Farmers\' markets and direct-from-farm schemes'],
-                tips: 'Unit pricing (€/kg, €/L) must be displayed on the shelf — always compare per unit, not per pack.',
-                relatedWorkplaceId: 'grafton-retail' },
-            { id: 'household-energy', icon: '⚡', name: 'Household energy', type: 'servicio', sector: 'Energy', complaints: 46,
-                campaigns: [{ title: 'Collective switch — end loyalty penalties', support: 62 }],
-                alternatives: ['Community energy co-operatives'],
-                tips: 'Switching supplier is free and your supply cannot be cut off during the changeover.' },
-            { id: 'broadband-mobile', icon: '📶', name: 'Broadband & mobile', type: 'servicio', sector: 'Telecoms', complaints: 39,
-                campaigns: [{ title: 'End chained minimum-term contracts', support: 70 }],
-                alternatives: ['Local and community-owned ISPs'],
-                tips: 'A mid-contract price rise gives you the right to leave without penalty.' },
-            { id: 'bank-fees', icon: '🏦', name: 'Bank fees & charges', type: 'servicio', sector: 'Banking', complaints: 54,
-                campaigns: [{ title: 'Free basic account for low incomes', support: 66 }],
-                alternatives: ['Credit unions and ethical banks'],
-                tips: 'The basic payment account is regulated — free for those receiving certain social welfare payments.' },
-            { id: 'delivery-apps', icon: '🛵', name: 'Food delivery apps', type: 'servicio', sector: 'Logistics', complaints: 24,
-                campaigns: [{ title: 'Full tip to the rider', support: 78 }],
-                alternatives: ['Order direct from the restaurant', 'Bike-courier co-operatives'],
-                tips: 'If the app sets the price and the route, the courier is likely an employee — misclassification can be reported.',
-                relatedWorkplaceId: 'docklands-logistics' }
-        ]
-    };
+    const CONSUMER_ITEMS = window.SINDICAPP_SINDICATO_DATA.CONSUMER_ITEMS; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     function getConsumerItems(locale) {
         return CONSUMER_ITEMS[localeKey(locale)] || [];
@@ -2824,71 +845,7 @@
      * Módulo Estudiantes (13-07-2026) — centros de estudios con perfil:
      * colectivos estudiantiles, reivindicaciones y movilizaciones.
      * ================================================================ */
-    const STUDY_CENTERS = {
-        es: [
-            { id: 'universitat-barcelona', icon: '🏛️', name: 'Universitat de Barcelona', type: 'Universidad pública', territoryId: 'barcelona-ciutat', students: 63000,
-                groups: ['SEPC', 'AJEC', 'Sindicat d\'Estudiants'],
-                issues: [
-                    { title: 'Rebaja de tasas de máster y grado', replies: 48 },
-                    { title: 'Salud mental: más plazas de atención psicológica', replies: 35 }
-                ],
-                mobilizations: [
-                    { date: '2026-09-28', title: 'Asamblea de inicio de curso', place: 'Plaça Universitat' },
-                    { date: '2026-10-15', title: 'Concentración por las becas', place: 'Rectorado' }
-                ] },
-            { id: 'uab-bellaterra', icon: '🏛️', name: 'Universitat Autònoma de Barcelona', type: 'Universidad pública', territoryId: 'central-bages', students: 37000,
-                groups: ['SEPC', 'Assemblees de facultat'],
-                issues: [
-                    { title: 'Transporte público asequible al campus', replies: 52 },
-                    { title: 'Prácticas curriculares remuneradas', replies: 44 }
-                ],
-                mobilizations: [{ date: '2026-10-02', title: 'Huelga de prácticas no pagadas', place: 'Plaça Cívica' }] },
-            { id: 'institut-mila-fontanals', icon: '🏫', name: 'Institut Milà i Fontanals', type: 'Instituto de secundaria', territoryId: 'barcelona-ciutat', students: 850,
-                groups: ['Assemblea d\'estudiants', 'AFA — comissió d\'alumnat'],
-                issues: [{ title: 'Climatización de las aulas (olas de calor)', replies: 27 }],
-                mobilizations: [{ date: '2026-09-24', title: 'Asamblea abierta de alumnado', place: 'Patio central' }] },
-            { id: 'escola-del-treball', icon: '🛠️', name: 'Escola del Treball (FP)', type: 'Formación profesional', territoryId: 'barcelona-ciutat', students: 2400,
-                groups: ['Coordinadora FP en lluita'],
-                issues: [
-                    { title: 'FP dual: convenio digno en las estancias de empresa', replies: 39 },
-                    { title: 'Material de taller a cargo del centro', replies: 22 }
-                ],
-                mobilizations: [{ date: '2026-10-08', title: 'Jornada FP digna', place: 'Escola del Treball' }] },
-            { id: 'universitat-girona', icon: '🏛️', name: 'Universitat de Girona', type: 'Universidad pública', territoryId: 'girona-comarca', students: 15000,
-                groups: ['SEPC Girona'],
-                issues: [{ title: 'Alquiler estudiantil: pisos a precio índice', replies: 41 }],
-                mobilizations: [{ date: '2026-10-20', title: 'Acampada por la vivienda estudiantil', place: 'Campus Montilivi' }] },
-            { id: 'universitat-lleida', icon: '🏛️', name: 'Universitat de Lleida', type: 'Universidad pública', territoryId: 'lleida-segria', students: 10000,
-                groups: ['SEPC Lleida', 'Consell de l\'Estudiantat'],
-                issues: [{ title: 'Becas comedor para estudiantes desplazados', replies: 18 }],
-                mobilizations: [] }
-        ],
-        ie: [
-            { id: 'trinity-college', icon: '🏛️', name: 'Trinity College Dublin', type: 'University', territoryId: 'dublin-city-centre', students: 18000,
-                groups: ['TCDSU', 'Postgrad Workers\' Organisation'],
-                issues: [
-                    { title: 'Student rent — cap on-campus accommodation', replies: 56 },
-                    { title: 'Stipends for postgraduate researchers', replies: 43 }
-                ],
-                mobilizations: [{ date: '2026-10-01', title: 'Rent freeze rally', place: 'Front Square' }] },
-            { id: 'ucd-belfield', icon: '🏛️', name: 'University College Dublin', type: 'University', territoryId: 'dublin-south', students: 33000,
-                groups: ['UCDSU'],
-                issues: [{ title: 'Affordable campus housing', replies: 61 }],
-                mobilizations: [{ date: '2026-10-09', title: 'March for affordable education', place: 'Belfield gates' }] },
-            { id: 'ucc-cork', icon: '🏛️', name: 'University College Cork', type: 'University', territoryId: 'cork-city', students: 24000,
-                groups: ['UCCSU', 'Fair Placements Now'],
-                issues: [{ title: 'Paid placements for nursing & teaching students', replies: 49 }],
-                mobilizations: [{ date: '2026-10-14', title: 'Placement pay picket', place: 'Main quad' }] },
-            { id: 'university-galway', icon: '🏛️', name: 'University of Galway', type: 'University', territoryId: 'galway-city', students: 19000,
-                groups: ['NUIGSU'],
-                issues: [{ title: 'Digs rights — written licences for lodgers', replies: 32 }],
-                mobilizations: [] },
-            { id: 'limerick-cfe', icon: '🛠️', name: 'Limerick College of Further Education', type: 'Further education', territoryId: 'limerick-east', students: 2100,
-                groups: ['Class reps assembly'],
-                issues: [{ title: 'Free materials for apprenticeship courses', replies: 15 }],
-                mobilizations: [{ date: '2026-09-30', title: 'Apprentice pay town hall', place: 'Main hall' }] }
-        ]
-    };
+    const STUDY_CENTERS = window.SINDICAPP_SINDICATO_DATA.STUDY_CENTERS; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     function getStudyCenters(locale) {
         return STUDY_CENTERS[localeKey(locale)] || [];
@@ -2900,7 +857,7 @@
 
     function buildEstudiantesHtml(locale, centerId, view) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const centers = getStudyCenters(locale);
         const center = centerId ? findStudyCenter(locale, centerId) : null;
         if (!center) {
@@ -2926,7 +883,7 @@
         const terr = getSubterritoryById(locale, center.territoryId);
         const groupTags = center.groups.map((g) => `<span class="sindicato-union-tag">${g}</span>`).join('');
         const issueCards = center.issues.map((i) =>
-            `<div class="sindicato-coord-card"><strong>${i.title}</strong><p class="template-muted">${i.replies} ${es ? 'respuestas' : 'replies'}</p></div>`
+            `<div class="sindicato-coord-card"><strong>${i.title}</strong><p class="template-muted">${i.replies} ${c.feedRepliesLabel}</p></div>`
         ).join('') || `<p class="template-muted">—</p>`;
         const mobCards = center.mobilizations.map((m) =>
             `<div class="sindicato-coord-card sindicato-mob-card"><strong>${m.date}</strong><p>${m.title}</p><p class="template-muted">📍 ${m.place}</p></div>`
@@ -2968,73 +925,7 @@
      * arquitectos, enfermería…) con colegiación, cuota, reivindicaciones y
      * sindicatos de profesión. Mismo patrón directorio+perfil que Estudiantes.
      * ================================================================ */
-    const PRO_BODIES = {
-        es: [
-            { id: 'comb-metges-bcn', icon: '🩺', name: 'Col·legi de Metges de Barcelona (CoMB)', type: 'Colegio de médicos', territoryId: 'barcelona-ciutat', members: 30000, fee: 560,
-                unions: ['Metges de Catalunya', 'CCOO Sanitat'],
-                issues: [
-                    { title: 'Límite de agendas: máximo de visitas diarias en primaria', replies: 58 },
-                    { title: 'Descanso efectivo tras guardia de 24 h', replies: 44 }
-                ],
-                mobilizations: [{ date: '2026-10-06', title: 'Concentración por la primaria', place: 'Passeig de la Bonanova' }] },
-            { id: 'icab-advocacia', icon: '⚖️', name: 'Il·lustre Col·legi de l\'Advocacia de Barcelona (ICAB)', type: 'Colegio de la abogacía', territoryId: 'barcelona-ciutat', members: 25000, fee: 480,
-                unions: ['Advocacia Jove', 'Plataforma Torn d\'Ofici Digne'],
-                issues: [
-                    { title: 'Turno de oficio: baremos dignos y pago puntual', replies: 63 },
-                    { title: 'Conciliación: suspensión de plazos por baja parental', replies: 37 }
-                ],
-                mobilizations: [{ date: '2026-09-29', title: 'Paro del turno de oficio', place: 'Ciutat de la Justícia' }] },
-            { id: 'coac-arquitectes', icon: '📐', name: 'Col·legi d\'Arquitectes de Catalunya (COAC)', type: 'Colegio de arquitectos', territoryId: 'barcelona-ciutat', members: 10500, fee: 350,
-                unions: ['Sindicat d\'Arquitectes (SArq)'],
-                issues: [
-                    { title: 'Concursos: fin de las bajas temerarias en honorarios', replies: 29 },
-                    { title: 'Falso autónomo en estudios de arquitectura', replies: 41 }
-                ],
-                mobilizations: [] },
-            { id: 'coib-infermeria', icon: '💉', name: 'Col·legi Oficial d\'Infermeres de Barcelona (COIB)', type: 'Colegio de enfermería', territoryId: 'barcelona-ciutat', members: 45000, fee: 180,
-                unions: ['SATSE', 'Infermeres de Catalunya'],
-                issues: [
-                    { title: 'Ratios seguras de pacientes por enfermera', replies: 72 },
-                    { title: 'Reconocimiento efectivo de las especialidades', replies: 33 }
-                ],
-                mobilizations: [{ date: '2026-10-12', title: 'Jornada por las ratios seguras', place: 'Plaça Sant Jaume' }] },
-            { id: 'comg-metges-girona', icon: '🩺', name: 'Col·legi de Metges de Girona', type: 'Colegio de médicos', territoryId: 'girona-comarca', members: 3200, fee: 520,
-                unions: ['Metges de Catalunya'],
-                issues: [{ title: 'Cobertura de plazas en comarcas: incentivos reales', replies: 21 }],
-                mobilizations: [] }
-        ],
-        ie: [
-            { id: 'rcpi-physicians', icon: '🩺', name: 'Royal College of Physicians of Ireland', type: 'Medical professional body', territoryId: 'dublin-city-centre', members: 11000, fee: 540,
-                unions: ['IMO', 'IHCA'],
-                issues: [
-                    { title: 'Safe rosters — end 24h+ hospital shifts', replies: 51 },
-                    { title: 'Consultant posts left unfilled outside Dublin', replies: 34 }
-                ],
-                mobilizations: [{ date: '2026-10-07', title: 'NCHD lunchtime protest', place: 'St James\'s Hospital' }] },
-            { id: 'law-society-ie', icon: '⚖️', name: 'Law Society of Ireland', type: 'Solicitors\' professional body', territoryId: 'dublin-city-centre', members: 12000, fee: 300,
-                unions: ['Trainee Solicitors\' Forum', 'FLAC'],
-                issues: [
-                    { title: 'Legal aid rates — restore and index fees', replies: 46 },
-                    { title: 'Trainee minimum salary across all firms', replies: 39 }
-                ],
-                mobilizations: [] },
-            { id: 'nmbi-nursing', icon: '💉', name: 'Nursing & Midwifery Board of Ireland', type: 'Nursing professional body', territoryId: 'dublin-city-centre', members: 79000, fee: 100,
-                unions: ['INMO'],
-                issues: [
-                    { title: 'Safe staffing ratios in every ward', replies: 68 },
-                    { title: 'Recognition of overseas qualifications, faster', replies: 27 }
-                ],
-                mobilizations: [{ date: '2026-10-15', title: 'Safe staffing rally', place: 'Merrion Square' }] },
-            { id: 'riai-architects', icon: '📐', name: 'Royal Institute of the Architects of Ireland', type: 'Architects\' professional body', territoryId: 'dublin-city-centre', members: 3200, fee: 380,
-                unions: ['Architectural Workers Assembly'],
-                issues: [{ title: 'Unpaid overtime culture in practices', replies: 24 }],
-                mobilizations: [] },
-            { id: 'teaching-council-ie', icon: '🏫', name: 'The Teaching Council', type: 'Teachers\' professional body', territoryId: 'dublin-south', members: 120000, fee: 65,
-                unions: ['INTO', 'ASTI', 'TUI'],
-                issues: [{ title: 'Permanent contracts for young teachers', replies: 57 }],
-                mobilizations: [{ date: '2026-10-02', title: 'Equal pay for equal work march', place: 'Leinster House' }] }
-        ]
-    };
+    const PRO_BODIES = window.SINDICAPP_SINDICATO_DATA.PRO_BODIES; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     function getProBodies(locale) {
         return PRO_BODIES[localeKey(locale)] || [];
@@ -3046,7 +937,7 @@
 
     function buildProfesionalesHtml(locale, bodyId, view) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const localeTag = es ? 'es-ES' : 'en-IE';
         const bodies = getProBodies(locale);
         const body = bodyId ? findProBody(locale, bodyId) : null;
@@ -3073,7 +964,7 @@
         const terr = getSubterritoryById(locale, body.territoryId);
         const unionTags = body.unions.map((u) => `<span class="sindicato-union-tag">${u}</span>`).join('');
         const issueCards = body.issues.map((i) =>
-            `<div class="sindicato-coord-card"><strong>${i.title}</strong><p class="template-muted">${i.replies} ${es ? 'respuestas' : 'replies'}</p></div>`
+            `<div class="sindicato-coord-card"><strong>${i.title}</strong><p class="template-muted">${i.replies} ${c.feedRepliesLabel}</p></div>`
         ).join('') || `<p class="template-muted">—</p>`;
         const mobCards = body.mobilizations.map((m) =>
             `<div class="sindicato-coord-card sindicato-mob-card"><strong>${m.date}</strong><p>${m.title}</p><p class="template-muted">📍 ${m.place}</p></div>`
@@ -3115,69 +1006,7 @@
      * condiciones del trabajo autónomo: tarifas colaborativas (estilo
      * Sueldos), campañas de presión y asociaciones presentes.
      * ================================================================ */
-    const AUTONOMO_PLATFORMS = {
-        es: [
-            { id: 'glovo-reparto', icon: '🛵', name: 'Glovo', type: 'Plataforma de reparto', sector: 'Reparto y última milla', freelancers: 12000,
-                rates: [
-                    { role: 'Pedido medio (Barcelona)', rate: '€ 4,20 / pedido', votes: 61 },
-                    { role: 'Hora en franja punta', rate: '€ 9,50 / h', votes: 38 }
-                ],
-                campaigns: [
-                    { title: 'Tarifa mínima garantizada por pedido', support: 64 },
-                    { title: 'Fin de las desconexiones sin causa', support: 71 }
-                ],
-                associations: ['RidersXDerechos', 'Mensakas (coop alternativa)'] },
-            { id: 'vtc-uber-cabify', icon: '🚗', name: 'Uber / Cabify (VTC)', type: 'Plataforma VTC', sector: 'Transporte de pasajeros', freelancers: 8000,
-                rates: [
-                    { role: 'Hora efectiva de conducción', rate: '€ 11,00 / h', votes: 45 },
-                    { role: 'Km en trayecto asignado', rate: '€ 0,52 / km', votes: 27 }
-                ],
-                campaigns: [{ title: 'Tarifa mínima por km y hora de espera', support: 58 }],
-                associations: ['Conductors Units VTC'] },
-            { id: 'amazon-flex-es', icon: '📦', name: 'Amazon Flex', type: 'Reparto de paquetería', sector: 'Logística', freelancers: 4000,
-                rates: [{ role: 'Bloque de 2 h (furgoneta propia)', rate: '€ 26 / bloque', votes: 33 }],
-                campaigns: [{ title: 'Que el bloque cubra combustible y seguro', support: 49 }],
-                associations: ['Repartidores Unidos'] },
-            { id: 'malt-fiverr-freelance', icon: '💻', name: 'Malt / Fiverr', type: 'Marketplace freelance', sector: 'Diseño, código y contenidos', freelancers: 15000,
-                rates: [
-                    { role: 'Diseño gráfico — hora', rate: '€ 28 / h', votes: 42 },
-                    { role: 'Desarrollo web — hora', rate: '€ 45 / h', votes: 55 }
-                ],
-                campaigns: [{ title: 'Comisiones de plataforma por debajo del 10%', support: 47 }],
-                associations: ['Coordinadora Freelance'] },
-            { id: 'prensa-colaboradores', icon: '📰', name: 'Medios — colaboradores', type: 'Gran cliente (prensa)', sector: 'Periodismo y contenidos', freelancers: 2500,
-                rates: [{ role: 'Pieza estándar (800 palabras)', rate: '€ 80 / pieza', votes: 29 }],
-                campaigns: [{ title: 'Pago a 30 días, no a 90', support: 76 }],
-                associations: ['Sindicat de Periodistes de Catalunya'] }
-        ],
-        ie: [
-            { id: 'deliveroo-ie', icon: '🛵', name: 'Deliveroo', type: 'Delivery platform', sector: 'Last-mile delivery', freelancers: 5000,
-                rates: [
-                    { role: 'Average drop (Dublin)', rate: '€ 4.60 / drop', votes: 48 },
-                    { role: 'Peak-hour rate', rate: '€ 12.00 / h', votes: 31 }
-                ],
-                campaigns: [
-                    { title: 'Guaranteed minimum per drop', support: 62 },
-                    { title: 'No deactivation without appeal', support: 69 }
-                ],
-                associations: ['Dublin Couriers Collective'] },
-            { id: 'uber-ie', icon: '🚗', name: 'Uber', type: 'Ride-hailing platform', sector: 'Passenger transport', freelancers: 3000,
-                rates: [{ role: 'Effective driving hour', rate: '€ 13.50 / h', votes: 26 }],
-                campaigns: [{ title: 'Fair per-km rate and waiting pay', support: 54 }],
-                associations: ['App Drivers Alliance'] },
-            { id: 'amazon-flex-ie', icon: '📦', name: 'Amazon Flex', type: 'Parcel delivery', sector: 'Logistics', freelancers: 1500,
-                rates: [{ role: '2h block (own van)', rate: '€ 30 / block', votes: 19 }],
-                campaigns: [{ title: 'Blocks must cover fuel and insurance', support: 44 }],
-                associations: ['Couriers Together'] },
-            { id: 'upwork-ie', icon: '💻', name: 'Upwork', type: 'Freelance marketplace', sector: 'Design, code & content', freelancers: 9000,
-                rates: [
-                    { role: 'Graphic design — hour', rate: '€ 32 / h', votes: 37 },
-                    { role: 'Web development — hour', rate: '€ 50 / h', votes: 41 }
-                ],
-                campaigns: [{ title: 'Platform fees below 10%', support: 51 }],
-                associations: ['Freelance Ireland'] }
-        ]
-    };
+    const AUTONOMO_PLATFORMS = window.SINDICAPP_SINDICATO_DATA.AUTONOMO_PLATFORMS; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     function getAutonomoPlatforms(locale) {
         return AUTONOMO_PLATFORMS[localeKey(locale)] || [];
@@ -3189,19 +1018,7 @@
 
     /* 17-07-2026: sindicatos y asociaciones de autónomas como equipos sindicales de pleno
        derecho (antes solo una lista plana). Cada uno tiene perfil + secciones. */
-    const AUTONOMO_UNIONS = {
-        es: [
-            { id: 'aut-riders', icon: '🛵', name: 'RidersXDerechos', sector: 'Reparto', members: 3500, platforms: ['Glovo', 'Deliveroo'], issues: ['Tarifa mínima garantizada por pedido', 'Fin de las desconexiones sin causa'] },
-            { id: 'aut-vtc', icon: '🚗', name: 'Conductors Units VTC', sector: 'VTC', members: 1200, platforms: ['Uber / Cabify'], issues: ['Tarifa mínima por km y hora de espera'] },
-            { id: 'aut-freelance', icon: '💻', name: 'Coordinadora Freelance', sector: 'Freelance digital', members: 2000, platforms: ['Malt / Fiverr'], issues: ['Comisiones de plataforma por debajo del 10%'] },
-            { id: 'aut-prensa', icon: '📰', name: 'Sindicat de Periodistes de Catalunya', sector: 'Periodismo', members: 2500, platforms: ['Medios — colaboradores'], issues: ['Pago a 30 días, no a 90'] }
-        ],
-        ie: [
-            { id: 'aut-couriers', icon: '🛵', name: 'Dublin Couriers Collective', sector: 'Delivery', members: 1500, platforms: ['Deliveroo'], issues: ['Guaranteed minimum per drop', 'No deactivation without appeal'] },
-            { id: 'aut-drivers', icon: '🚗', name: 'App Drivers Alliance', sector: 'Ride-hailing', members: 900, platforms: ['Uber'], issues: ['Fair per-km rate and waiting pay'] },
-            { id: 'aut-freelance', icon: '💻', name: 'Freelance Ireland', sector: 'Freelance', members: 1200, platforms: ['Upwork'], issues: ['Platform fees below 10%'] }
-        ]
-    };
+    const AUTONOMO_UNIONS = window.SINDICAPP_SINDICATO_DATA.AUTONOMO_UNIONS; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     function getAutonomoUnions(locale) {
         return AUTONOMO_UNIONS[localeKey(locale)] || [];
@@ -3213,7 +1030,7 @@
 
     function buildAutonomoUnionProfile(locale, union, view) {
         const c = t(locale);
-        const localeTag = locale === 'es' ? 'es-ES' : 'en-IE';
+        const localeTag = localeKey(locale) === 'es' ? 'es-ES' : 'en-IE';
         const section = (view && view.equipoSection) || 'resumen';
         const empresasHtml = `<p class="template-muted">${c.autonomosUnionPlatforms}</p><div class="sindicato-union-tags">${union.platforms.map((p) => `<span class="sindicato-union-tag">${p}</span>`).join('')}</div>`;
         if (section !== 'resumen') {
@@ -3240,7 +1057,7 @@
 
     function buildAutonomosHtml(locale, platformId, view) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const localeTag = es ? 'es-ES' : 'en-IE';
         const platforms = getAutonomoPlatforms(locale);
         /* El id puede ser un sindicato de autónomas (equipo) o una plataforma (actor). */
@@ -3299,7 +1116,7 @@
                 <div class="sindicato-strike-track sindicato-campaign-track">
                     <div class="sindicato-strike-fill" style="width:${k.support}%"></div>
                 </div>
-                <p class="template-muted">${k.support}% ${es ? 'de apoyo' : 'support'}</p>
+                <p class="template-muted">${k.support}% ${c.campaignSupportShort}</p>
             </div>`).join('') || `<p class="template-muted">—</p>`;
         const assocTags = plat.associations.map((a) => `<span class="sindicato-union-tag">${a}</span>`).join('');
         const section = (view && view.equipoSection) || 'resumen';
@@ -3341,23 +1158,182 @@
      * Un simulador «Ver como» cambia el rol y bloquea/desbloquea anillos.
      * Las versiones «clásica» y «final» comparten el código existente.
      * ================================================================ */
-    const PROPUESTA_ROLE_RANK = { visitante: 0, usuario: 1, afiliado: 2, militante: 3 };
+    /* 20-07-2026 (ADR 0024): la escalera de RELACIÓN queda en tres etapas —
+       visitante · usuario · afiliado. «Militante» deja de ser un rol seleccionable:
+       es un estado emergente (tener ≥1 cargo). El rango 'militante' se conserva solo
+       como alias defensivo de 'afiliado' para estados persistidos pre-migración. */
+    const PROPUESTA_ROLE_RANK = { visitante: 0, usuario: 1, afiliado: 2, militante: 2 };
 
     function propuestaRoleAllows(role, minRole) {
         return (PROPUESTA_ROLE_RANK[role] || 0) >= (PROPUESTA_ROLE_RANK[minRole] || 0);
     }
 
-    /* Anillos (revisión Edu 17-07): la nav NO se organiza explícitamente por anillos —
-       la distinción va implícita en los módulos (candados y contenido según rol),
-       manteniendo los dos cuadros de la Clásica (herramientas / colectivos).
-       PROPUESTA_RINGS queda solo como doctrina para la pantalla «Sobre la Propuesta».
-       Los anillos se llaman como los roles: Visitante / Usuario / Afiliado / Militante. */
-    const PROPUESTA_RINGS = [
-        { id: 'r0', minRole: 'visitante' },
-        { id: 'r1', minRole: 'usuario' },
-        { id: 'r2', minRole: 'afiliado' },
-        { id: 'r3', minRole: 'militante' }
-    ];
+    /* 20-07-2026 (ideas 42+43, ADR 0024, §7 de PROPUESTA-ACCESOS-200726): cargos
+       arquetipo demo. Cada cargo concede un paquete de CAPACIDADES — exactamente los
+       botones crm-* de la sidebar de Gestión (el vocabulario que dejó el ADR 0019).
+       El organigrama ES la ACL: ocupar el cargo abre sus herramientas; 'ninguno' es
+       el estado normal de una afiliada de base. Nombres en COPY.propuestaCargos. */
+    const DEMO_CARGOS = ['ninguno', 'coordinacion', 'accion', 'comunicacion', 'datos'];
+    const CARGO_CAPABILITIES = {
+        /* coordinacion: TODAS las capacidades (se resuelve en cargoAllows). */
+        accion: ['intake', 'casos', 'asambleas', 'documentos'],
+        comunicacion: ['campanas', 'comunicaciones', 'calendario'],
+        datos: ['afiliadas', 'datos', 'fuentes', 'estructura', 'finanzas']
+    };
+
+    /* Acepta el id de capacidad con o sin prefijo 'crm-' (los llamadores mezclan
+       ids de tab del CRM e ids de sección de sidebar). */
+    function normalizeCapabilityId(capabilityId) {
+        const id = String(capabilityId || '');
+        return id.indexOf('crm-') === 0 ? id.slice(4) : id;
+    }
+
+    /* 20-07-2026 tarde (idea 63, report v5): además de los 4 arquetipo, se pueden
+       ocupar los cargos del ORGANIGRAMA del equipo abierto. Ids autocontenidos:
+       - 'team:<tipo>:<comisión>:<cargo>' — cargo de seed (índices estables es/ie,
+         las capacidades son idénticas en ambos datasets, solo cambian los textos);
+       - 'adhoc:<datasetKey>:<orgId>:<ts>' — cargo ad hoc del runtime del equipo
+         (idea 64), con caducidad. Caducado deja de conceder. */
+    function getTeamCargos(locale, type) {
+        const tp = type || 'base';
+        return getComisionesForTeam(locale, tp).reduce((acc, com, ci) => acc.concat(
+            (com.cargos || []).map((cg, gi) => ({
+                id: 'team:' + tp + ':' + ci + ':' + gi,
+                label: cg.role,
+                capacidades: cg.capacidades || [],
+                ambito: cg.ambito || '',
+                ambitoTerritorio: cg.ambitoTerritorio || ''
+            }))
+        ), []);
+    }
+
+    /* Caducidad de un cargo ad hoc: fecha (YYYY-MM-DD) estrictamente pasada. */
+    function adhocCargoExpired(cg) {
+        if (!cg || !cg.caduca) return false;
+        return cg.caduca < new Date().toISOString().slice(0, 10);
+    }
+
+    /* 20-07 tarde (idea 64): cargos ad hoc del equipo — viven en el runtime CRM
+       persistido del equipo (getCrmData), como cualquier otro dato de gestión. */
+    function getAdhocCargos(locale, orgId) {
+        const data = getCrmData(locale, orgId);
+        return (data && Array.isArray(data.adhocCargos)) ? data.adhocCargos : [];
+    }
+
+    /* Fecha de caducidad legible (DD-MM) para el badge «ad hoc · caduca …». */
+    function formatAdhocDate(iso) {
+        const p = String(iso || '').split('-');
+        return p.length === 3 ? p[2] + '-' + p[1] : String(iso || '');
+    }
+
+    /* 20-07 tarde (idea 64): crear un cargo ad hoc — la excepción disciplinada del
+       §4 de PROPUESTA-ACCESOS-200726: temporal, con caducidad, registrado en el
+       MISMO organigrama (nunca una matriz aparte). Devuelve el cargo creado o null. */
+    function crmCreateAdhocCargo(locale, orgId, fields) {
+        const f = fields || {};
+        const nombre = String(f.nombre || '').trim();
+        const capacidades = Array.isArray(f.capacidades) ? f.capacidades.filter(Boolean) : [];
+        const caduca = String(f.caduca || '').trim();
+        if (!nombre || !capacidades.length || !caduca) return null;
+        const org = findCrmOrg(locale, orgId) ? orgId : 'sindicapp';
+        const data = getCrmData(locale, org);
+        if (!Array.isArray(data.adhocCargos)) data.adhocCargos = [];
+        const cargo = {
+            id: 'adhoc:' + localeKey(locale) + ':' + org + ':' + Date.now(),
+            nombre: nombre,
+            capacidades: capacidades,
+            ambito: String(f.ambito || '').trim(),
+            caduca: caduca
+        };
+        data.adhocCargos.push(cargo);
+        persistCrmRuntime(locale);
+        /* Idea 66: la creación deja rastro, igual que ocupar/soltar. */
+        recordCargoTrail('adhoc', nombre);
+        return cargo;
+    }
+
+    /* Resuelve cualquier id de cargo a su definición {label, capacidades,
+       ambitoTerritorio, expired}. Para capacidades el locale es indiferente
+       (seeds paralelos); para textos se pasa el locale real. */
+    function resolveCargoDef(locale, cargoId) {
+        const id = String(cargoId || '');
+        if (id.indexOf('team:') === 0) {
+            const p = id.split(':');
+            const coms = getComisionesForTeam(locale || 'es', p[1]);
+            const com = coms[Number(p[2])];
+            const cg = com && (com.cargos || [])[Number(p[3])];
+            return cg ? { label: cg.role, capacidades: cg.capacidades || [], ambitoTerritorio: cg.ambitoTerritorio || '' } : null;
+        }
+        if (id.indexOf('adhoc:') === 0) {
+            const p = id.split(':');
+            const list = (getCrmData(p[1], p[2]) || {}).adhocCargos || [];
+            const cg = list.find((x) => x.id === id);
+            return cg ? { label: cg.nombre, capacidades: cg.capacidades || [], ambitoTerritorio: '', expired: adhocCargoExpired(cg) } : null;
+        }
+        if (id === 'coordinacion') return { label: '', capacidades: [], all: true };
+        if (CARGO_CAPABILITIES[id]) return { label: '', capacidades: CARGO_CAPABILITIES[id] };
+        return null;
+    }
+
+    function cargoAllows(cargoId, capabilityId) {
+        if (cargoId === 'coordinacion') return true;
+        const cap = normalizeCapabilityId(capabilityId);
+        const caps = CARGO_CAPABILITIES[cargoId];
+        if (caps) return caps.indexOf(cap) !== -1;
+        /* Cargos de equipo (63) y ad hoc (64): conceden lo que declara su seed;
+           un ad hoc caducado no concede nada. */
+        const def = resolveCargoDef('es', cargoId);
+        if (!def || def.expired) return false;
+        if (def.all) return true;
+        return (def.capacidades || []).indexOf(cap) !== -1;
+    }
+
+    /* Nombre visible de un cargo, sea arquetipo, de equipo o ad hoc. */
+    function cargoDisplayName(locale, cargoId) {
+        const c = t(locale);
+        if (c.propuestaCargos && c.propuestaCargos[cargoId]) return c.propuestaCargos[cargoId];
+        const def = resolveCargoDef(locale, cargoId);
+        return (def && def.label) || cargoId;
+    }
+
+    /* 20-07-2026 tarde (idea 66, report v5): rastro de cargos — historial persistido
+       de ocupaciones (quién / qué cargo / cuándo). Se registra al ocupar o soltar un
+       cargo demo y al crear un cargo ad hoc. Clave sindicapp-* (el reset demo la borra). */
+    const CARGO_TRAIL_KEY = 'sindicapp-cargo-trail-v1';
+    function getCargoTrail() {
+        try {
+            const raw = localStorage.getItem(CARGO_TRAIL_KEY);
+            const parsed = raw ? JSON.parse(raw) : null;
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (e) { return []; }
+    }
+    function recordCargoTrail(action, cargoName) {
+        const trail = getCargoTrail();
+        trail.unshift({
+            when: new Date().toISOString().slice(0, 16).replace('T', ' '),
+            action: action,
+            cargo: cargoName
+        });
+        try { localStorage.setItem(CARGO_TRAIL_KEY, JSON.stringify(trail.slice(0, 30))); } catch (e) { /* demo */ }
+    }
+
+    /* «Militante» como estado emergente: cualquier cargo ≠ ninguno. */
+    function cargoIsAny(cargoId) {
+        return Boolean(cargoId) && cargoId !== 'ninguno';
+    }
+
+    /* Quién LLEVA una capacidad — para el candado informativo («esto lo opera el
+       cargo X»). Prefiere el cargo específico; coordinación es el paraguas final. */
+    function cargoForCapability(capabilityId) {
+        const cap = normalizeCapabilityId(capabilityId);
+        const specific = ['accion', 'comunicacion', 'datos'].find((id) => CARGO_CAPABILITIES[id].indexOf(cap) !== -1);
+        return specific || 'coordinacion';
+    }
+
+    /* 20-07-2026 tarde (idea 68 parcial, report v5): la pantalla «anillo/inicio» y
+       PROPUESTA_RINGS se purgaron — los anillos ya no existen ni como doctrina en
+       código (ADR 0024). PENDIENTE (anotado, demasiado invasivo para esta tanda):
+       renombrar propuestaRoleAllows y las claves COPY con prefijo 'propuesta'. */
 
     /* Cuadros de la nav propuesta — espejo exacto de la Clásica, con candados por rol.
        Nada de accesos extra: el módulo Usuario contiene perfil + mis casos/documentos
@@ -3389,277 +1365,12 @@
     ];
 
     /* Datos demo de la propuesta (por locale). Estado de turnos en memoria de sesión. */
-    const PROPUESTA_DEMO = {
-        es: {
-            intake: [
-                { name: 'Marta G.', channel: 'Telegram', territory: 'Barcelonès', theme: 'Impago de horas extra', next: 'Invitar a asamblea de bienvenida (24-07)', state: 'nuevo' },
-                { name: 'Youssef B.', channel: 'Email', territory: 'Vallès Occidental', theme: 'Subida de alquiler', next: 'Pedir contrato y burofax', state: 'seguimiento' },
-                { name: 'Irene T.', channel: 'Presencial (asamblea)', territory: 'Barcelonès', theme: 'Despido en periodo de prueba', next: 'Revisar carta con jurídica', state: 'seguimiento' },
-                { name: 'Pau R.', channel: 'Teléfono', territory: 'Gironès', theme: 'Falso autónomo', next: '—', state: 'convertida' },
-                { name: 'Ana L.', channel: 'Formulario web', territory: 'Bages', theme: 'Consulta de convenio', next: 'Resuelta en primera respuesta', state: 'archivada' }
-            ],
-            cases: [
-                { id: 'pc1', title: 'Impago de horas extra', person: 'Marina Soler', theme: 'Salario', actor: 'Polígon Nord Logística', owner: 'Laia Ferrer', stage: 'En curso',
-                    updates: [
-                        { date: '2026-07-02', by: 'Laia Ferrer', note: 'Primera reunión: recopiladas nóminas de 6 meses.' },
-                        { date: '2026-07-10', by: 'Laia Ferrer', note: 'Enviado burofax reclamando 41 h extra.' },
-                        { date: '2026-07-15', by: 'Marina Soler', note: 'La empresa ofrece pagar el 60%. Se lleva a asamblea.' }
-                    ],
-                    docs: [{ name: 'Contrato', status: 'ok' }, { name: 'Nóminas (6 meses)', status: 'ok' }, { name: 'Registro horario', status: 'falta' }] },
-                { id: 'pc2', title: 'Modificación unilateral de turnos', person: 'Óscar Peña', theme: 'Jornada', actor: 'Polígon Nord Logística', owner: 'Jordi Mas', stage: 'Nuevo',
-                    updates: [{ date: '2026-07-14', by: 'Jordi Mas', note: 'Caso abierto desde intake. Afecta a todo el turno de noche.' }],
-                    docs: [{ name: 'Contrato', status: 'revision' }, { name: 'Cuadrante nuevo', status: 'ok' }] },
-                { id: 'pc3', title: 'Plus de nocturnidad impagado', person: 'Amina El Idrissi', theme: 'Salario', actor: 'Polígon Nord Logística', owner: 'Laia Ferrer', stage: 'Negociación',
-                    updates: [
-                        { date: '2026-06-20', by: 'Laia Ferrer', note: 'Detectado en revisión colectiva de nóminas.' },
-                        { date: '2026-07-08', by: 'Laia Ferrer', note: 'Mesa con la empresa: reconoce el error, negocia atrasos.' }
-                    ],
-                    docs: [{ name: 'Nóminas', status: 'ok' }, { name: 'Convenio aplicable', status: 'ok' }] },
-                { id: 'pc4', title: 'Sanción impugnada', person: 'Pere Vidal', theme: 'Disciplinario', actor: 'Supermercat Diari', owner: 'Núria Bosch', stage: 'Resuelto', outcome: 'favorable',
-                    updates: [
-                        { date: '2026-05-30', by: 'Núria Bosch', note: 'Alegaciones presentadas.' },
-                        { date: '2026-06-25', by: 'Núria Bosch', note: 'Sanción retirada. Caso cerrado con resultado favorable.' }
-                    ],
-                    docs: [{ name: 'Carta de sanción', status: 'ok' }, { name: 'Alegaciones', status: 'ok' }] }
-            ],
-            myCases: [
-                { title: 'Impago de horas extra', stage: 'En curso', updated: 'hace 2d', note: 'La empresa ofrece el 60% — se decide en asamblea.' }
-            ],
-            myDocs: [
-                { name: 'Contrato', status: 'ok' }, { name: 'Nóminas (6 meses)', status: 'ok' }, { name: 'Registro horario', status: 'falta' }
-            ],
-            internalThreads: [
-                { title: 'Estrategia ante la oferta del 60% en Polígon Nord', replies: 14, last: 'hace 3h' },
-                { title: 'Caja de resistencia: propuesta de cuota extraordinaria', replies: 9, last: 'hace 1d' },
-                { title: 'Acta de la asamblea del 10-07', replies: 3, last: 'hace 5d' }
-            ],
-            sessions: [
-                { id: 'ps1', type: 'ordinaria', title: 'Asamblea ordinaria de julio', date: '2026-07-24 · 18:30', place: 'Local del sindicato', attendance: 34,
-                    roles: [
-                        { role: 'Moderación', holder: 'Carme Rovira', backup: 'Jordi Mas' },
-                        { role: 'Acogida', holder: 'Iván Ortega', backup: '' },
-                        { role: 'Acta', holder: '', backup: '' },
-                        { role: 'Turnos', holder: 'Laia Ferrer', backup: 'Rosa Camps' }
-                    ],
-                    turns: [
-                        { who: 'Marina Soler', kind: 'actualizacion', status: 'atendida', caseRef: 'Impago de horas extra' },
-                        { who: 'Marta G.', kind: 'primera', status: 'encurso', caseRef: 'Impago de horas extra (nueva)' },
-                        { who: 'Óscar Peña', kind: 'actualizacion', status: 'pendiente', caseRef: 'Modificación de turnos' },
-                        { who: 'Youssef B.', kind: 'primera', status: 'pendiente', caseRef: 'Subida de alquiler' }
-                    ] },
-                { id: 'ps2', type: 'bienvenida', title: 'Sesión de bienvenida', date: '2026-07-24 · 17:30', place: 'Local del sindicato', attendance: 8, roles: [{ role: 'Acogida', holder: 'Iván Ortega', backup: '' }], turns: [] },
-                { id: 'ps3', type: 'especial', title: 'Sesión especial: Polígon Nord (3 casos)', date: '2026-07-29 · 18:00', place: 'Local del sindicato', attendance: 12, roles: [{ role: 'Moderación', holder: 'Laia Ferrer', backup: '' }], turns: [] }
-            ]
-        },
-        ie: {
-            intake: [
-                { name: 'Aoife K.', channel: 'Telegram', territory: 'Dublin City', theme: 'Unpaid overtime', next: 'Invite to welcome session (24-07)', state: 'nuevo' },
-                { name: 'Tomás M.', channel: 'Email', territory: 'Cork City', theme: 'Rent increase', next: 'Request lease and notice letter', state: 'seguimiento' },
-                { name: 'Priya S.', channel: 'In person (assembly)', territory: 'Dublin City', theme: 'Probation dismissal', next: 'Legal review of letter', state: 'seguimiento' },
-                { name: 'Sean B.', channel: 'Phone', territory: 'Galway', theme: 'Bogus self-employment', next: '—', state: 'convertida' },
-                { name: 'Emma N.', channel: 'Web form', territory: 'Limerick', theme: 'Agreement query', next: 'Solved in first reply', state: 'archivada' }
-            ],
-            cases: [
-                { id: 'pc1', title: 'Unpaid overtime', person: 'Niamh O\'Connell', theme: 'Pay', actor: 'Liffey Logistics Park', owner: 'Sarah Lynch', stage: 'In progress',
-                    updates: [
-                        { date: '2026-07-02', by: 'Sarah Lynch', note: 'First meeting: collected 6 months of payslips.' },
-                        { date: '2026-07-15', by: 'Niamh O\'Connell', note: 'Company offers 60%. Going to the assembly.' }
-                    ],
-                    docs: [{ name: 'Contract', status: 'ok' }, { name: 'Payslips (6 months)', status: 'ok' }, { name: 'Time records', status: 'falta' }] },
-                { id: 'pc2', title: 'Unilateral roster change', person: 'Liam Doyle', theme: 'Hours', actor: 'Liffey Logistics Park', owner: 'James Murphy', stage: 'New',
-                    updates: [{ date: '2026-07-14', by: 'James Murphy', note: 'Opened from intake. Affects the whole night shift.' }],
-                    docs: [{ name: 'Contract', status: 'revision' }, { name: 'New roster', status: 'ok' }] },
-                { id: 'pc3', title: 'Night premium unpaid', person: 'Grace Nolan', theme: 'Pay', actor: 'Liffey Logistics Park', owner: 'Sarah Lynch', stage: 'Bargaining',
-                    updates: [{ date: '2026-07-08', by: 'Sarah Lynch', note: 'Company admits the error, negotiating back pay.' }],
-                    docs: [{ name: 'Payslips', status: 'ok' }, { name: 'Agreement', status: 'ok' }] },
-                { id: 'pc4', title: 'Contested sanction', person: 'Conor Walsh', theme: 'Disciplinary', actor: 'Grafton Retail Co-op', owner: 'Aoife Byrne', stage: 'Resolved', outcome: 'favorable',
-                    updates: [{ date: '2026-06-25', by: 'Aoife Byrne', note: 'Sanction withdrawn. Closed with a favourable outcome.' }],
-                    docs: [{ name: 'Sanction letter', status: 'ok' }, { name: 'Appeal', status: 'ok' }] }
-            ],
-            myCases: [
-                { title: 'Unpaid overtime', stage: 'In progress', updated: '2d ago', note: 'Company offers 60% — the assembly decides.' }
-            ],
-            myDocs: [
-                { name: 'Contract', status: 'ok' }, { name: 'Payslips (6 months)', status: 'ok' }, { name: 'Time records', status: 'falta' }
-            ],
-            internalThreads: [
-                { title: 'Strategy on the 60% offer at Liffey Logistics', replies: 14, last: '3h ago' },
-                { title: 'Strike fund: special dues proposal', replies: 9, last: '1d ago' },
-                { title: 'Minutes of the 10-07 assembly', replies: 3, last: '5d ago' }
-            ],
-            sessions: [
-                { id: 'ps1', type: 'ordinaria', title: 'July ordinary assembly', date: '2026-07-24 · 18:30', place: 'Union hall', attendance: 34,
-                    roles: [
-                        { role: 'Moderation', holder: 'Emma Kavanagh', backup: 'James Murphy' },
-                        { role: 'Welcome desk', holder: 'Sean Brennan', backup: '' },
-                        { role: 'Minutes', holder: '', backup: '' },
-                        { role: 'Turns', holder: 'Sarah Lynch', backup: 'Grace Nolan' }
-                    ],
-                    turns: [
-                        { who: 'Niamh O\'Connell', kind: 'actualizacion', status: 'atendida', caseRef: 'Unpaid overtime' },
-                        { who: 'Aoife K.', kind: 'primera', status: 'encurso', caseRef: 'Unpaid overtime (new)' },
-                        { who: 'Liam Doyle', kind: 'actualizacion', status: 'pendiente', caseRef: 'Roster change' },
-                        { who: 'Tomás M.', kind: 'primera', status: 'pendiente', caseRef: 'Rent increase' }
-                    ] },
-                { id: 'ps2', type: 'bienvenida', title: 'Welcome session', date: '2026-07-24 · 17:30', place: 'Union hall', attendance: 8, roles: [{ role: 'Welcome desk', holder: 'Sean Brennan', backup: '' }], turns: [] },
-                { id: 'ps3', type: 'especial', title: 'Special session: Liffey Logistics (3 cases)', date: '2026-07-29 · 18:00', place: 'Union hall', attendance: 12, roles: [{ role: 'Moderation', holder: 'Sarah Lynch', backup: '' }], turns: [] }
-            ]
-        }
-    };
+    const PROPUESTA_DEMO = window.SINDICAPP_SINDICATO_DATA.PROPUESTA_DEMO; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     /* 17-07-2026 (peculiaridades por tipo): casos/intake/asambleas propios de cada tipo de
        equipo sindical. Trabajadores e Inquilinos usan el dataset base (SdLl-ish); estos
        sobrescriben intake/cases/sessions con contenido de su sector. */
-    const PROPUESTA_TYPE_DEMO = {
-        es: {
-            profesionales: {
-                intake: [
-                    { name: 'Anna R.', channel: 'Telegram', territory: 'Barcelonès', theme: 'Colegiación y cuota', next: 'Enviar información de alta', state: 'nuevo' },
-                    { name: 'David M.', channel: 'Email', territory: 'Gironès', theme: 'Intrusismo profesional', next: 'Recopilar pruebas', state: 'seguimiento' },
-                    { name: 'Laia P.', channel: 'Presencial', territory: 'Barcelonès', theme: 'Baja por burnout', next: 'Derivar a salud laboral', state: 'seguimiento' }
-                ],
-                cases: [
-                    { id: 'pc1', title: 'Ratios de enfermería inseguros', person: 'Marina Soler', theme: 'Condiciones', actor: 'Hospital Vall d\'Hebron', owner: 'Laia Ferrer', stage: 'En curso',
-                        updates: [{ date: '2026-07-05', by: 'Laia Ferrer', note: 'Recogidas 40 firmas de la unidad.' }, { date: '2026-07-12', by: 'Laia Ferrer', note: 'Presentada queja ante la dirección médica.' }],
-                        docs: [{ name: 'Cuadrante de turnos', status: 'ok' }, { name: 'Registro de incidencias', status: 'falta' }] },
-                    { id: 'pc2', title: 'Guardia de 24 h sin descanso', person: 'Pere Vidal', theme: 'Jornada', actor: 'ICS', owner: 'Núria Bosch', stage: 'Negociación',
-                        updates: [{ date: '2026-07-08', by: 'Núria Bosch', note: 'Mesa con el ICS sobre libranzas post-guardia.' }],
-                        docs: [{ name: 'Convenio sanitario', status: 'ok' }] },
-                    { id: 'pc3', title: 'Turno de oficio impagado', person: 'Jordi Mas', theme: 'Honorarios', actor: 'Generalitat — Justícia', owner: 'Óscar Peña', stage: 'Nuevo',
-                        updates: [{ date: '2026-07-14', by: 'Óscar Peña', note: 'Caso abierto: 6 meses de baremos sin abonar.' }],
-                        docs: [{ name: 'Expedientes de turno', status: 'revision' }] }
-                ],
-                sessions: [
-                    { id: 'ps1', type: 'ordinaria', title: 'Junta ordinaria de colegiadas', date: '2026-07-24 · 19:00', place: 'Sede colegial', attendance: 40,
-                        roles: [{ role: 'Moderación', holder: 'Carme Rovira', backup: '' }, { role: 'Deontología', holder: 'Iván Ortega', backup: '' }, { role: 'Acta', holder: '', backup: '' }, { role: 'Turnos', holder: 'Laia Ferrer', backup: '' }],
-                        turns: [{ who: 'Marina Soler', kind: 'actualizacion', status: 'encurso', caseRef: 'Ratios de enfermería' }, { who: 'Anna R.', kind: 'primera', status: 'pendiente', caseRef: 'Colegiación' }] },
-                    { id: 'ps2', type: 'especial', title: 'Comisión de deontología', date: '2026-07-30 · 18:00', place: 'Sede colegial', attendance: 9, roles: [{ role: 'Instrucción', holder: 'Iván Ortega', backup: '' }], turns: [] }
-                ]
-            },
-            autonomos: {
-                intake: [
-                    { name: 'Youssef B.', channel: 'Telegram', territory: 'Barcelonès', theme: 'Desconexión sin causa (Glovo)', next: 'Documentar el histórico', state: 'nuevo' },
-                    { name: 'Marta G.', channel: 'Email', territory: 'Vallès Occidental', theme: 'Falso autónomo', next: 'Revisar con jurídica', state: 'seguimiento' },
-                    { name: 'Kevin O.', channel: 'Teléfono', territory: 'Barcelonès', theme: 'Tarifa por debajo de coste', next: 'Sumar a la campaña de tarifas', state: 'seguimiento' }
-                ],
-                cases: [
-                    { id: 'pc1', title: 'Desconexión masiva tras protesta', person: 'Youssef B.', theme: 'Plataforma', actor: 'Glovo', owner: 'Laia Ferrer', stage: 'En curso',
-                        updates: [{ date: '2026-07-06', by: 'Laia Ferrer', note: 'Recogidos 30 casos de desconexión el mismo día.' }, { date: '2026-07-13', by: 'Laia Ferrer', note: 'Escrito colectivo a la plataforma.' }],
-                        docs: [{ name: 'Capturas de la app', status: 'ok' }, { name: 'Historial de pedidos', status: 'falta' }] },
-                    { id: 'pc2', title: 'Falso autónomo en VTC', person: 'Marta G.', theme: 'Laboral', actor: 'Uber / Cabify', owner: 'Jordi Mas', stage: 'Negociación',
-                        updates: [{ date: '2026-07-09', by: 'Jordi Mas', note: 'Preparada demanda de laboralidad.' }],
-                        docs: [{ name: 'Contrato mercantil', status: 'ok' }] },
-                    { id: 'pc3', title: 'Tarifa por debajo de coste', person: 'Kevin O.', theme: 'Tarifas', actor: 'Amazon Flex', owner: 'Óscar Peña', stage: 'Nuevo',
-                        updates: [{ date: '2026-07-14', by: 'Óscar Peña', note: 'El bloque no cubre combustible ni seguro.' }],
-                        docs: [{ name: 'Cálculo de costes', status: 'revision' }] }
-                ],
-                sessions: [
-                    { id: 'ps1', type: 'ordinaria', title: 'Asamblea de riders', date: '2026-07-24 · 20:00', place: 'Local / online', attendance: 55,
-                        roles: [{ role: 'Moderación', holder: 'Rosa Camps', backup: '' }, { role: 'Plataformas', holder: 'Amina El Idrissi', backup: '' }, { role: 'Acta', holder: '', backup: '' }, { role: 'Turnos', holder: 'Laia Ferrer', backup: '' }],
-                        turns: [{ who: 'Youssef B.', kind: 'primera', status: 'encurso', caseRef: 'Desconexión Glovo' }, { who: 'Marta G.', kind: 'actualizacion', status: 'pendiente', caseRef: 'Falso autónomo VTC' }] },
-                    { id: 'ps2', type: 'especial', title: 'Sesión especial: tarifas mínimas', date: '2026-07-31 · 19:00', place: 'Online', attendance: 30, roles: [{ role: 'Coordinación de tarifas', holder: 'Rosa Camps', backup: '' }], turns: [] }
-                ]
-            },
-            estudiantes: {
-                intake: [
-                    { name: 'Èlia F.', channel: 'Telegram', territory: 'Barcelonès', theme: 'Beca denegada', next: 'Revisar requisitos y recurso', state: 'nuevo' },
-                    { name: 'Marc S.', channel: 'Presencial', territory: 'Barcelonès', theme: 'Acoso de un docente', next: 'Activar protocolo', state: 'seguimiento' },
-                    { name: 'Nora V.', channel: 'Email', territory: 'Gironès', theme: 'Prácticas no remuneradas', next: 'Sumar a la campaña', state: 'seguimiento' }
-                ],
-                cases: [
-                    { id: 'pc1', title: 'Subida de tasas de máster', person: 'Marina Soler', theme: 'Tasas', actor: 'Universitat de Barcelona', owner: 'Laia Ferrer', stage: 'En curso',
-                        updates: [{ date: '2026-07-05', by: 'Laia Ferrer', note: 'Recogida de firmas en tres facultades.' }, { date: '2026-07-12', by: 'Laia Ferrer', note: 'Reunión con el rectorado solicitada.' }],
-                        docs: [{ name: 'Tabla de tasas', status: 'ok' }, { name: 'Firmas', status: 'ok' }] },
-                    { id: 'pc2', title: 'Prácticas curriculares sin pagar', person: 'Pere Vidal', theme: 'Prácticas', actor: 'UB — Facultad', owner: 'Núria Bosch', stage: 'Negociación',
-                        updates: [{ date: '2026-07-09', by: 'Núria Bosch', note: 'Propuesta de convenio de prácticas dignas.' }],
-                        docs: [{ name: 'Convenio de prácticas', status: 'revision' }] },
-                    { id: 'pc3', title: 'Salud mental: sin plazas', person: 'Èlia F.', theme: 'Bienestar', actor: 'Universitat de Barcelona', owner: 'Óscar Peña', stage: 'Nuevo',
-                        updates: [{ date: '2026-07-14', by: 'Óscar Peña', note: 'Lista de espera de meses en el servicio psicológico.' }],
-                        docs: [{ name: 'Datos del servicio', status: 'falta' }] }
-                ],
-                sessions: [
-                    { id: 'ps1', type: 'ordinaria', title: 'Asamblea de estudiantes', date: '2026-07-24 · 13:00', place: 'Aula magna', attendance: 60,
-                        roles: [{ role: 'Moderación', holder: 'Carme Rovira', backup: '' }, { role: 'Bienestar', holder: 'Iván Ortega', backup: '' }, { role: 'Acta', holder: '', backup: '' }, { role: 'Turnos', holder: 'Laia Ferrer', backup: '' }],
-                        turns: [{ who: 'Marina Soler', kind: 'actualizacion', status: 'encurso', caseRef: 'Tasas de máster' }, { who: 'Èlia F.', kind: 'primera', status: 'pendiente', caseRef: 'Beca denegada' }] },
-                    { id: 'ps2', type: 'especial', title: 'Sesión especial: becas', date: '2026-07-30 · 12:00', place: 'Sala de juntas', attendance: 25, roles: [{ role: 'Referente de becas', holder: 'Iván Ortega', backup: '' }], turns: [] }
-                ]
-            }
-        },
-        ie: {
-            profesionales: {
-                intake: [
-                    { name: 'Aoife K.', channel: 'Telegram', territory: 'Dublin City', theme: 'Registration & fees', next: 'Send onboarding info', state: 'nuevo' },
-                    { name: 'Tom D.', channel: 'Email', territory: 'Cork City', theme: 'Unlicensed practice', next: 'Gather evidence', state: 'seguimiento' },
-                    { name: 'Sinead R.', channel: 'In person', territory: 'Dublin City', theme: 'Burnout leave', next: 'Refer to occupational health', state: 'seguimiento' }
-                ],
-                cases: [
-                    { id: 'pc1', title: 'Unsafe nursing ratios', person: 'Niamh O\'Connell', theme: 'Conditions', actor: 'St James\'s Hospital', owner: 'Sarah Lynch', stage: 'In progress',
-                        updates: [{ date: '2026-07-05', by: 'Sarah Lynch', note: 'Collected 40 signatures from the ward.' }],
-                        docs: [{ name: 'Roster', status: 'ok' }, { name: 'Incident log', status: 'falta' }] },
-                    { id: 'pc2', title: '24h shift with no rest', person: 'James Murphy', theme: 'Hours', actor: 'HSE', owner: 'Aoife Byrne', stage: 'Bargaining',
-                        updates: [{ date: '2026-07-08', by: 'Aoife Byrne', note: 'Table with the HSE on post-call rest.' }],
-                        docs: [{ name: 'Agreement', status: 'ok' }] },
-                    { id: 'pc3', title: 'Legal aid fees unpaid', person: 'Liam Doyle', theme: 'Fees', actor: 'Dept of Justice', owner: 'Conor Walsh', stage: 'New',
-                        updates: [{ date: '2026-07-14', by: 'Conor Walsh', note: 'Opened: 6 months of fees outstanding.' }],
-                        docs: [{ name: 'Case files', status: 'revision' }] }
-                ],
-                sessions: [
-                    { id: 'ps1', type: 'ordinaria', title: 'Ordinary members\' meeting', date: '2026-07-24 · 19:00', place: 'College HQ', attendance: 40,
-                        roles: [{ role: 'Moderation', holder: 'Emma Kavanagh', backup: '' }, { role: 'Ethics', holder: 'Sean Brennan', backup: '' }, { role: 'Minutes', holder: '', backup: '' }, { role: 'Turns', holder: 'Sarah Lynch', backup: '' }],
-                        turns: [{ who: 'Niamh O\'Connell', kind: 'actualizacion', status: 'encurso', caseRef: 'Nursing ratios' }, { who: 'Aoife K.', kind: 'primera', status: 'pendiente', caseRef: 'Registration' }] },
-                    { id: 'ps2', type: 'especial', title: 'Ethics board', date: '2026-07-30 · 18:00', place: 'College HQ', attendance: 9, roles: [{ role: 'Case instruction', holder: 'Sean Brennan', backup: '' }], turns: [] }
-                ]
-            },
-            autonomos: {
-                intake: [
-                    { name: 'Karl B.', channel: 'Telegram', territory: 'Dublin City', theme: 'Deactivation (Deliveroo)', next: 'Log the history', state: 'nuevo' },
-                    { name: 'Mia G.', channel: 'Email', territory: 'Cork City', theme: 'Bogus self-employment', next: 'Legal review', state: 'seguimiento' },
-                    { name: 'Owen L.', channel: 'Phone', territory: 'Dublin City', theme: 'Below-cost rate', next: 'Add to rates campaign', state: 'seguimiento' }
-                ],
-                cases: [
-                    { id: 'pc1', title: 'Mass deactivation after protest', person: 'Karl B.', theme: 'Platform', actor: 'Deliveroo', owner: 'Sarah Lynch', stage: 'In progress',
-                        updates: [{ date: '2026-07-06', by: 'Sarah Lynch', note: '30 same-day deactivation cases collected.' }],
-                        docs: [{ name: 'App screenshots', status: 'ok' }, { name: 'Order history', status: 'falta' }] },
-                    { id: 'pc2', title: 'Bogus self-employment (ride-hailing)', person: 'Mia G.', theme: 'Employment', actor: 'Uber', owner: 'James Murphy', stage: 'Bargaining',
-                        updates: [{ date: '2026-07-09', by: 'James Murphy', note: 'Employment-status claim prepared.' }],
-                        docs: [{ name: 'Service contract', status: 'ok' }] },
-                    { id: 'pc3', title: 'Below-cost delivery rate', person: 'Owen L.', theme: 'Rates', actor: 'Amazon Flex', owner: 'Conor Walsh', stage: 'New',
-                        updates: [{ date: '2026-07-14', by: 'Conor Walsh', note: 'Block covers neither fuel nor insurance.' }],
-                        docs: [{ name: 'Cost breakdown', status: 'revision' }] }
-                ],
-                sessions: [
-                    { id: 'ps1', type: 'ordinaria', title: 'Couriers assembly', date: '2026-07-24 · 20:00', place: 'Hall / online', attendance: 55,
-                        roles: [{ role: 'Moderation', holder: 'Grace Nolan', backup: '' }, { role: 'Platforms', holder: 'Priya Sharma', backup: '' }, { role: 'Minutes', holder: '', backup: '' }, { role: 'Turns', holder: 'Sarah Lynch', backup: '' }],
-                        turns: [{ who: 'Karl B.', kind: 'primera', status: 'encurso', caseRef: 'Deliveroo deactivation' }, { who: 'Mia G.', kind: 'actualizacion', status: 'pendiente', caseRef: 'Bogus self-employment' }] },
-                    { id: 'ps2', type: 'especial', title: 'Special session: minimum rates', date: '2026-07-31 · 19:00', place: 'Online', attendance: 30, roles: [{ role: 'Rates coordination', holder: 'Grace Nolan', backup: '' }], turns: [] }
-                ]
-            },
-            estudiantes: {
-                intake: [
-                    { name: 'Ella F.', channel: 'Telegram', territory: 'Dublin City', theme: 'Grant refused', next: 'Review criteria & appeal', state: 'nuevo' },
-                    { name: 'Mark S.', channel: 'In person', territory: 'Dublin City', theme: 'Lecturer harassment', next: 'Trigger protocol', state: 'seguimiento' },
-                    { name: 'Nora V.', channel: 'Email', territory: 'Cork City', theme: 'Unpaid placement', next: 'Add to campaign', state: 'seguimiento' }
-                ],
-                cases: [
-                    { id: 'pc1', title: 'Master\'s fee increase', person: 'Niamh O\'Connell', theme: 'Fees', actor: 'Trinity College Dublin', owner: 'Sarah Lynch', stage: 'In progress',
-                        updates: [{ date: '2026-07-05', by: 'Sarah Lynch', note: 'Signature drive across three schools.' }],
-                        docs: [{ name: 'Fees table', status: 'ok' }, { name: 'Signatures', status: 'ok' }] },
-                    { id: 'pc2', title: 'Unpaid curricular placement', person: 'James Murphy', theme: 'Placement', actor: 'TCD — School', owner: 'Aoife Byrne', stage: 'Bargaining',
-                        updates: [{ date: '2026-07-09', by: 'Aoife Byrne', note: 'Fair-placement agreement proposed.' }],
-                        docs: [{ name: 'Placement agreement', status: 'revision' }] },
-                    { id: 'pc3', title: 'Mental health: no slots', person: 'Ella F.', theme: 'Wellbeing', actor: 'Trinity College Dublin', owner: 'Conor Walsh', stage: 'New',
-                        updates: [{ date: '2026-07-14', by: 'Conor Walsh', note: 'Months-long waiting list at counselling.' }],
-                        docs: [{ name: 'Service data', status: 'falta' }] }
-                ],
-                sessions: [
-                    { id: 'ps1', type: 'ordinaria', title: 'Students\' assembly', date: '2026-07-24 · 13:00', place: 'Main hall', attendance: 60,
-                        roles: [{ role: 'Moderation', holder: 'Emma Kavanagh', backup: '' }, { role: 'Wellbeing', holder: 'Sean Brennan', backup: '' }, { role: 'Minutes', holder: '', backup: '' }, { role: 'Turns', holder: 'Sarah Lynch', backup: '' }],
-                        turns: [{ who: 'Niamh O\'Connell', kind: 'actualizacion', status: 'encurso', caseRef: 'Fee increase' }, { who: 'Ella F.', kind: 'primera', status: 'pendiente', caseRef: 'Grant refused' }] },
-                    { id: 'ps2', type: 'especial', title: 'Special session: grants', date: '2026-07-30 · 12:00', place: 'Boardroom', attendance: 25, roles: [{ role: 'Grants reference', holder: 'Sean Brennan', backup: '' }], turns: [] }
-                ]
-            }
-        }
-    };
+    const PROPUESTA_TYPE_DEMO = window.SINDICAPP_SINDICATO_DATA.PROPUESTA_TYPE_DEMO; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     /* Runtime de Intake/Casos/Asambleas por (locale, tipo). Hasta 18-07 vivía solo en
        memoria — mover un caso, convertir un intake o avanzar un turno se perdía al
@@ -3758,10 +1469,23 @@
         savePropuestaRuntime();
     }
 
+    /* 20-07 tarde (idea 65, report v5): toggle demo «sesión en curso» de una sesión de
+       crm-asambleas — mientras está activo, las suplentes del cuadrante heredan las
+       capacidades del rol (demo visual, sin gating real). Persistido en el runtime. */
+    function propuestaToggleSessionLive(locale, sessionId, type) {
+        const data = getPropuestaData(locale, type);
+        const s = (data.sessions || []).find((x) => x.id === sessionId);
+        if (!s) return false;
+        s.enCurso = !s.enCurso;
+        savePropuestaRuntime();
+        return Boolean(s.enCurso);
+    }
+
     /* 18-07 (idea 54, report v4): avisos según rol — lo que te toca, no un feed.
-       Usuario+: documentos que faltan en tu caso y próxima agenda. Militante+:
-       turnos pendientes de las sesiones y documentos en revisión del CRM. */
-    function collectNotifications(locale, role) {
+       Usuario+: documentos que faltan en tu caso y próxima agenda.
+       20-07 (ADR 0024): los avisos internos ya no piden «militante» — relación
+       afiliada + cualquier cargo ≠ ninguno (el estado militante emergente). */
+    function collectNotifications(locale, role, cargo) {
         const c = t(locale);
         const items = [];
         const allow = (min) => propuestaRoleAllows(role || 'visitante', min);
@@ -3773,7 +1497,7 @@
         getUpcomingAgendaDigest(locale, 2).forEach((ev) => {
             items.push({ icon: '📅', text: `${ev.date} · ${ev.title}` });
         });
-        if (allow('militante')) {
+        if (allow('afiliado') && cargoIsAny(cargo)) {
             (data.sessions || []).forEach((s) => {
                 const pend = (s.turns || []).filter((tn) => tn.status === 'pendiente').length;
                 if (pend) items.push({ icon: '🗳️', text: String(c.notifTurns || '{n}').replace('{n}', pend) + ' — ' + s.title });
@@ -3785,13 +1509,13 @@
         return items;
     }
 
-    function getNotificationCount(locale, role) {
-        return collectNotifications(locale, role).length;
+    function getNotificationCount(locale, role, cargo) {
+        return collectNotifications(locale, role, cargo).length;
     }
 
-    function buildNotificationsHtml(locale, role) {
+    function buildNotificationsHtml(locale, role, cargo) {
         const c = t(locale);
-        const items = collectNotifications(locale, role);
+        const items = collectNotifications(locale, role, cargo);
         const canSee = propuestaRoleAllows(role || 'visitante', 'usuario');
         const body = items.length
             ? items.map((it) => `<p class="sindicapp-notif-item"><span aria-hidden="true">${it.icon}</span> ${it.text}</p>`).join('')
@@ -3905,18 +1629,35 @@
         return (c.propuestaItems && c.propuestaItems[key]) || key;
     }
 
+    /* 20-07-2026 (ADR 0025): grupo del acordeón al que pertenece un sub — para la
+       auto-expansión cuando el sub activo cambia por cualquier vía (click de nav,
+       búsqueda global, hash/History). 'self'/'usuario' viven en
+       Funcionalidades; los subs sin botón en la nav (feed, coordination…)
+       devuelven '' y no fuerzan cambio de grupo. */
+    function navGroupForSub(sub) {
+        if (sub === 'self' || sub === 'usuario') return 'funcionalidades';
+        if (PROPUESTA_COLECTIVOS.some((it) => it.id === sub)) return 'sindicatos';
+        if (PROPUESTA_TOOLS.some((it) => it.id === sub)) return 'funcionalidades';
+        return '';
+    }
+
     /* Nav de la propuesta: SOLO los dos cuadros de la Clásica (sin selector de rol
        global ni pantalla explicativa — decisión Edu: eso vive dentro de cada módulo).
        Los items con anillo superior al rol actual muestran candado pero se atraviesan:
-       el módulo abierto explica el anillo y ofrece el cambio de rol contextual. */
-    function buildPropuestaNavHtml(locale, role, activeSub, activeScreen) {
+       el módulo abierto explica el anillo y ofrece el cambio de rol contextual.
+       20-07-2026 (ADR 0025): los dos cuadros pasan a ser un ACORDEÓN con cabecera —
+       «Sindicatos» (los 6 colectivos) y «Funcionalidades» (las 6 herramientas). Solo
+       un grupo está abierto (expandedGroup); del cerrado se ve SOLO su cabecera. El
+       nombre del stub `sindicatos` renace como cabecera del grupo de colectivos (el
+       id del módulo sigue reservado y fuera de uso). */
+    /* 20-07 tarde (idea 68 parcial): fuera el 4º parámetro `activeScreen` — solo
+       existía para marcar activa la pantalla del sub `anillo`, ya purgado. */
+    function buildPropuestaNavHtml(locale, role, activeSub, expandedGroup) {
         const c = t(locale);
         const item = (it) => {
             const label = propuestaItemLabel(c, it);
             const gated = it.minRole && !propuestaRoleAllows(role, it.minRole);
-            const isActive = it.type === 'sub'
-                ? (activeSub === it.id || (it.id === 'usuario' && activeSub === 'self'))
-                : (activeSub === 'anillo' && activeScreen === it.id);
+            const isActive = activeSub === it.id || (it.id === 'usuario' && activeSub === 'self');
             const wide = it.wide ? ' template-module-btn--wide' : '';
             const lockCls = gated ? ' propuesta-item-locked' : '';
             const icon = gated ? '🔒' : it.icon;
@@ -3928,19 +1669,87 @@
                 <span aria-hidden="true">${icon}</span> ${label}
             </button>`;
         };
-        return `<div class="sindicato-subnav-group sindicato-subnav-group--colectivos">${PROPUESTA_COLECTIVOS.map(item).join('')}</div>
-            <div class="sindicato-subnav-group">${PROPUESTA_TOOLS.map(item).join('')}</div>`;
+        /* Sin argumento (llamadas legacy) el grupo por defecto es 'sindicatos'. */
+        const open = expandedGroup === 'funcionalidades' ? 'funcionalidades' : 'sindicatos';
+        const group = (key, labelKey, items, extraCls) => {
+            const expanded = open === key;
+            const label = c[labelKey] || key;
+            return `<div class="sindicato-subnav-group${extraCls}${expanded ? '' : ' sindicato-subnav-group--collapsed'}">
+                <button type="button" class="sindicato-subnav-group-header" data-propuesta-navgroup="${key}" aria-expanded="${expanded ? 'true' : 'false'}">
+                    <span class="sindicato-subnav-group-chevron" aria-hidden="true">${expanded ? '▾' : '▸'}</span> ${label}
+                </button>
+                ${expanded ? items.map(item).join('') : ''}
+            </div>`;
+        };
+        return group('sindicatos', 'navGroupSindicatos', PROPUESTA_COLECTIVOS, ' sindicato-subnav-group--colectivos')
+            + group('funcionalidades', 'navGroupFuncionalidades', PROPUESTA_TOOLS, '');
     }
 
     /* Chips de rol contextuales (demo): aparecen DENTRO de los espacios protegidos,
        no en la nav — el cambio de rol se ofrece donde el anillo se hace visible. */
     function buildPropuestaRoleChipsHtml(locale, role) {
         const c = t(locale);
-        const roles = ['visitante', 'usuario', 'afiliado', 'militante'];
+        /* 20-07-2026 (ADR 0024): tres etapas de relación — 'militante' desaparece de
+           los chips; dentro de la organización el acceso lo dan los cargos. */
+        const roles = ['visitante', 'usuario', 'afiliado'];
         const chips = roles.map((r) =>
             `<button type="button" class="propuesta-role-chip${r === role ? ' active' : ''}" data-propuesta-role="${r}">${c.propuestaRoles[r]}</button>`
         ).join('');
         return `<p class="propuesta-viewas-line">${c.propuestaViewAs}:</p><div class="propuesta-role-row">${chips}</div>`;
+    }
+
+    /* 20-07-2026 (ideas 42+43, ADR 0024): chips de cargo demo — «ocupa un cargo» en
+       lugar del viejo chip militante. Mismo estilo que los chips de relación.
+       20-07 tarde (idea 63): con ctx {type, orgId} añade además los cargos del
+       ORGANIGRAMA del equipo abierto (seed + ad hoc vigentes) como chips propios. */
+    function buildCargoChipsHtml(locale, cargo, ctx) {
+        const c = t(locale);
+        const current = cargo || 'ninguno';
+        const chip = (id, label) =>
+            `<button type="button" class="propuesta-role-chip${id === current ? ' active' : ''}" data-propuesta-cargo="${id}">${label}</button>`;
+        const chips = DEMO_CARGOS.map((id) =>
+            chip(id, (c.propuestaCargos && c.propuestaCargos[id]) || id)
+        ).join('');
+        let teamRow = '';
+        if (ctx && ctx.type) {
+            const teamCargos = getTeamCargos(locale, ctx.type);
+            const adhoc = ctx.orgId
+                ? getAdhocCargos(locale, ctx.orgId).filter((cg) => !adhocCargoExpired(cg))
+                : [];
+            const teamChips = teamCargos.map((cg) => chip(cg.id, cg.label))
+                .concat(adhoc.map((cg) => chip(cg.id, `${cg.nombre} ⏳`)))
+                .join('');
+            if (teamChips) {
+                teamRow = `<p class="propuesta-viewas-line">${c.propuestaCargoTeamLine || ''}</p><div class="propuesta-role-row">${teamChips}</div>`;
+            }
+        }
+        return `<p class="propuesta-viewas-line">${c.propuestaCargoChipsLine}</p><div class="propuesta-role-row">${chips}</div>${teamRow}`;
+    }
+
+    /* 20-07-2026 (ADR 0024): candado de CARGO. Si la relación no llega a afiliada,
+       manda el candado de relación de siempre; si eres afiliada sin la capacidad,
+       el candado se vuelve información organizativa — dice QUIÉN lo lleva y ofrece
+       ocupar el cargo (demo). capabilityId vacío = basta cualquier cargo.
+       20-07 tarde (idea 63): ctx {type, orgId} opcional para ofrecer también los
+       cargos del organigrama del equipo abierto. */
+    function buildCargoLockedHtml(locale, capabilityId, currentRole, currentCargo, ctx) {
+        const role = currentRole || 'visitante';
+        if (!propuestaRoleAllows(role, 'afiliado')) {
+            return buildPropuestaLockedHtml(locale, 'afiliado', role);
+        }
+        const c = t(locale);
+        const cap = normalizeCapabilityId(capabilityId);
+        const holder = cap ? cargoForCapability(cap) : '';
+        const holderName = holder ? ((c.propuestaCargos && c.propuestaCargos[holder]) || holder) : '';
+        const body = cap
+            ? String(c.propuestaCargoLockedBody || '{cargo}').replace('{cargo}', holderName)
+            : (c.propuestaCargoLockedAnyBody || '');
+        return `<div class="sindicato-panel propuesta-locked-panel propuesta-cargo-locked">
+            <h2><span aria-hidden="true">🔒</span> ${c.propuestaCargoLockedTitle}</h2>
+            <p class="template-muted">${body}</p>
+            ${buildCargoChipsHtml(locale, currentCargo || 'ninguno', ctx)}
+            <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
+        </div>`;
     }
 
     /* Espacio interno de un colectivo (anillo afiliado) — tarjeta embebida al final
@@ -3962,7 +1771,7 @@
         }
         const data = getPropuestaData(locale);
         const threads = data.internalThreads.slice(0, 2).map((th) =>
-            `<div class="sindicato-coord-card"><strong>${th.title}</strong><p class="template-muted">${th.replies} ${locale === 'es' ? 'respuestas' : 'replies'} · ${th.last}</p></div>`
+            `<div class="sindicato-coord-card"><strong>${th.title}</strong><p class="template-muted">${th.replies} ${c.feedRepliesLabel} · ${th.last}</p></div>`
         ).join('');
         return `<section class="sindicato-sector-section propuesta-internal">
             <header class="sindicato-sector-section-head">
@@ -3984,15 +1793,21 @@
         if (v.webVersion !== 'propuesta') return '';
         const c = t(locale);
         const role = v.propuestaRole || 'visitante';
+        const cargo = v.propuestaCargo || 'ninguno';
         const note = (c.crmModuleNotes || {})[moduleType] || '';
-        if (!propuestaRoleAllows(role, 'militante')) {
+        /* 20-07-2026 (ADR 0024): la entrada de gestión ya no pide «militante» —
+           relación afiliada + cualquier cargo del equipo. */
+        if (!propuestaRoleAllows(role, 'afiliado') || !cargoIsAny(cargo)) {
+            const chips = !propuestaRoleAllows(role, 'afiliado')
+                ? buildPropuestaRoleChipsHtml(locale, role)
+                : buildCargoChipsHtml(locale, cargo, { type: moduleType });
             return `<section class="sindicato-sector-section propuesta-internal propuesta-internal-locked propuesta-gestion-entry">
                 <header class="sindicato-sector-section-head">
                     <span class="sindicato-sector-section-icon" aria-hidden="true">🔒</span>
                     <h3>${c.gestionEntryTitle}</h3>
                 </header>
-                <p class="template-muted">${c.gestionEntryLockedIntro}</p>
-                ${buildPropuestaRoleChipsHtml(locale, role)}
+                <p class="template-muted">${propuestaRoleAllows(role, 'afiliado') ? (c.propuestaCargoLockedAnyBody || c.gestionEntryLockedIntro) : c.gestionEntryLockedIntro}</p>
+                ${chips}
             </section>`;
         }
         return `<section class="sindicato-sector-section propuesta-internal propuesta-gestion-entry">
@@ -4021,22 +1836,33 @@
         return `<span class="crm-badge crm-badge-${cls}">${(c.propuestaDocStatus && c.propuestaDocStatus[status]) || status}</span>`;
     }
 
-    function buildPropuestaScreenHtml(locale, screen, role, type) {
+    function buildPropuestaScreenHtml(locale, screen, role, type, cargo) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const data = getPropuestaData(locale, type);
         const roleName = c.propuestaRoles[role] || role;
         const tp = type || '';
+        const cg = cargo || 'ninguno';
         /* Comisión responsable por tipo, para la línea de playbook del caso. */
         const casoComision = {
             profesionales: es ? 'Defensa profesional' : 'Professional defence',
             autonomos: es ? 'Tarifas y condiciones' : 'Rates & conditions',
             estudiantes: es ? 'Reivindicativa' : 'Demands'
         }[type] || (es ? 'Acción sindical' : 'Union action');
-        /* Puertas por pantalla: la doctrina, aplicada. */
-        const gates = { miscasos: 'usuario', forointerno: 'afiliado', intake: 'militante', casos: 'militante', asambleas: 'militante' };
+        /* Puertas por pantalla: la doctrina, aplicada.
+           20-07 (ADR 0024): las pantallas de gestión piden relación afiliada + cargo
+           con la capacidad. 20-07 tarde (idea 69, DECISIÓN Edu): el foro interno
+           vuelve a ser afiliado-solo, SIN exigir cargo — el espacio interno de base
+           pertenece a la afiliación, no al cargo (igual que la tarjeta embebida
+           buildPropuestaInternalSpaceHtml). Los avisos internos de la campana sí
+           siguen requiriendo cargo: son operativos (collectNotifications). */
+        const gates = { miscasos: 'usuario', forointerno: 'afiliado', intake: 'afiliado', casos: 'afiliado', asambleas: 'afiliado' };
         if (gates[screen] && !propuestaRoleAllows(role, gates[screen])) {
             return buildPropuestaLockedHtml(locale, gates[screen], role);
+        }
+        const cargoGates = { intake: 'intake', casos: 'casos', asambleas: 'asambleas' };
+        if (cargoGates[screen] && !cargoAllows(cg, cargoGates[screen])) {
+            return buildCargoLockedHtml(locale, cargoGates[screen], role, cg, { type: tp });
         }
         if (screen === 'miscasos') {
             const caseCards = data.myCases.map((cs) =>
@@ -4045,6 +1871,18 @@
             const docRows = data.myDocs.map((d) =>
                 `<div class="sindicato-coord-card propuesta-doc-row"><strong>${d.name}</strong>${propuestaDocBadge(c, d.status)}</div>`
             ).join('');
+            /* 20-07 (idea 43, ADR 0024): simulador «ver como» — bloque compacto en el
+               perfil de Usuario: relación actual + cargo actual, y una línea que dice
+               que así ves la app. La doctrina de privacidad hecha visible sin escribirla. */
+            const viewAsBlock = `<section class="sindicato-sector-section propuesta-viewas-sim">
+                <header class="sindicato-sector-section-head">
+                    <span class="sindicato-sector-section-icon" aria-hidden="true">👁</span>
+                    <h3>${c.propuestaViewAs}</h3>
+                </header>
+                <p class="template-muted">${c.propuestaViewAsNow}</p>
+                ${buildPropuestaRoleChipsHtml(locale, role)}
+                ${buildCargoChipsHtml(locale, cg)}
+            </section>`;
             return `<div class="sindicato-panel propuesta-screen">
                 <h2>🗂️ ${c.propuestaMisCasosTitle}</h2>
                 <p class="template-muted">${c.propuestaMisCasosIntro}</p>
@@ -4052,12 +1890,13 @@
                 ${caseCards}
                 <h3>${c.propuestaMisCasosDocs}</h3>
                 ${docRows}
+                ${viewAsBlock}
                 <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
             </div>`;
         }
         if (screen === 'forointerno') {
             const threads = data.internalThreads.map((th) =>
-                `<div class="sindicato-coord-card"><strong>${th.title}</strong><p class="template-muted">${th.replies} ${es ? 'respuestas' : 'replies'} · ${th.last}</p></div>`
+                `<div class="sindicato-coord-card"><strong>${th.title}</strong><p class="template-muted">${th.replies} ${c.feedRepliesLabel} · ${th.last}</p></div>`
             ).join('');
             const sessions = data.sessions.filter((s) => s.type === 'ordinaria').map((s) =>
                 `<div class="sindicato-coord-card sindicato-mob-card"><strong>${s.date}</strong><p>${s.title}</p><p class="template-muted">📍 ${s.place} · ${s.attendance} ${c.propuestaAttendance}</p></div>`
@@ -4097,9 +1936,22 @@
             </div>`;
         }
         if (screen === 'casos') {
-            /* Detección de patrones: actores con ≥3 casos abiertos */
+            /* 20-07 tarde (idea 67, report v5): ámbitos operativos — si el cargo
+               ocupado declara `ambitoTerritorio`, la pantalla de casos se recorta a
+               los casos de ese territorio (los sin territorio se muestran siempre).
+               Coordinación ve todo. */
+            const cargoDef = cg === 'coordinacion' ? null : resolveCargoDef(locale, cg);
+            const scopeTerr = (cargoDef && cargoDef.ambitoTerritorio) || '';
+            const visibleCases = scopeTerr
+                ? data.cases.filter((cs) => !cs.territoryId || cs.territoryId === scopeTerr)
+                : data.cases;
+            const scopeTerrObj = scopeTerr ? getSubterritoryById(locale, scopeTerr) : null;
+            const scopeLine = scopeTerr
+                ? `<p class="propuesta-scope-line">📍 ${String(c.propuestaCasosScope || '{t}').replace('{t}', scopeTerrObj ? scopeTerrObj.name : scopeTerr)}</p>`
+                : '';
+            /* Detección de patrones: actores con ≥3 casos abiertos (sobre lo visible) */
             const actorCounts = {};
-            data.cases.filter((cs) => cs.stage !== (es ? 'Resuelto' : 'Resolved')).forEach((cs) => {
+            visibleCases.filter((cs) => cs.stage !== (es ? 'Resuelto' : 'Resolved')).forEach((cs) => {
                 actorCounts[cs.actor] = (actorCounts[cs.actor] || 0) + 1;
             });
             const pattern = Object.entries(actorCounts).find(([, n]) => n >= 3);
@@ -4114,7 +1966,7 @@
             const patternBanner = pattern
                 ? `<div class="propuesta-pattern-banner">${c.propuestaCasosPattern.replace('{n}', pattern[1]).replace('{actor}', pattern[0])}${patternAction}</div>`
                 : '';
-            const caseCards = data.cases.map((cs) => {
+            const caseCards = visibleCases.map((cs) => {
                 const updates = cs.updates.map((u) =>
                     `<li><span class="propuesta-update-date">${u.date}</span> <strong>${u.by}</strong> — ${u.note}</li>`
                 ).join('');
@@ -4122,24 +1974,24 @@
                     `<span class="propuesta-doc-chip">${d.name} ${propuestaDocBadge(c, d.status)}</span>`
                 ).join('');
                 const outcome = cs.outcome
-                    ? `<p><strong>${c.propuestaCasosOutcome}:</strong> <span class="crm-badge crm-badge-activa">${es ? 'Favorable' : 'Favourable'}</span></p>`
+                    ? `<p><strong>${c.propuestaCasosOutcome}:</strong> <span class="crm-badge crm-badge-activa">${c.propuestaFavorableBadge}</span></p>`
                     : '';
                 /* Idea 8: el tema conecta con el playbook — guía wiki + comisión responsable. */
                 const playbook = `<p class="propuesta-playbook">${c.propuestaCasosPlaybook}:
                     <button type="button" class="sindicato-union-company-link" data-sindicato-wiki-jump="derechos">📖 ${(c.wikiArticles && c.wikiArticles.derechos ? c.wikiArticles.derechos.title : (es ? 'Derechos' : 'Rights'))}</button>
                     <button type="button" class="sindicato-union-company-link" data-sindicato-wiki-jump="denunciar">📢 ${(c.wikiArticles && c.wikiArticles.denunciar ? c.wikiArticles.denunciar.title : (es ? 'Cómo denunciar' : 'How to report'))}</button>
-                    <span class="template-muted">· ${es ? 'comisión' : 'commission'}: ${casoComision}</span>
+                    <span class="template-muted">· ${c.propuestaComisionLabel}: ${casoComision}</span>
                 </p>`;
                 const stages = PROPUESTA_CASE_STAGES[localeKey(locale)] || [];
                 const stIdx = stages.indexOf(cs.stage);
                 const stageControls = `<div class="crm-case-actions propuesta-case-stage">
-                        <button type="button" class="crm-mini-btn" data-propuesta-case-move="${tp}|${cs.id}|back" ${stIdx <= 0 ? 'disabled' : ''} aria-label="${es ? 'Etapa anterior' : 'Previous stage'}">◀</button>
+                        <button type="button" class="crm-mini-btn" data-propuesta-case-move="${tp}|${cs.id}|back" ${stIdx <= 0 ? 'disabled' : ''} aria-label="${c.crmStagePrevAria}">◀</button>
                         <span class="crm-badge crm-badge-programada">${cs.stage}</span>
-                        <button type="button" class="crm-mini-btn" data-propuesta-case-move="${tp}|${cs.id}|fwd" ${stIdx === stages.length - 1 ? 'disabled' : ''} aria-label="${es ? 'Etapa siguiente' : 'Next stage'}">▶</button>
+                        <button type="button" class="crm-mini-btn" data-propuesta-case-move="${tp}|${cs.id}|fwd" ${stIdx === stages.length - 1 ? 'disabled' : ''} aria-label="${c.crmStageNextAria}">▶</button>
                     </div>`;
                 return `<details class="propuesta-case">
-                    <summary><strong>${cs.title}</strong> <span class="crm-badge crm-badge-programada">${cs.stage}</span> <span class="template-muted">· ${cs.person} · ${es ? 'lleva' : 'owner'} ${cs.owner}</span></summary>
-                    <p class="template-muted">${c.propuestaCasosActor}: <strong>${cs.actor}</strong> · ${es ? 'Tema' : 'Theme'}: ${cs.theme}</p>
+                    <summary><strong>${cs.title}</strong> <span class="crm-badge crm-badge-programada">${cs.stage}</span> <span class="template-muted">· ${cs.person} · ${c.propuestaLlevaLabel} ${cs.owner}</span></summary>
+                    <p class="template-muted">${c.propuestaCasosActor}: <strong>${cs.actor}</strong> · ${c.propuestaTemaLabel}: ${cs.theme}</p>
                     ${stageControls}
                     ${playbook}
                     <h4>${c.propuestaCasosHistory}</h4>
@@ -4160,6 +2012,7 @@
             return `<div class="sindicato-panel propuesta-screen">
                 <h2>📂 ${c.propuestaCasosTitle}</h2>
                 <p class="template-muted">${c.propuestaCasosIntro}</p>
+                ${scopeLine}
                 ${patternBanner}
                 <input type="search" class="sindicato-search-input" placeholder="${c.propuestaFilterPlaceholder}" aria-label="${c.propuestaFilterPlaceholder}" data-live-filter=".propuesta-case">
                 ${caseCards}
@@ -4169,13 +2022,25 @@
         if (screen === 'asambleas') {
             const sessionCards = data.sessions.map((s) => {
                 const typeBadge = `<span class="crm-badge crm-badge-${s.type === 'ordinaria' ? 'asamblea' : s.type === 'bienvenida' ? 'formacion' : 'negociacion'}">${c.propuestaSessionTypes[s.type]}</span>`;
+                /* 20-07 tarde (idea 65, report v5): toggle demo «sesión en curso» — con la
+                   sesión activa, las suplentes del cuadrante HEREDAN las capacidades del rol
+                   (demo visual: badge «hereda»; sin gating real por sesión). Persistido en
+                   el runtime propuesta (savePropuestaRuntime). */
+                const live = Boolean(s.enCurso);
+                const heredaBadge = live
+                    ? ` <span class="crm-badge crm-badge-activa propuesta-hereda-badge">${c.propuestaHeredaBadge || 'hereda'}</span>`
+                    : '';
                 const roles = (s.roles || []).map((r) => {
                     const gap = !r.holder;
                     return `<div class="propuesta-role-slot${gap ? ' propuesta-role-gap' : ''}">
                         <strong>${r.role}</strong>
-                        <span>${gap ? `⚠️ ${c.propuestaAsambleasRoleGap}` : r.holder}${r.backup ? ` <span class="template-muted">· ${es ? 'suplente' : 'backup'}: ${r.backup}</span>` : ''}</span>
+                        <span>${gap ? `⚠️ ${c.propuestaAsambleasRoleGap}` : r.holder}${r.backup ? ` <span class="template-muted">· ${c.propuestaSuplenteLabel}: ${r.backup}</span>${heredaBadge}` : ''}</span>
                     </div>`;
                 }).join('');
+                const liveToggle = `<button type="button" class="crm-mini-btn${live ? ' propuesta-session-live-active' : ''}" data-propuesta-session-live="${tp}|${s.id}" aria-pressed="${live ? 'true' : 'false'}">${live ? (c.propuestaSessionLiveOn || '⏹') : (c.propuestaSessionLiveOff || '▶')}</button>`;
+                const liveNote = live
+                    ? `<p class="propuesta-session-live-note">🟢 ${c.propuestaSessionLiveNote || ''}</p>`
+                    : '';
                 const turns = (s.turns || []).map((tn) =>
                     `<li class="propuesta-turn propuesta-turn-${tn.status}">
                         <span class="propuesta-turn-status">${c.propuestaTurnStatus[tn.status]}</span>
@@ -4194,7 +2059,9 @@
                     <p class="template-muted">${s.date} · 📍 ${s.place} · ${s.attendance} ${c.propuestaAttendance}
                         <button type="button" class="crm-mini-btn" data-propuesta-attend="${tp}|${s.id}" aria-label="${c.propuestaAttendAdd}">➕ ${c.propuestaAttendAdd}</button>
                         <button type="button" class="crm-mini-btn" data-propuesta-agenda-export="${tp}|${s.id}">🖨️ ${c.propuestaAgendaExport}</button>
+                        ${liveToggle}
                     </p>
+                    ${liveNote}
                     <h4>${c.propuestaAsambleasRoles}</h4>
                     <div class="propuesta-role-grid">${roles}</div>
                     ${turnBlock}
@@ -4207,24 +2074,9 @@
                 <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
             </div>`;
         }
-        /* inicio (por defecto) */
-        const ringCards = PROPUESTA_RINGS.map((ring) => {
-            const rc = c.propuestaRings[ring.id] || {};
-            const open = propuestaRoleAllows(role, ring.minRole);
-            return `<div class="sindicato-coord-card propuesta-inicio-ring">
-                <strong>${open ? '🔓' : '🔒'} ${rc.title}</strong>
-                <p class="template-muted">${rc.desc}</p>
-            </div>`;
-        }).join('');
-        return `<div class="sindicato-panel propuesta-screen">
-            <h2>ℹ️ ${c.propuestaInicioTitle}</h2>
-            <p class="template-muted">${c.propuestaInicioIntro}</p>
-            <p>${c.propuestaInicioRole}: <span class="propuesta-role-chip active">${roleName}</span></p>
-            ${ringCards}
-            <p class="template-muted">${c.propuestaInicioTry}</p>
-            <p class="template-muted">${c.propuestaInicioR3Note}</p>
-            <p class="sindicato-note sindicato-note-demo"><em>${c.demoNote}</em></p>
-        </div>`;
+        /* 20-07 tarde (idea 68 parcial): la pantalla «inicio» (tarjetas de anillos)
+           se purgó junto con PROPUESTA_RINGS — ya no hay pantalla por defecto. */
+        return '';
     }
 
     /* ================================================================
@@ -4235,7 +2087,7 @@
      * ================================================================ */
     function buildRedSocialHtml(locale) {
         const c = t(locale);
-        const localeTag = locale === 'es' ? 'es-ES' : 'en-IE';
+        const localeTag = localeKey(locale) === 'es' ? 'es-ES' : 'en-IE';
         const unions = getUnions(locale);
         const members = unions.reduce((s, u) => s + (u.members || 0), 0);
         const terrs = getSubterritories(locale);
@@ -4501,7 +2353,7 @@
         const company = {
             id,
             name: payload.name.trim(),
-            sector: payload.sector.trim() || (subsector?.parentName || (locale === 'es' ? 'Sin clasificar' : 'Unclassified')),
+            sector: payload.sector.trim() || (subsector?.parentName || (localeKey(locale) === 'es' ? 'Sin clasificar' : 'Unclassified')),
             subsectorId: subsector?.id || subsectorId || '',
             territoryId: territory?.id || territoryId || '',
             address: payload.address.trim(),
@@ -4511,7 +2363,7 @@
             reports: 0,
             unions: [],
             strikeSupport: 0,
-            convenio: locale === 'es' ? 'Convenio sectorial por determinar' : 'Sectoral agreement TBD',
+            convenio: localeKey(locale) === 'es' ? 'Convenio sectorial por determinar' : 'Sectoral agreement TBD',
             wageRange: '—',
             custom: true
         };
@@ -4736,7 +2588,7 @@
     function buildComingSoonHtml(locale, icon, sub) {
         const c = t(locale);
         const title = (c.subs && c.subs[sub]) || sub;
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const lead = es
             ? 'Este módulo todavía no tiene contenido.'
             : 'This module has no content yet.';
@@ -4940,7 +2792,7 @@
                 <strong>📖 ${c.reportPlaybookTitle}</strong>
                 <div class="sindicato-union-companies">
                     <button type="button" class="sindicato-union-company-link" data-sindicato-wiki-jump="derechos">${c.wikiArticles.derechos.title}</button>
-                    <button type="button" class="sindicato-union-company-link" data-sindicato-wiki-jump="denunciar">${(c.wikiArticles.denunciar || {}).title || (locale === 'es' ? 'Cómo denunciar' : 'How to report')}</button>
+                    <button type="button" class="sindicato-union-company-link" data-sindicato-wiki-jump="denunciar">${(c.wikiArticles.denunciar || {}).title || (localeKey(locale) === 'es' ? 'Cómo denunciar' : 'How to report')}</button>
                 </div>
             </div>`
             : '';
@@ -4989,7 +2841,7 @@
             <div class="sindicato-wagecmp-row${p.self ? ' sindicato-wagecmp-self' : ''}">
                 <span class="sindicato-wagecmp-name">${p.name}${p.self ? ` <em>(${c.wageCompareThisCompany})</em>` : ''}</span>
                 <div class="sindicato-strike-track"><div class="sindicato-strike-fill" style="width:${Math.round((p.mid / max) * 100)}%"></div></div>
-                <strong class="sindicato-wagecmp-val">${Math.round(p.mid).toLocaleString(locale === 'es' ? 'es-ES' : 'en-IE')} €</strong>
+                <strong class="sindicato-wagecmp-val">${Math.round(p.mid).toLocaleString(localeKey(locale) === 'es' ? 'es-ES' : 'en-IE')} €</strong>
             </div>`).join('');
         return `<section class="sindicato-sector-section sindicato-wagecmp">
             <header class="sindicato-sector-section-head">
@@ -5052,7 +2904,7 @@
 
     function buildWorkplaceConvenioHtml(locale, wp) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const branchClauses = getConvenioClausesForWorkplace(locale, wp);
         const clauseRows = branchClauses.map((cl) =>
             `<details><summary>${cl.title}</summary><p>${cl.body}</p></details>`
@@ -5213,7 +3065,7 @@
         const c = t(locale);
         const posts = getUnionForumPosts(locale, union.id);
         const cards = posts.map((post) =>
-            `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${locale === 'es' ? 'respuestas' : 'replies'}</p></div>`
+            `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${c.feedRepliesLabel}</p></div>`
         ).join('') || `<p class="template-muted">—</p>`;
         return `<div class="sindicato-panel">
             ${buildUnionBackBtnHtml(c)}
@@ -5226,7 +3078,7 @@
 
     function buildUnionStructureHtml(locale, union) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         if (union.type === 'housing') {
             const labels = union.presenceLabels || {};
             return `<div class="sindicato-panel">
@@ -5284,11 +3136,16 @@
        SindicApp pero se muestra el nombre del equipo. */
     function buildEquipoCrmHtml(locale, orgId, type, displayName, ctx, opts) {
         const role = (ctx && ctx.propuestaRole) || 'visitante';
-        if (!propuestaRoleAllows(role, 'militante')) return buildPropuestaLockedHtml(locale, 'militante', role);
+        const cargo = (ctx && ctx.propuestaCargo) || 'ninguno';
         const c = t(locale);
         const tabs = getCrmTabsForType(type);
         let tab = (ctx && ctx.equipoCrmTab) || tabs[0];
         if (tabs.indexOf(tab) === -1) tab = tabs[0];
+        /* 20-07-2026 (ADR 0024): el gate «militante» se sustituye por relación
+           afiliada + cargo con la capacidad concreta. El candado dice quién lo lleva. */
+        if (!propuestaRoleAllows(role, 'afiliado') || !cargoAllows(cargo, tab)) {
+            return buildCargoLockedHtml(locale, tab, role, cargo);
+        }
         /* Decreto 18-07: con las pestañas desparramadas en la sidebar, la fila de chips
            interna es redundante y se oculta (opts.hideTabs). Se conserva para el camino
            legacy 'crm' (p. ej. deep links antiguos). */
@@ -5301,7 +3158,7 @@
         }).join('');
         const panel = buildCoordinationSubHtml(locale, tab, {
             crmOrg: orgId, crmContextModule: type, webVersion: 'propuesta',
-            propuestaRole: role, equipoName: displayName, equipoCrmTab: tab
+            propuestaRole: role, propuestaCargo: cargo, equipoName: displayName, equipoCrmTab: tab
         });
         return `<div class="equipo-crm">
             ${hideTabs ? '' : `<div class="crm-chip-row equipo-crm-tabs" role="group" aria-label="${c.gestionContextLabel}">${tabRow}</div>`}
@@ -5347,6 +3204,19 @@
         return (c.equipoGroups && c.equipoGroups[groupId]) || groupId;
     }
 
+    /* 20-07 tarde (idea 70, report v5): sub-etiquetas NO clicables dentro del grupo
+       GESTIÓN — primer gesto de orden sobre los botones desparramados (ADR 0019 dejó
+       «muchos botones a propósito»; esto los agrupa sin re-jerarquizar nada):
+       Captar (llegan) / Acompañar (se trabaja) / Impulsar (se empuja) / Administrar
+       (se sostiene). En tipos reducidos (p.ej. Consumidores) las etiquetas sin
+       botones se omiten. Labels en COPY.crmNavGroups (es/ie; ca cae a es). */
+    const CRM_NAV_SUBGROUPS = [
+        { id: 'captar', tabs: ['intake', 'afiliadas'] },
+        { id: 'acompanar', tabs: ['casos', 'asambleas', 'documentos'] },
+        { id: 'impulsar', tabs: ['campanas', 'comunicaciones', 'calendario'] },
+        { id: 'administrar', tabs: ['finanzas', 'estructura', 'datos', 'fuentes'] }
+    ];
+
     /* Iconos de las secciones-CRM desparramadas en la sidebar (decreto 18-07). */
     const CRM_SECTION_ICONS = {
         afiliadas: '🧾', intake: '📥', casos: '📂', asambleas: '🗳️', campanas: '📣',
@@ -5378,14 +3248,45 @@
         }[id] || { icon: '•', label: id };
     }
 
-    function buildEquipoSectionNavHtml(locale, type, active) {
+    function buildEquipoSectionNavHtml(locale, type, active, ctx) {
+        /* 20-07-2026 (ADR 0024): los crm-* que el cargo actual no concede se marcan
+           con 🔒 (candado informativo con aria-label de quién lo lleva) pero SIGUEN
+           siendo clicables — el candado se atraviesa y explica dentro (doctrina
+           ADR 0014, que sobrevive al cambio de modelo). */
+        const v = ctx || {};
+        const role = v.propuestaRole || 'visitante';
+        const cargo = v.propuestaCargo || 'ninguno';
+        const c = t(locale);
+        const sectionBtn = (id) => {
+            const m = equipoSectionMeta(locale, id, type);
+            const locked = id.indexOf('crm-') === 0
+                && !(propuestaRoleAllows(role, 'afiliado') && cargoAllows(cargo, id));
+            const holder = locked ? cargoForCapability(id) : '';
+            const holderName = holder ? ((c.propuestaCargos && c.propuestaCargos[holder]) || holder) : '';
+            const lockedAria = locked ? ` aria-label="${m.label} — ${c.propuestaCargoLockedTitle || ''} (${holderName})"` : '';
+            return `<button type="button" class="template-module-btn${id === active ? ' active' : ''}${locked ? ' propuesta-item-locked' : ''}" data-equipo-section="${id}"${lockedAria}>
+                <span aria-hidden="true">${locked ? '🔒' : m.icon}</span> ${m.label}
+            </button>`;
+        };
         return getEquipoSectionGroupsForType(type).map((g) => {
-            const buttons = g.sections.map((id) => {
-                const m = equipoSectionMeta(locale, id, type);
-                return `<button type="button" class="template-module-btn${id === active ? ' active' : ''}" data-equipo-section="${id}">
-                    <span aria-hidden="true">${m.icon}</span> ${m.label}
-                </button>`;
-            }).join('');
+            let buttons;
+            if (g.id === 'gestion') {
+                /* Idea 70: los crm-* se ordenan bajo sub-etiquetas no clicables;
+                   las sub-etiquetas sin botones en este tipo se omiten. */
+                const available = g.sections;
+                buttons = CRM_NAV_SUBGROUPS.map((sg) => {
+                    const ids = sg.tabs.map((tab) => 'crm-' + tab).filter((id) => available.indexOf(id) !== -1);
+                    if (!ids.length) return '';
+                    return `<p class="equipo-section-sublabel">${(c.crmNavGroups && c.crmNavGroups[sg.id]) || sg.id}</p>`
+                        + ids.map(sectionBtn).join('');
+                }).join('');
+                /* Red de seguridad: cualquier sección de gestión fuera de los
+                   sub-grupos (no debería haber ninguna) se pinta al final. */
+                const grouped = CRM_NAV_SUBGROUPS.reduce((acc, sg) => acc.concat(sg.tabs.map((tb) => 'crm-' + tb)), []);
+                buttons += available.filter((id) => grouped.indexOf(id) === -1).map(sectionBtn).join('');
+            } else {
+                buttons = g.sections.map(sectionBtn).join('');
+            }
             return `<div class="equipo-section-group">
                 <p class="equipo-section-group-label">${equipoGroupLabel(locale, g.id)}</p>
                 ${buttons}
@@ -5443,34 +3344,7 @@
         return buildUnionOverviewHtml(locale, union);
     }
 
-    const SINDICATO_GENERAL_FORUM_THREADS = {
-        ie: [
-            { id: 'faq-delegate', pinned: true, title: 'READ FIRST: Acting as a workplace rep in Dublin — FAQ', meta: 'Moderation · 86 replies · Last post 2h ago' },
-            { id: 'convenio-hospitality', title: 'Hospitality JLC renegotiation — assembly calendar Docklands', meta: 'Convenio · 54 replies · 5h ago' },
-            { id: 'split-shift', title: 'Split shifts without compensation — case log Temple Bar', meta: 'Reports · 132 replies · Yesterday' },
-            { id: 'rent-docklands', title: 'Rent cap campaign — linking tenant union + workplace delegates', meta: 'Housing · 47 replies · Yesterday' },
-            { id: 'hr-retaliation', title: 'Internal security: retaliation reports after walkout', meta: 'Security · 38 replies · Yesterday' },
-            { id: 'pay-scales', title: 'Published pay scales vs payslip — logistics branch thread', meta: 'Wages · 29 replies · 2 days ago' },
-            { id: 'nurse-ratios', title: 'Private healthcare nurse ratios — St James cluster', meta: 'Healthcare · 41 replies · 2 days ago' },
-            { id: 'remote-policy', title: 'Remote work policy Silicon Docks — right to disconnect', meta: 'Technology · 33 replies · 3 days ago' },
-            { id: 'minutes-template', title: 'Template: workplace assembly minutes (hospitality)', meta: 'Resources · 19 replies · 3 days ago' },
-            { id: 'anonymous-report', title: 'Guide: anonymous report with AI + human review', meta: 'Moderation · 27 replies · 4 days ago' },
-            { id: 'strike-fund', title: 'Sector strike fund — quarterly transparency ledger', meta: 'Finance · 16 replies · 5 days ago' }
-        ],
-        es: [
-            { id: 'faq-delegado', pinned: true, title: 'LEER PRIMERO: Actuar como delegada en Barcelona — FAQ', meta: 'Moderación · 92 respuestas · Último hace 2 h' },
-            { id: 'convenio-hosteleria', title: 'Renegociación convenio hostelería Barcelona — calendario de asambleas', meta: 'Convenio · 61 respuestas · Hace 5 h' },
-            { id: 'turno-partido', title: 'Turnos partidos sin compensación — recopilación de casos Zona Franca', meta: 'Denuncias · 148 respuestas · Ayer' },
-            { id: 'desahucio-balmes', title: 'Desahucio Balmes 120 — coordinación sindical + PAH', meta: 'Vivienda · 53 respuestas · Ayer' },
-            { id: 'filtracion-rrhh', title: 'Seguridad interna: represalias tras paro parcial', meta: 'Seguridad · 44 respuestas · Ayer' },
-            { id: 'tablas-salariales', title: 'Tablas salariales logística Ponent vs nómina real', meta: 'Sueldos · 37 respuestas · Hace 2 días' },
-            { id: 'ratios-sanidad', title: 'Ratios enfermería — clínicas privadas Eixample', meta: 'Sanidad · 49 respuestas · Hace 2 días' },
-            { id: 'teletrabajo-22', title: 'Teletrabajo en 22@ — cláusulas de desconexión digital', meta: 'Tecnología · 31 respuestas · Hace 3 días' },
-            { id: 'modelo-acta', title: 'Modelo de acta para asambleas de empresa (hostelería)', meta: 'Recursos · 22 respuestas · Hace 3 días' },
-            { id: 'denuncia-anonima', title: 'Guía: denuncia anónima con revisión IA + humana', meta: 'Moderación · 28 respuestas · Hace 4 días' },
-            { id: 'fondo-huelga', title: 'Fondo de huelga sectorial — transparencia trimestral', meta: 'Finanzas · 18 respuestas · Hace 5 días' }
-        ]
-    };
+    const SINDICATO_GENERAL_FORUM_THREADS = window.SINDICAPP_SINDICATO_DATA.SINDICATO_GENERAL_FORUM_THREADS; /* 20-07 tarde (idea 71): literal movido a sindicapp-sindicato-data.js */
 
     const SINDICATO_FORUM_THREAD_BODIES = {
         ie: {
@@ -5602,7 +3476,7 @@
                 .map((item) => buildFeedCardHtml(locale, item))
                 .join('');
             const forumPosts = sectorNode.forumPosts.map((post) =>
-                `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${locale === 'es' ? 'respuestas' : 'replies'}</p></div>`
+                `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${c.feedRepliesLabel}</p></div>`
             ).join('');
             const companyNote = companyId
                 ? `<p class="template-muted">${scopeWorkplaces.find((wp) => wp.id === companyId)?.name || ''}</p>`
@@ -5648,7 +3522,7 @@
                 .map((item) => buildFeedCardHtml(locale, item))
                 .join('');
             const forumPosts = territory.forumPosts.map((post) =>
-                `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${locale === 'es' ? 'respuestas' : 'replies'}</p></div>`
+                `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${c.feedRepliesLabel}</p></div>`
             ).join('');
             const companyNote = companyId
                 ? `<p class="template-muted">${scopeWorkplaces.find((wp) => wp.id === companyId)?.name || ''}</p>`
@@ -6195,7 +4069,7 @@
     };
 
     function getSectorForumPosts(locale) {
-        return locale === 'es'
+        return localeKey(locale) === 'es'
             ? [
                 { title: 'Convenio 2024 — ¿quién negocia en hostelería?', replies: 34 },
                 { title: 'Turnos partidos en logística — denuncias agrupadas', replies: 21 },
@@ -6216,7 +4090,7 @@
         const workplaces = getWorkplaces(locale);
         const map = new Map();
         workplaces.forEach((wp) => {
-            const name = wp.sector || (locale === 'es' ? 'Sin clasificar' : 'Unclassified');
+            const name = wp.sector || (localeKey(locale) === 'es' ? 'Sin clasificar' : 'Unclassified');
             const id = slugifySector(name);
             if (!map.has(id)) {
                 map.set(id, { id, name, workplaces: [], unions: new Set(), forumPosts: [] });
@@ -6240,7 +4114,7 @@
             const idx = postIdx >= 0 ? postIdx : i;
             if (demoPosts[idx]) sector.forumPosts = [demoPosts[idx]];
         });
-        return sectors.sort((a, b) => a.name.localeCompare(b.name, locale === 'es' ? 'es' : 'en'));
+        return sectors.sort((a, b) => a.name.localeCompare(b.name, localeKey(locale) === 'es' ? 'es' : 'en'));
     }
 
     function getWorkplacesForSubsector(locale, subsectorId) {
@@ -6266,7 +4140,7 @@
         const key = localeKey(locale);
         const stored = SECTOR_FORUM_POSTS[key]?.[parentId];
         if (stored) return stored;
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         return [{ title: es ? `Foro del sector — ${name}` : `Sector forum — ${name}`, replies: 12 }];
     }
 
@@ -6274,7 +4148,7 @@
         const key = localeKey(locale);
         const stored = SECTOR_FORUM_POSTS[key]?.[subsubId];
         if (stored) return stored;
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         return [{ title: es ? `Foro — ${name}` : `Forum — ${name}`, replies: 6 }];
     }
 
@@ -6340,7 +4214,7 @@
         const key = localeKey(locale);
         const stored = SECTOR_FORUM_POSTS[key]?.[subsectorId];
         if (stored) return stored;
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         return [{ title: es ? `Foro general — ${subName}` : `General forum — ${subName}`, replies: 8 }];
     }
 
@@ -6348,7 +4222,7 @@
         const key = localeKey(locale);
         const stored = TERRITORY_FORUM_POSTS[key]?.[territoryId];
         if (stored) return stored;
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         return [{ title: es ? `Foro general — ${terrName}` : `General forum — ${terrName}`, replies: 6 }];
     }
 
@@ -6489,7 +4363,7 @@
         const key = localeKey(locale);
         const stored = VIVIENDA_FORUM_POSTS[key]?.[territoryId];
         if (stored) return stored;
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         return [{ title: es ? `Foro de vivienda — ${terrName}` : `Housing forum — ${terrName}`, replies: 5 }];
     }
 
@@ -6504,7 +4378,7 @@
         const openCls = collapsed ? '' : ' is-open';
         const expanded = collapsed ? 'false' : 'true';
         const toggleIcon = collapsed ? '▶' : '▼';
-        const viviendaLabel = locale === 'es' ? 'Abrir vivienda' : 'Open housing';
+        const viviendaLabel = c.viviendaOpenHousing;
 
         function renderLeaf(sub, def) {
             const active = activeId === sub.id;
@@ -6557,10 +4431,10 @@
         ).join('');
         const unionItems = terr.unions.map((u) => `<li>${buildUnionGotoBtn(locale, u)}</li>`).join('') || `<li class="template-muted">—</li>`;
         const forumPosts = terr.forumPosts.map((post) =>
-            `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${locale === 'es' ? 'respuestas' : 'replies'}</p></div>`
+            `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${c.feedRepliesLabel}</p></div>`
         ).join('');
         const housingAlerts = getViviendaAlerts(locale, terr.id);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const alertsHtml = housingAlerts.length
             ? housingAlerts.slice(0, 2).map((alert) =>
                 `<div class="sindicato-coord-card sindicato-alert-card"><strong>${alert.date}</strong><p>${alert.address}</p></div>`
@@ -6626,7 +4500,7 @@
         ).join('');
         const unionItems = node.unions.map((u) => `<li>${buildUnionGotoBtn(locale, u)}</li>`).join('');
         const forumPosts = node.forumPosts.map((post) =>
-            `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${locale === 'es' ? 'respuestas' : 'replies'}</p></div>`
+            `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${c.feedRepliesLabel}</p></div>`
         ).join('');
         const meta = node.type === 'sector'
             ? c.sectoresSectorIntro
@@ -6734,13 +4608,8 @@
     const CRM_STAGES = ['nuevo', 'curso', 'negociacion', 'resuelto'];
 
     function crmStageLabel(locale, stage) {
-        const es = locale === 'es';
-        return {
-            nuevo: es ? 'Nuevo' : 'New',
-            curso: es ? 'En curso' : 'In progress',
-            negociacion: es ? 'Negociación' : 'Bargaining',
-            resuelto: es ? 'Resuelto' : 'Resolved'
-        }[stage] || stage;
+        const c = t(locale);
+        return (c.crmStages || {})[stage] || stage;
     }
 
     /* Hash simple del id de organización — desplaza y escala los datasets
@@ -6752,7 +4621,7 @@
     }
 
     function getCrmOrgs(locale) {
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         return [{ id: 'sindicapp', name: 'SindicApp', sector: es ? 'Plataforma' : 'Platform' }]
             .concat(getUnions(locale).map((u) => ({ id: u.id, name: u.name, sector: u.sector })));
     }
@@ -6771,7 +4640,7 @@
     const CRM_RUNTIME = { es: {}, ie: {} };
 
     function crmSeedData(locale, orgId) {
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const h = crmOrgHash(orgId);
         const people = CRM_PEOPLE[localeKey(locale)];
         const wps = getWorkplaces(locale);
@@ -6975,7 +4844,7 @@
         const next = idx + (dir === 'back' ? -1 : 1);
         if (next < 0 || next >= CRM_STAGES.length) return;
         item.stage = CRM_STAGES[next];
-        item.updated = locale === 'es' ? 'ahora' : 'now';
+        item.updated = localeKey(locale) === 'es' ? 'ahora' : 'now';
         persistCrmRuntime(locale);
     }
 
@@ -7027,7 +4896,7 @@
             exportedAt: new Date().toISOString(),
             locale: localeKey(locale),
             organisation: { id: org.id, name: org.name, sector: org.sector || '' },
-            note: locale === 'es'
+            note: localeKey(locale) === 'es'
                 ? 'Exportación demo de SindicApp — tus datos son tuyos.'
                 : 'SindicApp demo export — your data is yours.',
             data: getCrmData(locale, orgId)
@@ -7035,43 +4904,23 @@
     }
 
     function crmMemberEstadoLabel(locale, estado) {
-        const es = locale === 'es';
-        return {
-            activa: es ? 'Activa' : 'Active',
-            pendiente: es ? 'Pendiente' : 'Pending',
-            baja: es ? 'Baja' : 'Lapsed'
-        }[estado] || estado;
+        const c = t(locale);
+        return (c.crmMemberEstados || {})[estado] || estado;
     }
 
     function crmMemberRelacionLabel(locale, relacion) {
-        const es = locale === 'es';
-        return {
-            participante: es ? 'Participante' : 'Participant',
-            afiliada: es ? 'Afiliada' : 'Member',
-            militante: es ? 'Militante' : 'Militant',
-            delegada: es ? 'Delegada' : 'Delegate',
-            liberada: es ? 'Liberada' : 'Official',
-            cargo: es ? 'Cargo' : 'Officer'
-        }[relacion] || relacion;
+        const c = t(locale);
+        return (c.crmMemberRelaciones || {})[relacion] || relacion;
     }
 
     function crmEventTypeLabel(locale, type) {
-        const es = locale === 'es';
-        return {
-            asamblea: es ? 'Asamblea' : 'Assembly',
-            negociacion: es ? 'Negociación' : 'Bargaining',
-            formacion: es ? 'Formación' : 'Training'
-        }[type] || type;
+        const c = t(locale);
+        return (c.crmEventTypes || {})[type] || type;
     }
 
     function crmDocCatLabel(locale, cat) {
-        const es = locale === 'es';
-        return {
-            estatutos: es ? 'Estatutos' : 'Rulebook',
-            actas: es ? 'Actas' : 'Minutes',
-            convenios: es ? 'Convenios' : 'Agreements',
-            plantillas: es ? 'Plantillas' : 'Templates'
-        }[cat] || cat;
+        const c = t(locale);
+        return (c.crmDocCats || {})[cat] || cat;
     }
 
     function crmEuro(n) {
@@ -7079,49 +4928,48 @@
     }
 
     function buildCrmMemberRowsHtml(locale, orgId, query, filter) {
-        const es = locale === 'es';
+        const c = t(locale);
         const q = String(query || '').trim().toLowerCase();
         const data = getCrmData(locale, orgId);
         const rows = data.members
             .filter((m) => (filter && filter !== 'todas' ? m.estado === filter : true))
             .filter((m) => (q ? `${m.name} ${m.workplace} ${m.rol}`.toLowerCase().includes(q) : true));
         if (!rows.length) {
-            return `<tr><td colspan="5" class="template-muted">${es ? 'Sin resultados con este filtro.' : 'No results for this filter.'}</td></tr>`;
+            return `<tr><td colspan="5" class="template-muted">${c.crmNoResults}</td></tr>`;
         }
         return rows.map((m) => `<tr>
             <td><strong>${m.name}</strong></td>
             <td>${m.workplace}</td>
             <td>${m.relacion ? crmMemberRelacionLabel(locale, m.relacion) : m.rol}</td>
             <td><span class="crm-badge crm-badge-${m.estado}">${crmMemberEstadoLabel(locale, m.estado)}</span></td>
-            <td>€ ${m.cuota}/${es ? 'mes' : 'mo'} · ${es ? 'alta' : 'since'} ${m.alta}</td>
+            <td>€ ${m.cuota}/${c.crmPerMonthShort} · ${c.crmSinceLabel} ${m.alta}</td>
         </tr>`).join('');
     }
 
     function buildCrmAfiliadasHtml(locale, orgId, view) {
         const c = t(locale);
-        const es = locale === 'es';
         const data = getCrmData(locale, orgId);
         const activas = data.members.filter((m) => m.estado === 'activa').length;
         const filters = ['todas', 'activa', 'pendiente', 'baja'];
-        const filterLabel = (f) => (f === 'todas' ? (es ? 'Todas' : 'All') : crmMemberEstadoLabel(locale, f));
+        const filterLabel = (f) => (f === 'todas' ? c.crmFilterAll : crmMemberEstadoLabel(locale, f));
         const active = view.crmMemberFilter || 'todas';
         return `
             <p class="template-muted">${c.crmAfiliadasIntro}</p>
             <div class="crm-stat-row">
-                <div class="crm-stat"><strong>${data.members.length}</strong><span>${es ? 'en censo' : 'in census'}</span></div>
-                <div class="crm-stat"><strong>${activas}</strong><span>${es ? 'activas' : 'active'}</span></div>
-                <div class="crm-stat"><strong>${data.members.filter((m) => m.estado === 'pendiente').length}</strong><span>${es ? 'pendientes' : 'pending'}</span></div>
+                <div class="crm-stat"><strong>${data.members.length}</strong><span>${c.crmStatCensus}</span></div>
+                <div class="crm-stat"><strong>${activas}</strong><span>${c.crmStatActive}</span></div>
+                <div class="crm-stat"><strong>${data.members.filter((m) => m.estado === 'pendiente').length}</strong><span>${c.crmStatPending}</span></div>
             </div>
             <input type="search" class="sindicato-search-input" value="${(view.crmMemberQuery || '').replace(/"/g, '&quot;')}"
-                placeholder="${es ? 'Busca por nombre, empresa o rol…' : 'Search name, company or role…'}"
-                aria-label="${es ? 'Buscar afiliadas' : 'Search members'}" data-sindicato-crm-member-search>
-            <div class="crm-chip-row" role="group" aria-label="${es ? 'Filtrar por estado' : 'Filter by status'}">
+                placeholder="${c.crmSearchPlaceholder}"
+                aria-label="${c.crmSearchAria}" data-sindicato-crm-member-search>
+            <div class="crm-chip-row" role="group" aria-label="${c.crmFilterEstadoAria}">
                 ${filters.map((f) => `<button type="button" class="crm-chip${f === active ? ' active' : ''}" data-sindicato-crm-member-filter="${f}">${filterLabel(f)}</button>`).join('')}
                 <label class="crm-chip crm-import-label">⬆️ ${c.crmImportCsv}<input type="file" accept=".csv,text/csv" data-crm-import-csv="${orgId}" hidden></label>
             </div>
             <table class="crm-table">
                 <thead><tr>
-                    <th>${es ? 'Nombre' : 'Name'}</th><th>${es ? 'Empresa' : 'Company'}</th><th>${es ? 'Relación' : 'Relationship'}</th><th>${es ? 'Estado' : 'Status'}</th><th>${es ? 'Cuota / alta' : 'Dues / since'}</th>
+                    <th>${c.crmMembersTable.nombre}</th><th>${c.crmMembersTable.empresa}</th><th>${c.crmMembersTable.relacion}</th><th>${c.crmMembersTable.estado}</th><th>${c.crmMembersTable.cuota}</th>
                 </tr></thead>
                 <tbody data-sindicato-crm-member-list>${buildCrmMemberRowsHtml(locale, orgId, view.crmMemberQuery, active)}</tbody>
             </table>`;
@@ -7129,22 +4977,21 @@
 
     function buildCrmCasosHtml(locale, orgId) {
         const c = t(locale);
-        const es = locale === 'es';
         const data = getCrmData(locale, orgId);
         const cols = CRM_STAGES.map((stage) => {
             const cards = data.cases.filter((cs) => cs.stage === stage).map((cs) => `
                 <div class="crm-case-card">
                     <strong>${cs.title}</strong>
                     <p class="template-muted">${cs.workplace}</p>
-                    <p class="crm-case-meta">${es ? 'Lleva' : 'Owner'}: ${cs.owner} · ${cs.updated}</p>
+                    <p class="crm-case-meta">${c.crmCaseLleva}: ${cs.owner} · ${cs.updated}</p>
                     <div class="crm-case-actions">
-                        <button type="button" class="crm-mini-btn" data-sindicato-crm-case-move="${cs.id}:back" ${stage === 'nuevo' ? 'disabled' : ''} aria-label="${es ? 'Etapa anterior' : 'Previous stage'}">◀</button>
-                        <button type="button" class="crm-mini-btn" data-sindicato-crm-case-move="${cs.id}:fwd" ${stage === 'resuelto' ? 'disabled' : ''} aria-label="${es ? 'Etapa siguiente' : 'Next stage'}">▶</button>
+                        <button type="button" class="crm-mini-btn" data-sindicato-crm-case-move="${cs.id}:back" ${stage === 'nuevo' ? 'disabled' : ''} aria-label="${c.crmStagePrevAria}">◀</button>
+                        <button type="button" class="crm-mini-btn" data-sindicato-crm-case-move="${cs.id}:fwd" ${stage === 'resuelto' ? 'disabled' : ''} aria-label="${c.crmStageNextAria}">▶</button>
                     </div>
                 </div>`).join('');
             return `<div class="crm-pipeline-col">
                 <h4>${crmStageLabel(locale, stage)} <span class="crm-count">${data.cases.filter((cs) => cs.stage === stage).length}</span></h4>
-                ${cards || `<p class="template-muted crm-empty-col">${es ? 'Vacío' : 'Empty'}</p>`}
+                ${cards || `<p class="template-muted crm-empty-col">${c.crmEmptyCol}</p>`}
             </div>`;
         }).join('');
         return `
@@ -7154,7 +5001,7 @@
 
     function buildCrmCampanasHtml(locale, orgId) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const data = getCrmData(locale, orgId);
         return `
             <p class="template-muted">${c.crmCampanasIntro}</p>
@@ -7165,23 +5012,23 @@
                     <div class="crm-progress" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100">
                         <div class="crm-progress-fill" style="width:${pct}%"></div>
                     </div>
-                    <p class="template-muted">${cp.support} / ${cp.target} ${es ? 'apoyos' : 'supporters'} (${pct}%)</p>
-                    <button type="button" class="crm-btn" data-sindicato-crm-campaign-support="${cp.id}" ${cp.support >= cp.target ? 'disabled' : ''}>${es ? '✊ Sumar apoyo' : '✊ Add support'}</button>
+                    <p class="template-muted">${cp.support} / ${cp.target} ${c.crmApoyosLabel} (${pct}%)</p>
+                    <button type="button" class="crm-btn" data-sindicato-crm-campaign-support="${cp.id}" ${cp.support >= cp.target ? 'disabled' : ''}>${c.crmAddSupportBtn}</button>
                 </div>`;
             }).join('')}`;
     }
 
     function buildCrmFinanzasHtml(locale, orgId, view) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const data = getCrmData(locale, orgId);
         const f = data.finances;
         const tab = view.crmFinanzasView === 'movimientos' ? 'movimientos' : 'resumen';
-        const tabs = [['resumen', es ? 'Resumen' : 'Summary'], ['movimientos', es ? 'Movimientos' : 'Ledger']];
+        const tabs = [['resumen', c.crmFinTabs.resumen], ['movimientos', c.crmFinTabs.movimientos]];
         let body;
         if (tab === 'movimientos') {
             body = `<table class="crm-table">
-                <thead><tr><th>${es ? 'Concepto' : 'Item'}</th><th>${es ? 'Mes' : 'Month'}</th><th class="crm-num">${es ? 'Importe' : 'Amount'}</th></tr></thead>
+                <thead><tr><th>${c.crmFinHeads.concepto}</th><th>${c.crmFinHeads.mes}</th><th class="crm-num">${c.crmFinHeads.importe}</th></tr></thead>
                 <tbody>${f.movimientos.map((m) => `<tr>
                     <td>${m.concepto}</td><td>${m.fecha}</td>
                     <td class="crm-num ${m.importe < 0 ? 'crm-neg' : 'crm-pos'}">${crmEuro(m.importe)}</td>
@@ -7189,14 +5036,14 @@
             </table>`;
         } else {
             body = `<div class="crm-stat-row">
-                <div class="crm-stat"><strong>${crmEuro(f.cuotasMes)}</strong><span>${es ? 'cuotas / mes' : 'dues / month'}</span></div>
-                <div class="crm-stat"><strong>${crmEuro(f.fondoHuelga)}</strong><span>${es ? 'fondo de huelga' : 'strike fund'}</span></div>
-                <div class="crm-stat"><strong>${crmEuro(f.gastosMes)}</strong><span>${es ? 'gastos / mes' : 'spend / month'}</span></div>
+                <div class="crm-stat"><strong>${crmEuro(f.cuotasMes)}</strong><span>${c.crmFinStats.cuotas}</span></div>
+                <div class="crm-stat"><strong>${crmEuro(f.fondoHuelga)}</strong><span>${c.crmFinStats.fondo}</span></div>
+                <div class="crm-stat"><strong>${crmEuro(f.gastosMes)}</strong><span>${c.crmFinStats.gastos}</span></div>
             </div>`;
         }
         return `
             <p class="template-muted">${c.crmFinanzasIntro}</p>
-            <div class="crm-chip-row" role="group" aria-label="${es ? 'Vista de finanzas' : 'Finance view'}">
+            <div class="crm-chip-row" role="group" aria-label="${c.crmFinViewAria}">
                 ${tabs.map(([id, label]) => `<button type="button" class="crm-chip${id === tab ? ' active' : ''}" data-sindicato-crm-finanzas-view="${id}">${label}</button>`).join('')}
             </div>
             ${body}`;
@@ -7204,14 +5051,10 @@
 
     function buildCrmComunicacionesHtml(locale, orgId) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const data = getCrmData(locale, orgId);
-        const estadoLabel = (s) => ({
-            borrador: es ? 'Borrador' : 'Draft',
-            programada: es ? 'Programada' : 'Scheduled',
-            enviada: es ? 'Enviada' : 'Sent'
-        }[s] || s);
-        const nextAction = (s) => (s === 'borrador' ? (es ? 'Programar' : 'Schedule') : (es ? 'Enviar' : 'Send'));
+        const estadoLabel = (s) => ((c.crmComEstados || {})[s] || s);
+        const nextAction = (s) => (s === 'borrador' ? c.crmComNextProgramar : c.crmComNextEnviar);
         return `
             <p class="template-muted">${c.crmComunicacionesIntro}</p>
             ${data.comms.map((cm) => `<div class="sindicato-coord-card crm-comm-card">
@@ -7219,26 +5062,26 @@
                     <strong>${cm.title}</strong>
                     <span class="crm-badge crm-badge-${cm.estado}">${estadoLabel(cm.estado)}</span>
                 </div>
-                <p class="template-muted">${es ? 'Audiencia' : 'Audience'}: ${cm.audiencia}</p>
+                <p class="template-muted">${c.crmAudienciaLabel}: ${cm.audiencia}</p>
                 ${cm.estado !== 'enviada' ? `<button type="button" class="crm-btn" data-sindicato-crm-comm-send="${cm.id}">✉️ ${nextAction(cm.estado)}</button>` : ''}
             </div>`).join('')}
-            <h4 class="crm-templates-title">📋 ${es ? 'Plantillas de respuesta' : 'Reply templates'}</h4>
+            <h4 class="crm-templates-title">📋 ${c.crmTemplatesTitle}</h4>
             <p class="template-muted">${es
                 ? 'Respuestas tipo para el trabajo repetitivo — mostradas rellenadas con datos demo. Copia y adapta.'
                 : 'Standard replies for the repetitive work — shown filled with demo data. Copy and adapt.'}</p>
             ${(data.templates || []).map((tp) => `<div class="sindicato-coord-card crm-template-card">
                 <div class="crm-comm-head">
                     <strong>${tp.title}</strong>
-                    <span class="crm-badge crm-badge-doc">${es ? 'Plantilla' : 'Template'}</span>
+                    <span class="crm-badge crm-badge-doc">${c.crmTemplateBadge}</span>
                 </div>
                 <p class="template-muted crm-template-body">${tp.body.replace(/\n/g, '<br>')}</p>
-                <button type="button" class="crm-btn" data-sindicato-crm-template-copy="${tp.id}">📋 ${es ? 'Copiar' : 'Copy'}</button>
+                <button type="button" class="crm-btn" data-sindicato-crm-template-copy="${tp.id}">📋 ${c.crmCopyBtn}</button>
             </div>`).join('')}`;
     }
 
     function buildCrmCalendarioHtml(locale, orgId) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const data = getCrmData(locale, orgId);
         const types = ['asamblea', 'negociacion', 'formacion'];
         return `
@@ -7251,27 +5094,27 @@
                 </li>`).join('')}
             </ul>
             <form class="crm-event-form" data-sindicato-crm-event-form>
-                <h4>${es ? 'Añadir evento' : 'Add event'}</h4>
-                <select name="type" aria-label="${es ? 'Tipo de evento' : 'Event type'}">
+                <h4>${c.crmCalAddTitle}</h4>
+                <select name="type" aria-label="${c.crmCalTypeAria}">
                     ${types.map((ty) => `<option value="${ty}">${crmEventTypeLabel(locale, ty)}</option>`).join('')}
                 </select>
-                <input type="date" name="date" required aria-label="${es ? 'Fecha' : 'Date'}">
-                <input type="text" name="title" required maxlength="80" placeholder="${es ? 'Título del evento' : 'Event title'}" aria-label="${es ? 'Título' : 'Title'}">
-                <button type="submit" class="crm-btn">${es ? 'Añadir' : 'Add'}</button>
+                <input type="date" name="date" required aria-label="${c.crmCalDateAria}">
+                <input type="text" name="title" required maxlength="80" placeholder="${c.crmCalTitlePlaceholder}" aria-label="${c.crmCalTitleAria}">
+                <button type="submit" class="crm-btn">${c.crmCalAddBtn}</button>
             </form>`;
     }
 
     function buildCrmDocumentosHtml(locale, orgId, view) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const data = getCrmData(locale, orgId);
         const cats = ['todas', 'estatutos', 'actas', 'convenios', 'plantillas'];
         const active = view.crmDocFilter || 'todas';
         const docs = data.docs.filter((d) => (active !== 'todas' ? d.cat === active : true));
         return `
             <p class="template-muted">${c.crmDocumentosIntro}</p>
-            <div class="crm-chip-row" role="group" aria-label="${es ? 'Filtrar documentos' : 'Filter documents'}">
-                ${cats.map((cat) => `<button type="button" class="crm-chip${cat === active ? ' active' : ''}" data-sindicato-crm-doc-filter="${cat}">${cat === 'todas' ? (es ? 'Todas' : 'All') : crmDocCatLabel(locale, cat)}</button>`).join('')}
+            <div class="crm-chip-row" role="group" aria-label="${c.crmDocFilterAria}">
+                ${cats.map((cat) => `<button type="button" class="crm-chip${cat === active ? ' active' : ''}" data-sindicato-crm-doc-filter="${cat}">${cat === 'todas' ? c.crmFilterAll : crmDocCatLabel(locale, cat)}</button>`).join('')}
             </div>
             ${docs.length ? docs.map((d) => {
                 const revCls = { revisada: 'activa', revision: 'pendiente', pendiente: 'baja' }[d.revision] || 'borrador';
@@ -7282,10 +5125,10 @@
                 <span class="crm-badge crm-badge-doc">${crmDocCatLabel(locale, d.cat)}</span>
                 <strong>${d.title}</strong>
                 <span class="crm-doc-access">${d.ambito ? `<span class="crm-badge crm-badge-ambito"><span aria-hidden="true">🔒</span> ${ambitoLabel}</span>` : ''}${d.revision ? `<span class="crm-badge crm-badge-${revCls}">${revLabel}</span>` : ''}</span>
-                <span class="template-muted">${es ? 'actualizado' : 'updated'} ${d.updated}${d.by ? ` · ${d.by}` : ''}${d.revisor ? ` · ${es ? 'revisa' : 'reviewer'}: ${d.revisor}` : ''}</span>
-                ${canAdvance ? `<button type="button" class="crm-mini-btn crm-doc-review-btn" data-sindicato-crm-doc-review="${d.id}">${es ? '➜ Avanzar revisión' : '➜ Advance review'}</button>` : ''}
+                <span class="template-muted">${c.crmDocUpdatedLabel} ${d.updated}${d.by ? ` · ${d.by}` : ''}${d.revisor ? ` · ${c.crmDocRevisaLabel}: ${d.revisor}` : ''}</span>
+                ${canAdvance ? `<button type="button" class="crm-mini-btn crm-doc-review-btn" data-sindicato-crm-doc-review="${d.id}">${c.crmDocAdvanceBtn}</button>` : ''}
             </div>`;
-            }).join('') : `<p class="template-muted">${es ? 'No hay documentos en esta categoría.' : 'No documents in this category.'}</p>`}
+            }).join('') : `<p class="template-muted">${c.crmDocsEmpty}</p>`}
             <p class="template-muted crm-doc-access-note">${es
                 ? 'Cada documento lleva su ámbito de acceso (quién puede verlo) y su estado de revisión. Las tablas viven en Bases de datos y el registro de fuentes en Fuentes de datos.'
                 : 'Each document carries its access scope (who may see it) and its review status. Tables live under Databases and the source registry under Data sources.'}</p>`;
@@ -7297,7 +5140,7 @@
        más el registro de fuentes y el export JSON. */
     function buildCrmDatosHtml(locale, orgId, view) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const data = getCrmData(locale, orgId);
         const nWps = (getWorkplaces(locale) || []).length;
         const nTerr = (getSubterritories(locale) || []).length;
@@ -7322,7 +5165,7 @@
             <h4 class="crm-sources-title">🗄️ ${c.crmDatosTablesTitle}</h4>
             <table class="crm-table">
                 <thead><tr>
-                    <th>${es ? 'Tabla' : 'Table'}</th><th class="crm-num">${es ? 'Registros' : 'Records'}</th><th>${es ? 'Cardinalidad' : 'Cardinality'}</th>
+                    <th>${c.crmDatosHeads.tabla}</th><th class="crm-num">${c.crmDatosHeads.registros}</th><th>${c.crmDatosHeads.cardinalidad}</th>
                 </tr></thead>
                 <tbody>${tables.map((tb) => `<tr>
                     <td><strong>${tb.icon} ${tb.name}</strong></td>
@@ -7333,7 +5176,7 @@
             <p class="template-muted">${es
                 ? 'El registro de fuentes que alimentan estas tablas vive ahora en su propia pestaña: Fuentes de datos.'
                 : 'The registry of sources feeding these tables now lives in its own tab: Data sources.'}</p>
-            <button type="button" class="crm-btn" data-sindicato-crm-export>⬇️ ${es ? 'Exportar datos de la organización (JSON)' : 'Export organisation data (JSON)'}</button>
+            <button type="button" class="crm-btn" data-sindicato-crm-export>⬇️ ${c.crmExportBtn}</button>
             <p class="template-muted">${es
                 ? 'Tus datos son tuyos: todo lo de la organización se exporta en un fichero abierto, sin dependencia de la plataforma.'
                 : 'Your data is yours: everything in the organisation exports to an open file, with no platform lock-in.'}</p>`;
@@ -7344,7 +5187,7 @@
        reunión SdLl 14-07: «hay que crear un listado de fuentes de datos». */
     function buildCrmFuentesHtml(locale, orgId) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const data = getCrmData(locale, orgId);
         return `
             <h4 class="crm-sources-title">📇 ${c.crmDatosSourcesTitle}</h4>
@@ -7353,17 +5196,13 @@
                 : 'Which sources feed the organisation’s data, who answers for each one, and its integration status in the shared system (main DB, surveys, legacy spreadsheets, calendar…).'}</p>
             <table class="crm-table">
                 <thead><tr>
-                    <th>${es ? 'Fuente' : 'Source'}</th><th>${es ? 'Tipo' : 'Type'}</th><th>${es ? 'Responsable' : 'Owner'}</th><th>${es ? 'Estado' : 'Status'}</th>
+                    <th>${c.crmFuentesHeads.fuente}</th><th>${c.crmFuentesHeads.tipo}</th><th>${c.crmFuentesHeads.responsable}</th><th>${c.crmFuentesHeads.estado}</th>
                 </tr></thead>
                 <tbody>${(data.sources || []).map((s) => `<tr>
                     <td><strong>${s.name}</strong></td>
                     <td>${s.tipo}</td>
                     <td>${s.owner}</td>
-                    <td><span class="crm-badge crm-badge-${{ integrada: 'activa', parcial: 'pendiente', pendiente: 'baja' }[s.estado] || 'borrador'}">${{
-                        integrada: es ? 'Integrada' : 'Integrated',
-                        parcial: es ? 'Parcial' : 'Partial',
-                        pendiente: es ? 'Pendiente' : 'Pending'
-                    }[s.estado] || s.estado}</span></td>
+                    <td><span class="crm-badge crm-badge-${{ integrada: 'activa', parcial: 'pendiente', pendiente: 'baja' }[s.estado] || 'borrador'}">${(c.crmFuentesEstados || {})[s.estado] || s.estado}</span></td>
                 </tr>`).join('')}</tbody>
             </table>
             <p class="template-muted">${es
@@ -7379,135 +5218,217 @@
        colectivo. Profesionales, Autónomos y Estudiantes tienen un organigrama distinto
        del sindical clásico; Trabajadores e Inquilinos conservan el set base (que les
        encaja). Devuelve null para que caiga al set por defecto. */
+    /* 20-07-2026 (ADR 0024): cada cargo declara además sus CAPACIDADES (ids de tab
+       del CRM — el vocabulario del ADR 0019) y su ÁMBITO (texto libre corto). El
+       organigrama documenta así el modelo de accesos dentro de la propia Gestión:
+       coherente con los 4 arquetipos demo (coordinación / acción / comunicación / datos). */
     function crmComisionesForType(locale, type, nm) {
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const T = {
             profesionales: es ? [
                 { icon: '⚖️', name: 'Deontología', scope: 'Código deontológico, expedientes y buenas prácticas', cargos: [
-                    { role: 'Presidencia de deontología', person: nm(0), funciones: 'Vela por el cumplimiento del código y resuelve las consultas éticas.' },
-                    { role: 'Instrucción de expedientes', person: '', funciones: 'Instruye los expedientes disciplinarios con garantías.' }
+                    { role: 'Presidencia de deontología', person: nm(0), funciones: 'Vela por el cumplimiento del código y resuelve las consultas éticas.', capacidades: ['casos', 'documentos'], ambito: 'expedientes deontológicos' },
+                    { role: 'Instrucción de expedientes', person: '', funciones: 'Instruye los expedientes disciplinarios con garantías.', capacidades: ['casos'], ambito: 'expedientes abiertos' }
                 ] },
                 { icon: '🛡️', name: 'Defensa profesional', scope: 'Intrusismo, honorarios dignos y condiciones de ejercicio', cargos: [
-                    { role: 'Coordinación de defensa', person: nm(1), funciones: 'Denuncia el intrusismo y defiende los honorarios de referencia.' },
-                    { role: 'Referente jurídico', person: nm(2), funciones: 'Asesora en los conflictos de ejercicio profesional.' }
+                    { role: 'Coordinación de defensa', person: nm(1), funciones: 'Denuncia el intrusismo y defiende los honorarios de referencia.', capacidades: ['intake', 'casos', 'asambleas', 'documentos'], ambito: 'toda la organización' },
+                    { role: 'Referente jurídico', person: nm(2), funciones: 'Asesora en los conflictos de ejercicio profesional.', capacidades: ['casos', 'documentos'], ambito: 'conflictos de ejercicio (Barcelonès)', ambitoTerritorio: 'barcelona-ciutat' }
                 ] },
                 { icon: '📚', name: 'Formación continua', scope: 'Formación obligatoria, acreditación y actualización', cargos: [
-                    { role: 'Coordinación de formación', person: nm(3), funciones: 'Programa la formación continua y gestiona la acreditación.' }
+                    { role: 'Coordinación de formación', person: nm(3), funciones: 'Programa la formación continua y gestiona la acreditación.', capacidades: ['calendario', 'comunicaciones'], ambito: 'programa formativo' }
                 ] }
             ] : [
                 { icon: '⚖️', name: 'Ethics board', scope: 'Code of conduct, disciplinary files and good practice', cargos: [
-                    { role: 'Ethics chair', person: nm(0), funciones: 'Upholds the code and answers ethical queries.' },
-                    { role: 'Case instruction', person: '', funciones: 'Runs disciplinary files with due-process guarantees.' }
+                    { role: 'Ethics chair', person: nm(0), funciones: 'Upholds the code and answers ethical queries.', capacidades: ['casos', 'documentos'], ambito: 'ethics files' },
+                    { role: 'Case instruction', person: '', funciones: 'Runs disciplinary files with due-process guarantees.', capacidades: ['casos'], ambito: 'open files' }
                 ] },
                 { icon: '🛡️', name: 'Professional defence', scope: 'Unlicensed practice, fair fees and working conditions', cargos: [
-                    { role: 'Defence coordination', person: nm(1), funciones: 'Reports unlicensed practice and defends reference fees.' },
-                    { role: 'Legal reference', person: nm(2), funciones: 'Advises on professional-practice disputes.' }
+                    { role: 'Defence coordination', person: nm(1), funciones: 'Reports unlicensed practice and defends reference fees.', capacidades: ['intake', 'casos', 'asambleas', 'documentos'], ambito: 'the whole organisation' },
+                    { role: 'Legal reference', person: nm(2), funciones: 'Advises on professional-practice disputes.', capacidades: ['casos', 'documentos'], ambito: 'practice disputes (Docklands)', ambitoTerritorio: 'dublin-docklands' }
                 ] },
                 { icon: '📚', name: 'Continuing education', scope: 'Mandatory training, accreditation and updates', cargos: [
-                    { role: 'Training coordination', person: nm(3), funciones: 'Programmes continuing education and manages accreditation.' }
+                    { role: 'Training coordination', person: nm(3), funciones: 'Programmes continuing education and manages accreditation.', capacidades: ['calendario', 'comunicaciones'], ambito: 'training programme' }
                 ] }
             ],
             autonomos: es ? [
                 { icon: '💶', name: 'Tarifas y condiciones', scope: 'Tarifas de referencia, plazos de pago y cláusulas abusivas', cargos: [
-                    { role: 'Coordinación de tarifas', person: nm(0), funciones: 'Recoge y publica las tarifas de referencia por actividad.' },
-                    { role: 'Referente de contratos', person: '', funciones: 'Revisa cláusulas abusivas y situaciones de falso autónomo.' }
+                    { role: 'Coordinación de tarifas', person: nm(0), funciones: 'Recoge y publica las tarifas de referencia por actividad.', capacidades: ['datos', 'fuentes', 'campanas'], ambito: 'tarifas de referencia' },
+                    { role: 'Referente de contratos', person: '', funciones: 'Revisa cláusulas abusivas y situaciones de falso autónomo.', capacidades: ['casos', 'documentos'], ambito: 'contratos y cláusulas' }
                 ] },
                 { icon: '🛵', name: 'Plataformas', scope: 'Relación con plataformas y grandes clientes', cargos: [
-                    { role: 'Referente de plataformas', person: nm(1), funciones: 'Coordina la respuesta ante desconexiones y cambios de algoritmo.' }
+                    { role: 'Referente de plataformas', person: nm(1), funciones: 'Coordina la respuesta ante desconexiones y cambios de algoritmo.', capacidades: ['intake', 'casos', 'asambleas'], ambito: 'su plataforma (Barcelonès)', ambitoTerritorio: 'barcelona-ciutat' }
                 ] },
                 { icon: '🤝', name: 'Mutualismo y coberturas', scope: 'Cese de actividad, coberturas y apoyo mutuo', cargos: [
-                    { role: 'Coordinación de coberturas', person: nm(2), funciones: 'Gestiona la caja de apoyo mutuo y orienta sobre coberturas.' }
+                    { role: 'Coordinación de coberturas', person: nm(2), funciones: 'Gestiona la caja de apoyo mutuo y orienta sobre coberturas.', capacidades: ['afiliadas', 'datos'], ambito: 'caja de apoyo mutuo' }
                 ] }
             ] : [
                 { icon: '💶', name: 'Rates & conditions', scope: 'Reference rates, payment terms and unfair clauses', cargos: [
-                    { role: 'Rates coordination', person: nm(0), funciones: 'Collects and publishes reference rates by activity.' },
-                    { role: 'Contracts reference', person: '', funciones: 'Reviews unfair clauses and bogus self-employment.' }
+                    { role: 'Rates coordination', person: nm(0), funciones: 'Collects and publishes reference rates by activity.', capacidades: ['datos', 'fuentes', 'campanas'], ambito: 'reference rates' },
+                    { role: 'Contracts reference', person: '', funciones: 'Reviews unfair clauses and bogus self-employment.', capacidades: ['casos', 'documentos'], ambito: 'contracts & clauses' }
                 ] },
                 { icon: '🛵', name: 'Platforms', scope: 'Relations with platforms and big clients', cargos: [
-                    { role: 'Platforms reference', person: nm(1), funciones: 'Coordinates responses to deactivations and algorithm changes.' }
+                    { role: 'Platforms reference', person: nm(1), funciones: 'Coordinates responses to deactivations and algorithm changes.', capacidades: ['intake', 'casos', 'asambleas'], ambito: 'their platform (Docklands)', ambitoTerritorio: 'dublin-docklands' }
                 ] },
                 { icon: '🤝', name: 'Mutual aid & cover', scope: 'Cessation of activity, cover and mutual support', cargos: [
-                    { role: 'Cover coordination', person: nm(2), funciones: 'Runs the mutual-aid fund and advises on cover.' }
+                    { role: 'Cover coordination', person: nm(2), funciones: 'Runs the mutual-aid fund and advises on cover.', capacidades: ['afiliadas', 'datos'], ambito: 'mutual-aid fund' }
                 ] }
             ],
             estudiantes: es ? [
                 { icon: '✊', name: 'Reivindicativa', scope: 'Tasas, becas y calidad docente', cargos: [
-                    { role: 'Coordinación reivindicativa', person: nm(0), funciones: 'Coordina las campañas por tasas y becas.' },
-                    { role: 'Referente de becas', person: '', funciones: 'Orienta sobre becas y ayudas y detecta casos.' }
+                    { role: 'Coordinación reivindicativa', person: nm(0), funciones: 'Coordina las campañas por tasas y becas.', capacidades: ['intake', 'casos', 'asambleas'], ambito: 'campañas de tasas y becas' },
+                    { role: 'Referente de becas', person: '', funciones: 'Orienta sobre becas y ayudas y detecta casos.', capacidades: ['intake', 'documentos'], ambito: 'becas y ayudas' }
                 ] },
                 { icon: '💚', name: 'Bienestar y salud mental', scope: 'Salud mental, acoso y convivencia', cargos: [
-                    { role: 'Coordinación de bienestar', person: nm(1), funciones: 'Impulsa las plazas de atención psicológica y los protocolos anti-acoso.' }
+                    { role: 'Coordinación de bienestar', person: nm(1), funciones: 'Impulsa las plazas de atención psicológica y los protocolos anti-acoso.', capacidades: ['casos', 'documentos'], ambito: 'protocolos y acompañamiento (Barcelonès)', ambitoTerritorio: 'barcelona-ciutat' }
                 ] },
                 { icon: '📣', name: 'Comunicación', scope: 'Redes, asambleas y comunicación estudiantil', cargos: [
-                    { role: 'Coordinación de comunicación', person: nm(2), funciones: 'Coordina la comunicación y la convocatoria de asambleas.' }
+                    { role: 'Coordinación de comunicación', person: nm(2), funciones: 'Coordina la comunicación y la convocatoria de asambleas.', capacidades: ['campanas', 'comunicaciones', 'calendario'], ambito: 'toda la organización' }
                 ] }
             ] : [
                 { icon: '✊', name: 'Demands', scope: 'Fees, grants and teaching quality', cargos: [
-                    { role: 'Demands coordination', person: nm(0), funciones: 'Coordinates the fees and grants campaigns.' },
-                    { role: 'Grants reference', person: '', funciones: 'Advises on grants and aid and spots cases.' }
+                    { role: 'Demands coordination', person: nm(0), funciones: 'Coordinates the fees and grants campaigns.', capacidades: ['intake', 'casos', 'asambleas'], ambito: 'fees & grants campaigns' },
+                    { role: 'Grants reference', person: '', funciones: 'Advises on grants and aid and spots cases.', capacidades: ['intake', 'documentos'], ambito: 'grants & aid' }
                 ] },
                 { icon: '💚', name: 'Wellbeing & mental health', scope: 'Mental health, harassment and coexistence', cargos: [
-                    { role: 'Wellbeing coordination', person: nm(1), funciones: 'Pushes for counselling places and anti-harassment protocols.' }
+                    { role: 'Wellbeing coordination', person: nm(1), funciones: 'Pushes for counselling places and anti-harassment protocols.', capacidades: ['casos', 'documentos'], ambito: 'protocols & accompaniment (Docklands)', ambitoTerritorio: 'dublin-docklands' }
                 ] },
                 { icon: '📣', name: 'Communication', scope: 'Social media, assemblies and student comms', cargos: [
-                    { role: 'Comms coordination', person: nm(2), funciones: 'Coordinates communication and assembly calls.' }
+                    { role: 'Comms coordination', person: nm(2), funciones: 'Coordinates communication and assembly calls.', capacidades: ['campanas', 'comunicaciones', 'calendario'], ambito: 'the whole organisation' }
                 ] }
             ]
         };
         return T[type] || null;
     }
 
-    function buildCrmEstructuraHtml(locale, orgId, contextType) {
-        const c = t(locale);
-        const es = locale === 'es';
-        const data = getCrmData(locale, orgId);
-        const names = data.members.map((m) => m.name);
-        const nm = (i) => names.length ? names[i % names.length] : '—';
-        const comisiones = crmComisionesForType(locale, contextType, nm) || (es ? [
+    /* 20-07-2026 tarde (ideas 63+67, report v5): el set BASE de comisiones sale de
+       buildCrmEstructuraHtml a función propia para que el motor de cargos (getTeamCargos,
+       resolveCargoDef) pueda leer el mismo seed que pinta el organigrama. Los cargos con
+       `ambitoTerritorio` (idea 67) recortan la pantalla de casos a su territorio. */
+    function crmComisionesBase(locale, nm) {
+        const es = localeKey(locale) === 'es';
+        return es ? [
             { icon: '⚖️', name: 'Acción sindical', scope: 'Asamblea de los viernes, gestión de conflictos, huelgas y presión institucional', cargos: [
-                { role: 'Coordinación de acción', person: nm(0), funciones: 'Convoca y modera la asamblea de casos, prioriza conflictos y coordina las respuestas colectivas.' },
-                { role: 'Referente jurídico', person: nm(1), funciones: 'Revisa la documentación de los casos, orienta sobre vías legales y prepara escritos.' },
-                { role: 'Piquetes y acompañamiento', person: '', funciones: 'Organiza los acompañamientos a desahucios y las acciones de presión sobre el terreno.' }
+                { role: 'Coordinación de acción', person: nm(0), funciones: 'Convoca y modera la asamblea de casos, prioriza conflictos y coordina las respuestas colectivas.', capacidades: ['intake', 'casos', 'asambleas', 'documentos'], ambito: 'toda la organización' },
+                { role: 'Referente jurídico', person: nm(1), funciones: 'Revisa la documentación de los casos, orienta sobre vías legales y prepara escritos.', capacidades: ['casos', 'documentos'], ambito: 'casos abiertos del Barcelonès', ambitoTerritorio: 'barcelona-ciutat' },
+                { role: 'Piquetes y acompañamiento', person: '', funciones: 'Organiza los acompañamientos a desahucios y las acciones de presión sobre el terreno.', capacidades: ['asambleas', 'calendario'], ambito: 'su territorio (Bages)', ambitoTerritorio: 'central-bages' }
             ] },
             { icon: '📣', name: 'Comunicación', scope: 'Redes, prensa, CRM de comunicación y campañas públicas', cargos: [
-                { role: 'Coordinación de comunicación', person: nm(2), funciones: 'Define la línea comunicativa, gestiona el CRM y coordina las campañas.' },
-                { role: 'Redes y contenidos', person: nm(3), funciones: 'Produce y programa los contenidos en redes y el boletín de afiliadas.' }
+                { role: 'Coordinación de comunicación', person: nm(2), funciones: 'Define la línea comunicativa, gestiona el CRM y coordina las campañas.', capacidades: ['campanas', 'comunicaciones', 'calendario'], ambito: 'toda la organización' },
+                { role: 'Redes y contenidos', person: nm(3), funciones: 'Produce y programa los contenidos en redes y el boletín de afiliadas.', capacidades: ['comunicaciones'], ambito: 'redes y boletín' }
             ] },
             { icon: '🧩', name: 'Organización', scope: 'Base de datos, informática, altas y logística interna', cargos: [
-                { role: 'Coordinación de organización', person: nm(4), funciones: 'Mantiene el censo y la estructura, coordina el grupo de informática y la logística.' },
-                { role: 'Datos e informática', person: nm(5), funciones: 'Gestiona las bases de datos, las fuentes y las integraciones del sistema común.' }
+                { role: 'Coordinación de organización', person: nm(4), funciones: 'Mantiene el censo y la estructura, coordina el grupo de informática y la logística.', capacidades: ['afiliadas', 'estructura', 'finanzas'], ambito: 'toda la organización' },
+                { role: 'Datos e informática', person: nm(5), funciones: 'Gestiona las bases de datos, las fuentes y las integraciones del sistema común.', capacidades: ['datos', 'fuentes'], ambito: 'sistema común' }
             ] },
             { icon: '📚', name: 'Contenidos', scope: 'Formación, elaboración política y las 3 reuniones anuales', cargos: [
-                { role: 'Coordinación de contenidos', person: nm(6), funciones: 'Prepara las reuniones de contenidos y coordina la formación de delegadas.' }
+                { role: 'Coordinación de contenidos', person: nm(6), funciones: 'Prepara las reuniones de contenidos y coordina la formación de delegadas.', capacidades: ['documentos', 'calendario'], ambito: 'formación y reuniones' }
             ] }
         ] : [
             { icon: '⚖️', name: 'Union action', scope: 'Friday assembly, dispute handling, strikes and institutional pressure', cargos: [
-                { role: 'Action coordination', person: nm(0), funciones: 'Calls and moderates the case assembly, prioritises disputes and coordinates collective responses.' },
-                { role: 'Legal reference', person: nm(1), funciones: 'Reviews case documents, advises on legal routes and drafts submissions.' },
-                { role: 'Pickets & accompaniment', person: '', funciones: 'Organises eviction accompaniment and on-the-ground pressure actions.' }
+                { role: 'Action coordination', person: nm(0), funciones: 'Calls and moderates the case assembly, prioritises disputes and coordinates collective responses.', capacidades: ['intake', 'casos', 'asambleas', 'documentos'], ambito: 'the whole organisation' },
+                { role: 'Legal reference', person: nm(1), funciones: 'Reviews case documents, advises on legal routes and drafts submissions.', capacidades: ['casos', 'documentos'], ambito: 'open cases in the Docklands', ambitoTerritorio: 'dublin-docklands' },
+                { role: 'Pickets & accompaniment', person: '', funciones: 'Organises eviction accompaniment and on-the-ground pressure actions.', capacidades: ['asambleas', 'calendario'], ambito: 'their territory (Cork)', ambitoTerritorio: 'cork-city' }
             ] },
             { icon: '📣', name: 'Communication', scope: 'Social media, press, comms CRM and public campaigns', cargos: [
-                { role: 'Comms coordination', person: nm(2), funciones: 'Sets the communication line, runs the CRM and coordinates campaigns.' },
-                { role: 'Social & content', person: nm(3), funciones: 'Produces and schedules social content and the members\' bulletin.' }
+                { role: 'Comms coordination', person: nm(2), funciones: 'Sets the communication line, runs the CRM and coordinates campaigns.', capacidades: ['campanas', 'comunicaciones', 'calendario'], ambito: 'the whole organisation' },
+                { role: 'Social & content', person: nm(3), funciones: 'Produces and schedules social content and the members\' bulletin.', capacidades: ['comunicaciones'], ambito: 'social & bulletin' }
             ] },
             { icon: '🧩', name: 'Organisation', scope: 'Database, IT, memberships and internal logistics', cargos: [
-                { role: 'Org coordination', person: nm(4), funciones: 'Keeps the census and structure, coordinates the IT group and logistics.' },
-                { role: 'Data & IT', person: nm(5), funciones: 'Manages the databases, sources and integrations of the shared system.' }
+                { role: 'Org coordination', person: nm(4), funciones: 'Keeps the census and structure, coordinates the IT group and logistics.', capacidades: ['afiliadas', 'estructura', 'finanzas'], ambito: 'the whole organisation' },
+                { role: 'Data & IT', person: nm(5), funciones: 'Manages the databases, sources and integrations of the shared system.', capacidades: ['datos', 'fuentes'], ambito: 'shared system' }
             ] },
             { icon: '📚', name: 'Content', scope: 'Training, political drafting and the 3 yearly meetings', cargos: [
-                { role: 'Content coordination', person: nm(6), funciones: 'Prepares the content meetings and coordinates delegate training.' }
+                { role: 'Content coordination', person: nm(6), funciones: 'Prepares the content meetings and coordinates delegate training.', capacidades: ['documentos', 'calendario'], ambito: 'training & meetings' }
             ] }
-        ]);
+        ];
+    }
+
+    /* Organigrama efectivo de un tipo de equipo: el suyo propio o el set base. */
+    function getComisionesForTeam(locale, type, nm) {
+        const n = nm || (() => '');
+        return crmComisionesForType(locale, type, n) || crmComisionesBase(locale, n);
+    }
+
+    function buildCrmEstructuraHtml(locale, orgId, contextType) {
+        const c = t(locale);
+        const es = localeKey(locale) === 'es';
+        const data = getCrmData(locale, orgId);
+        const names = data.members.map((m) => m.name);
+        const nm = (i) => names.length ? names[i % names.length] : '—';
+        /* 20-07-2026 (ADR 0024): capacidades + ámbito también en el set base — ver
+           nota sobre crmComisionesForType. */
+        const comisiones = getComisionesForTeam(locale, contextType, nm);
+        /* 20-07 tarde (idea 64, report v5): cargos ad hoc — la excepción disciplinada.
+           Viven en el runtime persistido del equipo (getCrmData) y se muestran en el
+           mismo organigrama con badge «ad hoc · caduca DD-MM»; caducados, tachados y
+           sin conceder (ver adhocCargoExpired en cargoAllows). */
+        const adhoc = getAdhocCargos(locale, orgId);
+        const adhocCards = adhoc.map((cg) => {
+            const expired = adhocCargoExpired(cg);
+            const capChips = (cg.capacidades || []).map((cap) =>
+                `<span class="crm-cap-chip">${(c.coordSubs && c.coordSubs[cap]) || cap}</span>`).join('');
+            const badge = expired
+                ? `<span class="crm-badge crm-badge-baja">${c.crmAdhocExpiredBadge}</span>`
+                : `<span class="crm-badge crm-badge-pendiente">${String(c.crmAdhocBadge || '{d}').replace('{d}', formatAdhocDate(cg.caduca))}</span>`;
+            return `<div class="sindicato-coord-card crm-estructura-cargo crm-adhoc-cargo${expired ? ' crm-adhoc-expired' : ''}">
+                <div class="crm-estructura-cargo-head"><strong>${cg.nombre}</strong> <span>${badge}</span></div>
+                <p class="crm-estructura-caps"><strong>${c.crmEstructuraCapacidades}:</strong> ${capChips}${cg.ambito ? ` <span class="template-muted">· ${c.crmEstructuraAmbito}: ${cg.ambito}</span>` : ''}</p>
+            </div>`;
+        }).join('');
+        const capChecks = getCrmTabsForType(contextType).map((tab) =>
+            `<label class="crm-adhoc-cap"><input type="checkbox" value="${tab}" data-crm-adhoc-cap> ${(c.coordSubs && c.coordSubs[tab]) || tab}</label>`
+        ).join('');
+        const adhocSection = `<section class="sindicato-sector-section crm-adhoc-section" data-crm-adhoc-form>
+            <header class="sindicato-sector-section-head">
+                <span class="sindicato-sector-section-icon" aria-hidden="true">⏳</span>
+                <h3>${c.crmAdhocTitle}</h3>
+            </header>
+            <p class="template-muted">${c.crmAdhocIntro}</p>
+            ${adhocCards}
+            <label class="crm-adhoc-field">${c.crmAdhocName}
+                <input type="text" class="sindicato-search-input" data-crm-adhoc-name></label>
+            <p class="crm-adhoc-field crm-adhoc-caps-label"><strong>${c.crmAdhocCaps}:</strong></p>
+            <div class="crm-adhoc-caps">${capChecks}</div>
+            <label class="crm-adhoc-field">${c.crmAdhocAmbito}
+                <input type="text" class="sindicato-search-input" data-crm-adhoc-ambito></label>
+            <label class="crm-adhoc-field">${c.crmAdhocCaduca}
+                <input type="date" class="sindicato-search-input" data-crm-adhoc-caduca></label>
+            <p><button type="button" class="crm-btn" data-crm-adhoc-create="${orgId}">➕ ${c.crmAdhocCreate}</button></p>
+        </section>`;
+        /* 20-07 tarde (idea 66, report v5): rastro de cargos al final de Estructura —
+           lista sobria de quién ocupó qué y cuándo (persistido, este navegador). */
+        const trail = getCargoTrail();
+        const trailItems = trail.length
+            ? trail.map((it) =>
+                `<li class="crm-trail-item"><span class="template-muted">${it.when}</span> — <strong>${c.crmTrailYou}</strong> ${(c.crmTrailActions && c.crmTrailActions[it.action]) || it.action} «${it.cargo}»</li>`).join('')
+            : `<li class="template-muted">${c.crmTrailEmpty}</li>`;
+        const trailSection = `<section class="sindicato-sector-section crm-trail-section">
+            <header class="sindicato-sector-section-head">
+                <span class="sindicato-sector-section-icon" aria-hidden="true">🧾</span>
+                <h3>${c.crmTrailTitle}</h3>
+            </header>
+            <p class="template-muted">${c.crmTrailIntro}</p>
+            <ul class="crm-trail-list">${trailItems}</ul>
+        </section>`;
         return `
             <p class="template-muted">${c.crmEstructuraIntro}</p>
             ${comisiones.map((com) => {
                 const cargos = com.cargos.map((cg) => {
                     const vacante = !cg.person;
+                    /* 20-07-2026 (ADR 0024): el organigrama ES la ACL — cada cargo muestra
+                       las capacidades (botones crm-*) que concede y sobre qué ámbito. */
+                    const capChips = (cg.capacidades || []).map((cap) =>
+                        `<span class="crm-cap-chip">${(c.coordSubs && c.coordSubs[cap]) || cap}</span>`
+                    ).join('');
+                    const capLine = capChips
+                        ? `<p class="crm-estructura-caps"><strong>${c.crmEstructuraCapacidades}:</strong> ${capChips}${cg.ambito ? ` <span class="template-muted">· ${c.crmEstructuraAmbito}: ${cg.ambito}</span>` : ''}</p>`
+                        : '';
                     return `<div class="sindicato-coord-card crm-estructura-cargo${vacante ? ' crm-estructura-vacante' : ''}">
                         <div class="crm-estructura-cargo-head">
                             <strong>${cg.role}</strong>
                             <span>${vacante ? `⚠️ ${c.crmEstructuraVacante}` : cg.person}</span>
                         </div>
+                        ${capLine}
                         <details><summary>${c.crmEstructuraFunciones}</summary><p class="template-muted">${cg.funciones}</p></details>
                     </div>`;
                 }).join('');
@@ -7519,7 +5440,9 @@
                     <p class="template-muted"><strong>${c.crmEstructuraScope}:</strong> ${com.scope}</p>
                     ${cargos}
                 </section>`;
-            }).join('')}`;
+            }).join('')}
+            ${adhocSection}
+            ${trailSection}`;
     }
 
     /* 17-07-2026 (descomposición CRM, fase 2): qué pestañas de gestión encajan en cada
@@ -7552,9 +5475,16 @@
            vivas. Sin rol suficiente, el módulo entero se explica en vez de abrirse. */
         if (view.webVersion === 'propuesta') {
             const role = view.propuestaRole || 'visitante';
-            if (!propuestaRoleAllows(role, 'militante')) return buildPropuestaLockedHtml(locale, 'militante', role);
+            const cargo = view.propuestaCargo || 'ninguno';
+            /* 20-07-2026 (ADR 0024): relación afiliada + cargo con la capacidad de la
+               pestaña pedida — el candado informa de quién lleva esa área. */
+            if (!propuestaRoleAllows(role, 'afiliado') || !cargoAllows(cargo, coordSub)) {
+                /* 20-07 tarde (idea 63): el candado ofrece también los cargos del
+                   organigrama del equipo abierto (y sus ad hoc vigentes). */
+                return buildCargoLockedHtml(locale, coordSub, role, cargo, { type: view.crmContextModule, orgId: view.crmOrg });
+            }
             if (coordSub === 'intake' || coordSub === 'asambleas' || coordSub === 'casos') {
-                return buildPropuestaScreenHtml(locale, coordSub, role, view.crmContextModule);
+                return buildPropuestaScreenHtml(locale, coordSub, role, view.crmContextModule, cargo);
             }
         }
         const orgId = findCrmOrg(locale, view.crmOrg) ? view.crmOrg : 'sindicapp';
@@ -7597,14 +5527,15 @@
 
     /* Orden de artículos de la base de conocimiento (claves compartidas ES/EN).
        'sindicapp' es el artículo inicial/destacado de la wiki. */
-    const WIKI_KB_ARTICLES = ['sindicapp', 'derechos', 'denunciar', 'organizar', 'glosario', 'ia'];
+    /* 20-07-2026 (ADR 0024): «accesos» — la teoría de quién ve qué, en la wiki. */
+    const WIKI_KB_ARTICLES = ['sindicapp', 'derechos', 'denunciar', 'organizar', 'glosario', 'ia', 'accesos'];
 
     function buildWikiArticleHtml(locale, id) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const art = (c.wikiArticles || {})[id];
         if (!art) return buildWikiIndexHtml(locale);
-        const backLabel = es ? '‹ Índice' : '‹ Index';
+        const backLabel = c.wikiBackIndex;
         return `<div class="sindicato-panel cp-wiki-article">
             <button type="button" class="sindicato-bridge-jump cp-wiki-back" data-sindicato-wiki-jump="index">${backLabel}</button>
             <h2>${art.title}</h2>
@@ -7616,7 +5547,7 @@
 
     function buildWikiIndexHtml(locale) {
         const c = t(locale);
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const kbItems = WIKI_KB_ARTICLES.map((id) => {
             const art = (c.wikiArticles || {})[id] || {};
             const label = (c.wikiSubs && c.wikiSubs[id]) || id;
@@ -7667,8 +5598,8 @@
        resumen, historia/notas y enlaces al perfil, su foro y artículos generales. */
     function buildEntityWikiPageHtml(locale, kind, id) {
         const c = t(locale);
-        const es = locale === 'es';
-        const backLabel = es ? '‹ Índice' : '‹ Index';
+        const es = localeKey(locale) === 'es';
+        const backLabel = c.wikiBackIndex;
         const notes = (c.wikiEntityNotes || {})[kind] || '';
         let name = '';
         let summaryRows = '';
@@ -7740,8 +5671,8 @@
 
     function buildWikiNormasHtml(locale) {
         const c = t(locale);
-        const es = locale === 'es';
-        const backLabel = es ? '‹ Índice' : '‹ Index';
+        const es = localeKey(locale) === 'es';
+        const backLabel = c.wikiBackIndex;
         return `<div class="sindicato-panel">
             <button type="button" class="sindicato-bridge-jump cp-wiki-back" data-sindicato-wiki-jump="index">${backLabel}</button>
             <h2>${c.wikiSubs.normas}</h2>
@@ -7816,10 +5747,10 @@
                 return buildBuildingProfileHtml(locale, building, terr);
             }
         }
-        const es = locale === 'es';
+        const es = localeKey(locale) === 'es';
         const forumPosts = getViviendaForumPosts(locale, territoryId, terr.name);
         const forumHtml = forumPosts.map((post) =>
-            `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${es ? 'respuestas' : 'replies'}</p></div>`
+            `<div class="sindicato-coord-card"><strong>${post.title}</strong><p class="template-muted">${post.replies} ${c.feedRepliesLabel}</p></div>`
         ).join('');
         const linkedWorkplaces = terr.workplaces.slice(0, 8).map((wp) =>
             `<button type="button" class="sindicato-union-company-link" data-sindicato-goto-workplace="${wp.id}">${wp.name}</button>`
@@ -7828,8 +5759,8 @@
         const alertsHtml = alerts.length
             ? alerts.map((alert) => {
                 const statusLabel = alert.status === 'scheduled'
-                    ? (es ? 'Programado' : 'Scheduled')
-                    : (es ? 'Riesgo' : 'At risk');
+                    ? c.alertStatusScheduled
+                    : c.alertStatusRisk;
                 return `<div class="sindicato-coord-card sindicato-alert-card">
                     <strong>${alert.date} — ${statusLabel}</strong>
                     <p>${alert.address}</p>
@@ -7915,7 +5846,7 @@
                 if (ctx.webVersion !== 'propuesta') {
                     return buildFeedHtml(locale, { feedScope: 'general' });
                 }
-                return buildPropuestaScreenHtml(locale, 'forointerno', ctx.propuestaRole || 'visitante');
+                return buildPropuestaScreenHtml(locale, 'forointerno', ctx.propuestaRole || 'visitante', '', ctx.propuestaCargo || 'ninguno');
             }
             return buildFeedHtml(locale, {
                 feedScope: ctx.feedScope || 'general',
@@ -7949,8 +5880,9 @@
         if (sub === 'sindicatos') return buildComingSoonHtml(locale, '🚩', 'sindicatos');
         if (sub === 'autonomos') return buildAutonomosHtml(locale, ctx.autonomoId || '', ctx);
         if (sub === 'profesionales') return buildProfesionalesHtml(locale, ctx.profesionalId || '', ctx);
-        /* 17-07-2026: pantallas propias de la versión Propuesta (anillos 1-3). */
-        if (sub === 'anillo') return buildPropuestaScreenHtml(locale, ctx.anilloScreen || 'inicio', ctx.propuestaRole || 'visitante');
+        /* 20-07 tarde (idea 68 parcial): la ruta del sub `anillo` se purgó con la
+           pantalla «inicio» y PROPUESTA_RINGS — las pantallas propuesta restantes
+           (miscasos, forointerno, intake, casos, asambleas) se piden por su ruta real. */
         if (sub === 'workplaces') {
             if (!workplaceId) return buildWorkplacesDirectoryHtml(locale, filter);
             const wp = findWorkplace(locale, workplaceId);
@@ -7965,8 +5897,53 @@
         return buildWelcomeHtml(locale);
     }
 
+    /* ================================================================
+     * 20-07-2026 (idea 52, ADR 0024): búsqueda global por nombre sobre ENTIDADES
+     * PÚBLICAS — empresas, sindicatos, equipos, colegios, fichas de consumo,
+     * centros, territorios y artículos de la wiki. Doctrina de la propuesta de
+     * accesos: la búsqueda NUNCA indexa contenido de gestión (censo, casos,
+     * documentos…) — lo público se busca; lo interno se navega con relación y cargo.
+     * Matching case- e acento-insensible (NFD); devuelve como máximo 10 resultados
+     * {kind, icon, id, name, hint}.
+     * ================================================================ */
+    function searchEntities(locale, q) {
+        const c = t(locale);
+        const norm = (s) => {
+            const low = String(s || '').toLowerCase();
+            try { return low.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); } catch (e) { return low; }
+        };
+        const needle = norm(q).trim();
+        if (!needle) return [];
+        const kinds = c.searchKinds || {};
+        const out = [];
+        const push = (kind, icon, id, name, hint) => {
+            if (out.length >= 10 || !id || !name) return;
+            if (norm(name).indexOf(needle) === -1) return;
+            out.push({ kind, icon, id, name, hint: hint || kinds[kind] || '' });
+        };
+        (getWorkplaces(locale) || []).forEach((w) => push('workplace', '🏢', w.id, w.name, w.sector));
+        (getUnions(locale) || []).forEach((u) => push('union', '🏛️', u.id, u.name, u.sector));
+        (getHousingUnions(locale) || []).forEach((u) => push('housing', '🏠', u.id, u.name, u.region));
+        (getProBodies(locale) || []).forEach((b) => push('profesionales', '🩺', b.id, b.name, b.type));
+        (getAutonomoUnions(locale) || []).forEach((u) => push('autonomos', '🧰', u.id, u.name, u.sector));
+        (getConsumerItems(locale) || []).forEach((it) => push('consumidores', '🛒', it.id, it.name, it.sector));
+        (getStudyCenters(locale) || []).forEach((ct) => push('estudiantes', '🎓', ct.id, ct.name, ct.type));
+        (getSubterritories(locale) || []).forEach((tr) => push('territory', '🏘️', tr.id, tr.name, tr.parentName));
+        WIKI_KB_ARTICLES.forEach((id) => {
+            const art = (c.wikiArticles || {})[id];
+            if (art) push('wiki', '📖', id, art.title, kinds.wiki || '');
+        });
+        return out;
+    }
+
+    /* 20-07-2026: el onboarding de primera visita (idea 53, ADR 0024) se RETIRÓ del
+       código por decisión de Edu — a la moratoria (ADR 0021) hasta la fase producto.
+       El flag 'sindicapp-onboarded-v1' deja de leerse y escribirse; la idea 53 se
+       re-evaluará entonces. */
+
     window.SINDICAPP_SINDICATO = {
         t,
+        localeKey,
         parseSindicatoRoute,
         getStrikeSupportPct,
         castStrikeVote,
@@ -8053,6 +6030,8 @@
         getCrmTabsForType,
         /* Propuesta (17-07-2026) */
         buildPropuestaNavHtml,
+        /* 20-07-2026 (ADR 0025): acordeón de la nav — grupo al que pertenece un sub */
+        navGroupForSub,
         buildPropuestaScreenHtml,
         buildPropuestaLockedHtml,
         buildEquipoCrmHtml,
@@ -8073,6 +6052,22 @@
         getNotificationCount,
         propuestaConvertIntake,
         propuestaRoleAllows,
+        /* Cargos (20-07-2026, ideas 42+43, ADR 0024) */
+        DEMO_CARGOS,
+        cargoAllows,
+        cargoIsAny,
+        cargoForCapability,
+        buildCargoChipsHtml,
+        buildCargoLockedHtml,
+        /* 2ª generación de accesos (20-07 tarde, ideas 63-66, report v5) */
+        cargoDisplayName,
+        getTeamCargos,
+        getAdhocCargos,
+        crmCreateAdhocCargo,
+        recordCargoTrail,
+        propuestaToggleSessionLive,
+        /* Búsqueda global (20-07-2026, idea 52) */
+        searchEntities,
         /* Directorios con selector en sidebar (17-07-2026) */
         getProBodies,
         getConsumerItems,

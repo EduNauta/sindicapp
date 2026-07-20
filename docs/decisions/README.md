@@ -60,3 +60,7 @@ What follows from this — the good, the bad, and anything a future change would
 - [0021 — Park all post-mock-up work until the prototype freezes](0021-park-post-mockup-work-until-prototype-freezes.md)
 - [0022 — Real browser history via hash routes and pushState](0022-browser-history-via-hash-routes-pushstate.md)
 - [0023 — Deep-merge the Catalan copy layer over Spanish](0023-deep-merge-catalan-copy-layer.md) *(amends 0018)*
+- [0024 — Abandon the ring model: access = relación × cargos × parte](0024-abandon-rings-access-is-relation-cargos-parte.md) *(partially supersedes 0014)*
+- [0025 — Accordion subnav: Sindicatos and Funcionalidades as exclusive groups](0025-accordion-subnav-sindicatos-funcionalidades.md) *(partially supersedes 0017)*
+- [0026 — Order the Gestión sidebar group by organizing flow](0026-order-gestion-by-organizing-flow.md) *(completes 0019's postponed reorder)*
+- [0027 — Split the sindicato monolith into three classic scripts](0027-split-sindicato-monolith-into-three-classic-scripts.md)
