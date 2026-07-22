@@ -5317,14 +5317,79 @@
         /* Idea 70: sub-etiquetas NO clicables del grupo Gestión (Captar / Acompañar /
            Impulsar / Administrar) — jerarquía tipográfica menor que la cabecera de grupo. */
         .equipo-section-sublabel {
-            margin: 8px 0 2px;
-            font-size: var(--font-size-sm);
+            /* 22-07-2026: el grupo Gestión es un grid de 2 columnas; sin esto la
+               sub-etiqueta caía en una celda (a veces en la 2ª columna, junto a un
+               botón) en vez de empezar su propia fila. Ocupa fila completa como el
+               .equipo-section-group-label. */
+            grid-column: 1 / -1;
+            margin: 10px 2px 2px;
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
             color: var(--color-text-light);
             text-transform: uppercase;
             letter-spacing: 0.04em;
             opacity: 0.85;
             pointer-events: none;
         }
+        .equipo-section-group .equipo-section-sublabel:first-child { margin-top: 2px; }
+
+        /* 22-07-2026: repo de Objetivos (estilo GitHub) dentro de Inquilinos. */
+        .crm-obj-section-title {
+            margin: 16px 0 8px;
+            font-size: var(--font-size-md);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .crm-obj-count {
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-muted);
+            background: var(--color-bg-subtle, rgba(127,127,127,0.14));
+            border-radius: 999px;
+            padding: 1px 8px;
+        }
+        .crm-obj-card { border-left: 4px solid var(--color-primary); }
+        .crm-obj-card.crm-obj-done {
+            border-left-color: var(--color-success, #2e7d32);
+            opacity: 0.92;
+        }
+        .crm-obj-head {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .crm-obj-title { flex: 1 1 auto; }
+        .crm-obj-status-open { color: var(--color-primary); }
+        .crm-obj-status-done { color: var(--color-success, #2e7d32); }
+        .crm-obj-desc { margin: 4px 0 6px; }
+        .crm-obj-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 8px;
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            margin-bottom: 6px;
+        }
+        .crm-obj-id { font-weight: var(--font-weight-semibold); }
+        .crm-obj-labels {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 6px;
+            margin-bottom: 8px;
+        }
+        .crm-obj-label {
+            font-size: var(--font-size-xs);
+            border: 1px solid var(--color-border-light);
+            border-radius: 999px;
+            padding: 1px 8px;
+            color: var(--color-text-muted);
+        }
+        .crm-obj-progress-label { margin: 4px 0 6px; font-size: var(--font-size-xs); }
+        .crm-badge-alta { background: var(--color-danger-light, rgba(200,60,60,0.16)); color: var(--color-danger, #b3261e); }
+        .crm-badge-media { background: var(--color-warning-light, rgba(210,150,40,0.18)); color: var(--color-warning-text, #8a5a00); }
+        .crm-badge-baja { background: var(--color-bg-subtle, rgba(127,127,127,0.14)); color: var(--color-text-muted); }
 
         /* Idea 64: formulario y tarjetas de cargos ad hoc en crm-estructura. */
         .crm-adhoc-field {

@@ -192,8 +192,13 @@
                         r = 'afiliado';
                         try { localStorage.setItem('sindicapp-propuesta-role', r); } catch (e2) { /* demo */ }
                     }
-                    return ['visitante', 'usuario', 'afiliado'].includes(r) ? r : 'visitante';
-                } catch (e) { return 'visitante'; }
+                    /* 22-07-2026 (decisión Edu): de momento la demo abre como si la
+                       persona fuese parte de la COORDINACIÓN GENERAL — relación 'afiliado'
+                       por defecto (antes 'visitante') para que todo se vea sin candados.
+                       Un valor persistido válido se sigue respetando; el reset demo borra
+                       la clave y vuelve a este default. */
+                    return ['visitante', 'usuario', 'afiliado'].includes(r) ? r : 'afiliado';
+                } catch (e) { return 'afiliado'; }
             })();
             /* 20-07-2026 (ideas 42+43, ADR 0024): cargo demo ocupado — persiste en
                'sindicapp-propuesta-cargo' (el reset demo borra sindicapp-*, cubierto).
@@ -214,8 +219,12 @@
                         }
                         return 'ninguno';
                     }
-                    return isValidCargoId(raw) ? raw : 'ninguno';
-                } catch (e) { return 'ninguno'; }
+                    /* 22-07-2026 (decisión Edu): cargo por defecto 'coordinacion' (antes
+                       'ninguno') — coordinación concede TODAS las capacidades (cargoAllows),
+                       así la web abre con todas las secciones de gestión visibles. Un cargo
+                       persistido válido manda; el reset demo vuelve a coordinación. */
+                    return isValidCargoId(raw) ? raw : 'coordinacion';
+                } catch (e) { return 'coordinacion'; }
             })();
             /* Persistencia del cargo ocupado en el formato nuevo {cargoId, orgId}. */
             function persistPropuestaCargo() {
@@ -1953,6 +1962,15 @@
                 if (crmCampaignBtn && window.SINDICAPP_SINDICATO) {
                     e.preventDefault();
                     window.SINDICAPP_SINDICATO.crmSupportCampaign(activeLocale, activeSindicatoCrmOrg, crmCampaignBtn.getAttribute('data-sindicato-crm-campaign-support'));
+                    syncTextWorkspace();
+                    return;
+                }
+
+                /* 22-07-2026: repo de Objetivos — marcar conseguido / reabrir. */
+                const crmObjBtn = e.target.closest?.('[data-sindicato-crm-obj-toggle]');
+                if (crmObjBtn && window.SINDICAPP_SINDICATO) {
+                    e.preventDefault();
+                    window.SINDICAPP_SINDICATO.crmToggleObjetivo(activeLocale, activeSindicatoCrmOrg, crmObjBtn.getAttribute('data-sindicato-crm-obj-toggle'));
                     syncTextWorkspace();
                     return;
                 }

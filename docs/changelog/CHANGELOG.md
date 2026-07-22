@@ -8,6 +8,22 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 Nothing pending.
 
+## v0.1.5 — 2026-07-22 — Objetivos repo, coordinación-by-default, sidebar sub-label fix
+
+*The 22-07-2026 batch. Inquilinos gains an **Objetivos** capability — a GitHub-issues-style repository of the organization's own collective goals, distinct from members' cases ([ADR 0028](../decisions/0028-objetivos-repository-in-inquilinos-crm.md)); the demo now opens as **Coordinación general** by default so every section is visible without locks ([ADR 0029](../decisions/0029-open-demo-as-coordinacion-general-by-default.md)); and the Gestión sidebar's flow sub-labels (Captar/Acompañar/Impulsar/Administrar) are fixed to span their own full-width row.*
+
+### Added
+
+- **Objetivos — an objectives repository in the Inquilinos CRM (ADR 0028).** A new `crm-*` capability, **housing-only for now**, tracking the organization's *own* collective goals — not members' cases: stop evictions with no housing alternative, win a rent agreement with a large landlord, reach 1,000 affiliated households, and so on. Rendered GitHub-issues style: a stat row (open / achieved / milestones), then open objectives first and achieved below, each card carrying a status mark, priority badge, description, a `#num`, responsible commission, milestone, target date and update count, colour chips for labels, a progress bar, and a **Marcar conseguido / Reabrir** button that mutates the persisted CRM runtime and re-renders. Seven demo objectives per dataset (es/en), two already achieved, seeded via `crmSeedObjetivos` and lazily back-filled into CRM runtimes persisted before this change. Lives in the **Impulsar** sub-group of the Gestión sidebar (ADR 0026), icon 🎯. Because it is housing-only, `housing` now has its own tab list (`CRM_HOUSING_TABS`) instead of sharing `CRM_ALL_TABS`; new COPY block `crmObjetivos*` / `coordSubs.objetivos` (es/ie, Catalan falls back to Spanish per ADR 0023); new export `crmToggleObjetivo` and handler `data-sindicato-crm-obj-toggle`.
+
+### Changed
+
+- **The demo opens as Coordinación general by default (ADR 0029).** With no stored value, the fresh-browser defaults move from relación `visitante` + cargo `ninguno` (the most locked-down view) to relación **`afiliado`** + cargo **`coordinación`** — which `cargoAllows()` grants everything — so the app opens with every section visible and no locks, the right first impression for meeting/demo use. An explicitly stored role/cargo is still respected; "Reiniciar datos demo" returns to this default. The access model itself (ADR 0024) is unchanged — only the starting point moves; the "Ver como" simulator now steps *down* from coordinación to show a lock rather than *up* from visitante to reveal a screen.
+
+### Fixed
+
+- **Gestión sidebar sub-labels now start their own row.** `.equipo-section-group` is a two-column grid, but `.equipo-section-sublabel` lacked the `grid-column: 1 / -1` that its sibling `.equipo-section-group-label` has, so **Captar / Acompañar / Impulsar / Administrar** fell into a single grid cell — sometimes the second column, beside a button — instead of opening a full-width row. Added the span (plus the new Objetivos card styles).
+
 ## v0.1.4 — 2026-07-20 — Cargo model, accordion nav, second-gen access, Catalan fix
 
 *The 20-07-2026 day, closing report v4 and opening `REPORT-MEJORAS-200726-v5.md` as the living roadmap. F3 stops Catalan from leaking English; the access rings are abandoned for the **relación × cargos × parte** model ([ADR 0024](../decisions/0024-abandon-rings-access-is-relation-cargos-parte.md)); the subnav becomes a Sindicatos/Funcionalidades accordion ([ADR 0025](../decisions/0025-accordion-subnav-sindicatos-funcionalidades.md)); a second generation of access capabilities lands (team-org-chart cargos, ad hoc cargos with expiry, session substitutions, a cargo trail, operational scopes); the internal forum goes back to afiliado-only while the bell notices keep requiring a cargo; the Gestión sidebar is ordered by organizing flow ([ADR 0026](../decisions/0026-order-gestion-by-organizing-flow.md)); the sindicato monolith is split into three classic scripts ([ADR 0027](../decisions/0027-split-sindicato-monolith-into-three-classic-scripts.md)); global search and the two-row header fix arrive; and the first-visit onboarding retires unshipped into ADR 0021's moratorium.*

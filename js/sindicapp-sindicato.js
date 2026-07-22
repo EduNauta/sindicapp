@@ -3213,15 +3213,18 @@
     const CRM_NAV_SUBGROUPS = [
         { id: 'captar', tabs: ['intake', 'afiliadas'] },
         { id: 'acompanar', tabs: ['casos', 'asambleas', 'documentos'] },
-        { id: 'impulsar', tabs: ['campanas', 'comunicaciones', 'calendario'] },
+        /* 22-07-2026: 'objetivos' (housing-only) va en Impulsar — es lo que la
+           organización empuja. En los tipos sin la pestaña, el filtro por
+           disponibilidad lo omite (no aparece la etiqueta si queda vacía). */
+        { id: 'impulsar', tabs: ['objetivos', 'campanas', 'comunicaciones', 'calendario'] },
         { id: 'administrar', tabs: ['finanzas', 'estructura', 'datos', 'fuentes'] }
     ];
 
     /* Iconos de las secciones-CRM desparramadas en la sidebar (decreto 18-07). */
     const CRM_SECTION_ICONS = {
-        afiliadas: '🧾', intake: '📥', casos: '📂', asambleas: '🗳️', campanas: '📣',
-        finanzas: '💶', comunicaciones: '✉️', calendario: '📅', documentos: '📄',
-        estructura: '🧬', datos: '🗄️', fuentes: '📇'
+        afiliadas: '🧾', intake: '📥', casos: '📂', asambleas: '🗳️', objetivos: '🎯',
+        campanas: '📣', finanzas: '💶', comunicaciones: '✉️', calendario: '📅',
+        documentos: '📄', estructura: '🧬', datos: '🗄️', fuentes: '📇'
     };
 
     function equipoSectionMeta(locale, id, type) {
@@ -4775,7 +4778,51 @@
                     `Hi ${person(3).split(' ')[0]},\n\nWe haven't heard about your case "${firstCase.title || 'your case'}" in a while. Has anything changed? Should we bring it to the next assembly? Your situation has not been forgotten.\n\n${person(1)} — ${orgName}`]
             ];
         const templates = templateDefs.map(([id, title, body]) => ({ id, title, body }));
-        return { members, cases, campaigns, finances, comms, events, docs, sources, templates };
+        /* 22-07-2026 (petición Edu): repositorio de objetivos de la organización
+           (housing). Se siembra siempre; solo se pinta donde existe la pestaña. */
+        const objetivos = crmSeedObjetivos(locale, orgId);
+        return { members, cases, campaigns, finances, comms, events, docs, sources, templates, objetivos };
+    }
+
+    /* 22-07-2026: semilla del repo de Objetivos — metas colectivas de la organización
+       (estilo GitHub: número, estado abierto/conseguido, prioridad, etiquetas, comisión
+       responsable, hito, meta temporal, progreso y nº de actualizaciones). Housing-flavour
+       porque hoy solo se muestra en Inquilinos, pero es estado user-owned del runtime
+       (persiste y se puede marcar conseguido/reabrir). */
+    function crmSeedObjetivos(locale, orgId) {
+        const es = localeKey(locale) === 'es';
+        const h = crmOrgHash(orgId);
+        const defs = es ? [
+            { title: 'Frenar los desahucios sin alternativa habitacional en el municipio', desc: 'Ni un desahucio sin alquiler social: acompañamiento y presión hasta parar cada lanzamiento.', prioridad: 'alta', etiquetas: ['vivienda', 'urgente'], comision: 'Acción sindical', hito: 'Plan 2026', meta: '2026-12', progreso: 60 },
+            { title: 'Convenio de alquiler estable con la gran tenedora del barrio', desc: 'Negociar rebajas y contratos indefinidos para los bloques de un mismo gran tenedor.', prioridad: 'alta', etiquetas: ['negociación', 'territorial'], comision: 'Acción sindical', hito: 'Plan 2026', meta: '2026-10', progreso: 35 },
+            { title: 'Llegar a 1.000 hogares afiliados en la comarca', desc: 'Crecer para tener fuerza real en la mesa: campaña puerta a puerta y en asambleas de bloque.', prioridad: 'media', etiquetas: ['afiliación', 'crecimiento'], comision: 'Organización', hito: 'Órgano anual', meta: '2027-03', progreso: 72 },
+            { title: 'Registro público de grandes tenedores del barrio', desc: 'Mapa abierto de quién concentra la vivienda para detectar patrones y actuar en bloque.', prioridad: 'media', etiquetas: ['transparencia', 'datos'], comision: 'Contenidos', hito: 'Datos abiertos', meta: '2026-11', progreso: 45 },
+            { title: 'Caja de resistencia para impagos colectivos', desc: 'Fondo común que sostenga a las familias que entran en huelga de alquileres.', prioridad: 'media', etiquetas: ['finanzas'], comision: 'Organización', hito: '', meta: '2027-01', progreso: 20 },
+            { title: 'Ordenanza municipal contra los pisos turísticos ilegales', desc: 'Presión institucional conseguida: el pleno aprobó la moratoria.', prioridad: 'alta', etiquetas: ['institucional', 'victoria'], comision: 'Acción sindical', hito: 'Plan 2025', meta: '2026-02', estado: 'conseguido', progreso: 100 },
+            { title: 'Red de acompañamiento a juicios de desahucio', desc: 'Turnos estables de acompañamiento en cada señalamiento. En marcha y consolidada.', prioridad: 'media', etiquetas: ['cuidados', 'acción'], comision: 'Acción sindical', hito: 'Plan 2025', meta: '2025-12', estado: 'conseguido', progreso: 100 }
+        ] : [
+            { title: 'Stop evictions with no housing alternative in the municipality', desc: 'No eviction without social rent: accompaniment and pressure until every eviction is halted.', prioridad: 'alta', etiquetas: ['housing', 'urgent'], comision: 'Union action', hito: 'Plan 2026', meta: '2026-12', progreso: 60 },
+            { title: 'Stable rent agreement with the district’s largest landlord', desc: 'Negotiate reductions and open-ended contracts across one landlord’s blocks.', prioridad: 'alta', etiquetas: ['bargaining', 'territorial'], comision: 'Union action', hito: 'Plan 2026', meta: '2026-10', progreso: 35 },
+            { title: 'Reach 1,000 affiliated households in the county', desc: 'Grow to hold real power at the table: door-to-door and block-assembly drive.', prioridad: 'media', etiquetas: ['membership', 'growth'], comision: 'Organisation', hito: 'Annual congress', meta: '2027-03', progreso: 72 },
+            { title: 'Public register of the district’s large landlords', desc: 'An open map of who concentrates housing, to spot patterns and act collectively.', prioridad: 'media', etiquetas: ['transparency', 'data'], comision: 'Content', hito: 'Open data', meta: '2026-11', progreso: 45 },
+            { title: 'Solidarity fund for collective rent strikes', desc: 'A shared fund to sustain families that go on rent strike.', prioridad: 'media', etiquetas: ['finance'], comision: 'Organisation', hito: '', meta: '2027-01', progreso: 20 },
+            { title: 'Municipal bylaw against illegal tourist flats', desc: 'Institutional pressure won: the council passed the moratorium.', prioridad: 'alta', etiquetas: ['institutional', 'win'], comision: 'Union action', hito: 'Plan 2025', meta: '2026-02', estado: 'conseguido', progreso: 100 },
+            { title: 'Eviction-hearing accompaniment network', desc: 'Steady accompaniment shifts at every hearing. Up and running, consolidated.', prioridad: 'media', etiquetas: ['care', 'action'], comision: 'Union action', hito: 'Plan 2025', meta: '2025-12', estado: 'conseguido', progreso: 100 }
+        ];
+        return defs.map((d, i) => ({
+            id: 'o' + i,
+            num: 100 + i,
+            title: d.title,
+            desc: d.desc || '',
+            estado: d.estado || 'abierto',
+            prioridad: d.prioridad || 'media',
+            etiquetas: d.etiquetas || [],
+            comision: d.comision || '',
+            hito: d.hito || '',
+            meta: d.meta || '',
+            progreso: d.estado === 'conseguido' ? 100 : Math.max(5, Math.min(95, (d.progreso || 0) + ((h + i) % 6))),
+            actualizaciones: 2 + ((h + i * 3) % 12)
+        }));
     }
 
     /* 17-07-2026 (idea 22): persistencia del CRM en localStorage. Antes el estado del
@@ -4852,6 +4899,23 @@
         const data = getCrmData(locale, orgId);
         const item = data.campaigns.find((cp) => cp.id === campaignId);
         if (item && item.support < item.target) { item.support += 1; persistCrmRuntime(locale); }
+    }
+
+    /* 22-07-2026: marcar un objetivo como conseguido / reabrirlo (repo de Objetivos). */
+    function crmToggleObjetivo(locale, orgId, objId) {
+        const data = getCrmData(locale, orgId);
+        if (!Array.isArray(data.objetivos)) data.objetivos = crmSeedObjetivos(locale, orgId);
+        const o = data.objetivos.find((x) => x.id === objId);
+        if (!o) return;
+        if (o.estado === 'conseguido') {
+            o.estado = 'abierto';
+            if (o.progreso >= 100) o.progreso = 80;
+        } else {
+            o.estado = 'conseguido';
+            o.progreso = 100;
+        }
+        o.actualizaciones = (o.actualizaciones || 0) + 1;
+        persistCrmRuntime(locale);
     }
 
     function crmSendComm(locale, orgId, commId) {
@@ -5016,6 +5080,66 @@
                     <button type="button" class="crm-btn" data-sindicato-crm-campaign-support="${cp.id}" ${cp.support >= cp.target ? 'disabled' : ''}>${c.crmAddSupportBtn}</button>
                 </div>`;
             }).join('')}`;
+    }
+
+    /* 22-07-2026 (petición Edu): repositorio de OBJETIVOS de la organización, estilo
+       GitHub — no son casos de personas afiliadas, son las metas colectivas de la
+       organización en sí. Abiertos primero, conseguidos después; barra de progreso,
+       hito, comisión responsable, etiquetas y nº de actualizaciones. Se puede marcar
+       como conseguido / reabrir (muta el runtime persistido y re-renderiza). */
+    function buildCrmObjetivosHtml(locale, orgId) {
+        const c = t(locale);
+        const data = getCrmData(locale, orgId);
+        /* Runtimes ya persistidos antes de este cambio no traen `objetivos`: se
+           siembran a demanda una sola vez. */
+        if (!Array.isArray(data.objetivos)) {
+            data.objetivos = crmSeedObjetivos(locale, orgId);
+            persistCrmRuntime(locale);
+        }
+        const objs = data.objetivos;
+        const abiertos = objs.filter((o) => o.estado !== 'conseguido');
+        const conseguidos = objs.filter((o) => o.estado === 'conseguido');
+        const hitos = objs.reduce((acc, o) => (o.hito && acc.indexOf(o.hito) === -1 ? acc.concat(o.hito) : acc), []);
+        const card = (o) => {
+            const pct = Math.max(0, Math.min(100, o.progreso | 0));
+            const done = o.estado === 'conseguido';
+            const labels = (o.etiquetas || []).map((l) => `<span class="crm-obj-label">${l}</span>`).join('');
+            const badge = done
+                ? `<span class="crm-badge crm-badge-enviada">${c.crmObjEstados.conseguido}</span>`
+                : `<span class="crm-badge crm-badge-${o.prioridad}">${(c.crmObjPrioridad || {})[o.prioridad] || ''}</span>`;
+            return `<div class="sindicato-coord-card crm-obj-card${done ? ' crm-obj-done' : ''}">
+                <div class="crm-obj-head">
+                    <span class="crm-obj-status crm-obj-status-${done ? 'done' : 'open'}" aria-hidden="true">${done ? '✓' : '◎'}</span>
+                    <strong class="crm-obj-title">${o.title}</strong>
+                    ${badge}
+                </div>
+                ${o.desc ? `<p class="template-muted crm-obj-desc">${o.desc}</p>` : ''}
+                <div class="crm-obj-meta">
+                    <span class="crm-obj-id">#${o.num}</span>
+                    ${o.comision ? `<span>· ${c.crmObjOwnerLabel}: ${o.comision}</span>` : ''}
+                    ${o.hito ? `<span>· ${c.crmObjHitoLabel}: ${o.hito}</span>` : ''}
+                    ${o.meta ? `<span>· ${c.crmObjMetaLabel} ${o.meta}</span>` : ''}
+                    <span>· 💬 ${o.actualizaciones || 0} ${c.crmObjUpdatesLabel}</span>
+                </div>
+                ${labels ? `<div class="crm-obj-labels">${labels}</div>` : ''}
+                <div class="crm-progress" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="${o.title}">
+                    <div class="crm-progress-fill" style="width:${pct}%"></div>
+                </div>
+                <p class="template-muted crm-obj-progress-label">${pct}%</p>
+                <button type="button" class="crm-btn" data-sindicato-crm-obj-toggle="${o.id}">${done ? c.crmObjReopenBtn : c.crmObjCloseBtn}</button>
+            </div>`;
+        };
+        const section = (title, list) => `<h4 class="crm-obj-section-title">${title} <span class="crm-obj-count">${list.length}</span></h4>`
+            + (list.length ? list.map(card).join('') : `<p class="template-muted">${c.crmObjEmpty}</p>`);
+        return `
+            <p class="template-muted">${c.crmObjetivosIntro}</p>
+            <div class="crm-stat-row">
+                <div class="crm-stat"><strong>${abiertos.length}</strong><span>${c.crmObjStats.abiertos}</span></div>
+                <div class="crm-stat"><strong>${conseguidos.length}</strong><span>${c.crmObjStats.conseguidos}</span></div>
+                <div class="crm-stat"><strong>${hitos.length}</strong><span>${c.crmObjStats.hitos}</span></div>
+            </div>
+            ${section(c.crmObjOpenTitle, abiertos)}
+            ${section(c.crmObjDoneTitle, conseguidos)}`;
     }
 
     function buildCrmFinanzasHtml(locale, orgId, view) {
@@ -5454,9 +5578,14 @@
     /* 18-07 (decreto Edu): «Fuentes de datos» deja de vivir dentro de Bases de datos y
        pasa a ser funcionalidad propia (botón propio en la sidebar del equipo). */
     const CRM_ALL_TABS = ['afiliadas', 'intake', 'casos', 'asambleas', 'campanas', 'finanzas', 'comunicaciones', 'calendario', 'documentos', 'estructura', 'datos', 'fuentes'];
+    /* 22-07-2026 (petición Edu): Inquilinos estrena «Objetivos» — un repositorio de
+       objetivos de la organización estilo GitHub (metas colectivas, estado, progreso,
+       hitos). De momento es housing-only, así que housing tiene su propia lista en vez
+       de apuntar a CRM_ALL_TABS. */
+    const CRM_HOUSING_TABS = ['afiliadas', 'intake', 'casos', 'asambleas', 'objetivos', 'campanas', 'finanzas', 'comunicaciones', 'calendario', 'documentos', 'estructura', 'datos', 'fuentes'];
     const CRM_TABS_BY_TYPE = {
         unions: CRM_ALL_TABS,
-        housing: CRM_ALL_TABS,
+        housing: CRM_HOUSING_TABS,
         profesionales: CRM_ALL_TABS,
         autonomos: ['afiliadas', 'intake', 'casos', 'asambleas', 'campanas', 'comunicaciones', 'calendario', 'documentos', 'estructura', 'datos', 'fuentes'],
         estudiantes: ['afiliadas', 'intake', 'casos', 'asambleas', 'campanas', 'comunicaciones', 'calendario', 'documentos', 'estructura', 'datos', 'fuentes'],
@@ -5497,6 +5626,7 @@
         const builders = {
             afiliadas: () => buildCrmAfiliadasHtml(locale, orgId, view),
             casos: () => buildCrmCasosHtml(locale, orgId),
+            objetivos: () => buildCrmObjetivosHtml(locale, orgId),
             campanas: () => buildCrmCampanasHtml(locale, orgId),
             finanzas: () => buildCrmFinanzasHtml(locale, orgId, view),
             comunicaciones: () => buildCrmComunicacionesHtml(locale, orgId),
@@ -6022,6 +6152,7 @@
         buildCrmMemberRowsHtml,
         crmMoveCase,
         crmSupportCampaign,
+        crmToggleObjetivo,
         crmSendComm,
         crmAddEvent,
         crmAdvanceDocReview,

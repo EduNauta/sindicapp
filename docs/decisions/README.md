@@ -64,3 +64,5 @@ What follows from this — the good, the bad, and anything a future change would
 - [0025 — Accordion subnav: Sindicatos and Funcionalidades as exclusive groups](0025-accordion-subnav-sindicatos-funcionalidades.md) *(partially supersedes 0017)*
 - [0026 — Order the Gestión sidebar group by organizing flow](0026-order-gestion-by-organizing-flow.md) *(completes 0019's postponed reorder)*
 - [0027 — Split the sindicato monolith into three classic scripts](0027-split-sindicato-monolith-into-three-classic-scripts.md)
+- [0028 — Add an Objetivos repository to the Inquilinos CRM](0028-objetivos-repository-in-inquilinos-crm.md)
+- [0029 — Open the demo as Coordinación general by default](0029-open-demo-as-coordinacion-general-by-default.md)
